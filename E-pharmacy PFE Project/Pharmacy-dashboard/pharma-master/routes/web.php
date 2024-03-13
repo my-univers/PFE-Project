@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ComplementAlimentaireController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,3 +25,12 @@ Route::get('/dashboard', function () {
 Route::get('clients/list', function () {
     return view('clients.list');
 });
+
+
+
+/***************Complements Alimentaires***************/
+
+Route::get('/complements', [ComplementAlimentaireController::class, 'showComplementsList'])->name('complements.list');
+
+Route::get('/addComplement', [ComplementAlimentaireController::class, 'addComplement'])->name('complements.ajout');
+

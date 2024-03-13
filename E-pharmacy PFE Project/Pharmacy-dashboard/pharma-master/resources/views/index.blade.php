@@ -190,7 +190,7 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="{{ route('complements.list') }}">
               <span>Liste</span>
             </a>
           </li>
