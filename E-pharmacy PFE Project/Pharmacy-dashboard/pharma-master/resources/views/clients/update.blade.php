@@ -272,20 +272,20 @@
             <div class="field-body">
               <div class="field">
                 <div class="control icons-left">
-                  <input class="input" type="text" name="nom" placeholder="Nom" value="{{ $c->nom }}">
+                  <input class="input" type="text" id="nom" name="nom" placeholder="Nom" value="{{ $c->nom }}">
                   <span class="icon left"><i class="mdi mdi-account"></i></span>
                 </div>
               </div>
               <div class="field">
                 <div class="control icons-left icons-right">
-                  <input class="input" type="email" name="email" placeholder="E-mail" value="{{ $c->email }}">
+                  <input class="input" type="email" id="email" name="email" placeholder="E-mail" value="{{ $c->email }}">
                   <span class="icon left"><i class="mdi mdi-mail"></i></span>
                   <span class="icon right"><i class="mdi mdi-check"></i></span>
                 </div>
               </div>
               <div class="field">
                 <div class="control icons-left">
-                  <input class="input" type="text" name="adresse" placeholder="Adresse" value="{{ $c->adresse }}">
+                  <input class="input" type="text" id="adresse" name="adresse" placeholder="Adresse" value="{{ $c->adresse }}">
                   <span class="icon left"><i class="mdi mdi-map-marker-outline"></i></span>
                 </div>
               </div>
@@ -299,7 +299,7 @@
                     <input class="input" value="+212" size="3" readonly>
                   </div>
                   <div class="control expanded">
-                    <input class="input" type="tel" name="telephone" placeholder="Téléphone" value="{{ $c->telephone }}">
+                    <input class="input" type="tel" id="tele" name="telephone" placeholder="Téléphone" value="{{ $c->telephone }}">
                   </div>
                 </div>
                 <p class="help">Entrez le premier zero</p>
@@ -313,7 +313,7 @@
               </button>
             </div>
             <div class="control">
-              <button type="reset" class="button red">
+              <button type="button" class="button red">
                 Annuler
               </button>
             </div>

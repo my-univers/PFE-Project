@@ -292,7 +292,7 @@
                 <td class="actions-cell">
                 <div class="buttons right nowrap">
                     <a class="button small green --jb-modal" href="/clients/updateForm/{{$c->id}}">
-                    <span class="icon"><i class="mdi mdi-account-edit"></i></span>
+                    <span class="icon"><i class="mdi mdi-pencil"></i></span>
                     </a>
                     <button class="button small red --jb-modal" data-target="sample-modal" type="button">
                     <span class="icon"><i class="mdi mdi-trash-can"></i></span>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ComplementAlimentaireController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,13 +16,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [DashboardController::class, 'index']);
 
-Route::get('/dashboard', function () {
-    return view('index');
-});
+Route::get('/dashboard', [DashboardController::class, 'index']);
+
 
 /******************Clients******************/
 
