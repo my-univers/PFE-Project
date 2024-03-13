@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ComplementAlimentaireController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,11 +23,19 @@ Route::get('/dashboard', function () {
     return view('index');
 });
 
-Route::get('clients/list', function () {
-    return view('clients.list');
-});
+/******************Clients******************/
 
+Route::get('/clients/list', [ClientController::class, 'showClientsList']);
 
+Route::get('/clients/addForm', [ClientController::class, 'addClientForm']);
+
+Route::post('/clients/add', [ClientController::class, 'addClient']);
+
+Route::get('/clients/updateForm/{id}', [ClientController::class, 'updateClientForm']);
+
+Route::post('/clients/update/{id}', [ClientController::class, 'updateClient']);
+
+Route::get('/clients/delete/{id}', [ClientController::class, 'deleteClient']);
 
 /***************Complements Alimentaires***************/
 

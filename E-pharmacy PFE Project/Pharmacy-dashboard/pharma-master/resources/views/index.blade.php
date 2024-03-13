@@ -133,12 +133,12 @@
         </a>
         <ul>
           <li>
-            <a href="clients/list">
+            <a href="/clients/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/clients/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -190,7 +190,7 @@
         </a>
         <ul>
           <li>
-            <a href="{{ route('complements.list') }}">
+            <a href="/complements">
               <span>Liste</span>
             </a>
           </li>
