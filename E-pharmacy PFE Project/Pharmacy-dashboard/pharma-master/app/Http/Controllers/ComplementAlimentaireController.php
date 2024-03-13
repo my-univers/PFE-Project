@@ -14,6 +14,12 @@ class ComplementAlimentaireController extends Controller
         return view("Complements_Alimentaires.list_complements" ,['list' => $complements_list ] );
     }
 
+
+    public function showForm(){
+        return view("Complements_Alimentaires.ajout_complements");
+    }
+
+
     public function addComplement(Request $req){
         $compelement = new ComplementsAlimentaires;
 

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard - Pharma One</title>
+  <title>Admin - Pharma One</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="css/main.css?v=1628755089081">
@@ -129,30 +129,6 @@
     </ul>
     <p class="menu-label">Gestion</p>
     <ul class="menu-list">
-      {{-- <li class="--set-active-tables-html">
-        <a href="tables.html">
-          <span class="icon"><i class="mdi mdi-table"></i></span>
-          <span class="menu-item-label">Tables</span>
-        </a>
-      </li>
-      <li class="--set-active-forms-html">
-        <a href="forms.html">
-          <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-          <span class="menu-item-label">Forms</span>
-        </a>
-      </li>
-      <li class="--set-active-profile-html">
-        <a href="profile.html">
-          <span class="icon"><i class="mdi mdi-account-circle"></i></span>
-          <span class="menu-item-label">Profile</span>
-        </a>
-      </li>
-      <li>
-        <a href="login.html">
-          <span class="icon"><i class="mdi mdi-lock"></i></span>
-          <span class="menu-item-label">Login</span>
-        </a>
-      </li> --}}
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-account-group"></i></span>
@@ -213,7 +189,7 @@
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-needle"></i></span>  
-          <span class="menu-item-label">Complèments</span>
+          <span class="menu-item-label">Compléments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
@@ -223,7 +199,7 @@
             </a>
           </li>
           <li>
-            <a href="{{ route('complements.ajout') }}">
+            <a href="{{ route('complements.form') }}">
               <span>Ajout</span>
             </a>
           </li>

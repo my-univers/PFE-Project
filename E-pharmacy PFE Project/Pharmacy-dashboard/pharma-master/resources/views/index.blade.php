@@ -195,7 +195,7 @@
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="{{ route('complements.form') }}">
               <span>Ajout</span>
             </a>
           </li>

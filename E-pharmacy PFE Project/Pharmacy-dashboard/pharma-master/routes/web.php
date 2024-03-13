@@ -28,5 +28,9 @@ Route::get('/dashboard', function () {
 
 Route::get('/complements', [ComplementAlimentaireController::class, 'showComplementsList'])->name('complements.list');
 
-Route::get('/addComplement', [ComplementAlimentaireController::class, 'addComplement'])->name('complements.ajout');
+
+Route::get('/complements/formulaire', [ComplementAlimentaireController::class, 'showForm'])->name('complements.form');
+
+
+
 
