@@ -103,10 +103,6 @@
           </a>
         </div>
       </div>
-      <a title="Log out" class="navbar-item desktop-icon-only">
-        <span class="icon"><i class="mdi mdi-logout"></i></span>
-        <span>Déconnexion</span>
-      </a>
     </div>
   </div>
 </nav>
@@ -121,7 +117,7 @@
     <p class="menu-label">General</p>
     <ul class="menu-list">
       <li class="active">
-        <a href="index.html">
+        <a href="/dashboard">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Tableau de Bord</span>
         </a>
@@ -129,30 +125,6 @@
     </ul>
     <p class="menu-label">Gestion</p>
     <ul class="menu-list">
-      {{-- <li class="--set-active-tables-html">
-        <a href="tables.html">
-          <span class="icon"><i class="mdi mdi-table"></i></span>
-          <span class="menu-item-label">Tables</span>
-        </a>
-      </li>
-      <li class="--set-active-forms-html">
-        <a href="forms.html">
-          <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-          <span class="menu-item-label">Forms</span>
-        </a>
-      </li>
-      <li class="--set-active-profile-html">
-        <a href="profile.html">
-          <span class="icon"><i class="mdi mdi-account-circle"></i></span>
-          <span class="menu-item-label">Profile</span>
-        </a>
-      </li>
-      <li>
-        <a href="login.html">
-          <span class="icon"><i class="mdi mdi-lock"></i></span>
-          <span class="menu-item-label">Login</span>
-        </a>
-      </li> --}}
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-account-group"></i></span>
@@ -161,7 +133,7 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="clients/list">
               <span>Liste</span>
             </a>
           </li>
@@ -271,7 +243,7 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Dashboard</li>
+      <li>Tableau de Bord </li>
     </ul>
   </div>
 </section>
@@ -279,7 +251,7 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Dashboard
+      Tableau de Bord
     </h1>
   </div>
 </section>
@@ -333,7 +305,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="card has-table">
       <header class="card-header">
         <p class="card-header-title">
