@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin - Pharma One</title>
+  <title>Dashboard - Pharma One</title>
 
   <!-- Tailwind is included -->
-  <link rel="stylesheet" href="css/main.css?v=1628755089081">
+  <link rel="stylesheet" href="../css/main.css?v=1628755089081">
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
@@ -103,10 +103,6 @@
           </a>
         </div>
       </div>
-      <a title="Log out" class="navbar-item desktop-icon-only">
-        <span class="icon"><i class="mdi mdi-logout"></i></span>
-        <span>Déconnexion</span>
-      </a>
     </div>
   </div>
 </nav>
@@ -120,8 +116,8 @@
   <div class="menu is-menu-main">
     <p class="menu-label">General</p>
     <ul class="menu-list">
-      <li class="active">
-        <a href="index.html">
+      <li>
+        <a href="/dashboard">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Tableau de Bord</span>
         </a>
@@ -129,7 +125,7 @@
     </ul>
     <p class="menu-label">Gestion</p>
     <ul class="menu-list">
-      <li>
+      <li class="active">
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-account-group"></i></span>
           <span class="menu-item-label">Clients</span>
@@ -137,12 +133,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/clients/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/clients/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -188,18 +184,18 @@
       </li>
       <li>
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-needle"></i></span>  
-          <span class="menu-item-label">Compléments</span>
+          <span class="icon"><i class="mdi mdi-needle"></i></span>
+          <span class="menu-item-label">Complèments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
           <li>
-            <a href="{{ route('complements.list') }}">
+            <a href="#void">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="{{ route('complements.form') }}">
+            <a href="#void">
               <span>Ajout</span>
             </a>
           </li>
@@ -247,7 +243,7 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Compléments</li>
+      <li>Clients </li>
     </ul>
   </div>
 </section>
@@ -255,69 +251,74 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Compléments Alimentaires
+        Ajouter Client
     </h1>
   </div>
 </section>
 
-  <section class="section main-section">
-    <div class="card has-table">
+<section class="section main-section">
+    <div class="card mb-6">
       <header class="card-header">
         <p class="card-header-title">
-            <span class="mdi mdi-pill"></span>
-            Compléments
+          <span class="icon"><i class="mdi mdi-account"></i></span>
+          Client
         </p>
-        <a href="#" class="card-header-icon">
-          <span class="icon"><i class="mdi mdi-reload"></i></span>
-        </a>
       </header>
       <div class="card-content">
-        <table>
-            <thead>
-                <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Nom</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Prix</th>
-                  <th scope="col">Quantité en stock</th>
-                  <th></th>
-                </tr>
-              </thead>
-          
-              <tbody>
-                @foreach($list as $complement)
-                <tr>
-                    <th scope="row">{{ $complement->id }}</th>
-                    <td>{{ $complement->nom }}</td>
-                    <td>{{ $complement->descr }}</td>
-                    <td>{{ $complement->prix }}</td>
-                    <td>{{ $complement->qte_en_stock }}</td>
-                    <td class="actions-cell">
-                      <div class="buttons right nowrap">
-                        <button class="button small green --jb-modal"  data-target="sample-modal-2" type="button">
-                          <span class="icon"> <span class="mdi mdi-pencil"></span></span>
-                        </button>
-                        <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                          <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                        </button>
-                      </div>
-                    </td>
-                </tr>
-                @endforeach
-          </table>
-          </tbody>
-        </table>
-        
-        <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
+        <form method="post" action="/clients/add">
+            @csrf
+          <div class="field">
+            {{-- <label class="label">From</label> --}}
+            <div class="field-body">
+              <div class="field">
+                <div class="control icons-left">
+                  <input class="input" type="text" name="nom" placeholder="Nom">
+                  <span class="icon left"><i class="mdi mdi-account"></i></span>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control icons-left icons-right">
+                  <input class="input" type="email" name="email" placeholder="E-mail">
+                  <span class="icon left"><i class="mdi mdi-mail"></i></span>
+                  <span class="icon right"><i class="mdi mdi-check"></i></span>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control icons-left">
+                  <input class="input" type="text" name="adresse" placeholder="Adresse">
+                  <span class="icon left"><i class="mdi mdi-map-marker-outline"></i></span>
+                </div>
+              </div>
             </div>
-            <small>Page 1 of 3</small>
           </div>
-        </div>
+          <div class="field">
+            <div class="field-body">
+              <div class="field">
+                <div class="field addons">
+                  <div class="control">
+                    <input class="input" value="+212" size="3" readonly>
+                  </div>
+                  <div class="control expanded">
+                    <input class="input" type="tel" name="tele" placeholder="Téléphone">
+                  </div>
+                </div>
+                <p class="help">Entrez le premier zero</p>
+              </div>
+            </div>
+          </div>
+          <div class="field grouped">
+            <div class="control">
+              <button type="submit" class="button green">
+                Ajouter
+              </button>
+            </div>
+            <div class="control">
+              <button type="reset" class="button red">
+                Annuler
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </section>
@@ -369,10 +370,10 @@
 </div>
 
 <!-- Scripts below are for demo only -->
-<script type="text/javascript" src="js/main.min.js?v=1628755089081"></script>
+<script type="text/javascript" src="../js/main.min.js?v=1628755089081"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<script type="text/javascript" src="js/chart.sample.min.js"></script>
+<script type="text/javascript" src="../js/chart.sample.min.js"></script>
 
 
 <script>
