@@ -152,7 +152,7 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/medecins/list">
               <span>Liste</span>
             </a>
           </li>
