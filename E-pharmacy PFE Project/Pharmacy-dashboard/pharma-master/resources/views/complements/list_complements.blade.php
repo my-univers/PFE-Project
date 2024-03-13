@@ -103,10 +103,6 @@
           </a>
         </div>
       </div>
-      <a title="Log out" class="navbar-item desktop-icon-only">
-        <span class="icon"><i class="mdi mdi-logout"></i></span>
-        <span>Déconnexion</span>
-      </a>
     </div>
   </div>
 </nav>
@@ -283,7 +279,7 @@
                     <th></th>
                   <th scope="col">#</th>
                   <th scope="col">Nom</th>
-                  <th scope="col">Description</th>
+                  <th scope="col" style="width: 450px">Description</th>
                   <th scope="col">Prix</th>
                   <th scope="col">Quantité en stock</th>
                   <th></th>
@@ -297,7 +293,7 @@
                     <td scope="row">{{ $complement->id }}</td>
                     <td>{{ $complement->nom }}</td>
                     <td>{{ $complement->descr }}</td>
-                    <td>{{ $complement->prix }}</td>
+                    <td>{{ $complement->prix }} DH</td>
                     <td>{{ $complement->qte_en_stock }}</td>
                     <td class="actions-cell">
                       <div class="buttons right nowrap">
