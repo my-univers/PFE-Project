@@ -7,7 +7,7 @@
   <title>Admin - Pharma One</title>
 
   <!-- Tailwind is included -->
-  <link rel="stylesheet" href="../css/main.css?v=1628755089081">
+  <link rel="stylesheet" href="../../css/main.css?v=1628755089081">
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
@@ -103,6 +103,10 @@
           </a>
         </div>
       </div>
+      <a title="Log out" class="navbar-item desktop-icon-only">
+        <span class="icon"><i class="mdi mdi-logout"></i></span>
+        <span>Déconnexion</span>
+      </a>
     </div>
   </div>
 </nav>
@@ -144,7 +148,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li> 
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
           <span class="menu-item-label">Medecins</span>
@@ -184,7 +188,7 @@
       </li>
       <li>
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-needle"></i></span>
+          <span class="icon"><i class="mdi mdi-needle"></i></span>  
           <span class="menu-item-label">Compléments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -256,7 +260,7 @@
   </div>
 </section>
 
-
+  
       <div class="card-content">
 
         <section class="section main-section">
@@ -269,13 +273,14 @@
             </header>
             <div class="card-content">
 
-              <form method="get" action="/complements/add" enctype="multipart/form-data">
+              <form method="post" action="complements/update/{{$complement->id}}">
+                @csrf
 
                 <div class="field">
                   <div class="field-body">
                     <div class="field">
                       <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Nom" name="complementNom">
+                        <input class="input" type="text" placeholder="Nom" name="complementNom" value="{{ $complement->nom }}">
                         <span class="icon left"><i class="mdi mdi-account"></i></span>
                       </div>
                     </div>
@@ -285,8 +290,8 @@
 
                 <div class="field">
                   <div class="control">
-                    <textarea class="textarea" placeholder="Description" name="complementDescription"></textarea>
-                  </div>
+                    <textarea class="textarea" placeholder="Description" name="complementDescription">{{$complement->descr}}</textarea>
+                </div>
                 </div>
 
                 
@@ -294,7 +299,7 @@
                   <div class="field-body">
                     <div class="field">
                       <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Prix" name="complementPrice">
+                        <input class="input" type="text" placeholder="Prix" name="complementPrice" value="{{ $complement->prix }}">
                         <span class="icon left"><span class="mdi mdi-cash"></span></span>
                       </div>
                     </div>
@@ -306,7 +311,7 @@
                   <div class="field-body">
                     <div class="field">
                       <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Quantité en stock" name="qte_stock">
+                        <input class="input" type="text" placeholder="Quantité en stock" name="qte_stock" value="{{ $complement->qte_en_stock }}">
                         <span class="icon left"><span class="mdi mdi-store"></span></span>
                       </div>
                     </div>
@@ -318,17 +323,18 @@
                   <div class="field-body">
                     <div class="field">
                       <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Image" name="image">
+                        <input class="input" type="text" placeholder="Image" name="image" value="{{ $complement->image_path }}">
                         <span class="icon left"><span class="mdi mdi-store"></span></span>
                       </div>
                     </div>
                   </div>
                 </div>
 
+                
                 <div class="field grouped">
                   <div class="control">
                     <button type="submit" class="button green">
-                      Ajouter
+                      Modifier
                     </button>
                   </div>
                   <div class="control">
@@ -343,7 +349,6 @@
                   </div>
                 </div>
 
-                <hr>
               </form>
             </div>
           </div>

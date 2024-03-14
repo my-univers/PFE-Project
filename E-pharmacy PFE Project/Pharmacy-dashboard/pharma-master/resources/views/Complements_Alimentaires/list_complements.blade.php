@@ -7,7 +7,7 @@
   <title>Admin - Pharma One</title>
 
   <!-- Tailwind is included -->
-  <link rel="stylesheet" href="css/main.css?v=1628755089081">
+  <link rel="stylesheet" href="../css/main.css?v=1628755089081">
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
@@ -184,13 +184,15 @@
       </li>
       <li>
         <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-medication"></i></span>
+          <span class="menu-item-label">Compléments</span>
           <span class="icon"><i class="mdi mdi-needle"></i></span>
           <span class="menu-item-label">Complèments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
           <li>
-            <a href="{{ route('complements.list') }}">
+            <a href="/complements">
               <span>Liste</span>
             </a>
           </li>
@@ -260,7 +262,7 @@
     <div class="card has-table">
       <header class="card-header">
         <p class="card-header-title">
-            <span class="icon"><i class="mdi mdi-pill"></i></span>
+            <span class="icon"><span class="mdi mdi-medication"></span></span>
             Compléments
         </p>
         <a href="#" class="card-header-icon">
@@ -292,14 +294,14 @@
                     <td>{{ $complement->qte_en_stock }}</td>
                     <td class="actions-cell">
                       <div class="buttons right nowrap">
-                        <button class="button small green --jb-modal"  data-target="sample-modal-2" type="button">
-                          <span class="icon"> <span class="mdi mdi-pencil"></span></span>
-                        </button>
-                        <button class="button small red --jb-modal" data-target="sample-modal" type="button">
+                          <a class="button small green --jb-modal" href="/complements/updateForm/{{$complement->id}}">
+                          <span class="icon"><i class="mdi mdi-pencil"></i></span>
+                          </a>
+                          <button class="button small red --jb-modal" data-target="sample-modal" type="button">
                           <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                        </button>
+                          </button>
                       </div>
-                    </td>
+                      </td>
                 </tr>
                 @endforeach
           </table>
@@ -334,20 +336,20 @@
   <div class="modal-background --jb-modal-close"></div>
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Sample modal</p>
+      <p class="modal-card-title">Confirmation de Suppression</p>
     </header>
     <section class="modal-card-body">
-      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-      <p>This is sample modal</p>
+      <p>Êtes-vous sûr de vouloir supprimer cet élément ?</p>
+      <p> Cette action est irréversible.</p>
     </section>
     <footer class="modal-card-foot">
-      <button class="button --jb-modal-close">Cancel</button>
-      <button class="button red --jb-modal-close">Confirm</button>
+      <button class="button --jb-modal-close">Annuler</button>
+      <button class="button red --jb-modal-close">Confirmer</button>
     </footer>
   </div>
 </div>
 
-<div id="sample-modal-2" class="modal">
+{{-- <div id="sample-modal-2" class="modal">
   <div class="modal-background --jb-modal-close"></div>
   <div class="modal-card">
     <header class="modal-card-head">
@@ -362,7 +364,7 @@
       <button class="button blue --jb-modal-close">Confirm</button>
     </footer>
   </div>
-</div>
+</div> --}}
 
 </div>
 

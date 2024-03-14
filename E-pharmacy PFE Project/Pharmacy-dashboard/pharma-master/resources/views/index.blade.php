@@ -185,7 +185,7 @@
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-needle"></i></span>
-          <span class="menu-item-label">Complèments</span>
+          <span class="menu-item-label">Compléments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
@@ -378,7 +378,7 @@
               <th></th>
             </tr>
             </thead>
-            <tbody>
+            {{-- <tbody>
               @foreach($clients as $c)
               <tr>
                   <td></td>
@@ -399,7 +399,7 @@
                   </td>
               </tr>
               @endforeach
-            </tbody>
+            </tbody> --}}
           </table>
         <div class="table-pagination">
           <div class="flex items-center justify-between">
@@ -436,7 +436,7 @@
       </section>
       <footer class="modal-card-foot">
         <button class="button --jb-modal-close">Annuler</button>
-        <a class="button red --jb-modal-close" href="/clients/delete/{{$c->id}}">Confirmer</a>
+        {{-- <a class="button red --jb-modal-close" href="/clients/delete/{{$c->id}}">Confirmer</a> --}}
       </footer>
     </div>
   </div>
