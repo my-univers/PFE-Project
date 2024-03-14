@@ -103,10 +103,6 @@
           </a>
         </div>
       </div>
-      <a title="Log out" class="navbar-item desktop-icon-only">
-        <span class="icon"><i class="mdi mdi-logout"></i></span>
-        <span>Déconnexion</span>
-      </a>
     </div>
   </div>
 </nav>
@@ -188,7 +184,7 @@
       </li>
       <li>
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-needle"></i></span>  
+          <span class="icon"><i class="mdi mdi-needle"></i></span>
           <span class="menu-item-label">Compléments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -260,7 +256,7 @@
   </div>
 </section>
 
-  
+
       <div class="card-content">
 
         <section class="section main-section">

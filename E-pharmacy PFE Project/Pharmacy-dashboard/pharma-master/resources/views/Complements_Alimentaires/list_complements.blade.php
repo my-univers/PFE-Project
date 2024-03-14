@@ -186,6 +186,8 @@
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medication"></i></span>
           <span class="menu-item-label">Compléments</span>
+          <span class="icon"><i class="mdi mdi-needle"></i></span>
+          <span class="menu-item-label">Complèments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>

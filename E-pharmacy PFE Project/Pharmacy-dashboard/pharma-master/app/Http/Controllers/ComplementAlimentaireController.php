@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ComplementAlimentaire;
-use App\Models\ComplementAlimentaires;
 use App\Models\ComplementsAlimentaires;
 use Illuminate\Http\Request;
 
