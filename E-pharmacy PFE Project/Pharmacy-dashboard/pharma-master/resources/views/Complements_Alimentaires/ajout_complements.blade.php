@@ -103,10 +103,6 @@
           </a>
         </div>
       </div>
-      <a title="Log out" class="navbar-item desktop-icon-only">
-        <span class="icon"><i class="mdi mdi-logout"></i></span>
-        <span>Déconnexion</span>
-      </a>
     </div>
   </div>
 </nav>
@@ -188,7 +184,7 @@
       </li>
       <li>
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-needle"></i></span>  
+          <span class="icon"><i class="mdi mdi-needle"></i></span>
           <span class="menu-item-label">Compléments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -260,9 +256,9 @@
   </div>
 </section>
 
-  
+
       <div class="card-content">
-       
+
 
         <section class="section main-section">
           <div class="card mb-6">
@@ -284,7 +280,7 @@
                         <span class="icon left"><i class="mdi mdi-account"></i></span>
                       </div>
                     </div>
-{{-- 
+{{--
                     <div class="field">
                       <div class="control icons-left icons-right">
                         <input class="input" type="email" placeholder="Email" value="alex@smith.com">
@@ -333,7 +329,7 @@
                 <hr>
                 <div class="field">
                   <label class="label">Subject</label>
-      
+
                   <div class="control">
                     <input class="input" type="text" placeholder="e.g. Partnership opportunity">
                   </div>
@@ -341,7 +337,7 @@
                     This field is required
                   </p>
                 </div>
-      
+
                 <div class="field">
                   <label class="label">Question</label>
                   <div class="control">
@@ -349,7 +345,7 @@
                   </div>
                 </div>
                 <hr>
-      
+
                 <div class="field grouped">
                   <div class="control">
                     <button type="submit" class="button green">
@@ -365,7 +361,7 @@
               </form>
             </div>
           </div>
-      
+
           <div class="card">
             <header class="card-header">
               <p class="card-header-title">
@@ -451,9 +447,9 @@
             </div>
           </div>
         </section>
-      
-      
-        
+
+
+
         <div class="table-pagination">
           <div class="flex items-center justify-between">
             <div class="buttons">
