@@ -7,7 +7,7 @@
   <title>Dashboard - Pharma One</title>
 
   <!-- Tailwind is included -->
-  <link rel="stylesheet" href="css/main.css?v=1628755089081">
+  <link rel="stylesheet" href="../css/main.css?v=1628755089081">
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
@@ -116,7 +116,7 @@
   <div class="menu is-menu-main">
     <p class="menu-label">General</p>
     <ul class="menu-list">
-      <li class="active">
+      <li>
         <a href="/dashboard">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Tableau de Bord</span>
@@ -144,7 +144,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li class="active">
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
           <span class="menu-item-label">Medecins</span>
@@ -190,12 +190,12 @@
         </a>
         <ul>
           <li>
-            <a href="/complements">
+            <a href="#void">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="{{ route('complements.form') }}">
+            <a href="#void">
               <span>Ajout</span>
             </a>
           </li>
@@ -243,7 +243,7 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Tableau de Bord </li>
+      <li>Médecins </li>
     </ul>
   </div>
 </section>
@@ -251,166 +251,157 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Tableau de Bord
+        Ajouter Médecin
     </h1>
   </div>
 </section>
 
 <section class="section main-section">
-    <div class="grid gap-6 grid-cols-1 md:grid-cols-3 mb-6">
-      <div class="card">
-        <div class="card-content">
-          <div class="flex items-center justify-between">
-            <div class="widget-label">
-              <h3>
-                Clients
-              </h3>
-              <h1>
-                {{ $clients_count }}
-              </h1>
-            </div>
-            <span class="icon widget-icon text-green-500"><i class="mdi mdi-account-multiple mdi-48px"></i></span>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-content">
-          <div class="flex items-center justify-between">
-            <div class="widget-label">
-              <h3>
-                Commandes
-              </h3>
-              <h1>
-                {{ $commandes_count }}
-              </h1>
-            </div>
-            <span class="icon widget-icon text-blue-500"><i class="mdi mdi-cart-outline mdi-48px"></i></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-content">
-          <div class="flex items-center justify-between">
-            <div class="widget-label">
-              <h3>
-                Médecins
-              </h3>
-              <h1>
-                {{ $medecins_count }}
-              </h1>
-            </div>
-            <span class="icon widget-icon text-red-500"><i class="mdi mdi-doctor mdi-48px"></i></span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid gap-6 grid-cols-1 md:grid-cols-3 mb-6">
-        <div class="card">
-          <div class="card-content">
-            <div class="flex items-center justify-between">
-              <div class="widget-label">
-                <h3>
-                  Shi haja
-                </h3>
-                <h1>
-                  ....
-                </h1>
-              </div>
-              <span class="icon widget-icon text-red-500"><i class="mdi mdi-help mdi-48px"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-content">
-            <div class="flex items-center justify-between">
-              <div class="widget-label">
-                <h3>
-                  Shi haja
-                </h3>
-                <h1>
-                  ...
-                </h1>
-              </div>
-              <span class="icon widget-icon text-green-500"><i class="mdi mdi-help mdi-48px"></i></span>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-content">
-            <div class="flex items-center justify-between">
-              <div class="widget-label">
-                <h3>
-                  Shi haja
-                </h3>
-                <h1>
-                  ...
-                </h1>
-              </div>
-              <span class="icon widget-icon text-blue-500"><i class="mdi mdi-help mdi-48px"></i></span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    <div class="card has-table">
+    <div class="card mb-6">
       <header class="card-header">
         <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-          Clients
+          <span class="icon"><i class="mdi mdi-account"></i></span>
+          Médecin
         </p>
-        <a href="#" class="card-header-icon">
-          <span class="icon"><i class="mdi mdi-reload"></i></span>
-        </a>
       </header>
       <div class="card-content">
-        <table>
-            <thead>
-            <tr>
-              <th></th>
-              <th>#</th>
-              <th>Nom</th>
-              <th>E-mail</th>
-              <th>Adresse</th>
-              <th>Téléphone</th>
-              <th></th>
-            </tr>
-            </thead>
-            <tbody>
-              @foreach($clients as $c)
-              <tr>
-                  <td></td>
-                  <td>{{ $c->id }}</td>
-                  <td>{{ $c->nom }}</td>
-                  <td>{{ $c->email }}</td>
-                  <td>{{ $c->adresse }}</td>
-                  <td>{{ $c->telephone }}</td>
-                  <td class="actions-cell">
-                  <div class="buttons right nowrap">
-                      <a class="button small green --jb-modal" href="/clients/updateForm/{{$c->id}}">
-                      <span class="icon"><i class="mdi mdi-pencil"></i></span>
-                      </a>
-                      <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                      <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                      </button>
-                  </div>
-                  </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-        <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
+        <form method="post" action="/medecins/add">
+            @csrf
+          <div class="field">
+            {{-- <label class="label">From</label> --}}
+            <div class="field-body">
+              <div class="field">
+                <div class="control icons-left">
+                  <input class="input" type="text" id="nom" name="nom" placeholder="Nom">
+                  <span class="icon left"><i class="mdi mdi-account"></i></span>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control icons-left icons-right">
+                  <input class="input" type="email" id="email" name="email" placeholder="E-mail">
+                  <span class="icon left"><i class="mdi mdi-mail"></i></span>
+                  <span class="icon right"><i class="mdi mdi-check"></i></span>
+                </div>
+              </div>
             </div>
-            <small>Page 1 of 3</small>
           </div>
-        </div>
+          <div class="field">
+            <div class="field-body">
+              <div class="field">
+                <div class="field addons">
+                  <div class="control">
+                    <input class="input" value="+212" size="3" readonly>
+                  </div>
+                  <div class="control expanded">
+                    <input class="input" type="tel" id="telephone" name="telephone" placeholder="Téléphone">
+                  </div>
+                </div>
+                <p class="help">Entrez le premier zero</p>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Spécialité</label>
+            <div class="control">
+              <div class="select">
+                <select name="specialite">
+                    <option value="Cardiologie">Cardiologie</option>
+                    <option value="Dermatologie">Dermatologie</option>
+                    <option value="Endocrinologie">Endocrinologie</option>
+                    <option value="Gastro-entérologie">Gastro-entérologie</option>
+                    <option value="Gynécologie">Gynécologie</option>
+                    <option value="Hématologie">Hématologie</option>
+                    <option value="Neurologie">Neurologie</option>
+                    <option value="Ophtalmologie">Ophtalmologie</option>
+                    <option value="Oto-rhino-laryngologie (ORL)">Oto-rhino-laryngologie (ORL)</option>
+                    <option value="Pédiatrie">Pédiatrie</option>
+                    <option value="Pneumologie">Pneumologie</option>
+                    <option value="Rhumatologie">Rhumatologie</option>
+                    <option value="Urologie">Urologie</option>
+                    <option value="Oncologie">Oncologie</option>
+                    <option value="Médecine interne">Médecine interne</option>
+                    <option value="Médecine générale">Médecine générale</option>
+                    <option value="Nutrition">Nutrition</option>
+                    <option value="Pharmacologie">Pharmacologie</option>
+                    <option value="Toxicologie">Toxicologie</option>
+                    <option value="Microbiologie">Microbiologie</option>
+                    <option value="Immunologie">Immunologie</option>
+                    <option value="Hépatologie">Hépatologie</option>
+                    <option value="Néphrologie">Néphrologie</option>
+                    <option value="Chirurgie">Chirurgie</option>
+                    <option value="Orthopédie">Orthopédie</option>
+                    <option value="Traumatologie">Traumatologie</option>
+                    <option value="Anesthésie">Anesthésie</option>
+                    <option value="Radiologie">Radiologie</option>
+                    <option value="Radiologie">Radiologie</option>
+                    <option value="Pathologie">Pathologie</option>
+                    <option value="Médecine du sport">Médecine du sport</option>
+                    <option value="Médecine d'urgence">Médecine d'urgence</option>
+                    <option value="Médecine légale">Médecine légale</option>
+                    <option value="Médecine du travail">Médecine du travail</option>
+                    <option value="Médecine de la reproduction">Médecine de la reproduction</option>
+                    <option value="Médecine physique et de réadaptation">Médecine physique et de réadaptation</option>
+                    <option value="Médecine tropicale">Médecine tropicale</option>
+                    <option value="Médecine esthétique">Médecine esthétique</option>
+                    <option value="Médecine alternative">Médecine alternative</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Ville</label>
+            <div class="control">
+              <div class="select">
+                <select name="ville">
+                    <option value="Agadir">Agadir</option>
+                    <option value="Al Hoceïma">Al Hoceïma</option>
+                    <option value="Béni Mellal">Béni Mellal</option>
+                    <option value="Casablanca">Casablanca</option>
+                    <option value="Chefchaouen">Chefchaouen</option>
+                    <option value="Dakhla">Dakhla</option>
+                    <option value="El Jadida">El Jadida</option>
+                    <option value="Erfoud">Erfoud</option>
+                    <option value="Essaouira">Essaouira</option>
+                    <option value="Fès">Fès</option>
+                    <option value="Guelmim">Guelmim</option>
+                    <option value="Ifrane">Ifrane</option>
+                    <option value="Kénitra">Kénitra</option>
+                    <option value="Laâyoune">Laâyoune</option>
+                    <option value="Marrakech">Marrakech</option>
+                    <option value="Meknès">Meknès</option>
+                    <option value="Nador">Nador</option>
+                    <option value="Ouarzazate">Ouarzazate</option>
+                    <option value="Oujda">Oujda</option>
+                    <option value="Rabat">Rabat</option>
+                    <option value="Safi">Safi</option>
+                    <option value="Salé">Salé</option>
+                    <option value="Tanger">Tanger</option>
+                    <option value="Tétouan">Tétouan</option>
+                    <option value="Zagora">Zagora</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="field grouped">
+            <div class="control">
+              <button type="submit" class="button green">
+                Ajouter
+              </button>
+            </div>
+            <div class="control">
+              <button type="reset" class="button red" onclick="reset()">
+                Annuler
+              </button>
+              <script>
+                function reset() {
+                    document.getElementById('nom').value = "";
+                    document.getElementById('email').value = "";
+                    document.getElementById('telephone').value = "";
+                }
+              </script>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </section>
@@ -426,22 +417,6 @@
 </footer>
 
 <div id="sample-modal" class="modal">
-    <div class="modal-background --jb-modal-close"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Confirmer la Suppression</p>
-      </header>
-      <section class="modal-card-body">
-        <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
-      </section>
-      <footer class="modal-card-foot">
-        <button class="button --jb-modal-close">Annuler</button>
-        <a class="button red --jb-modal-close" href="/clients/delete/{{$c->id}}">Confirmer</a>
-      </footer>
-    </div>
-  </div>
-
-{{-- <div id="sample-modal" class="modal">
   <div class="modal-background --jb-modal-close"></div>
   <div class="modal-card">
     <header class="modal-card-head">
@@ -456,7 +431,7 @@
       <button class="button red --jb-modal-close">Confirm</button>
     </footer>
   </div>
-</div> --}}
+</div>
 
 <div id="sample-modal-2" class="modal">
   <div class="modal-background --jb-modal-close"></div>
@@ -478,10 +453,10 @@
 </div>
 
 <!-- Scripts below are for demo only -->
-<script type="text/javascript" src="js/main.min.js?v=1628755089081"></script>
+<script type="text/javascript" src="../js/main.min.js?v=1628755089081"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<script type="text/javascript" src="js/chart.sample.min.js"></script>
+<script type="text/javascript" src="../js/chart.sample.min.js"></script>
 
 
 <script>
