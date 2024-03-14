@@ -184,13 +184,8 @@
       </li>
       <li>
         <a class="dropdown">
-<<<<<<< HEAD:E-pharmacy PFE Project/Pharmacy-dashboard/pharma-master/resources/views/Complements_Alimentaires/list_complements.blade.php
-          <span class="icon"><i class="mdi mdi-needle"></i></span>  
-          <span class="menu-item-label">Compléments</span>
-=======
           <span class="icon"><i class="mdi mdi-needle"></i></span>
           <span class="menu-item-label">Complèments</span>
->>>>>>> 93c535d13bd8101b47394223abab9b9ea9be79ad:E-pharmacy PFE Project/Pharmacy-dashboard/pharma-master/resources/views/complements/list_complements.blade.php
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
