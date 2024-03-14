@@ -11,7 +11,7 @@ class ComplementAlimentaireController extends Controller
 {
     public function showComplementsList(){
         $complements_list = ComplementsAlimentaires::all();
-        return view("complements.list_complements" ,['list' => $complements_list ] );
+        return view("Complements_Alimentaires.list_complements" ,['list' => $complements_list ] );
     }
 
 
