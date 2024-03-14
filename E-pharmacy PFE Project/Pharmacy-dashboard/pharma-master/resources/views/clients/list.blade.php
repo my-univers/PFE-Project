@@ -152,12 +152,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/medecins/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/medecins/addForm">
               <span>Ajout</span>
             </a>
           </li>

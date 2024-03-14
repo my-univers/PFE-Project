@@ -66,7 +66,5 @@ Route::post('/complements/update/{id}', [ComplementAlimentaireController::class,
 
 Route::get('/complements/delete/{id}', [ComplementAlimentaireController::class, 'deleteComplement']);
 
-/***************Complements Alimentaires***************/
-
 
 
