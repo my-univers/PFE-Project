@@ -39,9 +39,17 @@ Route::get('/clients/delete/{id}', [ClientController::class, 'deleteClient']);
 
 Route::get('/complements', [ComplementAlimentaireController::class, 'showComplementsList'])->name('complements.list');
 
-
 Route::get('/complements/formulaire', [ComplementAlimentaireController::class, 'showForm'])->name('complements.form');
 
+Route::get('/complements/add', [ComplementAlimentaireController::class, 'addComplement']);
+
+Route::get('/complements/updateForm/{id}', [ComplementAlimentaireController::class, 'showUpdateForm']);
+
+Route::post('/complements/update/{id}', [ComplementAlimentaireController::class, 'updateComplement']);
+
+Route::get('/complements/delete/{id}', [ComplementAlimentaireController::class, 'deleteComplement']);
+
+/***************Complements Alimentaires***************/
 
 
 

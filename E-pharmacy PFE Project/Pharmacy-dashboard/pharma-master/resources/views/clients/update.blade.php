@@ -268,7 +268,6 @@
         <form method="post" action="/clients/update/{{ $c->id }}">
             @csrf
           <div class="field">
-            {{-- <label class="label">From</label> --}}
             <div class="field-body">
               <div class="field">
                 <div class="control icons-left">

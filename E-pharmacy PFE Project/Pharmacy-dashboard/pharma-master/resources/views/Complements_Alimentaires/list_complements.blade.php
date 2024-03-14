@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard - Pharma One</title>
+  <title>Admin - Pharma One</title>
 
   <!-- Tailwind is included -->
-  <link rel="stylesheet" href="css/main.css?v=1628755089081">
+  <link rel="stylesheet" href="../css/main.css?v=1628755089081">
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
@@ -133,12 +133,12 @@
         </a>
         <ul>
           <li>
-            <a href="/clients/list">
+            <a href="clients/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="/clients/addForm">
+            <a href="#void">
               <span>Ajout</span>
             </a>
           </li>
@@ -184,7 +184,7 @@
       </li>
       <li>
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-needle"></i></span>
+          <span class="icon"><i class="mdi mdi-medication"></i></span>
           <span class="menu-item-label">Compléments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -243,7 +243,7 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Tableau de Bord </li>
+      <li>Compléments Alimentaires</li>
     </ul>
   </div>
 </section>
@@ -251,115 +251,17 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Tableau de Bord
+      Liste des Compléments
     </h1>
   </div>
 </section>
 
-<section class="section main-section">
-    <div class="grid gap-6 grid-cols-1 md:grid-cols-3 mb-6">
-      <div class="card">
-        <div class="card-content">
-          <div class="flex items-center justify-between">
-            <div class="widget-label">
-              <h3>
-                Clients
-              </h3>
-              <h1>
-                {{ $clients_count }}
-              </h1>
-            </div>
-            <span class="icon widget-icon text-green-500"><i class="mdi mdi-account-multiple mdi-48px"></i></span>
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-content">
-          <div class="flex items-center justify-between">
-            <div class="widget-label">
-              <h3>
-                Commandes
-              </h3>
-              <h1>
-                {{ $commandes_count }}
-              </h1>
-            </div>
-            <span class="icon widget-icon text-blue-500"><i class="mdi mdi-cart-outline mdi-48px"></i></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-content">
-          <div class="flex items-center justify-between">
-            <div class="widget-label">
-              <h3>
-                Médecins
-              </h3>
-              <h1>
-                {{ $medecins_count }}
-              </h1>
-            </div>
-            <span class="icon widget-icon text-red-500"><i class="mdi mdi-doctor mdi-48px"></i></span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="grid gap-6 grid-cols-1 md:grid-cols-3 mb-6">
-        <div class="card">
-          <div class="card-content">
-            <div class="flex items-center justify-between">
-              <div class="widget-label">
-                <h3>
-                  Shi haja
-                </h3>
-                <h1>
-                  ....
-                </h1>
-              </div>
-              <span class="icon widget-icon text-red-500"><i class="mdi mdi-help mdi-48px"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-content">
-            <div class="flex items-center justify-between">
-              <div class="widget-label">
-                <h3>
-                  Shi haja
-                </h3>
-                <h1>
-                  ...
-                </h1>
-              </div>
-              <span class="icon widget-icon text-green-500"><i class="mdi mdi-help mdi-48px"></i></span>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-content">
-            <div class="flex items-center justify-between">
-              <div class="widget-label">
-                <h3>
-                  Shi haja
-                </h3>
-                <h1>
-                  ...
-                </h1>
-              </div>
-              <span class="icon widget-icon text-blue-500"><i class="mdi mdi-help mdi-48px"></i></span>
-            </div>
-          </div>
-        </div>
-      </div>
-
+  <section class="section main-section">
     <div class="card has-table">
       <header class="card-header">
         <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-          Clients
+            <span class="icon"><span class="mdi mdi-medication"></span></span>
+            Compléments
         </p>
         <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -368,39 +270,42 @@
       <div class="card-content">
         <table>
             <thead>
-            <tr>
-              <th></th>
-              <th>#</th>
-              <th>Nom</th>
-              <th>E-mail</th>
-              <th>Adresse</th>
-              <th>Téléphone</th>
-              <th></th>
-            </tr>
-            </thead>
-            {{-- <tbody>
-              @foreach($clients as $c)
-              <tr>
-                  <td></td>
-                  <td>{{ $c->id }}</td>
-                  <td>{{ $c->nom }}</td>
-                  <td>{{ $c->email }}</td>
-                  <td>{{ $c->adresse }}</td>
-                  <td>{{ $c->telephone }}</td>
-                  <td class="actions-cell">
-                  <div class="buttons right nowrap">
-                      <a class="button small green --jb-modal" href="/clients/updateForm/{{$c->id}}">
-                      <span class="icon"><i class="mdi mdi-pencil"></i></span>
-                      </a>
-                      <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                      <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                      </button>
-                  </div>
-                  </td>
-              </tr>
-              @endforeach
-            </tbody> --}}
+                <tr>
+                    <th></th>
+                  <th scope="col">#</th>
+                  <th scope="col">Nom</th>
+                  <th scope="col" style="width: 450px">Description</th>
+                  <th scope="col">Prix</th>
+                  <th scope="col">Quantité en stock</th>
+                  <th></th>
+                </tr>
+              </thead>
+
+              <tbody>
+                @foreach($list as $complement)
+                <tr>
+                    <td></td>
+                    <td scope="row">{{ $complement->id }}</td>
+                    <td>{{ $complement->nom }}</td>
+                    <td>{{ $complement->descr }}</td>
+                    <td>{{ $complement->prix }} DH</td>
+                    <td>{{ $complement->qte_en_stock }}</td>
+                    <td class="actions-cell">
+                      <div class="buttons right nowrap">
+                          <a class="button small green --jb-modal" href="/complements/updateForm/{{$complement->id}}">
+                          <span class="icon"><i class="mdi mdi-pencil"></i></span>
+                          </a>
+                          <button class="button small red --jb-modal" data-target="sample-modal" type="button">
+                          <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                          </button>
+                      </div>
+                      </td>
+                </tr>
+                @endforeach
           </table>
+          </tbody>
+        </table>
+
         <div class="table-pagination">
           <div class="flex items-center justify-between">
             <div class="buttons">
@@ -426,39 +331,23 @@
 </footer>
 
 <div id="sample-modal" class="modal">
-    <div class="modal-background --jb-modal-close"></div>
-    <div class="modal-card">
-      <header class="modal-card-head">
-        <p class="modal-card-title">Confirmer la Suppression</p>
-      </header>
-      <section class="modal-card-body">
-        <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
-      </section>
-      <footer class="modal-card-foot">
-        <button class="button --jb-modal-close">Annuler</button>
-        {{-- <a class="button red --jb-modal-close" href="/clients/delete/{{$c->id}}">Confirmer</a> --}}
-      </footer>
-    </div>
-  </div>
-
-{{-- <div id="sample-modal" class="modal">
   <div class="modal-background --jb-modal-close"></div>
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Sample modal</p>
+      <p class="modal-card-title">Confirmation de Suppression</p>
     </header>
     <section class="modal-card-body">
-      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-      <p>This is sample modal</p>
+      <p>Êtes-vous sûr de vouloir supprimer cet élément ?</p>
+      <p> Cette action est irréversible.</p>
     </section>
     <footer class="modal-card-foot">
-      <button class="button --jb-modal-close">Cancel</button>
-      <button class="button red --jb-modal-close">Confirm</button>
+      <button class="button --jb-modal-close">Annuler</button>
+      <button class="button red --jb-modal-close">Confirmer</button>
     </footer>
   </div>
-</div> --}}
+</div>
 
-<div id="sample-modal-2" class="modal">
+{{-- <div id="sample-modal-2" class="modal">
   <div class="modal-background --jb-modal-close"></div>
   <div class="modal-card">
     <header class="modal-card-head">
@@ -473,7 +362,7 @@
       <button class="button blue --jb-modal-close">Confirm</button>
     </footer>
   </div>
-</div>
+</div> --}}
 
 </div>
 

@@ -7,7 +7,7 @@
   <title>Admin - Pharma One</title>
 
   <!-- Tailwind is included -->
-  <link rel="stylesheet" href="css/main.css?v=1628755089081">
+  <link rel="stylesheet" href="../../css/main.css?v=1628755089081">
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
@@ -103,6 +103,10 @@
           </a>
         </div>
       </div>
+      <a title="Log out" class="navbar-item desktop-icon-only">
+        <span class="icon"><i class="mdi mdi-logout"></i></span>
+        <span>Déconnexion</span>
+      </a>
     </div>
   </div>
 </nav>
@@ -117,7 +121,7 @@
     <p class="menu-label">General</p>
     <ul class="menu-list">
       <li class="active">
-        <a href="/dashboard">
+        <a href="index.html">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Tableau de Bord</span>
         </a>
@@ -133,7 +137,7 @@
         </a>
         <ul>
           <li>
-            <a href="clients/list">
+            <a href="#void">
               <span>Liste</span>
             </a>
           </li>
@@ -144,7 +148,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li> 
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
           <span class="menu-item-label">Medecins</span>
@@ -184,13 +188,8 @@
       </li>
       <li>
         <a class="dropdown">
-<<<<<<< HEAD:E-pharmacy PFE Project/Pharmacy-dashboard/pharma-master/resources/views/Complements_Alimentaires/list_complements.blade.php
           <span class="icon"><i class="mdi mdi-needle"></i></span>  
           <span class="menu-item-label">Compléments</span>
-=======
-          <span class="icon"><i class="mdi mdi-needle"></i></span>
-          <span class="menu-item-label">Complèments</span>
->>>>>>> 93c535d13bd8101b47394223abab9b9ea9be79ad:E-pharmacy PFE Project/Pharmacy-dashboard/pharma-master/resources/views/complements/list_complements.blade.php
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
@@ -248,7 +247,7 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Compléments Alimentaires</li>
+      <li>Compléments</li>
     </ul>
   </div>
 </section>
@@ -256,71 +255,111 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Liste des Compléments
+      Compléments Alimentaires
     </h1>
   </div>
 </section>
 
-  <section class="section main-section">
-    <div class="card has-table">
-      <header class="card-header">
-        <p class="card-header-title">
-            <span class="icon"><i class="mdi mdi-pill"></i></span>
-            Compléments
-        </p>
-        <a href="#" class="card-header-icon">
-          <span class="icon"><i class="mdi mdi-reload"></i></span>
-        </a>
-      </header>
+  
       <div class="card-content">
-        <table>
-            <thead>
-                <tr>
-                    <th></th>
-                  <th scope="col">#</th>
-                  <th scope="col">Nom</th>
-                  <th scope="col" style="width: 450px">Description</th>
-                  <th scope="col">Prix</th>
-                  <th scope="col">Quantité en stock</th>
-                  <th></th>
-                </tr>
-              </thead>
 
-              <tbody>
-                @foreach($list as $complement)
-                <tr>
-                    <td></td>
-                    <td scope="row">{{ $complement->id }}</td>
-                    <td>{{ $complement->nom }}</td>
-                    <td>{{ $complement->descr }}</td>
-                    <td>{{ $complement->prix }} DH</td>
-                    <td>{{ $complement->qte_en_stock }}</td>
-                    <td class="actions-cell">
-                      <div class="buttons right nowrap">
-                        <button class="button small green --jb-modal"  data-target="sample-modal-2" type="button">
-                          <span class="icon"> <span class="mdi mdi-pencil"></span></span>
-                        </button>
-                        <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                          <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                        </button>
+        <section class="section main-section">
+          <div class="card mb-6">
+            <header class="card-header">
+              <p class="card-header-title">
+                <span class="icon"><i class="mdi mdi-ballot"></i></span>
+                Ajouter Complément 
+              </p>
+            </header>
+            <div class="card-content">
+
+              <form method="post" action="complements/update/{{$complement->id}}">
+                @csrf
+
+                <div class="field">
+                  <div class="field-body">
+                    <div class="field">
+                      <div class="control icons-left">
+                        <input class="input" type="text" placeholder="Nom" name="complementNom" value="{{ $complement->nom }}">
+                        <span class="icon left"><i class="mdi mdi-account"></i></span>
                       </div>
-                    </td>
-                </tr>
-                @endforeach
-          </table>
-          </tbody>
-        </table>
+                    </div>
+                  </div>
+                </div>
+               
 
-        <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
+                <div class="field">
+                  <div class="control">
+                    <textarea class="textarea" placeholder="Description" name="complementDescription">{{$complement->descr}}</textarea>
+                </div>
+                </div>
+
+                
+                <div class="field">
+                  <div class="field-body">
+                    <div class="field">
+                      <div class="control icons-left">
+                        <input class="input" type="text" placeholder="Prix" name="complementPrice" value="{{ $complement->prix }}">
+                        <span class="icon left"><span class="mdi mdi-cash"></span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                
+                <div class="field">
+                  <div class="field-body">
+                    <div class="field">
+                      <div class="control icons-left">
+                        <input class="input" type="text" placeholder="Quantité en stock" name="qte_stock" value="{{ $complement->qte_en_stock }}">
+                        <span class="icon left"><span class="mdi mdi-store"></span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+      
+                <div class="field">
+                  <div class="field-body">
+                    <div class="field">
+                      <div class="control icons-left">
+                        <input class="input" type="text" placeholder="Image" name="image" value="{{ $complement->image_path }}">
+                        <span class="icon left"><span class="mdi mdi-store"></span></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                
+                <div class="field grouped">
+                  <div class="control">
+                    <button type="submit" class="button green">
+                      Modifier
+                    </button>
+                  </div>
+                  <div class="control">
+                    <button type="reset" class="button red" onclick="annuler()">
+                      Annuler
+                    </button>
+                    <script>
+                        function annuler() {
+                            window.location.href = '{{ route('complements.list') }}';
+                        };
+                    </script>
+                  </div>
+                </div>
+
+              </form>
             </div>
-            <small>Page 1 of 3</small>
           </div>
-        </div>
+      
+              
+            </div>
+          </div>
+        </section>
+      
+      
+       
       </div>
     </div>
   </section>
@@ -372,10 +411,10 @@
 </div>
 
 <!-- Scripts below are for demo only -->
-<script type="text/javascript" src="js/main.min.js?v=1628755089081"></script>
+<script type="text/javascript" src="../js/main.min.js?v=1628755089081"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<script type="text/javascript" src="js/chart.sample.min.js"></script>
+<script type="text/javascript" src="../js/chart.sample.min.js"></script>
 
 
 <script>

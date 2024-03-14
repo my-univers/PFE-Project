@@ -262,208 +262,103 @@
 
   
       <div class="card-content">
-       
 
         <section class="section main-section">
           <div class="card mb-6">
             <header class="card-header">
               <p class="card-header-title">
                 <span class="icon"><i class="mdi mdi-ballot"></i></span>
-                Forms
+                Ajouter Complément 
               </p>
             </header>
             <div class="card-content">
 
-              <form method="get">
+              <form method="get" action="/complements/add" enctype="multipart/form-data">
+
                 <div class="field">
-                  <label class="label">Nom</label>
                   <div class="field-body">
                     <div class="field">
                       <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Name">
+                        <input class="input" type="text" placeholder="Nom" name="complementNom">
                         <span class="icon left"><i class="mdi mdi-account"></i></span>
                       </div>
                     </div>
-{{-- 
-                    <div class="field">
-                      <div class="control icons-left icons-right">
-                        <input class="input" type="email" placeholder="Email" value="alex@smith.com">
-                        <span class="icon left"><i class="mdi mdi-mail"></i></span>
-                        <span class="icon right"><i class="mdi mdi-check"></i></span>
-                      </div>
-                    </div> --}}
                   </div>
                 </div>
+               
 
                 <div class="field">
-                  <label class="label">Description</label>
                   <div class="control">
-                    <textarea class="textarea"></textarea>
+                    <textarea class="textarea" placeholder="Description" name="complementDescription"></textarea>
                   </div>
                 </div>
 
-
+                
                 <div class="field">
                   <div class="field-body">
                     <div class="field">
-                      <div class="field addons">
-                        <div class="control">
-                          <input class="input" value="+44" size="3" readonly>
-                        </div>
-                        <div class="control expanded">
-                          <input class="input" type="tel" placeholder="Your phone number">
-                        </div>
+                      <div class="control icons-left">
+                        <input class="input" type="text" placeholder="Prix" name="complementPrice">
+                        <span class="icon left"><span class="mdi mdi-cash"></span></span>
                       </div>
-                      <p class="help">Do not enter the first zero</p>
                     </div>
                   </div>
                 </div>
+
+                
                 <div class="field">
-                  <label class="label">Department</label>
-                  <div class="control">
-                    <div class="select">
-                      <select>
-                        <option>Business development</option>
-                        <option>Marketing</option>
-                        <option>Sales</option>
-                      </select>
+                  <div class="field-body">
+                    <div class="field">
+                      <div class="control icons-left">
+                        <input class="input" type="text" placeholder="Quantité en stock" name="qte_stock">
+                        <span class="icon left"><span class="mdi mdi-store"></span></span>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <hr>
-                <div class="field">
-                  <label class="label">Subject</label>
-      
-                  <div class="control">
-                    <input class="input" type="text" placeholder="e.g. Partnership opportunity">
-                  </div>
-                  <p class="help">
-                    This field is required
-                  </p>
-                </div>
+
       
                 <div class="field">
-                  <label class="label">Question</label>
-                  <div class="control">
-                    <textarea class="textarea" placeholder="Explain how we can help you"></textarea>
+                  <div class="field-body">
+                    <div class="field">
+                      <div class="control icons-left">
+                        <input class="input" type="text" placeholder="Image" name="image">
+                        <span class="icon left"><span class="mdi mdi-store"></span></span>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <hr>
-      
+
                 <div class="field grouped">
                   <div class="control">
                     <button type="submit" class="button green">
-                      Submit
+                      Ajouter
                     </button>
                   </div>
                   <div class="control">
-                    <button type="reset" class="button red">
-                      Reset
+                    <button type="reset" class="button red" onclick="annuler()">
+                      Annuler
                     </button>
+                    <script>
+                        function annuler() {
+                            window.location.href = '{{ route('complements.list') }}';
+                        };
+                    </script>
                   </div>
                 </div>
+
+                <hr>
               </form>
             </div>
           </div>
       
-          <div class="card">
-            <header class="card-header">
-              <p class="card-header-title">
-                <span class="icon"><i class="mdi mdi-ballot-outline"></i></span>
-                Custom elements
-              </p>
-            </header>
-            <div class="card-content">
-              <div class="field">
-                <label class="label">Checkbox</label>
-                <div class="field-body">
-                  <div class="field grouped multiline">
-                    <div class="control">
-                      <label class="checkbox"><input type="checkbox" value="lorem" checked>
-                        <span class="check"></span>
-                        <span class="control-label">Lorem</span>
-                      </label>
-                    </div>
-                    <div class="control">
-                      <label class="checkbox"><input type="checkbox" value="ipsum">
-                        <span class="check"></span>
-                        <span class="control-label">Ipsum</span>
-                      </label>
-                    </div>
-                    <div class="control">
-                      <label class="checkbox"><input type="checkbox" value="dolore">
-                        <span class="check is-primary"></span>
-                        <span class="control-label">Dolore</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="field">
-                <label class="label">Radio</label>
-                <div class="field-body">
-                  <div class="field grouped multiline">
-                    <div class="control">
-                      <label class="radio">
-                        <input type="radio" name="sample-radio" value="one" checked>
-                        <span class="check"></span>
-                        <span class="control-label">One</span>
-                      </label>
-                    </div>
-                    <div class="control">
-                      <label class="radio">
-                        <input type="radio" name="sample-radio" value="two">
-                        <span class="check"></span>
-                        <span class="control-label">Two</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="field">
-                <label class="label">Switch</label>
-                <div class="field-body">
-                  <div class="field">
-                    <label class="switch">
-                      <input type="checkbox" value="false">
-                      <span class="check"></span>
-                      <span class="control-label">Default</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-              <hr>
-              <div class="field">
-                <label class="label">File</label>
-                <div class="field-body">
-                  <div class="field file">
-                    <label class="upload control">
-                      <a class="button blue">
-                        Upload
-                      </a>
-                      <input type="file">
-                    </label>
-                  </div>
-                </div>
-              </div>
+              
             </div>
           </div>
         </section>
       
       
-        
-        <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
-            </div>
-            <small>Page 1 of 3</small>
-          </div>
-        </div>
+       
       </div>
     </div>
   </section>
@@ -515,10 +410,10 @@
 </div>
 
 <!-- Scripts below are for demo only -->
-<script type="text/javascript" src="js/main.min.js?v=1628755089081"></script>
+<script type="text/javascript" src="../js/main.min.js?v=1628755089081"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<script type="text/javascript" src="js/chart.sample.min.js"></script>
+<script type="text/javascript" src="../js/chart.sample.min.js"></script>
 
 
 <script>
