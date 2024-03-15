@@ -117,7 +117,7 @@
     <p class="menu-label">General</p>
     <ul class="menu-list">
       <li >
-        <a href="index.html">
+        <a href="/dashboard">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Tableau de Bord</span>
         </a>
@@ -133,12 +133,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/clients/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/clients/add">
               <span>Ajout</span>
             </a>
           </li>

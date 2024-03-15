@@ -1,5 +1,4 @@
 @extends('master')
-
 @section('content')
     
 <section class="is-title-bar">
@@ -32,19 +31,18 @@
       </header>
       <div class="card-content">
         <table>
-          <thead>
-            <tr>
-                <th></th>
-              <th scope="col">#</th>
-              <th scope="col">Nom</th>
-              <th scope="col"style="width: 450px">Description</th>
-              <th scope="col">Marque</th>
-              <th scope="col">Prix</th>
-              <th scope="col" style="width: 250px">Quantité en stock</th>
-              <th></th>
-            </tr>
-          </thead>
-
+            <thead>
+                <tr>
+                    <th></th>
+                  <th scope="col">#</th>
+                  <th scope="col">Nom</th>
+                  <th scope="col" style="width: 450px">Description</th>
+                  <th scope="col">Marque</th>
+                  <th scope="col">Prix</th>
+                  <th scope="col">Quantité en stock</th>
+                  <th></th>
+                </tr>
+              </thead>
 
               <tbody>
                 @foreach($list as $premier)
@@ -52,7 +50,8 @@
                     <td></td>
                     <td scope="row">{{ $premier->id }}</td>
                     <td>{{ $premier->nom }}</td>
-                    <td>{{ $premier->descr }}</td>
+                    <td>{{ $premier->description }}</td>
+                    <td>{{ $premier->marque }}</td>
                     <td>{{ $premier->prix }} DH</td>
                     <td>{{ $premier->qte_en_stock }}</td>
                     <td class="actions-cell">
