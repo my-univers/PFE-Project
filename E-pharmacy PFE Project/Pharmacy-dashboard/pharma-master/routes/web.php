@@ -4,6 +4,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ComplementAlimentaireController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MedecinController;
+use App\Http\Controllers\MedicamentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +51,21 @@ Route::get('/medecins/updateForm/{id}', [MedecinController::class, 'updateMedFor
 Route::post('/medecins/update/{id}', [MedecinController::class, 'updateMedecin']);
 
 Route::get('/medecins/delete/{id}', [MedecinController::class, 'deleteMedecin']);
+
+
+/******************Medicaments****************/
+
+Route::get('/medicaments/list', [MedicamentController::class, 'showMedicsList']);
+
+Route::get('/medicaments/addForm', [MedicamentController::class, 'addMedicForm']);
+
+Route::post('/medicaments/add', [MedicamentController::class, 'addMedicament']);
+
+Route::get('/medicaments/updateForm/{id}', [MedicamentController::class, 'updateMedicForm']);
+
+Route::post('/medicaments/update/{id}', [MedicamentController::class, 'updateMedicament']);
+
+Route::get('/medicaments/delete/{id}', [MedicamentController::class, 'deleteMedicament']);
 
 
 /***************Complements Alimentaires***************/
