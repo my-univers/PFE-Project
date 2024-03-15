@@ -274,7 +274,7 @@
             <th></th>
             <th>#</th>
             <th>Nom</th>
-            <th>Description</th>
+            <th style="width: 460px">Description</th>
             <th>Prix</th>
             <th>Quantité en stock</th>
             <th></th>
@@ -287,7 +287,7 @@
                 <td>{{ $m->id }}</td>
                 <td>{{ $m->nom }}</td>
                 <td>{{ $m->descr }}</td>
-                <td>{{ $m->prix }}</td>
+                <td>{{ $m->prix }} DH</td>
                 <td>{{ $m->qte_en_stock }}</td>
                 <td class="actions-cell">
                 <div class="buttons right nowrap">
