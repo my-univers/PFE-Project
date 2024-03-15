@@ -20,17 +20,6 @@ class ComplementAlimentaireController extends Controller
 
     public function addComplement(Request $req){
 
-        // $req->validate([
-        // 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',    
-        // ]);
-
-
-        // if ($req->hasFile('image')) {
-        // $image = $req->file('image');
-        // $imageName = time() . '.' . $image->extension();
-        // $image->move(public_path('images'), $imageName);
-        // }
-
 
         $complement = new ComplementsAlimentaires;
 
@@ -38,14 +27,19 @@ class ComplementAlimentaireController extends Controller
         $descr_field = $req->complementDescription;
         $prix_field = $req->complementPrice;
         $qte_stock_field = $req->qte_stock;
-        $image_field = $req->image;
 
 
         $complement->nom = $nom_field;
         $complement->descr = $descr_field;
         $complement->prix = $prix_field;
         $complement->qte_en_stock = $qte_stock_field;
-        $complement->image_path = $image_field;
+
+        if ($req->hasFile('image')) {
+            $image = $req->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('img'), $imageName);
+            $complement->image_path = 'img/' . $imageName;
+        }
 
         $complement->save();
 

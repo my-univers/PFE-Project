@@ -1,5 +1,139 @@
 @extends('master')
 
+@section('aside')
+<aside class="aside is-placed-left is-expanded">
+  <div class="aside-tools">
+    <div>
+      Pharma <b class="font-black">One</b>
+    </div>
+  </div>
+  <div class="menu is-menu-main">
+    <p class="menu-label">General</p>
+    <ul class="menu-list">
+      <li>
+        <a href="/">
+          <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
+          <span class="menu-item-label">Tableau de Bord</span>
+        </a>
+      </li>
+    </ul>
+    <p class="menu-label">Gestion</p>
+    <ul class="menu-list">
+      <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-account-group"></i></span>
+          <span class="menu-item-label">Clients</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="#void">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="#void">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-doctor"></i></span>
+          <span class="menu-item-label">Medecins</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="#void">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="#void">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-pill"></i></span>
+          <span class="menu-item-label">Médicaments</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="#void">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="#void">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-medication"></i></span>
+          <span class="menu-item-label">Compléments</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="{{ route('complements.list') }}">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="{{ route('complements.form') }}">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="active">
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+          <span class="menu-item-label">Premiers Secours</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/premiers_secours">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/premiers_secours/form">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li class="set-active-forms-html">
+        <a href="#">
+          <span class="icon"><i class="mdi mdi-cart-outline"></i></span>
+          <span class="menu-item-label">Commandes</span>
+        </a>
+      </li>
+    </ul>
+    <p class="menu-label">A Propos</p>
+    <ul class="menu-list">
+      <li>
+        <a href="#" class="has-icon">
+          <span class="icon"><i class="mdi mdi-github-circle"></i></span>
+          <span class="menu-item-label">GitHub</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
+@endsection
+
 @section('content')
 <section class="is-title-bar">
     <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
