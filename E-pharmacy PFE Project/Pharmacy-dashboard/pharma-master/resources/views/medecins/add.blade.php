@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin - Pharma One</title>
+  <title>Dashboard - Pharma One</title>
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="../css/main.css?v=1628755089081">
@@ -116,8 +116,8 @@
   <div class="menu is-menu-main">
     <p class="menu-label">General</p>
     <ul class="menu-list">
-      <li >
-        <a href="index.html">
+      <li>
+        <a href="/dashboard">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Tableau de Bord</span>
         </a>
@@ -133,18 +133,18 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/clients/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/clients/addForm">
               <span>Ajout</span>
             </a>
           </li>
         </ul>
       </li>
-      <li>
+      <li class="active">
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
           <span class="menu-item-label">Medecins</span>
@@ -152,12 +152,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/medecins/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/medecins/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -182,20 +182,20 @@
           </li>
         </ul>
       </li>
-      <li class="active">
+      <li>
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-medication"></i></span>
-          <span class="menu-item-label">Compléments</span>
+          <span class="icon"><i class="mdi mdi-needle"></i></span>
+          <span class="menu-item-label">Complèments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
           <li>
-            <a href="{{ route('complements.list') }}">
+            <a href="#void">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="{{ route('complements.form') }}">
+            <a href="#void">
               <span>Ajout</span>
             </a>
           </li>
@@ -209,12 +209,12 @@
         </a>
         <ul>
           <li>
-            <a href="/premiers_secours">
+            <a href="#void">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="/premiers_secours/form">
+            <a href="#void">
               <span>Ajout</span>
             </a>
           </li>
@@ -243,7 +243,7 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Compléments</li>
+      <li>Médecins </li>
     </ul>
   </div>
 </section>
@@ -251,110 +251,157 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Compléments Alimentaires
+        Ajouter Médecin
     </h1>
   </div>
 </section>
 
-
+<section class="section main-section">
+    <div class="card mb-6">
+      <header class="card-header">
+        <p class="card-header-title">
+          <span class="icon"><i class="mdi mdi-account"></i></span>
+          Médecin
+        </p>
+      </header>
       <div class="card-content">
-
-        <section class="section main-section">
-          <div class="card mb-6">
-            <header class="card-header">
-              <p class="card-header-title">
-                <span class="icon"><i class="mdi mdi-ballot"></i></span>
-                Ajouter Complément
-              </p>
-            </header>
-            <div class="card-content">
-
-              <form method="get" action="/complements/add" enctype="multipart/form-data">
-
-                <div class="field">
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Nom" name="complementNom">
-                        <span class="icon left"><i class="mdi mdi-account"></i></span>
-                      </div>
-                    </div>
-                  </div>
+        <form method="post" action="/medecins/add">
+            @csrf
+          <div class="field">
+            {{-- <label class="label">From</label> --}}
+            <div class="field-body">
+              <div class="field">
+                <div class="control icons-left">
+                  <input class="input" type="text" id="nom" name="nom" placeholder="Nom">
+                  <span class="icon left"><i class="mdi mdi-account"></i></span>
                 </div>
-
-
-                <div class="field">
-                  <div class="control">
-                    <textarea class="textarea" placeholder="Description" name="complementDescription"></textarea>
-                  </div>
+              </div>
+              <div class="field">
+                <div class="control icons-left icons-right">
+                  <input class="input" type="email" id="email" name="email" placeholder="E-mail">
+                  <span class="icon left"><i class="mdi mdi-mail"></i></span>
+                  <span class="icon right"><i class="mdi mdi-check"></i></span>
                 </div>
-
-
-                <div class="field">
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Prix" name="complementPrice">
-                        <span class="icon left"><span class="mdi mdi-cash"></span></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="field">
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Quantité en stock" name="qte_stock">
-                        <span class="icon left"><span class="mdi mdi-store"></span></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-
-                <div class="field">
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Image" name="image">
-                        <span class="icon left"><span class="mdi mdi-image-area"></span></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="field grouped">
-                  <div class="control">
-                    <button type="submit" class="button green">
-                      Ajouter
-                    </button>
-                  </div>
-                  <div class="control">
-                    <button type="reset" class="button red" onclick="annuler()">
-                      Annuler
-                    </button>
-                    <script>
-                        function annuler() {
-                            window.location.href = '{{ route('complements.list') }}';
-                        };
-                    </script>
-                  </div>
-                </div>
-
-                <hr>
-              </form>
+              </div>
             </div>
           </div>
-
-
+          <div class="field">
+            <div class="field-body">
+              <div class="field">
+                <div class="field addons">
+                  <div class="control">
+                    <input class="input" value="+212" size="3" readonly>
+                  </div>
+                  <div class="control expanded">
+                    <input class="input" type="tel" id="telephone" name="telephone" placeholder="Téléphone">
+                  </div>
+                </div>
+                <p class="help">Entrez le premier zero</p>
+              </div>
             </div>
           </div>
-        </section>
-
-
-
+          <div class="field">
+            <label class="label">Spécialité</label>
+            <div class="control">
+              <div class="select">
+                <select name="specialite">
+                    <option value="Cardiologie">Cardiologie</option>
+                    <option value="Dermatologie">Dermatologie</option>
+                    <option value="Endocrinologie">Endocrinologie</option>
+                    <option value="Gastro-entérologie">Gastro-entérologie</option>
+                    <option value="Gynécologie">Gynécologie</option>
+                    <option value="Hématologie">Hématologie</option>
+                    <option value="Neurologie">Neurologie</option>
+                    <option value="Ophtalmologie">Ophtalmologie</option>
+                    <option value="Oto-rhino-laryngologie (ORL)">Oto-rhino-laryngologie (ORL)</option>
+                    <option value="Pédiatrie">Pédiatrie</option>
+                    <option value="Pneumologie">Pneumologie</option>
+                    <option value="Rhumatologie">Rhumatologie</option>
+                    <option value="Urologie">Urologie</option>
+                    <option value="Oncologie">Oncologie</option>
+                    <option value="Médecine interne">Médecine interne</option>
+                    <option value="Médecine générale">Médecine générale</option>
+                    <option value="Nutrition">Nutrition</option>
+                    <option value="Pharmacologie">Pharmacologie</option>
+                    <option value="Toxicologie">Toxicologie</option>
+                    <option value="Microbiologie">Microbiologie</option>
+                    <option value="Immunologie">Immunologie</option>
+                    <option value="Hépatologie">Hépatologie</option>
+                    <option value="Néphrologie">Néphrologie</option>
+                    <option value="Chirurgie">Chirurgie</option>
+                    <option value="Orthopédie">Orthopédie</option>
+                    <option value="Traumatologie">Traumatologie</option>
+                    <option value="Anesthésie">Anesthésie</option>
+                    <option value="Radiologie">Radiologie</option>
+                    <option value="Radiologie">Radiologie</option>
+                    <option value="Pathologie">Pathologie</option>
+                    <option value="Médecine du sport">Médecine du sport</option>
+                    <option value="Médecine d'urgence">Médecine d'urgence</option>
+                    <option value="Médecine légale">Médecine légale</option>
+                    <option value="Médecine du travail">Médecine du travail</option>
+                    <option value="Médecine de la reproduction">Médecine de la reproduction</option>
+                    <option value="Médecine physique et de réadaptation">Médecine physique et de réadaptation</option>
+                    <option value="Médecine tropicale">Médecine tropicale</option>
+                    <option value="Médecine esthétique">Médecine esthétique</option>
+                    <option value="Médecine alternative">Médecine alternative</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Ville</label>
+            <div class="control">
+              <div class="select">
+                <select name="ville">
+                    <option value="Agadir">Agadir</option>
+                    <option value="Al Hoceïma">Al Hoceïma</option>
+                    <option value="Béni Mellal">Béni Mellal</option>
+                    <option value="Casablanca">Casablanca</option>
+                    <option value="Chefchaouen">Chefchaouen</option>
+                    <option value="Dakhla">Dakhla</option>
+                    <option value="El Jadida">El Jadida</option>
+                    <option value="Erfoud">Erfoud</option>
+                    <option value="Essaouira">Essaouira</option>
+                    <option value="Fès">Fès</option>
+                    <option value="Guelmim">Guelmim</option>
+                    <option value="Ifrane">Ifrane</option>
+                    <option value="Kénitra">Kénitra</option>
+                    <option value="Laâyoune">Laâyoune</option>
+                    <option value="Marrakech">Marrakech</option>
+                    <option value="Meknès">Meknès</option>
+                    <option value="Nador">Nador</option>
+                    <option value="Ouarzazate">Ouarzazate</option>
+                    <option value="Oujda">Oujda</option>
+                    <option value="Rabat">Rabat</option>
+                    <option value="Safi">Safi</option>
+                    <option value="Salé">Salé</option>
+                    <option value="Tanger">Tanger</option>
+                    <option value="Tétouan">Tétouan</option>
+                    <option value="Zagora">Zagora</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="field grouped">
+            <div class="control">
+              <button type="submit" class="button green">
+                Ajouter
+              </button>
+            </div>
+            <div class="control">
+              <button type="reset" class="button red" onclick="reset()">
+                Annuler
+              </button>
+              <script>
+                function reset() {
+                    document.getElementById('nom').value = "";
+                    document.getElementById('email').value = "";
+                    document.getElementById('telephone').value = "";
+                }
+              </script>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </section>

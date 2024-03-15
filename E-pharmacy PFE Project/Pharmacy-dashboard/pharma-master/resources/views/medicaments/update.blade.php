@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin - Pharma One</title>
+  <title>Dashboard - Pharma One</title>
 
   <!-- Tailwind is included -->
-  <link rel="stylesheet" href="../css/main.css?v=1628755089081">
+  <link rel="stylesheet" href="../../css/main.css?v=1628755089081">
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
@@ -116,8 +116,8 @@
   <div class="menu is-menu-main">
     <p class="menu-label">General</p>
     <ul class="menu-list">
-      <li >
-        <a href="index.html">
+      <li>
+        <a href="/dashboard">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Tableau de Bord</span>
         </a>
@@ -133,18 +133,18 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/clients/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/clients/addForm">
               <span>Ajout</span>
             </a>
           </li>
         </ul>
       </li>
-      <li>
+      <li >
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
           <span class="menu-item-label">Medecins</span>
@@ -152,31 +152,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/medecins/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
-              <span>Ajout</span>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-pill"></i></span>
-          <span class="menu-item-label">Médicaments</span>
-          <span class="icon"><i class="mdi mdi-plus"></i></span>
-        </a>
-        <ul>
-          <li>
-            <a href="#void">
-              <span>Liste</span>
-            </a>
-          </li>
-          <li>
-            <a href="#void">
+            <a href="/medecins/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -184,18 +165,37 @@
       </li>
       <li class="active">
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-medication"></i></span>
-          <span class="menu-item-label">Compléments</span>
+          <span class="icon"><i class="mdi mdi-pill"></i></span>
+          <span class="menu-item-label">Médicaments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
           <li>
-            <a href="{{ route('complements.list') }}">
+            <a href="/medicaments/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="{{ route('complements.form') }}">
+            <a href="/medicaments/addForm">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-needle"></i></span>
+          <span class="menu-item-label">Complèments</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="#void">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="#void">
               <span>Ajout</span>
             </a>
           </li>
@@ -209,12 +209,12 @@
         </a>
         <ul>
           <li>
-            <a href="/premiers_secours">
+            <a href="#void">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="/premiers_secours/form">
+            <a href="#void">
               <span>Ajout</span>
             </a>
           </li>
@@ -243,7 +243,7 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Compléments</li>
+      <li>Médicaments </li>
     </ul>
   </div>
 </section>
@@ -251,110 +251,128 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Compléments Alimentaires
+        Modifier Médicament
     </h1>
   </div>
 </section>
 
-
+<section class="section main-section">
+    <div class="card mb-6">
+      <header class="card-header">
+        <p class="card-header-title">
+          <span class="icon"><i class="mdi mdi-pill"></i></span>
+          Médicament
+        </p>
+      </header>
       <div class="card-content">
-
-        <section class="section main-section">
-          <div class="card mb-6">
-            <header class="card-header">
-              <p class="card-header-title">
-                <span class="icon"><i class="mdi mdi-ballot"></i></span>
-                Ajouter Complément
-              </p>
-            </header>
-            <div class="card-content">
-
-              <form method="get" action="/complements/add" enctype="multipart/form-data">
-
-                <div class="field">
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Nom" name="complementNom">
-                        <span class="icon left"><i class="mdi mdi-account"></i></span>
-                      </div>
+        <form method="post" action="/medicaments/update/{{ $medic->id }}" enctype="multipart/form-data">
+            @csrf
+          <div class="field">
+            {{-- <label class="label">From</label> --}}
+            <div class="field-body">
+              <div class="field">
+                <div class="control icons-left">
+                  <input class="input" type="text" id="nom" name="nom" placeholder="Nom" value="{{ $medic->nom }}">
+                  <span class="icon left"><i class="mdi mdi-tag"></i></span>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control">
+                  <textarea class="textarea" id="description" name="descr" placeholder="Description">{{ $medic->descr }}</textarea>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control icons-left">
+                  <input class="input" type="number" id="prix" name="prix" placeholder="Prix" step="0.01" value="{{ $medic->prix }}">
+                  <span class="icon left"><i class="mdi mdi-cash"></i></span>
+                </div>
+              </div>
+              <div class="field">
+                <div class="control icons-left">
+                  <input class="input" type="number" id="qte_en_stock" name="qte_en_stock" placeholder="Quantité en stock" value="{{ $medic->qte_en_stock }}">
+                  <span class="icon left"><i class="mdi mdi-store"></i></span>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Image</label>
+                <div class="field-body">
+                    <div class="field file">
+                        <label class="upload control">
+                            <a class="button blue">
+                                Télécharger
+                            </a>
+                            <input type="file" id="image" name="image" onchange="displayImagePreview()">
+                        </label>
                     </div>
-                  </div>
-                </div>
-
-
-                <div class="field">
-                  <div class="control">
-                    <textarea class="textarea" placeholder="Description" name="complementDescription"></textarea>
-                  </div>
-                </div>
-
-
-                <div class="field">
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Prix" name="complementPrice">
-                        <span class="icon left"><span class="mdi mdi-cash"></span></span>
-                      </div>
+                    <div id="image-preview" style="margin-top: 10px;">
+                        <img id="preview" src="{{ asset($medic->image_path) }}" alt="Aperçu de l'image" style="max-width: 100px; max-height: 100px; display: block;">
+                        <span id="image-name">{{ basename($medic->image_path) }}</span>
                     </div>
-                  </div>
                 </div>
-
-
-                <div class="field">
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Quantité en stock" name="qte_stock">
-                        <span class="icon left"><span class="mdi mdi-store"></span></span>
-                      </div>
+              </div>
+            <div class="field">
+                <label class="label">Ordonnance</label>
+                <div class="field-body">
+                    <div class="field grouped multiline">
+                        <div class="control">
+                            <label class="radio">
+                                <input type="radio" name="ordonnance" value="1" @if($medic->ordonnance == 1) checked @endif>
+                                <span class="check"></span>
+                                <span class="control-label">Nécessaire</span>
+                            </label>
+                        </div>
+                        <div class="control">
+                            <label class="radio">
+                                <input type="radio" name="ordonnance" value="0" @if($medic->ordonnance == 0) checked @endif>
+                                <span class="check"></span>
+                                <span class="control-label">Facultative</span>
+                            </label>
+                        </div>
                     </div>
-                  </div>
                 </div>
-
-
-                <div class="field">
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Image" name="image">
-                        <span class="icon left"><span class="mdi mdi-image-area"></span></span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="field grouped">
-                  <div class="control">
-                    <button type="submit" class="button green">
-                      Ajouter
-                    </button>
-                  </div>
-                  <div class="control">
-                    <button type="reset" class="button red" onclick="annuler()">
-                      Annuler
-                    </button>
-                    <script>
-                        function annuler() {
-                            window.location.href = '{{ route('complements.list') }}';
-                        };
-                    </script>
-                  </div>
-                </div>
-
-                <hr>
-              </form>
+            </div>
             </div>
           </div>
+          <div class="field grouped">
+            <div class="control">
+              <button type="submit" class="button green">
+                Modifier
+              </button>
+            </div>
+            <div class="control">
+              <button type="reset" class="button red" onclick="resetForm()">
+                Annuler
+              </button>
+              <script>
+                function resetForm() {
+                    document.getElementById('nom').value = "";
+                    document.getElementById('description').value = "";
+                    document.getElementById('prix').value = "";
+                    document.getElementById('qte_en_stock').value = "";
+                    document.getElementById('image').value = "";
+                    document.getElementById('preview').style.display = "none";
+                    document.getElementById('image-name').innerText = "";
+                    document.getElementById('ordonnance').checked = false;
+                }
 
-
+                function displayImagePreview() {
+                    var input = document.getElementById('image');
+                    var preview = document.getElementById('preview');
+                    var imageName = document.getElementById('image-name');
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            preview.src = e.target.result;
+                            preview.style.display = "block"; // Ajout de cette ligne pour afficher l'aperçu de l'image
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                        imageName.innerText = input.files[0].name;
+                    }
+                }
+              </script>
             </div>
           </div>
-        </section>
-
-
-
+        </form>
       </div>
     </div>
   </section>
@@ -406,10 +424,10 @@
 </div>
 
 <!-- Scripts below are for demo only -->
-<script type="text/javascript" src="../js/main.min.js?v=1628755089081"></script>
+<script type="text/javascript" src="../../js/main.min.js?v=1628755089081"></script>
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<script type="text/javascript" src="../js/chart.sample.min.js"></script>
+<script type="text/javascript" src="../../js/chart.sample.min.js"></script>
 
 
 <script>

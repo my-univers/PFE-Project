@@ -152,12 +152,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/medecins/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/medecins/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -171,12 +171,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/medicaments/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/medicaments/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -306,55 +306,6 @@
       </div>
     </div>
 
-    <div class="grid gap-6 grid-cols-1 md:grid-cols-3 mb-6">
-        <div class="card">
-          <div class="card-content">
-            <div class="flex items-center justify-between">
-              <div class="widget-label">
-                <h3>
-                  Shi haja
-                </h3>
-                <h1>
-                  ....
-                </h1>
-              </div>
-              <span class="icon widget-icon text-red-500"><i class="mdi mdi-help mdi-48px"></i></span>
-            </div>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-content">
-            <div class="flex items-center justify-between">
-              <div class="widget-label">
-                <h3>
-                  Shi haja
-                </h3>
-                <h1>
-                  ...
-                </h1>
-              </div>
-              <span class="icon widget-icon text-green-500"><i class="mdi mdi-help mdi-48px"></i></span>
-            </div>
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-content">
-            <div class="flex items-center justify-between">
-              <div class="widget-label">
-                <h3>
-                  Shi haja
-                </h3>
-                <h1>
-                  ...
-                </h1>
-              </div>
-              <span class="icon widget-icon text-blue-500"><i class="mdi mdi-help mdi-48px"></i></span>
-            </div>
-          </div>
-        </div>
-      </div>
-
     <div class="card has-table">
       <header class="card-header">
         <p class="card-header-title">
@@ -378,7 +329,7 @@
               <th></th>
             </tr>
             </thead>
-            {{-- <tbody>
+            <tbody>
               @foreach($clients as $c)
               <tr>
                   <td></td>
@@ -390,16 +341,13 @@
                   <td class="actions-cell">
                   <div class="buttons right nowrap">
                       <a class="button small green --jb-modal" href="/clients/updateForm/{{$c->id}}">
-                      <span class="icon"><i class="mdi mdi-pencil"></i></span>
+                      <span class="icon"><i class="mdi mdi-eye"></i></span>
                       </a>
-                      <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                      <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                      </button>
                   </div>
                   </td>
               </tr>
               @endforeach
-            </tbody> --}}
+            </tbody>
           </table>
         <div class="table-pagination">
           <div class="flex items-center justify-between">
@@ -427,7 +375,7 @@
 
 <div id="sample-modal" class="modal">
     <div class="modal-background --jb-modal-close"></div>
-    <div class="modal-card">
+    {{-- <div class="modal-card">
       <header class="modal-card-head">
         <p class="modal-card-title">Confirmer la Suppression</p>
       </header>
@@ -436,9 +384,9 @@
       </section>
       <footer class="modal-card-foot">
         <button class="button --jb-modal-close">Annuler</button>
-        {{-- <a class="button red --jb-modal-close" href="/clients/delete/{{$c->id}}">Confirmer</a> --}}
+        {{-- <a class="button red --jb-modal-close" href="/clients/delete/{{$c->id}}">Confirmer</a>
       </footer>
-    </div>
+    </div> --}}
   </div>
 
 {{-- <div id="sample-modal" class="modal">

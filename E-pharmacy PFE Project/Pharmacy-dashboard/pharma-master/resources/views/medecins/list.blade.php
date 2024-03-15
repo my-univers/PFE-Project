@@ -125,7 +125,7 @@
     </ul>
     <p class="menu-label">Gestion</p>
     <ul class="menu-list">
-      <li class="active">
+      <li >
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-account-group"></i></span>
           <span class="menu-item-label">Clients</span>
@@ -144,7 +144,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li class="active">
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
           <span class="menu-item-label">Medecins</span>
@@ -157,7 +157,7 @@
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/medecins/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -260,7 +260,7 @@
     <div class="card has-table">
       <header class="card-header">
         <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+          <span class="icon"><i class="mdi mdi-doctor"></i></span>
           Médecins
         </p>
         <a href="#" class="card-header-icon">
@@ -275,23 +275,25 @@
             <th>#</th>
             <th>Nom</th>
             <th>E-mail</th>
-            <th>Adresse</th>
             <th>Téléphone</th>
+            <th>Spécialité</th>
+            <th>Ville</th>
             <th></th>
           </tr>
           </thead>
           <tbody>
-            @foreach($clients as $c)
+            @foreach($medecins as $m)
             <tr>
                 <td></td>
-                <td>{{ $c->id }}</td>
-                <td>{{ $c->nom }}</td>
-                <td>{{ $c->email }}</td>
-                <td>{{ $c->adresse }}</td>
-                <td>{{ $c->telephone }}</td>
+                <td>{{ $m->id }}</td>
+                <td>{{ $m->nom }}</td>
+                <td>{{ $m->email }}</td>
+                <td>{{ $m->telephone }}</td>
+                <td>{{ $m->specialite }}</td>
+                <td>{{ $m->ville }}</td>
                 <td class="actions-cell">
                 <div class="buttons right nowrap">
-                    <a class="button small green --jb-modal" href="/clients/updateForm/{{$c->id}}">
+                    <a class="button small green --jb-modal" href="/medecins/updateForm/{{$m->id}}">
                     <span class="icon"><i class="mdi mdi-pencil"></i></span>
                     </a>
                     <button class="button small red --jb-modal" data-target="sample-modal" type="button">
@@ -334,11 +336,11 @@
       <p class="modal-card-title">Confirmer la Suppression</p>
     </header>
     <section class="modal-card-body">
-      <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
+      <p>Êtes-vous sûr de vouloir supprimer ce medecin ?</p>
     </section>
     <footer class="modal-card-foot">
       <button class="button --jb-modal-close">Annuler</button>
-      <a class="button red --jb-modal-close" href="/clients/delete/{{$c->id}}">Confirmer</a>
+      <a class="button red --jb-modal-close" href="/medecins/delete/{{$m->id}}">Confirmer</a>
     </footer>
   </div>
 </div>
