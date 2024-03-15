@@ -19,7 +19,6 @@ return new class extends Migration
             $table->string('nom')->nullable();
             $table->text('description');
             $table->string('marque');
-            $table->text('composition');
             $table->decimal('prix', 8, 2);
             $table->integer('qte_en_stock');
             $table->string('image_path');

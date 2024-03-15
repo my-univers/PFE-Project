@@ -3,6 +3,7 @@
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ComplementAlimentaireController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PremierSecoursController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,7 +40,7 @@ Route::get('/clients/delete/{id}', [ClientController::class, 'deleteClient']);
 
 Route::get('/complements', [ComplementAlimentaireController::class, 'showComplementsList'])->name('complements.list');
 
-Route::get('/complements/formulaire', [ComplementAlimentaireController::class, 'showForm'])->name('complements.form');
+Route::get('/complements/form', [ComplementAlimentaireController::class, 'showForm'])->name('complements.form');
 
 Route::get('/complements/add', [ComplementAlimentaireController::class, 'addComplement']);
 
@@ -49,7 +50,15 @@ Route::post('/complements/update/{id}', [ComplementAlimentaireController::class,
 
 Route::get('/complements/delete/{id}', [ComplementAlimentaireController::class, 'deleteComplement']);
 
-/***************Complements Alimentaires***************/
+/***************Premiers Secours***************/
 
+Route::get('/premiers_secours', [PremierSecoursController::class, 'showList']);
 
+Route::get('/premiers_secours/form', [PremierSecoursController::class, 'showForm']);
+
+Route::get('/premiers_secours/updateForm/{id}', [PremierSecoursController::class, 'showUpdateForm']);
+
+Route::post('/premiers_secours/update/{id}', [PremierSecoursController::class, 'updatePremier']);
+
+Route::get('/premiers_secours/delete/{id}', [PremierSecoursController::class, 'deletePremier']);
 

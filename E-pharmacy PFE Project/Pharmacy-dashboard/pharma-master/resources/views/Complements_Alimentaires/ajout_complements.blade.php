@@ -184,7 +184,7 @@
       </li>
       <li>
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-needle"></i></span>
+          <span class="icon"><i class="mdi mdi-medication"></i></span>
           <span class="menu-item-label">Compléments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -209,12 +209,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/premiers_secours">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/premiers_secours/form">
               <span>Ajout</span>
             </a>
           </li>
@@ -319,7 +319,7 @@
                     <div class="field">
                       <div class="control icons-left">
                         <input class="input" type="text" placeholder="Image" name="image">
-                        <span class="icon left"><span class="mdi mdi-store"></span></span>
+                        <span class="icon left"><span class="mdi mdi-image-area"></span></span>
                       </div>
                     </div>
                   </div>

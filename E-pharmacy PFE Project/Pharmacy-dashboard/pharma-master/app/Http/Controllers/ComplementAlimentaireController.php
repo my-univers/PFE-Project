@@ -61,23 +61,22 @@ class ComplementAlimentaireController extends Controller
     public function updateComplement(Request $request, $id) {
         $c = ComplementsAlimentaires::find($id);
 
-        $c->nom = $request->complementNom;
-        $c->descr = $request->complementDescription;
-        $c->prix = $request->complementPrice;
-        $c->qte_stock = $request->qte_stock;
-        $c->image = $request->image;
+        $c->nom = $request->nom;
+        $c->descr = $request->description;
+        $c->prix = $request->prix;
+        $c->qte_en_stock = $request->qte_stock;
+        $c->image_path = $request->image;
 
         $c->save();
 
         return redirect('/complements');
     }
 
+
     public function deleteComplement($id) {
         $c = ComplementsAlimentaires::find($id);
         $c->delete();
-
         return redirect('/complements');
     }
     
-
 }

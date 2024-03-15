@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ComplementAlimentaireCommande extends Model
+class premierSecoursCommande extends Model
 {
     use HasFactory;
 
@@ -14,8 +14,8 @@ class ComplementAlimentaireCommande extends Model
         return $this->belongsTo(Client::class);
     }
 
-    public function complementAlimentaire()
+    public function premierSecours()
     {
-        return $this->belongsTo(ComplementsAlimentaires::class);
+        return $this->belongsTo(PremiersSecours::class);
     }
 }

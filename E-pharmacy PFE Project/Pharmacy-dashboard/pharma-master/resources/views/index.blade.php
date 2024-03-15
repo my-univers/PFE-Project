@@ -209,12 +209,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/premiers_secours">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/premiers_secours/form">
               <span>Ajout</span>
             </a>
           </li>
