@@ -260,7 +260,7 @@
     <div class="card has-table">
       <header class="card-header">
         <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+          <span class="icon"><i class="mdi mdi-doctor"></i></span>
           Médecins
         </p>
         <a href="#" class="card-header-icon">

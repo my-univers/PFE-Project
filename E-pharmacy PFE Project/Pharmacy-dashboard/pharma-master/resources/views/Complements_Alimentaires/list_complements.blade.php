@@ -116,7 +116,7 @@
   <div class="menu is-menu-main">
     <p class="menu-label">General</p>
     <ul class="menu-list">
-      <li class="active">
+      <li >
         <a href="/dashboard">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Tableau de Bord</span>
@@ -182,12 +182,10 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li class="active">
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-medication"></i></span>
-          <span class="menu-item-label">Compléments</span>
           <span class="icon"><i class="mdi mdi-needle"></i></span>
-          <span class="menu-item-label">Complèments</span>
+          <span class="menu-item-label">Compléments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>

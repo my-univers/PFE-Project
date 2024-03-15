@@ -120,7 +120,7 @@
   <div class="menu is-menu-main">
     <p class="menu-label">General</p>
     <ul class="menu-list">
-      <li class="active">
+      <li >
         <a href="index.html">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Tableau de Bord</span>
@@ -148,7 +148,7 @@
           </li>
         </ul>
       </li>
-      <li> 
+      <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
           <span class="menu-item-label">Medecins</span>
@@ -186,9 +186,9 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li class="active">
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-needle"></i></span>  
+          <span class="icon"><i class="mdi mdi-needle"></i></span>
           <span class="menu-item-label">Compléments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -260,7 +260,7 @@
   </div>
 </section>
 
-  
+
       <div class="card-content">
 
         <section class="section main-section">
@@ -268,7 +268,7 @@
             <header class="card-header">
               <p class="card-header-title">
                 <span class="icon"><i class="mdi mdi-ballot"></i></span>
-                Ajouter Complément 
+                Ajouter Complément
               </p>
             </header>
             <div class="card-content">
@@ -286,7 +286,7 @@
                     </div>
                   </div>
                 </div>
-               
+
 
                 <div class="field">
                   <div class="control">
@@ -294,7 +294,7 @@
                 </div>
                 </div>
 
-                
+
                 <div class="field">
                   <div class="field-body">
                     <div class="field">
@@ -306,7 +306,7 @@
                   </div>
                 </div>
 
-                
+
                 <div class="field">
                   <div class="field-body">
                     <div class="field">
@@ -318,7 +318,7 @@
                   </div>
                 </div>
 
-      
+
                 <div class="field">
                   <div class="field-body">
                     <div class="field">
@@ -330,7 +330,7 @@
                   </div>
                 </div>
 
-                
+
                 <div class="field grouped">
                   <div class="control">
                     <button type="submit" class="button green">
@@ -352,14 +352,14 @@
               </form>
             </div>
           </div>
-      
-              
+
+
             </div>
           </div>
         </section>
-      
-      
-       
+
+
+
       </div>
     </div>
   </section>
