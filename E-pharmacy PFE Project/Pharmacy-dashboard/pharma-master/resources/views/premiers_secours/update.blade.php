@@ -1,40 +1,36 @@
 @extends('master')
 
 @section('content')
-    
 <section class="is-title-bar">
-  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-    <ul>
-      <li>Admin</li>
-      <li>Premiers Secours</li>
-    </ul>
-  </div>
+    <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+      <ul>
+        <li>Admin</li>
+        <li>Premiers Secours</li>
+      </ul>
+    </div>
 </section>
 
 <section class="is-hero-bar">
-  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-    <h1 class="title">
+    <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+      <h1 class="title">
         Premiers Secours
-    </h1>
-  </div>
+      </h1>
+    </div>
 </section>
 
-  
-      <div class="card-content">
+<div class="card-content">
 
-        <section class="section main-section">
-          <div class="card mb-6">
-            <header class="card-header">
-              <p class="card-header-title">
-                <span class="icon"><i class="mdi mdi-ballot"></i></span>
-                Modifier Premier Secours 
-              </p>
-            </header>
-            <div class="card-content">
-
-              <form method="post" action="premiers_secours/update/{{ $premier->id}}">
-                @csrf
-
+    <section class="section main-section">
+      <div class="card mb-6">
+        <header class="card-header">
+          <p class="card-header-title">
+            <span class="icon"><i class="mdi mdi-ballot"></i></span>
+            Modifier Premiers Secours 
+          </p>
+        </header>
+        <div class="card-content">
+          <form method="post" action="/premiers_secours/update/{{$premier->id}}">
+            @csrf
                 <div class="field">
                   <div class="field-body">
                     <div class="field">
@@ -45,20 +41,20 @@
                     </div>
                   </div>
                 </div>
-               
+
 
                 <div class="field">
                   <div class="control">
                     <textarea class="textarea" placeholder="Description" name="description">{{$premier->description}}</textarea>
-                  </div>
+                </div>
                 </div>
 
 
                 <div class="field">
-                    <div class="control">
-                      <textarea class="textarea" placeholder="Marque" name="marque">{{$premier->marque}}</textarea>
-                    </div>
-                  </div>
+                  <div class="control">
+                    <textarea class="textarea" placeholder="Marque" name="marque">{{$premier->marque}}</textarea>
+                </div>
+                </div>
 
 
                 <div class="field">
@@ -72,79 +68,50 @@
                   </div>
                 </div>
 
-                
                 <div class="field">
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Quantité en stock" name="qte_stock" value="{{ $premier->qte_en_stock }}">
-                        <span class="icon left"><span class="mdi mdi-store"></span></span>
+                    <div class="field-body">
+                      <div class="field">
+                        <div class="control icons-left">
+                          <input class="input" type="text" placeholder="Quantité en stock" name="qte_stock" value="{{ $premier->qte_en_stock }}">
+                          <span class="icon left"><span class="mdi mdi-store"></span></span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-
-      
-                <div class="field">
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Image" name="image" value="{{ $premier->image_path }}">
-                        <span class="icon left"><span class="mdi mdi-store"></span></span>
+  
+                  <div class="field">
+                    <div class="field-body">
+                      <div class="field">
+                        <div class="control icons-left">
+                          <input class="input" type="text" placeholder="Image" name="image" value="{{ $premier->image_path }}">
+                          <span class="icon left"><span class="mdi mdi-store"></span></span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                
-                <div class="field grouped">
-                  <div class="control">
-                    <button type="submit" class="button green">
-                      Modifier
-                    </button>
+                  <div class="field grouped">
+                    <div class="control">
+                      <button type="submit" class="button green">
+                        Modifier
+                      </button>
+                    </div>
+                    <div class="control">
+                      <button type="reset" class="button red" onclick="annuler()">
+                        Annuler
+                      </button>
+                      <script>
+                          function annuler() {
+                              window.location.href = '{{ route('complements.list') }}';
+                          };
+                      </script>
+                    </div>
                   </div>
-                  <div class="control">
-                    <button type="reset" class="button red" onclick="annuler()">
-                      Annuler
-                    </button>
-                    <script>
-                        function annuler() {
-                            window.location.href = '/premiers_secours/list';
-                        };
-                    </script>
-                  </div>
-                </div>
-
-              </form>
+  
+                </form>
+              </div>
             </div>
-          </div>
-      
-              
-            </div>
-          </div>
-        </section>
-      
-      
-       
-      </div>
-    </div>
-  </section>
-
-<div id="sample-modal" class="modal">
-  <div class="modal-background --jb-modal-close"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Sample modal</p>
-    </header>
-    <section class="modal-card-body">
-      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-      <p>This is sample modal</p>
     </section>
-    <footer class="modal-card-foot">
-      <button class="button --jb-modal-close">Cancel</button>
-      <button class="button red --jb-modal-close">Confirm</button>
-    </footer>
-  </div>
 </div>
 
 @endsection

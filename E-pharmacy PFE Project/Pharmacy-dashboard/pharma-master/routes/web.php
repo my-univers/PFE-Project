@@ -89,9 +89,12 @@ Route::get('/premiers_secours', [PremierSecoursController::class, 'showList']);
 
 Route::get('/premiers_secours/form', [PremierSecoursController::class, 'showForm']);
 
+Route::get('/premiers_secours/add', [PremierSecoursController::class, 'addPremier']);
+
 Route::get('/premiers_secours/updateForm/{id}', [PremierSecoursController::class, 'showUpdateForm']);
 
 Route::post('/premiers_secours/update/{id}', [PremierSecoursController::class, 'updatePremier']);
 
 Route::get('/premiers_secours/delete/{id}', [PremierSecoursController::class, 'deletePremier']);
+
 

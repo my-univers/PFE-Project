@@ -4,19 +4,18 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreatePremiersSecoursTable extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-
-        public function up()
+    public function up()
     {
         Schema::create('premiers_secours', function (Blueprint $table) {
             $table->id();
-            $table->string('nom')->nullable();
+            $table->string('nom');
             $table->text('description');
             $table->string('marque');
             $table->decimal('prix', 8, 2);
@@ -35,4 +34,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('premiers_secours');
     }
-};
+}

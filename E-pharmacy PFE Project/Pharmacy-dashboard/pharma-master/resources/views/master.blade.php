@@ -137,12 +137,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/clients/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/clients/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -156,12 +156,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/medecins/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/medecins/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -175,12 +175,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/medicaments/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/medicaments/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -194,12 +194,12 @@
         </a>
         <ul>
           <li>
-            <a href="{{ route('complements.list') }}">
+            <a href="/complements">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="{{ route('complements.form') }}">
+            <a href="/complements/form">
               <span>Ajout</span>
             </a>
           </li>
@@ -224,11 +224,43 @@
           </li>
         </ul>
       </li>
-      <li class="set-active-forms-html">
-        <a href="#">
-          <span class="icon"><i class="mdi mdi-cart-outline"></i></span>
+      <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Commandes</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
+        <ul>
+          <li>
+            <a href="/commandes">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/commandes/form">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+          <span class="menu-item-label">Packs</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/packs">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/packs/form">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
       </li>
     </ul>
     <p class="menu-label">A Propos</p>

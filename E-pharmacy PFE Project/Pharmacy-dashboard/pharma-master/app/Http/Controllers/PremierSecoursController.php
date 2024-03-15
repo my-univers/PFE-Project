@@ -20,6 +20,27 @@ class PremierSecoursController extends Controller
     }
 
 
+    public function addPremier(Request $request) {
+        $premier = new PremiersSecours();
+        $premier->nom = $request->nom;
+        $premier->description = $request->description;
+        $premier->marque = $request->marque;
+        $premier->prix = $request->prix;
+        $premier->qte_en_stock = $request->qte_en_stock;
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('img'), $imageName);
+            $premier->image_path = 'img/' . $imageName;
+        }
+
+        $premier->save();
+
+        return redirect('/premiers_secours/list');
+    }
+
+    
     public function updatePremier(Request $request, $id) {
         $p = PremiersSecours::find($id);
 
@@ -27,12 +48,12 @@ class PremierSecoursController extends Controller
         $p->description = $request->description;
         $p->marque = $request->marque;
         $p->prix = $request->prix;
-        $p->qte__en_stock = $request->qte_en_stock;
+        $p->qte_en_stock = $request->qte_stock;
         $p->image_path = $request->image;
 
         $p->save();
 
-        return redirect('/premiers_secours/list');
+        return redirect('/premiers_secours');
     }
 
 
@@ -40,21 +61,6 @@ class PremierSecoursController extends Controller
         $c = PremiersSecours::find($id);
         return view("premiers_secours.update", ['premier' => $c]);
     }
-
-    public function updateComplement(Request $request, $id) {
-        $c = PremiersSecours::find($id);
-
-        $c->nom = $request->nom;
-        $c->descr = $request->description;
-        $c->prix = $request->prix;
-        $c->qte_en_stock = $request->qte_stock;
-        $c->image_path = $request->image;
-
-        $c->save();
-
-        return redirect('/premiers_secours');
-    }
-
 
     public function deletePremier($id) {
         $c = PremiersSecours::find($id);
