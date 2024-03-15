@@ -64,7 +64,7 @@
     <div class="navbar-end">
       <div class="navbar-item dropdown has-divider">
         <div class="navbar-dropdown">
-          <a href="profile.html" class="navbar-item">
+          <a href="/profil" class="navbar-item">
             <span class="icon"><i class="mdi mdi-account"></i></span>
             <span>Mon Profile</span>
           </a>
@@ -103,10 +103,6 @@
           </a>
         </div>
       </div>
-      <a title="Log out" class="navbar-item desktop-icon-only">
-        <span class="icon"><i class="mdi mdi-logout"></i></span>
-        <span>Déconnexion</span>
-      </a>
     </div>
   </div>
 </nav>

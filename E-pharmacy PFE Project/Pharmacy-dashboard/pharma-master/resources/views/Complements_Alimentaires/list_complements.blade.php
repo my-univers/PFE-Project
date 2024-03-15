@@ -1,4 +1,5 @@
 @extends('master')
+<<<<<<< HEAD
 
 @section('aside')
 <aside class="aside is-placed-left is-expanded">
@@ -135,6 +136,10 @@
 @endsection
 
 @section('content')    
+=======
+@section('content')
+    
+>>>>>>> 877efc0b3a96a514b270122d4fe7d5a48cc26704
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
