@@ -253,6 +253,7 @@
     </header>
     <section class="modal-card-body">
       <p>Êtes-vous sûr de vouloir supprimer ce médicament ?</p>
+      <p>Cette action est irréversible</p>
     </section>
     <footer class="modal-card-foot">
       <button class="button --jb-modal-close">Annuler</button>

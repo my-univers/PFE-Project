@@ -18,34 +18,25 @@ class ComplementAlimentaireController extends Controller
     }
 
 
-    public function addComplement(Request $req){
-
-        // $req->validate([
-        // 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',    
-        // ]);
-
-
-        // if ($req->hasFile('image')) {
-        // $image = $req->file('image');
-        // $imageName = time() . '.' . $image->extension();
-        // $image->move(public_path('images'), $imageName);
-        // }
-
+    public function addComplement(Request $request){
 
         $complement = new ComplementsAlimentaires;
 
-        $nom_field= $req->complementNom;
-        $descr_field = $req->complementDescription;
-        $prix_field = $req->complementPrice;
-        $qte_stock_field = $req->qte_stock;
-        $image_field = $req->image;
-
+        $nom_field= $request->complementNom;
+        $descr_field = $request->complementDescription;
+        $prix_field = $request->complementPrice;
+        $qte_stock_field = $request->qte_stock;
 
         $complement->nom = $nom_field;
         $complement->descr = $descr_field;
         $complement->prix = $prix_field;
         $complement->qte_en_stock = $qte_stock_field;
-        $complement->image_path = $image_field;
+
+        // Traitement de l'image si elle est présente
+        $image = $request->file('image');
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('img'), $imageName);
+        $complement->image_path = 'img/' . $imageName;
 
         $complement->save();
 
@@ -65,7 +56,20 @@ class ComplementAlimentaireController extends Controller
         $c->descr = $request->description;
         $c->prix = $request->prix;
         $c->qte_en_stock = $request->qte_stock;
-        $c->image_path = $request->image;
+
+        // Traitement de la nouvelle image si elle est présente
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('img'), $imageName);
+
+            // Suppression de l'ancienne image si elle existe
+            if ($c->image_path) {
+                unlink(public_path($c->image_path));
+            }
+
+            $c->image_path = 'img/' . $imageName;
+        }
 
         $c->save();
 
@@ -75,8 +79,9 @@ class ComplementAlimentaireController extends Controller
 
     public function deleteComplement($id) {
         $c = ComplementsAlimentaires::find($id);
+        unlink(public_path($c->image_path));
         $c->delete();
         return redirect('/complements');
     }
-    
+
 }

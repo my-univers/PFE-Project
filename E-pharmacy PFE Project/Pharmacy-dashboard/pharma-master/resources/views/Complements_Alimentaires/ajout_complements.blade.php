@@ -184,7 +184,7 @@
       </li>
       <li class="active">
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-medication"></i></span>
+          <span class="icon"><i class="mdi mdi-needle"></i></span>
           <span class="menu-item-label">Compléments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -269,8 +269,8 @@
             </header>
             <div class="card-content">
 
-              <form method="get" action="/complements/add" enctype="multipart/form-data">
-
+              <form method="post" action="/complements/add" enctype="multipart/form-data">
+                @csrf
                 <div class="field">
                   <div class="field-body">
                     <div class="field">
@@ -282,48 +282,53 @@
                   </div>
                 </div>
 
-
                 <div class="field">
                   <div class="control">
                     <textarea class="textarea" placeholder="Description" name="complementDescription"></textarea>
                   </div>
                 </div>
 
-
                 <div class="field">
                   <div class="field-body">
                     <div class="field">
                       <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Prix" name="complementPrice">
+                        <input class="input" type="number" placeholder="Prix" name="complementPrice" step="0.01">
                         <span class="icon left"><span class="mdi mdi-cash"></span></span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-
                 <div class="field">
                   <div class="field-body">
                     <div class="field">
                       <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Quantité en stock" name="qte_stock">
+                        <input class="input" type="number" placeholder="Quantité en stock" name="qte_stock">
                         <span class="icon left"><span class="mdi mdi-store"></span></span>
                       </div>
                     </div>
                   </div>
                 </div>
 
-
                 <div class="field">
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Image" name="image">
-                        <span class="icon left"><span class="mdi mdi-image-area"></span></span>
+                    <label class="label">Image</label>
+                    <div class="field-body">
+                      <div class="field file">
+                        <label class="upload control">
+                          <a class="button blue">
+                            Télécharger
+                          </a>
+                          <input type="file" id="image" name="image" onchange="displayImageName()">
+                        </label>
+                      </div>
+                      <div id="image-preview" style="margin-top: 10px;">
+                        <img id="preview" src="" alt="Aperçu de l'image" style="max-width: 100px; max-height: 100px; display: none;">
+                        <span id="image-name"></span>
                       </div>
                     </div>
-                  </div>
                 </div>
+
+                  <hr>
 
                 <div class="field grouped">
                   <div class="control">
@@ -339,11 +344,19 @@
                         function annuler() {
                             window.location.href = '{{ route('complements.list') }}';
                         };
+
+                        function displayImageName() {
+                            var input = document.getElementById('image');
+                            var fileName = input.files[0].name;
+                            var preview = document.getElementById('preview');
+                            var imageName = document.getElementById('image-name');
+                            preview.src = URL.createObjectURL(input.files[0]);
+                            preview.style.display = "block";
+                            imageName.innerText = fileName;
+                        }
                     </script>
                   </div>
                 </div>
-
-                <hr>
               </form>
             </div>
           </div>

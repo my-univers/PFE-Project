@@ -9,6 +9,8 @@ class ComplementsAlimentaires extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['image_path'];
+
     public function premierSecoursCommande()
     {
         return $this->hasMany(premierSecoursCommande::class);

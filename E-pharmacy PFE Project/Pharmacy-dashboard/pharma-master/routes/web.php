@@ -105,7 +105,7 @@ Route::get('/complements', [ComplementAlimentaireController::class, 'showComplem
 
 Route::get('/complements/form', [ComplementAlimentaireController::class, 'showForm'])->name('complements.form');
 
-Route::get('/complements/add', [ComplementAlimentaireController::class, 'addComplement']);
+Route::post('/complements/add', [ComplementAlimentaireController::class, 'addComplement']);
 
 Route::get('/complements/updateForm/{id}', [ComplementAlimentaireController::class, 'showUpdateForm']);
 
