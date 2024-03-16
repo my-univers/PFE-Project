@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class PremierSecoursController extends Controller
 {
-    
+
     public function showList(){
         $premiers = PremiersSecours::all();
         return view("premiers_secours.list" ,['list' => $premiers ] );
@@ -37,10 +37,10 @@ class PremierSecoursController extends Controller
 
         $premier->save();
 
-        return redirect('/premiers_secours/list');
+        return redirect('/premiers_secours');
     }
 
-    
+
     public function updatePremier(Request $request, $id) {
         $p = PremiersSecours::find($id);
 
@@ -49,13 +49,25 @@ class PremierSecoursController extends Controller
         $p->marque = $request->marque;
         $p->prix = $request->prix;
         $p->qte_en_stock = $request->qte_stock;
-        $p->image_path = $request->image;
+
+        // Traitement de la nouvelle image si elle est présente
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('img'), $imageName);
+
+            // Suppression de l'ancienne image si elle existe
+            if ($p->image_path) {
+                unlink(public_path($p->image_path));
+            }
+
+            $p->image_path = 'img/' . $imageName;
+        }
 
         $p->save();
 
         return redirect('/premiers_secours');
     }
-
 
     public function showUpdateForm($id){
         $c = PremiersSecours::find($id);
@@ -64,6 +76,8 @@ class PremierSecoursController extends Controller
 
     public function deletePremier($id) {
         $c = PremiersSecours::find($id);
+        unlink(public_path($c->image_path));
+
         $c->delete();
         return redirect('/premiers_secours');
     }
