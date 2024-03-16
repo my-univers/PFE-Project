@@ -135,6 +135,171 @@
 @endsection
 
 @section('content')
+
+<aside class="aside is-placed-left is-expanded">
+    <div class="aside-tools">
+      <div>
+        Pharma <b class="font-black">One</b>
+      </div>
+    </div>
+    <div class="menu is-menu-main">
+      <p class="menu-label">General</p>
+      <ul class="menu-list">
+        <li >
+          <a href="/dashboard">
+            <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
+            <span class="menu-item-label">Tableau de Bord</span>
+          </a>
+        </li>
+      </ul>
+      <p class="menu-label">Gestion</p>
+      <ul class="menu-list">
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-account-group"></i></span>
+            <span class="menu-item-label">Clients</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/clients/list">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/clients/addForm">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-doctor"></i></span>
+            <span class="menu-item-label">Medecins</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/medecins/list">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/medecins/addForm">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-pill"></i></span>
+            <span class="menu-item-label">Médicaments</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/medicaments/list">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/medicaments/addForm">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="active">
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-needle"></i></span>
+            <span class="menu-item-label">Compléments</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/complements">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/complements/form">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+            <span class="menu-item-label">Premiers Secours</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/premiers_secours">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/premiers_secours/form">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+            <span class="menu-item-label">Commandes</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/commandes">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/commandes/form">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+            <span class="menu-item-label">Packs</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/packs">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/packs/form">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p class="menu-label">A Propos</p>
+      <ul class="menu-list">
+        <li>
+          <a href="#" class="has-icon">
+            <span class="icon"><i class="mdi mdi-github-circle"></i></span>
+            <span class="menu-item-label">GitHub</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
 <section class="is-title-bar">
     <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
       <ul>
@@ -159,11 +324,11 @@
         <header class="card-header">
           <p class="card-header-title">
             <span class="icon"><i class="mdi mdi-ballot"></i></span>
-            Modifier Complément 
+            Modifier Complément
           </p>
         </header>
         <div class="card-content">
-          <form method="post" action="/complements/update/{{$complement->id}}">
+          <form method="post" action="/complements/update/{{$complement->id}}" enctype="multipart/form-data">
             @csrf
                 <div class="field">
                   <div class="field-body">
@@ -182,7 +347,6 @@
                     <textarea class="textarea" placeholder="Description" name="description">{{$complement->descr}}</textarea>
                 </div>
                 </div>
-
 
                 <div class="field">
                   <div class="field-body">
@@ -205,15 +369,22 @@
                       </div>
                     </div>
                   </div>
-  
+
                   <div class="field">
+                    <label class="label">Image</label>
                     <div class="field-body">
-                      <div class="field">
-                        <div class="control icons-left">
-                          <input class="input" type="text" placeholder="Image" name="image" value="{{ $complement->image_path }}">
-                          <span class="icon left"><span class="mdi mdi-store"></span></span>
+                        <div class="field file">
+                            <label class="upload control">
+                                <a class="button blue">
+                                    Télécharger
+                                </a>
+                                <input type="file" id="image" name="image" onchange="displayImagePreview()">
+                            </label>
                         </div>
-                      </div>
+                        <div id="image-preview" style="margin-top: 10px;">
+                            <img id="preview" src="{{ asset($complement->image_path) }}" alt="Aperçu de l'image" style="max-width: 100px; max-height: 100px; display: block;">
+                            <span id="image-name">{{ basename($complement->image_path) }}</span>
+                        </div>
                     </div>
                   </div>
 
@@ -231,10 +402,25 @@
                           function annuler() {
                               window.location.href = '{{ route('complements.list') }}';
                           };
+
+                           function displayImagePreview() {
+                                var input = document.getElementById('image');
+                                var preview = document.getElementById('preview');
+                                var imageName = document.getElementById('image-name');
+                                if (input.files && input.files[0]) {
+                                    var reader = new FileReader();
+                                    reader.onload = function (e) {
+                                        preview.src = e.target.result;
+                                        preview.style.display = "block"; // Ajout de cette ligne pour afficher l'aperçu de l'image
+                                    }
+                                    reader.readAsDataURL(input.files[0]);
+                                    imageName.innerText = input.files[0].name;
+                                }
+                           }
                       </script>
                     </div>
                   </div>
-  
+
                 </form>
               </div>
             </div>
