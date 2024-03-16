@@ -189,7 +189,7 @@
       <div class="card mb-6">
         <header class="card-header">
           <p class="card-header-title">
-            <span class="icon"><i class="mdi mdi-ballot"></i></span>
+            <span class="icon"><i class="mdi mdi-needle"></i></span>
             Modifier Complément
           </p>
         </header>

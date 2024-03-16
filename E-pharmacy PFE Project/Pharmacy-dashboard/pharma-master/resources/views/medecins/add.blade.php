@@ -186,7 +186,7 @@
     <div class="card mb-6">
       <header class="card-header">
         <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-account"></i></span>
+          <span class="icon"><i class="mdi mdi-doctor"></i></span>
           Médecin
         </p>
       </header>

@@ -187,7 +187,7 @@
       <div class="card mb-6">
         <header class="card-header">
           <p class="card-header-title">
-            <span class="icon"><i class="mdi mdi-ballot"></i></span>
+            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
             Modifier Premiers Secours
           </p>
         </header>

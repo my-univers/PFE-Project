@@ -171,12 +171,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/medicaments/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/medicaments/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -282,7 +282,7 @@
           <div class="card mb-6">
             <header class="card-header">
               <p class="card-header-title">
-                <span class="icon"><i class="mdi mdi-ballot"></i></span>
+                <span class="icon"><i class="mdi mdi-needle"></i></span>
                 Ajouter Complément
               </p>
             </header>
