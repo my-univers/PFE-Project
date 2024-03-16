@@ -9,6 +9,8 @@ class PremiersSecours extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['image_path'];
+
     public function premierSecoursCommandes()
     {
         return $this->hasMany(premierSecoursCommande::class);

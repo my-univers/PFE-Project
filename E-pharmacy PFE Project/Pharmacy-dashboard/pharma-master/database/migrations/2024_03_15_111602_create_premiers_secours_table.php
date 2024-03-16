@@ -15,11 +15,11 @@ class CreatePremiersSecoursTable extends Migration
     {
         Schema::create('premiers_secours', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->text('description');
-            $table->string('marque');
-            $table->decimal('prix', 8, 2);
-            $table->integer('qte_en_stock');
+            $table->string('nom')->nullable(false);
+            $table->text('description')->nullable(false);
+            $table->string('marque')->nullable(false);
+            $table->decimal('prix', 8, 2)->nullable(false);
+            $table->integer('qte_en_stock')->nullable(false);
             $table->string('image_path');
             $table->timestamps();
         });

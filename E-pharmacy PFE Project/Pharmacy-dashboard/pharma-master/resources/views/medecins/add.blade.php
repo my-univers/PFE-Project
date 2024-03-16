@@ -116,7 +116,7 @@
         </li>
         <li>
           <a class="dropdown">
-            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+            <span class="icon"><i class="mdi mdi-cart"></i></span>
             <span class="menu-item-label">Commandes</span>
             <span class="icon"><i class="mdi mdi-plus"></i></span>
           </a>
