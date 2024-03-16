@@ -116,7 +116,7 @@
 
       <li class="set-active-forms-html">
         <a href="#">
-          <span class="icon"><i class="mdi mdi-cart-outline"></i></span>
+          <span class="icon"><i class="mdi mdi-cart"></i></span>
           <span class="menu-item-label">Commandes</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>

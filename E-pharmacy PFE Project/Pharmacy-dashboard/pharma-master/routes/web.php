@@ -55,7 +55,6 @@ Route::get('/', [AuthenticatedAdminController::class, 'showLoginForm']);
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
 
-
 /******************Clients******************/
 
 Route::get('/clients/list', [ClientController::class, 'showClientsList']);

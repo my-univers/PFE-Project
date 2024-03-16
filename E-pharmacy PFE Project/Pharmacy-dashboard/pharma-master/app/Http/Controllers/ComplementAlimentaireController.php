@@ -18,18 +18,6 @@ class ComplementAlimentaireController extends Controller
     }
 
 
-<<<<<<< HEAD
-    public function addComplement(Request $request)
-    {
-        $complement = new ComplementsAlimentaires;
-
-        $complement->nom = $request->complementNom;
-        $complement->descr = $request->complementDescription;
-        $complement->prix = $request->complementPrice;
-        $complement->qte_en_stock = $request->qte_stock;
-    
-        if ($request->hasFile('image')) {
-=======
     public function addComplement(Request $request){
 
         $complement = new ComplementsAlimentaires;
@@ -44,22 +32,15 @@ class ComplementAlimentaireController extends Controller
         $complement->prix = $prix_field;
         $complement->qte_en_stock = $qte_stock_field;
 
-        // Traitement de l'image si elle est présente
->>>>>>> 6d495d382ae2684456e6b73e2e19aea18a4ae94f
-        $image = $request->file('image');
-        $imageName = time() . '_' . $image->getClientOriginalName();
-        $image->move(public_path('img'), $imageName);
-        $complement->image_path = 'img/' . $imageName;
-<<<<<<< HEAD
-=======
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('img'), $imageName);
+            $complement->image_path = 'img/' . $imageName;
+        }
 
-        $complement->save();
 
-        return redirect("/complements");
 
->>>>>>> 6d495d382ae2684456e6b73e2e19aea18a4ae94f
-    }
-    
         $complement->save();
     
         return redirect("/complements");

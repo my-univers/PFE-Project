@@ -113,9 +113,9 @@
           </li>
         </ul>
       </li>
-      <li class="set-active-forms-html">
-        <a href="#">
-          <span class="icon"><i class="mdi mdi-cart-outline"></i></span>
+      <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-cart"></i></span>
           <span class="menu-item-label">Commandes</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -127,6 +127,25 @@
           </li>
           <li>
             <a href="/commandes/form">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+          <span class="menu-item-label">Packs</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/packs">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/packs/form">
               <span>Ajout</span>
             </a>
           </li>

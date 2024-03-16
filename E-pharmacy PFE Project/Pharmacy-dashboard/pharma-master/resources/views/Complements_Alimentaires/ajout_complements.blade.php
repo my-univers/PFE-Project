@@ -78,7 +78,7 @@
                 </li>
                 <li class="active">
                     <a class="dropdown">
-                        <span class="icon"><i class="mdi mdi-medication"></i></span>
+                        <span class="icon"><i class="mdi mdi-bell-outline"></i></span>
                         <span class="menu-item-label">Compléments</span>
                         <span class="icon"><i class="mdi mdi-plus"></i></span>
                     </a>
@@ -114,11 +114,43 @@
                         </li>
                     </ul>
                 </li>
-                <li class="set-active-forms-html">
-                    <a href="#">
-                        <span class="icon"><i class="mdi mdi-cart-outline"></i></span>
-                        <span class="menu-item-label">Commandes</span>
-                    </a>
+                <li>
+                  <a class="dropdown">
+                    <span class="icon"><i class="mdi mdi-cart"></i></span>
+                    <span class="menu-item-label">Commandes</span>
+                    <span class="icon"><i class="mdi mdi-plus"></i></span>
+                  </a>
+                  <ul>
+                    <li>
+                      <a href="/commandes">
+                        <span>Liste</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/commandes/form">
+                        <span>Ajout</span>
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a class="dropdown">
+                    <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+                    <span class="menu-item-label">Packs</span>
+                    <span class="icon"><i class="mdi mdi-plus"></i></span>
+                  </a>
+                  <ul>
+                    <li>
+                      <a href="/packs">
+                        <span>Liste</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="/packs/form">
+                        <span>Ajout</span>
+                      </a>
+                    </li>
+                  </ul>
                 </li>
             </ul>
             <p class="menu-label">A Propos</p>
@@ -165,7 +197,7 @@
                 </header>
                 <div class="card-content">
 
-                    <form method="get" action="/complements/add" enctype="multipart/form-data">
+                    <form method="post" action="/complements/add" enctype="multipart/form-data">
 
                         <div class="field">
                             <div class="field-body">
