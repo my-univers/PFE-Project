@@ -18,34 +18,27 @@ class ComplementAlimentaireController extends Controller
     }
 
 
-    public function addComplement(Request $req){
-
-
+    public function addComplement(Request $request)
+    {
         $complement = new ComplementsAlimentaires;
 
-        $nom_field= $req->complementNom;
-        $descr_field = $req->complementDescription;
-        $prix_field = $req->complementPrice;
-        $qte_stock_field = $req->qte_stock;
-
-
-        $complement->nom = $nom_field;
-        $complement->descr = $descr_field;
-        $complement->prix = $prix_field;
-        $complement->qte_en_stock = $qte_stock_field;
-
-        if ($req->hasFile('image')) {
-            $image = $req->file('image');
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('img'), $imageName);
-            $complement->image_path = 'img/' . $imageName;
-        }
-
-        $complement->save();
-
-        return redirect("/complements");
-
+        $complement->nom = $request->complementNom;
+        $complement->descr = $request->complementDescription;
+        $complement->prix = $request->complementPrice;
+        $complement->qte_en_stock = $request->qte_stock;
+    
+        if ($request->hasFile('image')) {
+        $image = $request->file('image');
+        $imageName = time() . '_' . $image->getClientOriginalName();
+        $image->move(public_path('img'), $imageName);
+        $complement->image_path = 'img/' . $imageName;
     }
+    
+        $complement->save();
+    
+        return redirect("/complements");
+    }
+    
 
     public function showUpdateForm($id){
         $c = ComplementsAlimentaires::find($id);

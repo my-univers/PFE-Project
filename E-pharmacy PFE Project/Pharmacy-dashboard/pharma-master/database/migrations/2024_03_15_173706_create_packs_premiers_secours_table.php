@@ -12,10 +12,13 @@ return new class extends Migration
      * @return void
      */
     public function up()
-    {
-        Schema::create('commandes', function (Blueprint $table) {
-            // @my-univers Hahya commande creatha tatshofi shno les champs li ghaykono fiha
+    { 
+        Schema::create('packs_premiers_secours', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('pack_id');
+            $table->unsignedBigInteger('premier_secours_id');
+            $table->foreign('pack_id')->references('id')->on('packs')->onDelete('cascade');
+            $table->foreign('premier_secours_id')->references('id')->on('premiers_secours')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commandes');
+        Schema::dropIfExists('packs_premiers_secours');
     }
 };

@@ -26,12 +26,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/clients/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="clients/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -45,12 +45,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="medecins/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="medecins/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -64,12 +64,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="medicaments/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="medicaments/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -117,7 +117,20 @@
         <a href="#">
           <span class="icon"><i class="mdi mdi-cart-outline"></i></span>
           <span class="menu-item-label">Commandes</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
+        <ul>
+          <li>
+            <a href="/commandes">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/commandes/form">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
       </li>
     </ul>
     <p class="menu-label">A Propos</p>
@@ -171,8 +184,8 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control icons-left">
-                                            <input class="input" type="text" placeholder="Nom" name="nom">
-                                            <span class="icon left"><i class="mdi mdi-medical-bag"></i></span>
+                                            <input class="input" type="text" placeholder="Nom" name="nom" autocomplete="off">
+                                            <span class="icon left"><i class="mdi mdi-tag"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -191,7 +204,7 @@
                                     <div class="field">
                                         <div class="control icons-left">
                                             <input class="input" type="text" placeholder="Marque"
-                                                name="marque">
+                                                name="marque" autocomplete="off">
                                             <span class="icon left"><i class="mdi mdi-account"></i></span>
                                         </div>
                                     </div>
@@ -204,7 +217,7 @@
                                     <div class="field">
                                         <div class="control icons-left">
                                             <input class="input" type="text" placeholder="Prix"
-                                                name="prix">
+                                                name="prix" autocomplete="off">
                                             <span class="icon left"><span class="mdi mdi-cash"></span></span>
                                         </div>
                                     </div>
@@ -216,8 +229,8 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control icons-left">
-                                            <input class="input" type="text" placeholder="Quantité en stock"
-                                                name="qte_en_stock">
+                                            <input class="input" type="number" placeholder="Quantité en stock"
+                                                name="qte_en_stock" autocomplete="off">
                                             <span class="icon left"><span class="mdi mdi-store"></span></span>
                                         </div>
                                     </div>
@@ -257,6 +270,16 @@
                                         function annuler() {
                                             window.location.href = '/premiers_secours';
                                         };
+
+                                        function displayImageName() {
+                                        var input = document.getElementById('image');
+                                        var fileName = input.files[0].name;
+                                        var preview = document.getElementById('preview');
+                                        var imageName = document.getElementById('image-name');
+                                        preview.src = URL.createObjectURL(input.files[0]);
+                                        preview.style.display = "block";
+                                        imageName.innerText = fileName;
+                                    }
                                     </script>
                                 </div>
                             </div>
@@ -270,16 +293,7 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
-            <div class="flex items-center justify-start space-x-3">
-                <div>
-                    © 2024, Pharma One
-                </div>
-            </div>
-        </div>
-    </footer>
-
+    
     <div id="sample-modal" class="modal">
         <div class="modal-background --jb-modal-close"></div>
         <div class="modal-card">

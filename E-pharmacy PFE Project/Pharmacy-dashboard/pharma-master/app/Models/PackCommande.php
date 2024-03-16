@@ -5,13 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PremiersSecours extends Model
+class PackCommande extends Model
 {
     use HasFactory;
 
-    public function premierSecoursCommandes()
+    
+    public function client()
     {
-        return $this->hasMany(premierSecoursCommande::class);
+        return $this->belongsTo(Client::class);
     }
 
     public function packs()
@@ -19,4 +20,3 @@ class PremiersSecours extends Model
         return $this->belongsTo(Pack::class);
     }
 }
-

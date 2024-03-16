@@ -1,5 +1,4 @@
 @extends('master')
-
 @section('aside')
 <aside class="aside is-placed-left is-expanded">
   <div class="aside-tools">
@@ -10,8 +9,8 @@
   <div class="menu is-menu-main">
     <p class="menu-label">General</p>
     <ul class="menu-list">
-      <li >
-        <a href="index.html">
+      <li>
+        <a href="/">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Tableau de Bord</span>
         </a>
@@ -27,12 +26,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/clients/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="clients/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -46,12 +45,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="medecins/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="medecins/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -65,18 +64,18 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="medicaments/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="medicaments/addForm">
               <span>Ajout</span>
             </a>
           </li>
         </ul>
       </li>
-      <li class="active">
+      <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medication"></i></span>
           <span class="menu-item-label">Compléments</span>
@@ -118,8 +117,40 @@
         <a href="#">
           <span class="icon"><i class="mdi mdi-cart-outline"></i></span>
           <span class="menu-item-label">Commandes</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
-      </li>
+        <ul>
+          <li>
+            <a href="/commandes">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/commandes/form">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+        </li>
+        <li class="active">
+            <a class="dropdown">
+              <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+              <span class="menu-item-label">Packs Premiers Secours</span>
+              <span class="icon"><i class="mdi mdi-plus"></i></span>
+            </a>
+            <ul>
+              <li>
+                <a href="/packs">
+                  <span>Liste</span>
+                </a>
+              </li>
+              <li>
+                <a href="/packs/form">
+                  <span>Ajout</span>
+                </a>
+              </li>
+            </ul>
+        </li>
     </ul>
     <p class="menu-label">A Propos</p>
     <ul class="menu-list">
@@ -139,7 +170,7 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Compléments Alimentaires</li>
+      <li>Packs Premiers Secours</li>
     </ul>
   </div>
 </section>
@@ -147,7 +178,7 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Liste des Compléments
+      Liste des Packs Premiers Secours
     </h1>
   </div>
 </section>
@@ -157,7 +188,7 @@
       <header class="card-header">
         <p class="card-header-title">
             <span class="icon"><span class="mdi mdi-medication"></span></span>
-            Compléments
+            Packs Premiers Secours
         </p>
         <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -173,22 +204,25 @@
                   <th scope="col" style="width: 450px">Description</th>
                   <th scope="col">Prix</th>
                   <th scope="col">Quantité en stock</th>
+                  <th scope="col">Image</th>
                   <th></th>
                 </tr>
               </thead>
 
               <tbody>
-                @foreach($list as $complement)
+                @foreach($list as $pack)
                 <tr>
                     <td></td>
-                    <td scope="row">{{ $complement->id }}</td>
-                    <td>{{ $complement->nom }}</td>
-                    <td>{{ $complement->descr }}</td>
-                    <td>{{ $complement->prix }} DH</td>
-                    <td>{{ $complement->qte_en_stock }}</td>
+                    <td scope="row">{{ $pack->id }}</td>
+                    <td>{{ $pack->nom }}</td>
+                    <td>{{ $pack->description }}</td>
+                    <td>{{ $pack->prix }} DH</td>
+                    <td>{{ $pack->qte_en_stock }}</td>
+                    <td>{{ $pack->image_path }}</td>
+
                     <td class="actions-cell">
                       <div class="buttons right nowrap">
-                          <a class="button small green --jb-modal" href="/complements/updateForm/{{$complement->id}}">
+                          <a class="button small green --jb-modal" href="/packs/updateForm/{{$pack->id}}">
                           <span class="icon"><i class="mdi mdi-pencil"></i></span>
                           </a>
                           <button class="button small red --jb-modal" data-target="sample-modal" type="button">
@@ -231,11 +265,12 @@
       <button class="button --jb-modal-close">Annuler</button>
       <script>
         function annuler() {
-            window.location.href = '{{ route('complements.list') }}';
+            window.location.href = '/packs';
         };
     </script>
-
-      <a class="button red --jb-modal-close" href="/complements/delete/{{$complement->id}}">Confirmer</a>
+    @foreach($list as $pack)
+      <a class="button red --jb-modal-close" href="/packs/delete/{{$pack->id}}">Confirmer</a>
+    @endforeach
     </footer>
   </div>
 </div>

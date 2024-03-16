@@ -26,12 +26,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="clients/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="clients/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -45,12 +45,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="medecins/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="medecins/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -64,12 +64,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="medicaments/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="medicaments/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -102,7 +102,7 @@
         </a>
         <ul>
           <li>
-            <a href="/premiers_secours">
+            <a href="/premiers_secours/">
               <span>Liste</span>
             </a>
           </li>
@@ -117,7 +117,20 @@
         <a href="#">
           <span class="icon"><i class="mdi mdi-cart-outline"></i></span>
           <span class="menu-item-label">Commandes</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
+        <ul>
+          <li>
+            <a href="/commandes">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/commandes/form">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
       </li>
     </ul>
     <p class="menu-label">A Propos</p>

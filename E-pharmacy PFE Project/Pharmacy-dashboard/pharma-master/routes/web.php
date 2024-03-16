@@ -6,6 +6,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PremierSecoursController;
 use App\Http\Controllers\MedecinController;
 use App\Http\Controllers\MedicamentController;
+use App\Http\Controllers\PackController;
+use App\Http\Controllers\PackPremiersSecoursController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -96,5 +98,22 @@ Route::get('/premiers_secours/updateForm/{id}', [PremierSecoursController::class
 Route::post('/premiers_secours/update/{id}', [PremierSecoursController::class, 'updatePremier']);
 
 Route::get('/premiers_secours/delete/{id}', [PremierSecoursController::class, 'deletePremier']);
+
+/*****************Packs******************/
+
+Route::get('/packs', [PackController::class, 'showList']);
+
+Route::get('/packs/form', [PackController::class, 'showForm']);
+
+Route::get('/packs/add', [PackController::class, 'addPack']);
+
+Route::get('/packs/updateForm/{id}', [PackController::class, 'showUpdateForm']);
+
+Route::post('/packs/update/{id}', [PackController::class, 'updatePack']);
+
+Route::get('/packs/delete/{id}', [PackController::class, 'deletePack']);
+
+
+/***************Commandes***************/
 
 
