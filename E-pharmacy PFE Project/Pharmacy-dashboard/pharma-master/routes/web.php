@@ -40,11 +40,17 @@ use App\Http\Controllers\Admin\Auth\AuthenticatedAdminController;
 // require __DIR__.'/auth.php';
 
 
+/**********************Login - Register*******************+*/
+
 Route::get('/registerForm', [RegisteredAdminController::class, 'showRegistrationForm']);
+
 Route::post('/register', [RegisteredAdminController::class, 'register']);
 
 Route::get('/loginForm', [AuthenticatedAdminController::class, 'showLoginForm']);
+
 Route::post('/login', [AuthenticatedAdminController::class, 'login']);
+
+Route::get('/logout', [AuthenticatedAdminController::class, 'logout']);
 
 
 /*********************Dashboard**********************/

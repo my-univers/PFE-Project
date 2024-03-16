@@ -70,7 +70,7 @@
             <span>Paramètres</span>
           </a>
           <hr class="navbar-divider">
-          <a class="navbar-item" href="/login">
+          <a class="navbar-item" href="/logout">
             <span class="icon"><i class="mdi mdi-logout"></i></span>
             <span>Déconnexion</span>
           </a>
@@ -94,7 +94,7 @@
             <span>Paramètres</span>
           </a>
           <hr class="navbar-divider">
-          <a class="navbar-item" href="/login">
+          <a class="navbar-item" href="/logout">
             <span class="icon"><i class="mdi mdi-logout"></i></span>
             <span>Déconnexion</span>
           </a>
