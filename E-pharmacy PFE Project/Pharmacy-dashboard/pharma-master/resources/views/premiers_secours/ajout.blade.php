@@ -166,7 +166,171 @@
 @endsection
 
 @section('content')
-    
+
+<aside class="aside is-placed-left is-expanded">
+    <div class="aside-tools">
+      <div>
+        Pharma <b class="font-black">One</b>
+      </div>
+    </div>
+    <div class="menu is-menu-main">
+      <p class="menu-label">General</p>
+      <ul class="menu-list">
+        <li >
+          <a href="/dashboard">
+            <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
+            <span class="menu-item-label">Tableau de Bord</span>
+          </a>
+        </li>
+      </ul>
+      <p class="menu-label">Gestion</p>
+      <ul class="menu-list">
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-account-group"></i></span>
+            <span class="menu-item-label">Clients</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/clients/list">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/clients/addForm">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li >
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-doctor"></i></span>
+            <span class="menu-item-label">Medecins</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/medecins/list">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/medecins/addForm">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-pill"></i></span>
+            <span class="menu-item-label">Médicaments</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/medicaments/list">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/medicaments/addForm">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-needle"></i></span>
+            <span class="menu-item-label">Compléments</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/complements">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/complements/form">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="active">
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+            <span class="menu-item-label">Premiers Secours</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/premiers_secours">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/premiers_secours/form">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+            <span class="menu-item-label">Commandes</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/commandes">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/commandes/form">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+            <span class="menu-item-label">Packs</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/packs">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/packs/form">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p class="menu-label">A Propos</p>
+      <ul class="menu-list">
+        <li>
+          <a href="#" class="has-icon">
+            <span class="icon"><i class="mdi mdi-github-circle"></i></span>
+            <span class="menu-item-label">GitHub</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
         <section class="is-title-bar">
             <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
                 <ul>
@@ -197,8 +361,8 @@
                     </header>
                     <div class="card-content">
 
-                        <form method="get" action="/premiers_secours/add" enctype="multipart/form-data">
-
+                        <form method="post" action="/premiers_secours/add" enctype="multipart/form-data">
+                            @csrf
                             <div class="field">
                                 <div class="field-body">
                                     <div class="field">
@@ -235,7 +399,7 @@
                                 <div class="field-body">
                                     <div class="field">
                                         <div class="control icons-left">
-                                            <input class="input" type="text" placeholder="Prix"
+                                            <input class="input" type="number" placeholder="Prix"
                                                 name="prix" autocomplete="off">
                                             <span class="icon left"><span class="mdi mdi-cash"></span></span>
                                         </div>
@@ -299,11 +463,20 @@
                                         preview.style.display = "block";
                                         imageName.innerText = fileName;
                                     }
+
+                                        function displayImageName() {
+                                            var input = document.getElementById('image');
+                                            var fileName = input.files[0].name;
+                                            var preview = document.getElementById('preview');
+                                            var imageName = document.getElementById('image-name');
+                                            preview.src = URL.createObjectURL(input.files[0]);
+                                            preview.style.display = "block";
+                                            imageName.innerText = fileName;
+                                        }
                                     </script>
                                 </div>
                             </div>
 
-                            <hr>
                         </form>
                     </div>
                 </div>
