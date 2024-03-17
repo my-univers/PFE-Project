@@ -9,8 +9,8 @@
   <div class="menu is-menu-main">
     <p class="menu-label">General</p>
     <ul class="menu-list">
-      <li>
-        <a href="/">
+      <li >
+        <a href="/dashboard">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Tableau de Bord</span>
         </a>
@@ -31,7 +31,7 @@
             </a>
           </li>
           <li>
-            <a href="clients/addForm">
+            <a href="/clients/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -45,12 +45,12 @@
         </a>
         <ul>
           <li>
-            <a href="medecins/list">
+            <a href="/medecins/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="medecins/addForm">
+            <a href="/medecins/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -64,12 +64,12 @@
         </a>
         <ul>
           <li>
-            <a href="medicaments/list">
+            <a href="/medicaments/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="medicaments/addForm">
+            <a href="/medicaments/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -77,18 +77,18 @@
       </li>
       <li>
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-medication"></i></span>
+          <span class="icon"><i class="mdi mdi-needle"></i></span>
           <span class="menu-item-label">Compléments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
           <li>
-            <a href="{{ route('complements.list') }}">
+            <a href="/complements">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="{{ route('complements.form') }}">
+            <a href="/complements/form">
               <span>Ajout</span>
             </a>
           </li>
@@ -113,9 +113,8 @@
           </li>
         </ul>
       </li>
-
-      <li class="set-active-forms-html">
-        <a href="#">
+      <li>
+        <a class="dropdown">
           <span class="icon"><i class="mdi mdi-cart"></i></span>
           <span class="menu-item-label">Commandes</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
@@ -132,29 +131,46 @@
             </a>
           </li>
         </ul>
-        </li>
-
-        <li class="active">
-            <a class="dropdown">
-              <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
-              <span class="menu-item-label">Packs Premiers Secours</span>
-              <span class="icon"><i class="mdi mdi-plus"></i></span>
+      </li>
+      <li class="active">
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-package-variant"></i></span>
+          <span class="menu-item-label">Packs</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/packs">
+              <span>Liste</span>
             </a>
-            <ul>
-              <li>
-                <a href="/packs">
-                  <span>Liste</span>
-                </a>
-              </li>
-              <li>
-                <a href="/packs/form">
-                  <span>Ajout</span>
-                </a>
-              </li>
-            </ul>
-        </li>
+          </li>
+          <li>
+            <a href="/packs/form">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+          <span class="menu-item-label">Packs Premiers Secours</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/packs_premiers_secours">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/packs_premiers_secours/form">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li>
     </ul>
-  </div>
     <p class="menu-label">A Propos</p>
     <ul class="menu-list">
       <li>
@@ -174,7 +190,7 @@
     <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
         <ul>
             <li>Admin</li>
-            <li>Packs Premiers Secours</li>
+            <li>Packs</li>
         </ul>
     </div>
 </section>
@@ -182,7 +198,7 @@
 <section class="is-hero-bar">
     <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
         <h1 class="title">
-           Packs Premiers Secours
+           Packs
         </h1>
     </div>
 </section>
@@ -195,12 +211,13 @@
             <header class="card-header">
                 <p class="card-header-title">
                     <span class="icon"><i class="mdi mdi-ballot"></i></span>
-                    Ajouter Pack Premiers Secours
+                    Ajouter Pack
                 </p>
             </header>
             <div class="card-content">
 
-                <form method="get" action="/packs/add" enctype="multipart/form-data">
+                <form method="post" action="/packs/add" enctype="multipart/form-data">
+                  @csrf
 
                     <div class="field">
                         <div class="field-body">
@@ -212,7 +229,6 @@
                             </div>
                         </div>
                     </div>
-
 
                     <div class="field">
                         <div class="control">
@@ -251,7 +267,7 @@
                         <div class="field-body">
                             <div class="field">
                                 <div class="control icons-left">
-                                    <select class="input" name="premiers_secours" multiple required>
+                                    <select class="input" name="premiers_secours[]" multiple required>
                                         @foreach($list as $premierSecours)
                                         <option value="{{ $premierSecours->id }}">{{ $premierSecours->nom }}</option>
                                         @endforeach
@@ -264,23 +280,24 @@
 
 
                     <div class="field">
-                        <label class="label">Image</label>
-                        <div class="field-body">
-                          <div class="field file">
-                            <label class="upload control">
-                              <a class="button blue">
-                                Télécharger
-                              </a>
-                              <input type="file" id="image" name="image" onchange="displayImageName()">
-                            </label>
-                          </div>
-                          <div id="image-preview" style="margin-top: 10px;">
-                            <img id="preview" src="" alt="Aperçu de l'image" style="max-width: 100px; max-height: 100px; display: none;">
-                            <span id="image-name"></span>
-                          </div>
-                        </div>
-                    </div> 
-
+                            <label class="label">Image</label>
+                            <div class="field-body">
+                                <div class="field file">
+                                    <label class="upload control">
+                                        <a class="button blue">
+                                            Télécharger
+                                        </a>
+                                        <input type="file" id="image" name="image"
+                                            onchange="displayImageName()">
+                                    </label>
+                                </div>
+                                <div id="image-preview" style="margin-top: 10px;">
+                                    <img id="preview" src="" alt="Aperçu de l'image"
+                                        style="max-width: 100px; max-height: 100px; display: none;">
+                                    <span id="image-name"></span>
+                               </div>
+                            </div>
+                    </div>
 
 
                     <div class="field grouped">
@@ -299,13 +316,13 @@
                                 };
 
                                 function displayImageName() {
-                                var input = document.getElementById('image');
-                                var fileName = input.files[0].name;
-                                var preview = document.getElementById('preview');
-                                var imageName = document.getElementById('image-name');
-                                preview.src = URL.createObjectURL(input.files[0]);
-                                preview.style.display = "block";
-                                imageName.innerText = fileName;
+                                        var input = document.getElementById('image');
+                                        var fileName = input.files[0].name;
+                                        var preview = document.getElementById('preview');
+                                        var imageName = document.getElementById('image-name');
+                                        preview.src = URL.createObjectURL(input.files[0]);
+                                        preview.style.display = "block";
+                                        imageName.innerText = fileName;
                                 };
                             </script>
                         </div>

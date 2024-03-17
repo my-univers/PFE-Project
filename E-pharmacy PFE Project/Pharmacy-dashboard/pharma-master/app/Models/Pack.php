@@ -14,4 +14,9 @@ class Pack extends Model
         return $this->belongsTo(PremiersSecours::class);
     }
 
+    public function packsPremiersSecours()
+    {
+        return $this->hasMany(PackPremierSecours::class, 'id_pack');
+    }
+
 } 

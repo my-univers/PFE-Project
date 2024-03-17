@@ -134,7 +134,7 @@ Route::get('/packs', [PackController::class, 'showList']);
 
 Route::get('/packs/form', [PackController::class, 'showForm']);
 
-Route::get('/packs/add', [PackController::class, 'addPack']);
+Route::post('/packs/add', [PackController::class, 'addPack']);
 
 Route::get('/packs/updateForm/{id}', [PackController::class, 'showUpdateForm']);
 
@@ -142,6 +142,16 @@ Route::post('/packs/update/{id}', [PackController::class, 'updatePack']);
 
 Route::get('/packs/delete/{id}', [PackController::class, 'deletePack']);
 
+
+/*****************Packs Premiers Secours******************/
+
+Route::get('/packs_premiers_secours', [PackPremiersSecoursController::class, 'showList']);
+
+Route::get('/packs_premiers_secours/form', [PackPremiersSecoursController::class, 'showForm']);
+
+Route::get('/packs_premiers_secours/add', [PackPremiersSecoursController::class, 'addPackPremierSecours']);
+
+Route::get('/packs_premiers_secours/delete/{id}', [PackPremiersSecoursController::class, 'deletePack']);
 
 /***************Commandes***************/
 

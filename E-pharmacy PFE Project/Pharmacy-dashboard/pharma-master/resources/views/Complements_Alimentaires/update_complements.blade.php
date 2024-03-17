@@ -11,7 +11,7 @@
     <p class="menu-label">General</p>
     <ul class="menu-list">
       <li >
-        <a href="index.html">
+        <a href="/dashboard">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Tableau de Bord</span>
         </a>
@@ -27,12 +27,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/clients/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/clients/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -46,12 +46,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/medecins/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/medecins/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -65,12 +65,12 @@
         </a>
         <ul>
           <li>
-            <a href="#void">
+            <a href="/medicaments/list">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="#void">
+            <a href="/medicaments/addForm">
               <span>Ajout</span>
             </a>
           </li>
@@ -78,18 +78,18 @@
       </li>
       <li class="active">
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-medication"></i></span>
+          <span class="icon"><i class="mdi mdi-needle"></i></span>
           <span class="menu-item-label">Compléments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
           <li>
-            <a href="{{ route('complements.list') }}">
+            <a href="/complements">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="{{ route('complements.form') }}">
+            <a href="/complements/form">
               <span>Ajout</span>
             </a>
           </li>
@@ -135,7 +135,7 @@
       </li>
       <li>
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+          <span class="icon"><i class="mdi mdi-package-variant"></i></span>
           <span class="menu-item-label">Packs</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -147,6 +147,25 @@
           </li>
           <li>
             <a href="/packs/form">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+          <span class="menu-item-label">Packs Premiers Secours</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/packs_premiers_secours">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/packs_premiers_secours/form">
               <span>Ajout</span>
             </a>
           </li>

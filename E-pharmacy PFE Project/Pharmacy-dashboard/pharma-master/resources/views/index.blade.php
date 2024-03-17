@@ -135,7 +135,7 @@
         </li>
         <li>
           <a class="dropdown">
-            <span class="icon"><i class="mdi mdi-package-variant-closed-plus"></i></span>
+            <span class="icon"><i class="mdi mdi-package-variant"></i></span>
             <span class="menu-item-label">Packs</span>
             <span class="icon"><i class="mdi mdi-plus"></i></span>
           </a>
@@ -147,6 +147,25 @@
             </li>
             <li>
               <a href="/packs/form">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+            <span class="menu-item-label">Packs Premiers Secours</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/packs_premiers_secours">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/packs_premiers_secours/form">
                 <span>Ajout</span>
               </a>
             </li>
