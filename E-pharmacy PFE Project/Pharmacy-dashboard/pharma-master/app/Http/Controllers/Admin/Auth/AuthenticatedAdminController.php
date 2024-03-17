@@ -108,4 +108,38 @@ class AuthenticatedAdminController extends Controller
         return redirect()->back()->with('success', 'Profil mis à jour avec succès.');
     }
 
+    public function updatePassword(Request $request)
+    {
+        // Validation des données
+        $request->validate([
+            'mdp_actuel' => 'required|string',
+            'nv_mdp' => 'required|string',
+            'confirm_mdp' => 'required|string',
+        ]);
+
+        // Récupérer l'utilisateur authentifié
+        $admin = Auth::guard('admin')->user();
+
+        // Vérifier si le mot de passe actuel est correct
+        if (!Hash::check($request->mdp_actuel, $admin->mot_de_passe)) {
+            return redirect()->back()->withErrors(['mdp_actuel' => 'Le mot de passe actuel est incorrect.']);
+        }
+
+        // Vérifier si le nouveau mot de passe est différent du mot de passe actuel
+        if ($request->nv_mdp === $request->mdp_actuel) {
+            return redirect()->back()->withErrors(['nv_mdp' => 'Le nouveau mot de passe doit être différent du mot de passe actuel.']);
+        }
+
+        // Vérifier si le nouveau mot de passe correspond à sa confirmation
+        if ($request->nv_mdp !== $request->confirm_mdp) {
+            return redirect()->back()->withErrors(['confirm_mdp' => 'Le nouveau mot de passe et sa confirmation ne correspondent pas.']);
+        }
+
+        // Mettre à jour le mot de passe
+        $admin->mot_de_passe = bcrypt($request->nv_mdp);
+        $admin->save();
+
+        return redirect()->back()->with('success', 'Mot de passe mis à jour avec succès.');
+    }
+
 }

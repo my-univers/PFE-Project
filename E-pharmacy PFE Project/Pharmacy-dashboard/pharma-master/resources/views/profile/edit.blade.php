@@ -303,7 +303,9 @@
               <div class="control">
                 <input type="password" name="mdp_actuel" autocomplete="current-password" class="input" required>
               </div>
-              <p class="help">ici l'erreur si existe</p>
+              @error('mdp_actuel')
+              <p class="help" style="color: red">{{ $message }}</p>
+              @enderror
             </div>
             <hr>
             <div class="field">
@@ -311,14 +313,18 @@
               <div class="control">
                 <input type="password" autocomplete="new-password" name="nv_mdp" class="input" required>
               </div>
-              <p class="help">ici l'erreur si existe</p>
             </div>
+            @error('nv_mdp')
+            <p class="help" style="color: red">{{ $message }}</p>
+            @enderror
             <div class="field">
               <label class="label">Confirmer Mot de Passe</label>
               <div class="control">
                 <input type="password" autocomplete="new-password" name="confirm_mdp" class="input" required>
               </div>
-              <p class="help">Required. New password one more time</p>
+              @error('confirm_mdp')
+              <p class="help" style="color: red">{{ $message }}</p>
+              @enderror
             </div>
             <hr>
             <div class="field">
@@ -332,8 +338,6 @@
         </div>
       </div>
     </section>
-
 </div>
-
 
 @endsection

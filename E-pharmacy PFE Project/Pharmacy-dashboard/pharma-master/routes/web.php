@@ -119,6 +119,7 @@ Route::post('/complements/update/{id}', [ComplementAlimentaireController::class,
 
 Route::get('/complements/delete/{id}', [ComplementAlimentaireController::class, 'deleteComplement']);
 
+
 /***************Premiers Secours***************/
 
 Route::get('/premiers_secours', [PremierSecoursController::class, 'showList']);
@@ -139,3 +140,5 @@ Route::get('/premiers_secours/delete/{id}', [PremierSecoursController::class, 'd
 Route::get('/profil', [AuthenticatedAdminController::class, 'showProfile']);
 
 Route::post('/profil/edit', [AuthenticatedAdminController::class, 'updateProfile']);
+
+Route::post('/profil/editPassword', [AuthenticatedAdminController::class, 'updatePassword'])->name('profil.updatePassword');
