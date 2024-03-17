@@ -78,7 +78,6 @@ class AuthenticatedAdminController extends Controller
         $request->validate([
             'username' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'photo' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validez le champ photo
         ]);
 
         // Récupérer l'utilisateur authentifié via le garde "admin"
@@ -89,21 +88,19 @@ class AuthenticatedAdminController extends Controller
         $admin->email = $request->email;
 
         if ($request->hasFile('photo')) {
-            // Vérifiez s'il y a des erreurs lors du téléchargement
-            if ($request->file('photo')->getError()) {
-                return redirect()->back()->withErrors(['photo' => 'Erreur lors du téléchargement de l\'image.']);
+            $image = $request->file('photo');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            // Déplacement de la nouvelle image vers le répertoire de stockage
+            $image->move(public_path('img'), $imageName);
+
+            // Suppression de l'ancienne image si elle existe
+            if ($admin->photo) {
+                unlink(public_path($admin->photo));
             }
 
-            // Enregistrer la nouvelle photo
-            $image = $request->file('photo');
-            $imageName = time() . '_' . $image->getClientOriginalName(); // Utilisez le nom original de l'image
-            $imagePath = $image->storeAs('img', $imageName); // Enregistrer la nouvelle image dans le répertoire de stockage
-
-            // Débogage
-            // dd($imagePath);
-
-            // Mettre à jour le chemin de la nouvelle photo
-            $admin->photo = $imagePath;
+            // Mise à jour du chemin de l'image dans la base de données
+            $admin->photo = 'img/' . $imageName;
         }
 
         $admin->save();

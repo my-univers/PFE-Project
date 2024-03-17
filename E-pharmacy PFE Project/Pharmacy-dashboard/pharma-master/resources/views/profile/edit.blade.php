@@ -203,8 +203,10 @@
                                 <a class="button blue">
                                     Télécharger
                                 </a>
-                                <!-- Assurez-vous de ne définir qu'un seul attribut `name` -->
                                 <input type="file" name="photo" onchange="displayImageName()">
+                                @error('photo')
+                                <p class="help">{{ $message }}</p>
+                                @enderror
                             </label>
                         </div>
                         <div id="image-preview" style="margin-top: 10px;">
@@ -294,14 +296,14 @@
           </p>
         </header>
         <div class="card-content">
-          <form action="" method="POST" enctype="multipart/form-data">
+          <form action="/profil/editPassword" method="POST">
             @csrf
             <div class="field">
               <label class="label">Mot de Passe Actuel</label>
               <div class="control">
                 <input type="password" name="mdp_actuel" autocomplete="current-password" class="input" required>
               </div>
-              <p class="help">Required. Your current password</p>
+              <p class="help">ici l'erreur si existe</p>
             </div>
             <hr>
             <div class="field">
@@ -309,7 +311,7 @@
               <div class="control">
                 <input type="password" autocomplete="new-password" name="nv_mdp" class="input" required>
               </div>
-              <p class="help">Required. New password</p>
+              <p class="help">ici l'erreur si existe</p>
             </div>
             <div class="field">
               <label class="label">Confirmer Mot de Passe</label>

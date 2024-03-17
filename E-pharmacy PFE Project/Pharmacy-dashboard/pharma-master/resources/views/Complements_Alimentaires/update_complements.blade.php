@@ -253,7 +253,7 @@
                         </div>
                     </div>
                   </div>
-
+                  <hr>
                   <div class="field grouped">
                     <div class="control">
                       <button type="submit" class="button green">
