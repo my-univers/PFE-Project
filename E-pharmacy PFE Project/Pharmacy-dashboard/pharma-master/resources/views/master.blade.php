@@ -77,13 +77,15 @@
         </div>
       </div>
       <div class="navbar-item dropdown has-divider has-user-avatar">
+        @auth('admin')
         <a class="navbar-link">
-          <div class="user-avatar">
-            <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe" class="rounded-full">
-          </div>
-          <div class="is-user-name"><span>John Doe</span></div>
-          <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
+            <div class="user-avatar">
+                <img src="{{ asset(auth('admin')->user()->photo) }}" alt="{{ ucwords(auth('admin')->user()->username) }}" class="rounded-full">
+            </div>
+            <div class="is-user-name"><span>{{ ucwords(auth('admin')->user()->username) }}</span></div>
+            <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
         </a>
+        @endauth
         <div class="navbar-dropdown">
           <a href="/profil" class="navbar-item">
             <span class="icon"><i class="mdi mdi-account"></i></span>
