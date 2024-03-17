@@ -20,7 +20,7 @@ class CreatePremiersSecoursTable extends Migration
             $table->string('marque')->nullable(false);
             $table->decimal('prix', 8, 2)->nullable(false);
             $table->integer('qte_en_stock')->nullable(false);
-            $table->string('image_path');
+            $table->string('image_path', 2500);
             $table->timestamps();
         });
     }

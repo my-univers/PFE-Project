@@ -85,7 +85,7 @@
           <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
         </a>
         <div class="navbar-dropdown">
-          <a href="profile.html" class="navbar-item">
+          <a href="/profil" class="navbar-item">
             <span class="icon"><i class="mdi mdi-account"></i></span>
             <span>Mon Profile</span>
           </a>
