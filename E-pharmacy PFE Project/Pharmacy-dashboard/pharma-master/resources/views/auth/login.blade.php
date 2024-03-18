@@ -54,12 +54,6 @@
           Connexion
         </p>
       </header>
-      <br>
-      <center>
-        @error('success')
-        <p class="help" style="color: green">{{ $message }}</p>
-        @enderror
-      </center>
       <div class="card-content">
         <form method="post" action="/login">
             @csrf
@@ -87,7 +81,7 @@
 
             <div class="field grouped">
                 <div class="control">
-                    <a href="/verifyEmailForm" class="button">
+                    <a href="#" class="button">
                         Mot de Passe Oublié
                     </a>
                 </div>
