@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\Auth\RegisteredAdminController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedAdminController;
+use PharIo\Manifest\AuthorElement;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,14 @@ Route::get('/loginForm', [AuthenticatedAdminController::class, 'showLoginForm'])
 Route::post('/login', [AuthenticatedAdminController::class, 'login']);
 
 Route::get('/logout', [AuthenticatedAdminController::class, 'logout']);
+
+Route::get('/verifyEmailForm', [AuthenticatedAdminController::class, 'verifyEmailForm'])->name('verification.form');
+Route::post('/sendVerificationCode', [AuthenticatedAdminController::class, 'sendVerificationCode'])->name('send.verification.code');
+Route::get('/verifyCode', [AuthenticatedAdminController::class, 'showVerifyCodeForm'])->name('verify.code.form');
+Route::post('/verifyCode', [AuthenticatedAdminController::class, 'verifyCode'])->name('verify.code');
+Route::get('/resetPassword', [AuthenticatedAdminController::class, 'showResetPasswordForm'])->name('reset.password.form');
+Route::post('/resetPassword', [AuthenticatedAdminController::class, 'resetPassword'])->name('reset.password');
+Route::get('/verify', [AuthenticatedAdminController::class, 'showVerificationForm'])->name('verification.verify');
 
 
 /*********************Dashboard**********************/

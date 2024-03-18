@@ -2,25 +2,40 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Admin extends Model implements Authenticatable
+class Admin extends Authenticatable implements CanResetPassword
 {
-    use \Illuminate\Auth\Authenticatable, HasFactory;
+    use HasFactory, Notifiable;
 
+/**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'username',
         'email',
         'mot_de_passe',
-        'photo'
+        'photo',
+        'verification_code',
     ];
 
-    protected $table = 'admins';
-
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
     protected $hidden = [
         'mot_de_passe',
     ];
+
+    public function markEmailAsVerified()
+    {
+        return true;
+    }
 
 }

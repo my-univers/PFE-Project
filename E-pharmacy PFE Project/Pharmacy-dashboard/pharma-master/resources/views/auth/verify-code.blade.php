@@ -51,49 +51,21 @@
         <header class="card-header">
             <p class="card-header-title">
               <span class="icon"><i class="mdi mdi-lock"></i></span>
-              Mot de Passe Oublié
+              Code de Confirmation
             </p>
         </header>
-        <center>
-            @error('success')
-            <p class="help" style="color: green">{{ $message }}</p>
-            @enderror
-        </center>
-        <center>
-            @error('error')
-            <p class="help" style="color: green">{{ $message }}</p>
-            @enderror
-        </center>
         <br>
-        <center>
-            <p class="help" >
-                Entrez votre adresse mail et vous receverez un code de confirmation.
-            </p>
-            @error('error')
-            <p class="help" style="color: red">{{ $message }}</p>
-            @enderror
-        </center>
       <div class="card-content">
-        <form method="post" action="{{ route('send.verification.code') }}">
+        <form method="post" action="{{ route('verify.code') }}">
             @csrf
+            <input type="hidden" name="email" value="{{ $email }}">
             <div class="field spaced">
-                <label class="label">Email</label>
+                <label class="label">Code de confirmation</label>
                 <div class="control icons-left">
-                    <input class="input" type="email" name="email" placeholder="user@example.com" autocomplete>
-                    <span class="icon is-small left"><i class="mdi mdi-mail"></i></span>
+                    <input class="input" type="text" name="verification_code" placeholder="------" autocomplete>
+                    <span class="icon is-small left"><i class="mdi mdi-ticket-confirmation"></i></span>
                 </div>
-                @error('email')
-                    <p class="help" style="color: red">{{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="field spaced">
-                <label class="label">Email Confirmation</label>
-                <div class="control icons-left">
-                    <input class="input" type="email" name="email_confirm" placeholder="user@example.com" >
-                    <span class="icon is-small left"><i class="mdi mdi-mail"></i></span>
-                </div>
-                @error('email_confirm')
+                @error('verification_code')
                     <p class="help" style="color: red">{{ $message }}</p>
                 @enderror
             </div>
@@ -101,7 +73,7 @@
             <div class="field grouped">
                 <div class="control">
                     <button type="submit" class="button green">
-                        Envoyer
+                        Valider
                     </button>
                 </div>
             </div>
