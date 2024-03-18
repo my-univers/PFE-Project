@@ -16,7 +16,7 @@ class PackPremierSecours extends Model
 
     public function premiersSecours()
     {
-        return $this->belongsTo(premiersSecours::class);
+        return $this->belongsTo(premiersSecours::class, 'premier_secours_id');
     }
 
 }

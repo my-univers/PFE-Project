@@ -13,7 +13,8 @@ class Admin extends Model implements Authenticatable
     protected $fillable = [
         'username',
         'email',
-        'mot_de_passe'
+        'mot_de_passe',
+        'photo'
     ];
 
     protected $table = 'admins';

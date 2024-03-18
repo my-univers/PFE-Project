@@ -17,6 +17,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('pack_id');
             $table->unsignedBigInteger('premier_secours_id');
+
+            $table->string('nom');
+            $table->text('description');
+            $table->float('prix', 8, 2);
+            $table->integer('qte_en_stock');
+
             $table->foreign('pack_id')->references('id')->on('packs')->onDelete('cascade');
             $table->foreign('premier_secours_id')->references('id')->on('premiers_secours')->onDelete('cascade');
             $table->timestamps();

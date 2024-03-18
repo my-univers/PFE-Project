@@ -211,12 +211,14 @@
                 <div class="card mb-6">
                     <header class="card-header">
                         <p class="card-header-title">
-                            <span class="icon"><i class="mdi mdi-ballot"></i></span>
+                            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
                             Ajouter Premiers Secours
                         </p>
                     </header>
                     <div class="card-content">
 
+                        <form method="post" action="/premiers_secours/add" enctype="multipart/form-data">
+                            @csrf
                         <form method="post" action="/premiers_secours/add" enctype="multipart/form-data">
                             @csrf
                             <div class="field">
@@ -244,7 +246,7 @@
                                         <div class="control icons-left">
                                             <input class="input" type="text" placeholder="Marque"
                                                 name="marque" autocomplete="off">
-                                            <span class="icon left"><i class="mdi mdi-account"></i></span>
+                                            <span class="icon left"><i class="mdi mdi-tag"></i></span>
                                         </div>
                                     </div>
                                 </div>
@@ -295,6 +297,8 @@
                                 </div>
                             </div> 
 
+                            <hr>
+
                             <div class="field grouped">
                                 <div class="control">
                                     <button type="submit" class="button green">
@@ -309,16 +313,6 @@
                                         function annuler() {
                                             window.location.href = '/premiers_secours';
                                         };
-
-                                        function displayImageName() {
-                                        var input = document.getElementById('image');
-                                        var fileName = input.files[0].name;
-                                        var preview = document.getElementById('preview');
-                                        var imageName = document.getElementById('image-name');
-                                        preview.src = URL.createObjectURL(input.files[0]);
-                                        preview.style.display = "block";
-                                        imageName.innerText = fileName;
-                                    }
 
                                         function displayImageName() {
                                             var input = document.getElementById('image');

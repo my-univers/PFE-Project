@@ -18,7 +18,7 @@ return new class extends Migration
             $table->float('prix', 10,2)->nullable(false);
             $table->integer('qte_en_stock')->nullable(false);
             $table->boolean('ordonnance');
-            $table->string('image_path', 1500);
+            $table->string('image_path', 2500);
             $table->timestamps();
         });
     }

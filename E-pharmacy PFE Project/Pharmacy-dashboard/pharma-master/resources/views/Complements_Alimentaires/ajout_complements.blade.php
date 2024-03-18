@@ -204,18 +204,15 @@
         </div>
     </section>
 
-
-    <div class="card-content">
-
-        <section class="section main-section">
-            <div class="card mb-6">
-                <header class="card-header">
-                    <p class="card-header-title">
-                        <span class="icon"><i class="mdi mdi-ballot"></i></span>
-                        Ajouter Complément
-                    </p>
-                </header>
-                <div class="card-content">
+    <section class="section main-section">
+      <div class="card mb-6">
+          <header class="card-header">
+              <p class="card-header-title">
+                  <span class="icon"><i class="mdi mdi-ballot"></i></span>
+                  Ajouter Complément Alimentaire 
+              </p>
+          </header>
+          <div class="card-content">
 
                     <form method="post" action="/complements/add" enctype="multipart/form-data">
                       @csrf

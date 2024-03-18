@@ -217,42 +217,71 @@
 
                         <form method="get" action="/packs_premiers_secours/add">
                         
-                            <div class="field">
-                              <div class="field-body">
-                                  <div class="field">
-                                      <div class="control icons-left">
-                                          <select class="input" name="id_pack" required>
-                                              @foreach($list_packs as $pack)
-                                              <option value="{{ $pack->id }}">{{ $pack->nom }}</option>
-                                              @endforeach
-                                          </select>
-                                          <span class="icon left"><span class="mdi mdi-package-variant"></span></span>
-                                      </div>
+                          <div class="field">
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control icons-left">
+                                        <input class="input" type="text" placeholder="Nom" name="nom" autocomplete="off">
+                                        <span class="icon left"><i class="mdi mdi-tag"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                          <div class="control">
+                              <textarea class="textarea" placeholder="Description" name="description"></textarea>
+                          </div>
+                        </div>
+                      
+
+                        <div class="field">
+                          <div class="field-body">
+                              <div class="field">
+                                  <div class="control icons-left">
+                                      <input class="input" type="number" placeholder="Prix"
+                                          name="prix" autocomplete="off">
+                                      <span class="icon left"><span class="mdi mdi-cash"></span></span>
                                   </div>
                               </div>
                           </div>
+                      </div>
 
-                          <div class="field-body">
+                      <div class="field">
+                        <div class="field-body">
                             <div class="field">
-                              <div class="field">
                                 <div class="control icons-left">
-                                    <select class="input" name="premiers_secours[]" multiple required>
-                                        @foreach($list_premiers as $premiersSecours)
-                                        <option value="{{ $premiersSecours->id }}">{{ $premiersSecours->nom }}</option>
-                                        @endforeach
-                                    </select>
-                                    <span class="icon left"><span class="mdi mdi-medical-bag"></span></span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                          <hr>
-                        
-                            <div class="field grouped">
-                                <div class="control">
-                                    <button type="submit" class="button green">Ajouter</button>
+                                    <input class="input" type="number" placeholder="Quantité en stock"
+                                        name="qte_en_stock" autocomplete="off">
+                                    <span class="icon left"><span class="mdi mdi-store"></span></span>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+
+                  <div class="field-body">
+                    <div class="field">
+                      <div class="field">
+                        <div class="control icons-left">
+                            <select class="input" name="premiers_secours[]" multiple required>
+                                @foreach($list_premiers as $premiersSecours)
+                                <option value="{{ $premiersSecours->id }}">{{ $premiersSecours->nom }}</option>
+                                @endforeach
+                            </select>
+                            <span class="icon left"><span class="mdi mdi-medical-bag"></span></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+                  <hr>
+
+                    <div class="field grouped">
+                        <div class="control">
+                            <button type="submit" class="button green">Ajouter</button>
+                        </div>
+                    </div>
+
                         </form>
                         
 

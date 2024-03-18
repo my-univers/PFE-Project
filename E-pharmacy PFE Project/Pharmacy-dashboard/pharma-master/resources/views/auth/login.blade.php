@@ -60,7 +60,7 @@
             <div class="field spaced">
                 <label class="label">Username</label>
                 <div class="control icons-left">
-                    <input class="input" type="text" name="username" placeholder="username" autocomplete="username">
+                    <input class="input" type="text" name="username" placeholder="username" >
                     <span class="icon is-small left"><i class="mdi mdi-account"></i></span>
                 </div>
                 @error('username')
@@ -71,7 +71,7 @@
             <div class="field spaced">
                 <label class="label">Mot de Passe</label>
                 <p class="control icons-left">
-                    <input class="input" type="password" name="mot_de_passe" placeholder="**********" autocomplete="current-password">
+                    <input class="input" type="password" name="mot_de_passe" placeholder="**********">
                     <span class="icon is-small left"><i class="mdi mdi-asterisk"></i></span>
                 </p>
                 @error('mot_de_passe')

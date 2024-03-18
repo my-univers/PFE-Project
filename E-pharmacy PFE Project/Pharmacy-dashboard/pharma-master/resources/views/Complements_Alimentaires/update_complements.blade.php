@@ -302,7 +302,7 @@
         </li>
         <li>
           <a class="dropdown">
-            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+            <span class="icon"><i class="mdi mdi-cart"></i></span>
             <span class="menu-item-label">Commandes</span>
             <span class="icon"><i class="mdi mdi-plus"></i></span>
           </a>
@@ -374,7 +374,7 @@
       <div class="card mb-6">
         <header class="card-header">
           <p class="card-header-title">
-            <span class="icon"><i class="mdi mdi-ballot"></i></span>
+            <span class="icon"><i class="mdi mdi-needle"></i></span>
             Modifier Complément
           </p>
         </header>
@@ -438,7 +438,7 @@
                         </div>
                     </div>
                   </div>
-
+                  <hr>
                   <div class="field grouped">
                     <div class="control">
                       <button type="submit" class="button green">
@@ -477,5 +477,25 @@
             </div>
     </section>
 </div>
+
+<!-- Scripts below are for demo only -->
+<script type="text/javascript" src="../../js/main.min.js?v=1628755089081"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script type="text/javascript" src="../../js/chart.sample.min.js"></script>
+
+
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '658339141622648');
+  fbq('track', 'PageView');
+</script>
 
 @endsection

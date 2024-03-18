@@ -1,5 +1,4 @@
 @extends('master')
-
 @section('aside')
 <aside class="aside is-placed-left is-expanded">
   <div class="aside-tools">
@@ -183,116 +182,85 @@
     </ul>
   </div>
 </aside>
-@endsection
+@endsection    
 
 @section('content')
-    <section class="is-title-bar">
-        <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-            <ul>
-                <li>Admin</li>
-                <li>Packs Premiers Secours</li>
-            </ul>
-        </div>
-    </section>
+        <section class="is-title-bar">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+                <ul>
+                    <li>Admin</li>
+                    <li>Packs Premiers Secours</li>
+                </ul>
+            </div>
+        </section>
 
-    <section class="is-hero-bar">
-        <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-            <h1 class="title">
-                Liste des Packs Premiers Secours
-            </h1>
-        </div>
-    </section>
-
-    <section class="section main-section">
-        <div class="card has-table">
-            <header class="card-header">
-                <p class="card-header-title">
-                    <span class="icon"><span class="mdi mdi-medication"></span></span>
+        <section class="is-hero-bar">
+            <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+                <h1 class="title">
                     Packs Premiers Secours
-                </p>
-                <a href="#" class="card-header-icon">
-                    <span class="icon"><i class="mdi mdi-reload"></i></span>
-                </a>
-            </header>
-            <div class="card-content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th scope="col">#</th>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Prix</th>
-                            <th scope="col">Quantité en stock</th>
-                            <th></th>
-                        </tr>
-                    </thead>
+                </h1>
+            </div>
+        </section>
 
-                    <tbody>
-                        @foreach ($list_packs as $p)
-                            <tr>
-                                <td></td>
-                                <td scope="row">{{ $p->id }}</td>
-                                <td>{{ $p->nom }}</td>                                
-                                <td>{{ $p->description }}</td>
-                                <td>{{ $p->prix }} DH</td>
-                                <td>{{ $p->qte_en_stock }}</td>
-                                <td class="actions-cell">
-                                    <div class="buttons right nowrap">
-                                        <a class="button small green --jb-modal"
-                                            href="/packs_premiers_secours/updateForm/{{ $p->id }}">
-                                            <span class="icon"><i class="mdi mdi-pencil"></i></span>
-                                        </a>
-                                        <button class="button small red --jb-modal" data-target="sample-modal"
-                                            type="button">
-                                            <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                                        </button>
-                                        <a class="button small blue "
-                                            href="/packs_premiers_secours/addToPackForm/{{ $p->id }}">
-                                            <span class="icon"><i class="mdi mdi-plus"></i></span>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
 
-                <div class="table-pagination">
-                    <div class="flex items-center justify-between">
-                        <div class="buttons">
-                            <button type="button" class="button active">1</button>
-                            <button type="button" class="button">2</button>
-                            <button type="button" class="button">3</button>
-                        </div>
-                        <small>Page 1 of 3</small>
+        <div class="card-content">
+
+            <section class="section main-section">
+                <div class="card mb-6">
+                    <header class="card-header">
+                        <p class="card-header-title">
+                            <span class="icon"><i class="mdi mdi-ballot"></i></span>
+                            Ajouter Au Pack:  {{  $pack->nom }} 
+                        </p>
+                    </header>
+                    <div class="card-content">
+                        <form method="get" action="/packs_premiers_secours/addToPack/{{ $pack->id }}">
+                            <input type="hidden" name="pack_id" value="{{ $pack->id }}">
+
+                            <div class="field-body">
+                              <div class="field">
+                                <div class="field">
+                                  <div class="control icons-left">
+                                    <select class="input" name="premiers_secours[]" multiple required>
+                                        @foreach($list_premiers as $premiersSecours)
+                                        <option value="{{ $premiersSecours->id }}">{{ $premiersSecours->nom }}</option>
+                                        @endforeach
+                                    </select>
+                                      <span class="icon left"><span class="mdi mdi-medical-bag"></span></span>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            
+                            
+                            <hr>
+                            <div class="field grouped">
+                                <div class="control">
+                                    <button type="submit" class="button green">Ajouter</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
-    </section>
-
-
+    
     <div id="sample-modal" class="modal">
         <div class="modal-background --jb-modal-close"></div>
         <div class="modal-card">
             <header class="modal-card-head">
-                <p class="modal-card-title">Confirmation de Suppression</p>
+                <p class="modal-card-title">Sample modal</p>
             </header>
             <section class="modal-card-body">
-                <p>Êtes-vous sûr de vouloir supprimer cet élément ?</p>
-                <p> Cette action est irréversible.</p>
+                <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
+                <p>This is sample modal</p>
             </section>
             <footer class="modal-card-foot">
-                <button class="button --jb-modal-close">Annuler</button>
-                <script>
-                    function annuler() {
-                        window.location.href = '/packs_premiers_secours/list';
-                    };
-                </script>
-                <a class="button red --jb-modal-close" href="/packs_premiers_secours/delete/{{ $p->id }}">Confirmer</a>
+                <button class="button --jb-modal-close">Cancel</button>
+                <button class="button red --jb-modal-close">Confirm</button>
             </footer>
         </div>
+    </div>
     </div>
 
 @endsection

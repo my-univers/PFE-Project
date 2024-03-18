@@ -55,7 +55,7 @@
         </p>
       </header>
       <div class="card-content">
-        <form method="POST" action="/register">
+        <form method="POST" action="/register" enctype="multipart/form-data">
             @csrf
             <div class="field spaced">
                 <label class="label">Username</label>
@@ -63,7 +63,7 @@
                     <input class="input" type="text" name="username" placeholder="username" autocomplete="username">
                     <span class="icon is-small left"><i class="mdi mdi-account"></i></span>
                 </div>
-                @error('username')
+                @error('email')
                     <p class="help" style="color: red">{{ $message }}</p>
                 @enderror
             </div>
@@ -82,7 +82,7 @@
             <div class="field spaced">
                 <label class="label">Mot de Passe</label>
                 <p class="control icons-left">
-                    <input class="input" type="password" name="mot_de_passe" placeholder="*********" autocomplete="current-password">
+                    <input class="input" type="password" name="mot_de_passe" placeholder="*********">
                     <span class="icon is-small left"><i class="mdi mdi-asterisk"></i></span>
                 </p>
                 @error('mot_de_passe')
@@ -90,16 +90,34 @@
                 @enderror
             </div>
 
-            <div class="field spaced">
-                <label class="label">Confirmez le Mot de Passe</label>
-                <p class="control icons-left">
-                    <input class="input" type="password" name="mot_de_passe_confirmation" placeholder="*********" autocomplete="current-password">
-                    <span class="icon is-small left"><i class="mdi mdi-asterisk"></i></span>
-                </p>
-                @error('mot_de_passe_confirmation')
-                    <p class="help is-danger">{{ $message }}</p>
-                @enderror
-            </div>
+            <div class="field">
+                <label class="label">Photo (Facultatif)</label>
+                <div class="field-body">
+                  <div class="field file">
+                    <label class="upload control">
+                      <a class="button blue">
+                        Télécharger
+                      </a>
+                      <input type="file" id="image" name="image" onchange="displayImageName()">
+                    </label>
+                  </div>
+                  <div id="image-preview" style="margin-top: 10px;">
+                    <img id="preview" src="" alt="Aperçu de l'image" style="max-width: 100px; max-height: 100px; display: none;">
+                    <span id="image-name"></span>
+                  </div>
+                </div>
+                <script>
+                    function displayImageName() {
+                        var input = document.getElementById('image');
+                        var fileName = input.files[0].name;
+                        var preview = document.getElementById('preview');
+                        var imageName = document.getElementById('image-name');
+                        preview.src = URL.createObjectURL(input.files[0]);
+                        preview.style.display = "block";
+                        imageName.innerText = fileName;
+                    }
+                </script>
+              </div>
 
             <hr>
 

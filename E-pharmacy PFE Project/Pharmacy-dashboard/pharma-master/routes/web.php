@@ -42,11 +42,17 @@ use App\Http\Controllers\Admin\Auth\AuthenticatedAdminController;
 // require __DIR__.'/auth.php';
 
 
+/**********************Login - Register*******************+*/
+
 Route::get('/registerForm', [RegisteredAdminController::class, 'showRegistrationForm']);
+
 Route::post('/register', [RegisteredAdminController::class, 'register']);
 
 Route::get('/loginForm', [AuthenticatedAdminController::class, 'showLoginForm']);
+
 Route::post('/login', [AuthenticatedAdminController::class, 'login']);
+
+Route::get('/logout', [AuthenticatedAdminController::class, 'logout']);
 
 
 /*********************Dashboard**********************/
@@ -114,6 +120,7 @@ Route::post('/complements/update/{id}', [ComplementAlimentaireController::class,
 
 Route::get('/complements/delete/{id}', [ComplementAlimentaireController::class, 'deleteComplement']);
 
+
 /***************Premiers Secours***************/
 
 Route::get('/premiers_secours', [PremierSecoursController::class, 'showList']);
@@ -121,12 +128,14 @@ Route::get('/premiers_secours', [PremierSecoursController::class, 'showList']);
 Route::get('/premiers_secours/form', [PremierSecoursController::class, 'showForm']);
 
 Route::post('/premiers_secours/add', [PremierSecoursController::class, 'addPremier']);
+Route::post('/premiers_secours/add', [PremierSecoursController::class, 'addPremier']);
 
 Route::get('/premiers_secours/updateForm/{id}', [PremierSecoursController::class, 'showUpdateForm']);
 
 Route::post('/premiers_secours/update/{id}', [PremierSecoursController::class, 'updatePremier']);
 
 Route::get('/premiers_secours/delete/{id}', [PremierSecoursController::class, 'deletePremier']);
+
 
 /*****************Packs******************/
 
@@ -151,8 +160,26 @@ Route::get('/packs_premiers_secours/form', [PackPremiersSecoursController::class
 
 Route::get('/packs_premiers_secours/add', [PackPremiersSecoursController::class, 'addPackPremierSecours']);
 
+Route::get('/packs_premiers_secours/addToPackForm/{id}', [PackPremiersSecoursController::class, 'showAddToPackForm']);
+
+Route::get('/packs_premiers_secours/addToPack/{id}', [PackPremiersSecoursController::class, 'AddToPack']);
+
+Route::get('/packs_premiers_secours/updateForm/{id}', [PackPremiersSecoursController::class, 'updateForm']);
+
+Route::post('/packs_premiers_secours/update/{id}', [PackPremiersSecoursController::class, 'updatePack']);
+
 Route::get('/packs_premiers_secours/delete/{id}', [PackPremiersSecoursController::class, 'deletePack']);
 
 /***************Commandes***************/
 
+
+
+
+/****************Admin Profile****************/
+
+Route::get('/profil', [AuthenticatedAdminController::class, 'showProfile']);
+
+Route::post('/profil/edit', [AuthenticatedAdminController::class, 'updateProfile']);
+
+Route::post('/profil/editPassword', [AuthenticatedAdminController::class, 'updatePassword'])->name('profil.updatePassword');
 
