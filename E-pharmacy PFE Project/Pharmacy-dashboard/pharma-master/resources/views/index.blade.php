@@ -1,6 +1,6 @@
 @extends('master')
-@section('content')
 
+@section('aside')
 <aside class="aside is-placed-left is-expanded">
     <div class="aside-tools">
       <div>
@@ -135,7 +135,7 @@
         </li>
         <li>
           <a class="dropdown">
-            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+            <span class="icon"><i class="mdi mdi-package-variant"></i></span>
             <span class="menu-item-label">Packs</span>
             <span class="icon"><i class="mdi mdi-plus"></i></span>
           </a>
@@ -147,6 +147,25 @@
             </li>
             <li>
               <a href="/packs/form">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+            <span class="menu-item-label">Packs Premiers Secours</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/packs_premiers_secours">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/packs_premiers_secours/form">
                 <span>Ajout</span>
               </a>
             </li>
@@ -165,6 +184,7 @@
     </div>
   </aside>
 
+@section('content')
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
@@ -322,7 +342,7 @@
   </div>
 </div> --}}
 
-{{--
+{{-- 
 <div id="sample-modal-2" class="modal">
   <div class="modal-background --jb-modal-close"></div>
   <div class="modal-card">

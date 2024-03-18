@@ -15,5 +15,10 @@ class PremiersSecours extends Model
     {
         return $this->hasMany(premierSecoursCommande::class);
     }
+
+    public function pack()
+    {
+        return $this->belongsToMany(Pack::class, 'packs_premiers_secours');
+    }
 }
 

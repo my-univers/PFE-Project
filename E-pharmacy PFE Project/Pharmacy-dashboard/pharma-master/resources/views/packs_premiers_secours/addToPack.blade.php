@@ -1,5 +1,4 @@
 @extends('master')
- 
 @section('aside')
 <aside class="aside is-placed-left is-expanded">
   <div class="aside-tools">
@@ -95,7 +94,7 @@
           </li>
         </ul>
       </li>
-      <li class="active">
+      <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Premiers Secours</span>
@@ -152,7 +151,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li class="active">
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Packs Premiers Secours</span>
@@ -183,15 +182,14 @@
     </ul>
   </div>
 </aside>
-@endsection
+@endsection    
 
 @section('content')
-
         <section class="is-title-bar">
             <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
                 <ul>
                     <li>Admin</li>
-                    <li>Premiers Secours</li>
+                    <li>Packs Premiers Secours</li>
                 </ul>
             </div>
         </section>
@@ -199,7 +197,7 @@
         <section class="is-hero-bar">
             <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
                 <h1 class="title">
-                    Premiers Secours
+                    Packs Premiers Secours
                 </h1>
             </div>
         </section>
@@ -211,127 +209,43 @@
                 <div class="card mb-6">
                     <header class="card-header">
                         <p class="card-header-title">
-                            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
-                            Ajouter Premiers Secours
+                            <span class="icon"><i class="mdi mdi-ballot"></i></span>
+                            Ajouter Au Pack:  {{  $pack->nom }} 
                         </p>
                     </header>
                     <div class="card-content">
+                        <form method="post" action="/packs_premiers_secours/addToPack/{{ $pack->id }}">
+                          @csrf
 
-                        <form method="post" action="/premiers_secours/add" enctype="multipart/form-data">
-                            @csrf
-                        <form method="post" action="/premiers_secours/add" enctype="multipart/form-data">
-                            @csrf
-                            <div class="field">
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control icons-left">
-                                            <input class="input" type="text" placeholder="Nom" name="nom" autocomplete="off">
-                                            <span class="icon left"><i class="mdi mdi-tag"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <input type="hidden" name="pack_id" value="{{ $pack->id }}">
 
-
-                            <div class="field">
-                                <div class="control">
-                                    <textarea class="textarea" placeholder="Description" name="description"></textarea>
-                                </div>
-                            </div>
-
-
-                            <div class="field">
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control icons-left">
-                                            <input class="input" type="text" placeholder="Marque"
-                                                name="marque" autocomplete="off">
-                                            <span class="icon left"><i class="mdi mdi-tag"></i></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="field">
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control icons-left">
-                                            <input class="input" type="number" placeholder="Prix"
-                                                name="prix" autocomplete="off">
-                                            <span class="icon left"><span class="mdi mdi-cash"></span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="field">
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control icons-left">
-                                            <input class="input" type="number" placeholder="Quantité en stock"
-                                                name="qte_en_stock" autocomplete="off">
-                                            <span class="icon left"><span class="mdi mdi-store"></span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="field">
-                                <label class="label">Image</label>
-                                <div class="field-body">
-                                  <div class="field file">
-                                    <label class="upload control">
-                                      <a class="button blue">
-                                        Télécharger
-                                      </a>
-                                      <input type="file" id="image" name="image" onchange="displayImageName()">
-                                    </label>
-                                  </div>
-                                  <div id="image-preview" style="margin-top: 10px;">
-                                    <img id="preview" src="" alt="Aperçu de l'image" style="max-width: 100px; max-height: 100px; display: none;">
-                                    <span id="image-name"></span>
+                            <div class="field-body">
+                              <div class="field">
+                                <div class="field">
+                                  <div class="control icons-left">
+                                    <select class="input" name="premiers_secours[]" multiple required>
+                                        @foreach($list_premiers as $premiersSecours)
+                                        <option value="{{ $premiersSecours->id }}">{{ $premiersSecours->nom }}</option>
+                                        @endforeach
+                                    </select>
+                                      <span class="icon left"><span class="mdi mdi-medical-bag"></span></span>
                                   </div>
                                 </div>
-                            </div> 
-
+                              </div>
+                            </div>
+                            
+                            
                             <hr>
-
                             <div class="field grouped">
                                 <div class="control">
-                                    <button type="submit" class="button green">
-                                        Ajouter
-                                    </button>
-                                </div>
-                                <div class="control">
-                                    <button type="reset" class="button red" onclick="annuler()">
-                                        Annuler
-                                    </button>
-                                    <script>
-                                        function annuler() {
-                                            window.location.href = '/premiers_secours';
-                                        };
-
-                                        function displayImageName() {
-                                            var input = document.getElementById('image');
-                                            var fileName = input.files[0].name;
-                                            var preview = document.getElementById('preview');
-                                            var imageName = document.getElementById('image-name');
-                                            preview.src = URL.createObjectURL(input.files[0]);
-                                            preview.style.display = "block";
-                                            imageName.innerText = fileName;
-                                        }
-                                    </script>
+                                    <button type="submit" class="button green">Ajouter</button>
                                 </div>
                             </div>
-
                         </form>
                     </div>
                 </div>
+            </section>
         </div>
-    </div>
     
     <div id="sample-modal" class="modal">
         <div class="modal-background --jb-modal-close"></div>

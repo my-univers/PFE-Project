@@ -84,10 +84,26 @@
               <span>Déconnexion</span>
             </a>
         </div>
+            <a href="/profil" class="navbar-item">
+              <span class="icon"><i class="mdi mdi-account"></i></span>
+              <span>Mon Profile</span>
+            </a>
+            <a class="navbar-item">
+              <span class="icon"><i class="mdi mdi-settings"></i></span>
+              <span>Paramètres</span>
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="/logout">
+              <span class="icon"><i class="mdi mdi-logout"></i></span>
+              <span>Déconnexion</span>
+            </a>
+          </div>
       </div>
     </div>
   </div>
 </nav>
+
+@yield('aside')
 
 
 @yield('content')

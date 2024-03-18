@@ -1,4 +1,5 @@
 @extends('master')
+
 @section('aside')
 <aside class="aside is-placed-left is-expanded">
   <div class="aside-tools">
@@ -94,7 +95,7 @@
           </li>
         </ul>
       </li>
-      <li class="active">
+      <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Premiers Secours</span>
@@ -132,7 +133,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li class="active">
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-package-variant"></i></span>
           <span class="menu-item-label">Packs</span>
@@ -184,12 +185,12 @@
 </aside>
 @endsection
 
-@section('content')
+@section('content')    
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Premiers Secours</li>
+      <li>Packs</li>
     </ul>
   </div>
 </section>
@@ -197,17 +198,20 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-      Liste des Premiers Secours
+      Liste des Packs
     </h1>
-  </div>
+    {{-- <a class="button blue" href="packs/form">
+      Ajouter
+  </a>  --}}
+</div>
 </section>
 
   <section class="section main-section">
     <div class="card has-table">
       <header class="card-header">
         <p class="card-header-title">
-            <span class="icon"><span class="mdi mdi-medical-bag"></span></span>
-            Premiers Secours
+            <span class="icon"><span class="mdi mdi-medication"></span></span>
+            Packs
         </p>
         <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -221,26 +225,27 @@
                   <th scope="col">#</th>
                   <th scope="col">Nom</th>
                   <th scope="col" style="width: 450px">Description</th>
-                  <th scope="col">Marque</th>
                   <th scope="col">Prix</th>
                   <th scope="col">Quantité en stock</th>
+                  <th scope="col">Image</th>
                   <th></th>
                 </tr>
               </thead>
 
               <tbody>
-                @foreach($list as $premier)
+                @foreach($list as $pack)
                 <tr>
                     <td></td>
-                    <td scope="row">{{ $premier->id }}</td>
-                    <td>{{ $premier->nom }}</td>
-                    <td>{{ $premier->description }}</td>
-                    <td>{{ $premier->marque }}</td>
-                    <td>{{ $premier->prix }} DH</td>
-                    <td>{{ $premier->qte_en_stock }}</td>
+                    <td scope="row">{{ $pack->id }}</td>
+                    <td>{{ $pack->nom }}</td>
+                    <td>{{ $pack->description }}</td>
+                    <td>{{ $pack->prix }} DH</td>
+                    <td>{{ $pack->qte_en_stock }}</td>
+                    <td>{{ $pack->image_path }}</td>
+
                     <td class="actions-cell">
                       <div class="buttons right nowrap">
-                          <a class="button small green --jb-modal" href="/premiers_secours/updateForm/{{$premier->id}}">
+                          <a class="button small green --jb-modal" href="/packs/updateForm/{{$pack->id}}">
                           <span class="icon"><i class="mdi mdi-pencil"></i></span>
                           </a>
                           <button class="button small red --jb-modal" data-target="sample-modal" type="button">
@@ -283,10 +288,12 @@
       <button class="button --jb-modal-close">Annuler</button>
       <script>
         function annuler() {
-            window.location.href = '/premiers_secours/list';
+            window.location.href = '/packs';
         };
     </script>
-      <a class="button red --jb-modal-close" href="/premiers_secours/delete/{{$premier->id}}">Confirmer</a>
+    @foreach($list as $pack)
+      <a class="button red --jb-modal-close" href="/packs/delete/{{$pack->id}}">Confirmer</a>
+    @endforeach
     </footer>
   </div>
 </div>
