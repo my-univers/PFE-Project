@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" class="">
+<html lang="en" class="form-screen">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin - Pharma One</title>
+  <title>Mot de passe oublié - Pharma One </title>
 
   <!-- Tailwind is included -->
-  <link rel="stylesheet" href="../../css/main.css?v=1628755089081">
+  <link rel="stylesheet" href="../css/main.css?v=1628755089081">
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
@@ -46,91 +46,47 @@
 
 <div id="app">
 
-<nav id="navbar-main" class="navbar is-fixed-top">
-  <div class="navbar-brand">
-    <a class="navbar-item mobile-aside-button">
-      <span class="icon"><i class="mdi mdi-forwardburger mdi-24px"></i></span>
-    </a>
-  </div>
-  <div class="navbar-brand is-right">
-    <a class="navbar-item --jb-navbar-menu-toggle" data-target="navbar-menu">
-      <span class="icon"><i class="mdi mdi-dots-vertical mdi-24px"></i></span>
-    </a>
-  </div>
-  <div class="navbar-menu" id="navbar-menu">
-    <div class="navbar-end">
-      <div class="navbar-item dropdown has-divider has-user-avatar">
-        @auth('admin')
-        <a class="navbar-link">
-            <div class="user-avatar">
-                <img src="{{ asset(auth('admin')->user()->photo) }}" alt="{{ ucwords(auth('admin')->user()->username) }}" class="rounded-full">
+  <section class="section main-section">
+    <div class="card">
+        <header class="card-header">
+            <p class="card-header-title">
+              <span class="icon"><i class="mdi mdi-lock"></i></span>
+              Code de Confirmation
+            </p>
+        </header>
+        <br>
+      <div class="card-content">
+        <form method="post" action="{{ route('verify.code') }}">
+            @csrf
+            <input type="hidden" name="email" value="{{ $email }}">
+            <div class="field spaced">
+                <label class="label">Code de confirmation</label>
+                <div class="control icons-left">
+                    <input class="input" type="text" name="verification_code" placeholder="------" autocomplete>
+                    <span class="icon is-small left"><i class="mdi mdi-ticket-confirmation"></i></span>
+                </div>
+                @error('verification_code')
+                    <p class="help" style="color: red">{{ $message }}</p>
+                @enderror
             </div>
-            <div class="is-user-name"><span>{{ ucwords(auth('admin')->user()->username) }}</span></div>
-            <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
-        </a>
-        @endauth
-        <div class="navbar-dropdown">
-            <a href="/profil" class="navbar-item">
-              <span class="icon"><i class="mdi mdi-account"></i></span>
-              <span>Mon Profile</span>
-            </a>
-            <a class="navbar-item">
-              <span class="icon"><i class="mdi mdi-settings"></i></span>
-              <span>Paramètres</span>
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item" href="/logout">
-              <span class="icon"><i class="mdi mdi-logout"></i></span>
-              <span>Déconnexion</span>
-            </a>
-          </div>
+            <hr>
+            <div class="field grouped">
+                <div class="control">
+                    <button type="submit" class="button green">
+                        Valider
+                    </button>
+                </div>
+            </div>
+        </form>
       </div>
     </div>
-  </div>
-</nav>
-
-@yield('aside')
-
-
-@yield('content')
-
-
-<footer class="footer">
-  <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0">
-    <div class="flex items-center justify-start space-x-3">
-      <div>
-        © 2024, Pharma One
-      </div>
-    </div>
-  </div>
-</footer>
-
-<div id="sample-modal" class="modal">
-  <div class="modal-background --jb-modal-close"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Sample modal</p>
-    </header>
-    <section class="modal-card-body">
-      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-      <p>This is sample modal</p>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button --jb-modal-close">Cancel</button>
-      <button class="button red --jb-modal-close">Confirm</button>
-    </footer>
-  </div>
-</div>
-
+  </section>
 
 
 </div>
 
 <!-- Scripts below are for demo only -->
 <script type="text/javascript" src="../js/main.min.js?v=1628755089081"></script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-<script type="text/javascript" src="../js/chart.sample.min.js"></script>
 
 
 <script>
