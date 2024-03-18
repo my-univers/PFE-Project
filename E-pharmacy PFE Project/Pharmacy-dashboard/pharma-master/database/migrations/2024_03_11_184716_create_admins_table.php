@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email', 150)->nullable(false);
             $table->string('mot_de_passe', 100)->nullable(false);
             $table->string('photo', 2500)->nullable(false);
+            $table->integer('verification_code');
             $table->timestamps();
         });
     }

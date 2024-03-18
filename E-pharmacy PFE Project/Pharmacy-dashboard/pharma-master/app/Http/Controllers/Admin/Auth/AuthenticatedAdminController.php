@@ -7,10 +7,16 @@ use App\Models\Admin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Password;
+use App\Notifications\SendVerificationCodeNotification;
+use Illuminate\Notifications\Notification;
+
+use function Ramsey\Uuid\v1;
 
 class AuthenticatedAdminController extends Controller
 {
+    /*************Login************/
+
     public function showLoginForm()
     {
         return view('auth.login');
@@ -59,6 +65,9 @@ class AuthenticatedAdminController extends Controller
         return redirect('/loginForm');
     }
 
+
+    /***********Profile*********/
+
     public function showProfile()
     {
         // Sélectionnez les informations de l'admin depuis la table admins
@@ -95,7 +104,7 @@ class AuthenticatedAdminController extends Controller
             $image->move(public_path('img'), $imageName);
 
             // Suppression de l'ancienne image si elle existe
-            if ($admin->photo) {
+            if ($admin->photo !== 'img/default-avatar.png') {
                 unlink(public_path($admin->photo));
             }
 
@@ -140,6 +149,109 @@ class AuthenticatedAdminController extends Controller
         $admin->save();
 
         return redirect()->back()->with('success', 'Mot de passe mis à jour avec succès.');
+    }
+
+    /***********Forgot password***********/
+
+    public function verifyEmailForm() {
+        return view('auth.verify-email');
+    }
+
+    public function sendVerificationCode(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'email_confirm' => 'required|email|same:email',
+        ]);
+
+        $admin = Admin::where('email', $request->email)->first();
+
+        if (!$admin) {
+            return back()->withErrors(['email' => 'Adresse e-mail non trouvée.']);
+        }
+
+        // Générer et envoyer le code de vérification
+        $verificationCode = mt_rand(100000, 999999); // Génère un code aléatoire
+        $admin->notify(new SendVerificationCodeNotification($verificationCode));
+
+        // Stockez le code de vérification dans la base de données
+        $admin->verification_code = $verificationCode;
+        $admin->save();
+
+        // Rediriger vers le formulaire de vérification du code avec l'e-mail en tant que paramètre de requête
+        return redirect()->route('verify.code.form', ['email' => $request->email]);
+    }
+
+    public function showVerifyCodeForm(Request $request)
+    {
+        $email = $request->query('email');
+
+        return view('auth.verify-code', compact('email'));
+    }
+
+    public function verifyCode(Request $request)
+    {
+        $request->validate([
+            'verification_code' => 'required|string',
+            'email' => 'required|email',
+        ]);
+
+        $email = $request->input('email');
+        $admin = Admin::where('email', $email)->first();
+
+        if (!$admin) {
+            return back()->withErrors(['email' => 'Adresse e-mail non trouvée.']);
+        }
+
+        // Récupérer le code de vérification de l'administrateur
+        $storedCode = $admin->verification_code;
+
+        // Vérifier si le code entré correspond au code stocké
+        if ($request->verification_code == $storedCode) {
+            // Marquer l'e-mail comme vérifié
+            $admin->markEmailAsVerified();
+            return redirect()->route('reset.password.form', ['email' => $email]);
+        } else {
+            return redirect()->back()->withErrors(['verification_code' => 'Le code de vérification est incorrect.']);
+        }
+    }
+
+    public function showResetPasswordForm(Request $request)
+    {
+        $email = $request->query('email');
+
+        if (!$email) {
+            // Gérer le cas où l'e-mail n'est pas disponible dans la requête
+            return redirect()->route('verification.form')->with('error', 'Veuillez vérifier votre e-mail d\'abord.');
+        }
+        return view('auth.reset-password', compact('email'));
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'mot_de_passe' => 'required|string|min:8|confirmed',
+            'mot_de_passe_confirmation' => 'required|string|min:8|same:mot_de_passe',
+        ]);
+
+        $email = $request->input('email');
+
+        $admin = Admin::where('email', $email)->first();
+
+        if (!$admin) {
+            return back()->withErrors(['email' => 'Adresse e-mail non trouvée.']);
+        }
+
+        if ($request->mot_de_passe !== $request->mot_de_passe_confirmation) {
+            return back()->withErrors(['mot_de_passe_confirmation' => 'Le nouveau mot de passe et sa confirmation ne correspondent pas.']);
+        }
+
+        // Mettre à jour le mot de passe si la validation réussit
+        $admin->mot_de_passe = bcrypt($request->mot_de_passe);
+        $admin->save();
+
+        return redirect('/loginForm')->with('success', 'Mot de passe réinitialisé avec succès. Veuillez vous connecter.');
     }
 
 }
