@@ -214,7 +214,9 @@
                         </p>
                     </header>
                     <div class="card-content">
-                        <form method="get" action="/packs_premiers_secours/addToPack/{{ $pack->id }}">
+                        <form method="post" action="/packs_premiers_secours/addToPack/{{ $pack->id }}">
+                          @csrf
+
                             <input type="hidden" name="pack_id" value="{{ $pack->id }}">
 
                             <div class="field-body">

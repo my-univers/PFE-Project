@@ -7,7 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class PackPremierSecours extends Model
 {
-    protected $table = 'packs_premiers_secours';
+
+    protected $fillable = ['pack_id', 'premiers_secours_id'];
 
     public function pack()
     {
@@ -16,7 +17,7 @@ class PackPremierSecours extends Model
 
     public function premiersSecours()
     {
-        return $this->belongsTo(premiersSecours::class, 'premier_secours_id');
+        return $this->belongsTo(PremiersSecours::class);
     }
-
+    
 }

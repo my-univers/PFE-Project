@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('complements_alimentaires_commandes', function (Blueprint $table) {
             $table->id();
             $table->foreignId('commande_id')->constrained('commandes');
-            $table->foreignId('complement_alimentaire_id')->constrained('complements_alimentaires');
+            $table->foreignId('complement_id')->constrained('complements_alimentaires');
             $table->integer('quantite');
             $table->timestamps();
         });

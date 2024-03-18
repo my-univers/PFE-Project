@@ -330,11 +330,8 @@
                         </form>
                     </div>
                 </div>
-
-
         </div>
     </div>
-
     
     <div id="sample-modal" class="modal">
         <div class="modal-background --jb-modal-close"></div>
