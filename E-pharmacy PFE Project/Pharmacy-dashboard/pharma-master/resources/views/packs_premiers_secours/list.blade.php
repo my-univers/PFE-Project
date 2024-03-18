@@ -223,7 +223,6 @@
                             <th scope="col">Nom</th>
                             <th scope="col">Description</th>
                             <th scope="col">Prix</th>
-                            <th scope="col">Quantité en stock</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -233,10 +232,9 @@
                             <tr>
                                 <td></td>
                                 <td scope="row">{{ $p->id }}</td>
-                                <td>{{ $p->nom }}</td>                                
+                                <td>{{ $p->pack->nom }}</td>                                
                                 <td>{{ $p->description }}</td>
                                 <td>{{ $p->prix }} DH</td>
-                                <td>{{ $p->qte_en_stock }}</td>
                                 <td class="actions-cell">
                                     <div class="buttons right nowrap">
                                         <a class="button small green --jb-modal"
@@ -290,8 +288,10 @@
                         window.location.href = '/packs_premiers_secours/list';
                     };
                 </script>
+                @foreach ($list_packs as $p)
                 <a class="button red --jb-modal-close" href="/packs_premiers_secours/delete/{{ $p->id }}">Confirmer</a>
-            </footer>
+                @endforeach
+              </footer>
         </div>
     </div>
 

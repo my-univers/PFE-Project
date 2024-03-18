@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Pack;
 use App\Models\PackPremierSecours;
 use App\Models\PremiersSecours;
@@ -12,9 +11,15 @@ class PackPremiersSecoursController extends Controller
 
     public function showList()
     {
-        $packsPremiersSecours = PackPremierSecours::all();
-        return view('packs_premiers_secours.list', ['list_packs' => $packsPremiersSecours]);
+        $packsPremiersSecours = PackPremierSecours::with(['pack', 'premiersSecours'])->get();
+        return view('/packs_premiers_secours.list', ['list_packs' => $packsPremiersSecours]);
     }
+
+    // public function showList()
+    // {
+    //     $packsPremiersSecours = PackPremierSecours::all();
+    //     return view('packs_premiers_secours.list', ['list_packs' => $packsPremiersSecours]);
+    // }
 
     public function updateForm()
     {

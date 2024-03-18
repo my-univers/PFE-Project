@@ -10,6 +10,8 @@ class PackPremierSecours extends Model
 
     protected $fillable = ['pack_id', 'premiers_secours_id'];
 
+    protected $table = 'packs_premiers_secours';
+
     public function pack()
     {
         return $this->belongsTo(Pack::class, 'pack_id');
