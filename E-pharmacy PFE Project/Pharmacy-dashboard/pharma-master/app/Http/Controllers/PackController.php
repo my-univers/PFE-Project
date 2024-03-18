@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Pack;
+use App\Models\PackPremierSecours;
 use App\Models\PremiersSecours;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -23,12 +24,10 @@ class PackController extends Controller
 
     public function addPack(Request $req){
         $pack = new Pack();
-        
         $pack->nom = $req->nom;
         $pack->qte_en_stock = $req->qte_en_stock;
         $pack->prix = $req->prix;
         $pack->description = $req->description;
-    
         if ($req->hasFile('image')) {
             $image = $req->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
@@ -36,23 +35,15 @@ class PackController extends Controller
             $pack->image_path = 'img/' . $imageName;
         }
         $pack->save(); 
-    
-        // 2. Récupérer l'ID du pack nouvellement inséré
-        $packId = $pack->id;
-    
-        // Récupérer les IDs des produits premiers secours sélectionnés
         $premiersSecoursIds = $req->input('premiers_secours');
-    
-        // 3. Insérer les liens entre le pack et les produits premiers secours dans la table "premiers_secours_packs"
         foreach ($premiersSecoursIds as $premiersSecoursId) {
-            $premiersSecoursPack = new PacksPremiersSecours();
+            $premiersSecoursPack = new PackPremierSecours();
             $premiersSecoursPack->pack_id = $pack->id;
             $premiersSecoursPack->premiers_secours_id = $premiersSecoursId;
             $premiersSecoursPack->save();
         }
     }
     
-
     public function showUpdateForm($id){
         $p = Pack::find($id);
         return view("packs.update", ['pack' => $p]);
@@ -71,8 +62,6 @@ class PackController extends Controller
 
         return redirect('/packs');
     }
-
-    
 
     public function deletePack($id) {
         $c = Pack::find($id);
