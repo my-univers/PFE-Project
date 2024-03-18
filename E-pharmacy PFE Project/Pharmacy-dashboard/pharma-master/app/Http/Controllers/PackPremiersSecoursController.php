@@ -11,7 +11,11 @@ class PackPremiersSecoursController extends Controller
 
     public function showList()
     {
-        $packsPremiersSecours = PackPremierSecours::with(['pack', 'premiersSecours'])->get();
+        $packsPremiersSecours = PackPremierSecours::with(['pack', 'premiersSecours'])
+        ->select('pack_id') 
+        ->groupBy('pack_id')
+        ->get();
+
         return view('/packs_premiers_secours.list', ['list_packs' => $packsPremiersSecours]);
     }
 
@@ -41,11 +45,11 @@ class PackPremiersSecoursController extends Controller
     $packPremiersSecours->nom = $req->nom;
     $packPremiersSecours->description = $req->description;
     $packPremiersSecours->prix = $req->prix;
-    $packPremiersSecours->qte_en_stock = $req->qte_en_stock;    
+    $packPremiersSecours->qte_en_stock = $req->qte_en_stock;
     $premiers_id = $req->input('premiers_secours');
-    
+
     $packPremiersSecours->save();
-    
+
     foreach ($premiers_id as $premiersSecoursId) {
         $packPremiersSecours->premiersSecours()->attach($premiersSecoursId);
     }

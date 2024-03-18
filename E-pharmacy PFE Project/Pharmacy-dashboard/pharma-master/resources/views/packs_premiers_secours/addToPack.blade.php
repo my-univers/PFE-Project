@@ -182,7 +182,7 @@
     </ul>
   </div>
 </aside>
-@endsection    
+@endsection
 
 @section('content')
         <section class="is-title-bar">
@@ -197,7 +197,7 @@
         <section class="is-hero-bar">
             <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
                 <h1 class="title">
-                    Packs Premiers Secours
+                    Ajouter au Packs Premiers Secours
                 </h1>
             </div>
         </section>
@@ -209,8 +209,8 @@
                 <div class="card mb-6">
                     <header class="card-header">
                         <p class="card-header-title">
-                            <span class="icon"><i class="mdi mdi-ballot"></i></span>
-                            Ajouter Au Pack:  {{  $pack->nom }} 
+                            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+                            Ajouter au Pack {{  $pack->nom }}
                         </p>
                     </header>
                     <div class="card-content">
@@ -233,8 +233,8 @@
                                 </div>
                               </div>
                             </div>
-                            
-                            
+
+
                             <hr>
                             <div class="field grouped">
                                 <div class="control">
@@ -246,7 +246,7 @@
                 </div>
             </section>
         </div>
-    
+
     <div id="sample-modal" class="modal">
         <div class="modal-background --jb-modal-close"></div>
         <div class="modal-card">

@@ -198,7 +198,7 @@
 <section class="is-hero-bar">
     <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
       <h1 class="title">
-        Packs
+        Modifier Pack
       </h1>
     </div>
 </section>
@@ -209,8 +209,8 @@
       <div class="card mb-6">
         <header class="card-header">
           <p class="card-header-title">
-            <span class="icon"><i class="mdi mdi-ballot"></i></span>
-            Modifier Pack 
+            <span class="icon"><i class="mdi mdi-package-variant"></i></span>
+            Pack
           </p>
         </header>
         <div class="card-content">
@@ -239,7 +239,7 @@
                   <div class="field-body">
                     <div class="field">
                       <div class="control icons-left">
-                        <input class="input" type="text" placeholder="Prix" name="prix" value="{{$pack->prix}}">
+                        <input class="input" type="number" placeholder="Prix" name="prix" value="{{$pack->prix}}">
                         <span class="icon left"><span class="mdi mdi-cash"></span></span>
                       </div>
                     </div>
@@ -256,25 +256,24 @@
                       </div>
                     </div>
                   </div>
-  
-                  <div class="field">
+
+                <div class="field">
                     <label class="label">Image</label>
                     <div class="field-body">
-                      <div class="field file">
-                        <label class="upload control">
-                          <a class="button blue">
-                            Télécharger
-                          </a>
-                          <input type="file" id="image" name="image" onchange="displayImageName()">
-                        </label>
-                      </div>
-                      <div id="image-preview" style="margin-top: 10px;">
-                        <img id="preview" src="" alt="Aperçu de l'image" style="max-width: 100px; max-height: 100px; display: none;">
-                        <span id="image-name"></span>
-                      </div>
+                        <div class="field file">
+                            <label class="upload control">
+                                <a class="button blue">
+                                    Télécharger
+                                </a>
+                                <input type="file" id="image" name="image" onchange="displayImagePreview()">
+                            </label>
+                        </div>
+                        <div id="image-preview" style="margin-top: 10px;">
+                            <img id="preview" src="{{ asset($pack->image_path) }}" alt="Aperçu de l'image" style="max-width: 100px; max-height: 100px; display: block;">
+                            <span id="image-name">{{ basename($pack->image_path) }}</span>
+                        </div>
                     </div>
-                </div> 
-
+                <hr>
                   <div class="field grouped">
                     <div class="control">
                       <button type="submit" class="button green">
@@ -286,27 +285,51 @@
                         Annuler
                       </button>
                       <script>
-                          function annuler() {
+                        function annuler() {
                               window.location.href = '/packs/list';
-                          };
+                        };
 
-                          function displayImageName() {
-                               var input = document.getElementById('image');
-                               var fileName = input.files[0].name;
-                               var preview = document.getElementById('preview');
-                               var imageName = document.getElementById('image-name');
-                               preview.src = URL.createObjectURL(input.files[0]);
-                               preview.style.display = "block";
-                               imageName.innerText = fileName;
-                               }
+                        function displayImagePreview() {
+                            var input = document.getElementById('image');
+                            var preview = document.getElementById('preview');
+                            var imageName = document.getElementById('image-name');
+                            if (input.files && input.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (e) {
+                                    preview.src = e.target.result;
+                                    preview.style.display = "block"; // Ajout de cette ligne pour afficher l'aperçu de l'image
+                                }
+                                reader.readAsDataURL(input.files[0]);
+                                imageName.innerText = input.files[0].name;
+                            }
+                        }
                       </script>
                     </div>
                   </div>
-  
+
                 </form>
               </div>
             </div>
     </section>
 </div>
+
+<script type="text/javascript" src="../../js/main.min.js?v=1628755089081"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script type="text/javascript" src="../../js/chart.sample.min.js"></script>
+
+
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '658339141622648');
+  fbq('track', 'PageView');
+</script>
 
 @endsection

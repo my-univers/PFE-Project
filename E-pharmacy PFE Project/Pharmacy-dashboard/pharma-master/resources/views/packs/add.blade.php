@@ -185,7 +185,7 @@
 @endsection
 
 @section('content')
-    
+
 <section class="is-title-bar">
     <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
         <ul>
@@ -198,7 +198,7 @@
 <section class="is-hero-bar">
     <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
         <h1 class="title">
-           Packs
+           Ajouter Packs
         </h1>
     </div>
 </section>
@@ -210,8 +210,8 @@
         <div class="card mb-6">
             <header class="card-header">
                 <p class="card-header-title">
-                    <span class="icon"><i class="mdi mdi-ballot"></i></span>
-                    Ajouter Pack
+                    <span class="icon"><i class="mdi mdi-package-variant"></i></span>
+                    Pack
                 </p>
             </header>
             <div class="card-content">
@@ -241,7 +241,7 @@
                         <div class="field-body">
                             <div class="field">
                                 <div class="control icons-left">
-                                    <input class="input" type="text" placeholder="Prix"
+                                    <input class="input" type="number" placeholder="Prix"
                                         name="prix" autocomplete="off">
                                     <span class="icon left"><span class="mdi mdi-cash"></span></span>
                                 </div>
@@ -299,7 +299,7 @@
                             </div>
                     </div>
 
-
+                    <hr>
                     <div class="field grouped">
                         <div class="control">
                             <button type="submit" class="button green">
@@ -328,7 +328,6 @@
                         </div>
                     </div>
 
-                    <hr>
                 </form>
             </div>
         </div>

@@ -182,7 +182,7 @@
     </ul>
   </div>
 </aside>
-@endsection    
+@endsection
 
 @section('content')
         <section class="is-title-bar">
@@ -197,7 +197,7 @@
         <section class="is-hero-bar">
             <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
                 <h1 class="title">
-                    Packs Premiers Secours
+                    Ajouter Packs Premiers Secours
                 </h1>
             </div>
         </section>
@@ -209,14 +209,14 @@
                 <div class="card mb-6">
                     <header class="card-header">
                         <p class="card-header-title">
-                            <span class="icon"><i class="mdi mdi-ballot"></i></span>
-                            Ajouter Pack Premiers Secours
+                            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+                            Pack Premiers Secours
                         </p>
                     </header>
                     <div class="card-content">
 
                         <form method="get" action="/packs_premiers_secours/add">
-                        
+
                           <div class="field">
                             <div class="field-body">
                                 <div class="field">
@@ -233,7 +233,7 @@
                               <textarea class="textarea" placeholder="Description" name="description"></textarea>
                           </div>
                         </div>
-                      
+
 
                         <div class="field">
                           <div class="field-body">
@@ -273,7 +273,7 @@
                       </div>
                     </div>
                   </div>
-                
+
                   <hr>
 
                     <div class="field grouped">
@@ -283,7 +283,7 @@
                     </div>
 
                         </form>
-                        
+
 
                     </div>
                 </div>
@@ -292,7 +292,7 @@
         </div>
     </div>
 
-    
+
     <div id="sample-modal" class="modal">
         <div class="modal-background --jb-modal-close"></div>
         <div class="modal-card">

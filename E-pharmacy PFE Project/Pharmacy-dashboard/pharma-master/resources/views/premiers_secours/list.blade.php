@@ -220,7 +220,7 @@
                     <th></th>
                   <th scope="col">#</th>
                   <th scope="col">Nom</th>
-                  <th scope="col" style="width: 450px">Description</th>
+                  <th scope="col" style="width: 400px">Description</th>
                   <th scope="col">Marque</th>
                   <th scope="col">Prix</th>
                   <th scope="col">Quantité en stock</th>

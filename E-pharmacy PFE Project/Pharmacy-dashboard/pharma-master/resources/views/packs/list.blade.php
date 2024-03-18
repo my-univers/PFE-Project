@@ -185,7 +185,7 @@
 </aside>
 @endsection
 
-@section('content')    
+@section('content')
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
@@ -210,7 +210,7 @@
     <div class="card has-table">
       <header class="card-header">
         <p class="card-header-title">
-            <span class="icon"><span class="mdi mdi-medication"></span></span>
+            <span class="icon"><span class="mdi mdi-package-variant"></span></span>
             Packs
         </p>
         <a href="#" class="card-header-icon">
@@ -224,10 +224,9 @@
                     <th></th>
                   <th scope="col">#</th>
                   <th scope="col">Nom</th>
-                  <th scope="col" style="width: 450px">Description</th>
+                  <th scope="col" style="width: 400px">Description</th>
                   <th scope="col">Prix</th>
                   <th scope="col">Quantité en stock</th>
-                  <th scope="col">Image</th>
                   <th></th>
                 </tr>
               </thead>
@@ -241,7 +240,6 @@
                     <td>{{ $pack->description }}</td>
                     <td>{{ $pack->prix }} DH</td>
                     <td>{{ $pack->qte_en_stock }}</td>
-                    <td>{{ $pack->image_path }}</td>
 
                     <td class="actions-cell">
                       <div class="buttons right nowrap">
@@ -291,9 +289,7 @@
             window.location.href = '/packs';
         };
     </script>
-    @foreach($list as $pack)
       <a class="button red --jb-modal-close" href="/packs/delete/{{$pack->id}}">Confirmer</a>
-    @endforeach
     </footer>
   </div>
 </div>

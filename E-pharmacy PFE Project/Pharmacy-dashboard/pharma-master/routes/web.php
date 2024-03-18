@@ -179,6 +179,7 @@ Route::post('/packs_premiers_secours/update/{id}', [PackPremiersSecoursControlle
 
 Route::get('/packs_premiers_secours/delete/{id}', [PackPremiersSecoursController::class, 'deletePack']);
 
+
 /***************Commandes***************/
 
 

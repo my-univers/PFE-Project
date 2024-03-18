@@ -207,7 +207,7 @@
         <div class="card has-table">
             <header class="card-header">
                 <p class="card-header-title">
-                    <span class="icon"><span class="mdi mdi-medication"></span></span>
+                    <span class="icon"><span class="mdi mdi-medical-bag"></span></span>
                     Packs Premiers Secours
                 </p>
                 <a href="#" class="card-header-icon">
@@ -219,7 +219,6 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th scope="col">#</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Description</th>
                             <th scope="col">Prix</th>
@@ -231,8 +230,7 @@
                         @foreach ($list_packs as $p)
                             <tr>
                                 <td></td>
-                                <td scope="row">{{ $p->id }}</td>
-                                <td>{{ $p->pack->nom }}</td>                                
+                                <td>{{ $p->pack->nom }}</td>
                                 <td>{{ $p->description }}</td>
                                 <td>{{ $p->prix }} DH</td>
                                 <td class="actions-cell">
@@ -288,9 +286,7 @@
                         window.location.href = '/packs_premiers_secours/list';
                     };
                 </script>
-                @foreach ($list_packs as $p)
                 <a class="button red --jb-modal-close" href="/packs_premiers_secours/delete/{{ $p->id }}">Confirmer</a>
-                @endforeach
               </footer>
         </div>
     </div>

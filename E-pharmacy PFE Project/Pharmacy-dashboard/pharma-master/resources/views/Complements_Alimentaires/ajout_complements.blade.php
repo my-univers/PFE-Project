@@ -1,7 +1,7 @@
 @extends('master')
 
 @section('aside')
-    
+
 <aside class="aside is-placed-left is-expanded">
     <div class="aside-tools">
       <div>
@@ -209,7 +209,7 @@
           <header class="card-header">
               <p class="card-header-title">
                   <span class="icon"><i class="mdi mdi-ballot"></i></span>
-                  Ajouter Complément Alimentaire 
+                  Ajouter Complément Alimentaire
               </p>
           </header>
           <div class="card-content">
@@ -278,9 +278,9 @@
                                     <span id="image-name"></span>
                                 </div>
                             </div>
-                            
-                        </div>
 
+                        </div>
+                        <hr>
                         <div class="field grouped">
                             <div class="control">
                                 <button type="submit" class="button green">
@@ -309,7 +309,6 @@
                             </div>
                         </div>
 
-                        <hr>
                     </form>
                 </div>
             </div>
