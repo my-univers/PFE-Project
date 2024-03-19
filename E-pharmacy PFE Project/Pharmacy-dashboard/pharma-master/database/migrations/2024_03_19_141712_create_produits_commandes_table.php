@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('produits_commandes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
             $table->foreignId('commande_id')->constrained('commandes')->onDelete('cascade');
-            $table->integer('qte_en_stock')->nullable(false);
-            $table->decimal('prix', 10, 2)->nullable(false);
+            $table->foreignId('produit_id')->constrained('produits')->onDelete('cascade');
+            $table->integer('quantite')->nullable(false);  // quantité du produit commandé
             $table->timestamps();
         });
     }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('commandes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('client_id')->constrained('clients');
+            $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
             $table->date('date_commande')->nullable(false);
             $table->decimal('total', 10, 2)->nullable(false);
             $table->string('statut')->nullable(false);
