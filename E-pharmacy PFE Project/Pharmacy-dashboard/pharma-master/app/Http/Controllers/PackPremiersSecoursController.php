@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Pack;
 use App\Models\PackPremierSecours;
 use App\Models\PremiersSecours;
+use Exception;
 use Illuminate\Http\Request;
 
 class PackPremiersSecoursController extends Controller
@@ -15,11 +16,13 @@ class PackPremiersSecoursController extends Controller
         return view('/packs_premiers_secours.list', ['list_packs' => $packsPremiersSecours]);
     }
 
-    // public function showList()
-    // {
-    //     $packsPremiersSecours = PackPremierSecours::all();
-    //     return view('packs_premiers_secours.list', ['list_packs' => $packsPremiersSecours]);
-    // }
+
+    public function showForm()
+    {
+        $packs = Pack::all();
+        $list_premiers = PremiersSecours::all();
+        return view("packs_premiers_secours.add", ['list_packs'=> $packs, 'list_premiers' => $list_premiers]);
+    }
 
     public function updateForm()
     {
@@ -28,11 +31,7 @@ class PackPremiersSecoursController extends Controller
     }
 
 
-    public function showForm()
-    {
-        $premiers_secours = PremiersSecours::all();
-        return view("packs_premiers_secours.add", ['list_premiers' => $premiers_secours]);
-    }
+    
 
     public function addPackPremierSecours(Request $req)
 {
@@ -62,23 +61,38 @@ class PackPremiersSecoursController extends Controller
         return view("packs_premiers_secours.addToPack", ['pack' => $pack, 'list_premiers' => $premiers_secours]);
     }
 
-    public function addToPack(Request $request, $id)
-    {
-        $packPremiersSecours = PackPremierSecours::findOrFail($id);
+   public function addToPack(Request $request, $id)
+{
+    $pack_id = $request->input('pack_id');
+    $premiersSecoursIds = $request->input('premiers_secours');
 
-        $premiersSecoursIds = $request->input('premiers_secours');
+    try {
+        $pack = Pack::findOrFail($pack_id);
 
-        if ($premiersSecoursIds) {
-            foreach ($premiersSecoursIds as $premiersSecoursId) {
-                $premiersSecours = PremiersSecours::findOrFail($premiersSecoursId);
-                $premiersSecours->pack_id = $packPremiersSecours->id;
-                $premiersSecours->save();
-            }
-            return redirect("/packs_premiers_secours");
-        } else {
-            return redirect()->back()->with('error', 'Aucun produit premier secours sélectionné.');
+        foreach ($premiersSecoursIds as $produitPremiersSecoursId) {
+            $premiersSecoursIds = PremiersSecours::findOrFail($produitPremiersSecoursId);
+            $pack->premiersSecours()->attach($produitPremiersSecoursId);
+            
         }
-    }
+        return redirect("packs_premiers_secours");
+    }catch(Exception $e){
+        return redirect("packs_premiers_secours");
+}
+
+
+
+    
+    // if ($premiersSecoursIds) {
+    //     foreach ($premiersSecoursIds as $premiersSecoursId) {
+    //         if (!$pack_id->premiersSecours()->where('id', $premiersSecoursId)->exists()) {
+    //             $pack_id->premiersSecours()->associate($premiersSecoursId);
+    //         }
+    //     }
+    //     return redirect("packs_premiers_secours");
+    // } else {
+    //     return redirect()->back()->with('error', 'Aucun produit premier secours sélectionné.');
+    // }
+}
 
 
     public function updatePack(Request $req, $id)
@@ -90,10 +104,24 @@ class PackPremiersSecoursController extends Controller
         $p->prix = $req->prix;
         $p->qte_en_stock = $req->qte_en_stock;
 
+        if ($req->hasFile('image')) {
+            $image = $req->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('img'), $imageName);
+
+            if ($p->image_path) {
+                unlink(public_path($p->image_path));
+            }
+
+            $p->image_path = 'img/' . $imageName;
+        }
+
+
         $p->save();
 
         return redirect('/packs_premiers_secours');
     }
+
 
     public function deletePack($id)
     {

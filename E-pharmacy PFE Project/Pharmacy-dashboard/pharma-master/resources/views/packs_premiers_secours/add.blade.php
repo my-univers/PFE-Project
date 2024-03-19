@@ -215,64 +215,53 @@
                     </header>
                     <div class="card-content">
 
-                        <form method="get" action="/packs_premiers_secours/add">
-                        
+                        <form method="post" action="/packs_premiers_secours/add">
+                        @csrf
+
+                    <div class="field">
+                      <div class="field-body">
                           <div class="field">
-                            <div class="field-body">
-                                <div class="field">
-                                    <div class="control icons-left">
-                                        <input class="input" type="text" placeholder="Nom" name="nom" autocomplete="off">
-                                        <span class="icon left"><i class="mdi mdi-tag"></i></span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="field">
-                          <div class="control">
-                              <textarea class="textarea" placeholder="Description" name="description"></textarea>
-                          </div>
-                        </div>
-                      
-
-                        <div class="field">
-                          <div class="field-body">
-                              <div class="field">
-                                  <div class="control icons-left">
-                                      <input class="input" type="number" placeholder="Prix"
-                                          name="prix" autocomplete="off">
-                                      <span class="icon left"><span class="mdi mdi-cash"></span></span>
-                                  </div>
+                              <div class="control icons-left">
+                                  <select class="form-control" id="pack_id" name="pack_id">
+                                    @foreach($list_packs as $pack)
+                                        <option value="{{ $pack->id }}">{{ $pack->nom }}</option>
+                                    @endforeach
+                                  </select>
+                                  <span class="icon left"><span class="mdi mdi-medical-bag"></span></span>
                               </div>
                           </div>
                       </div>
+                  </div>
 
-                      <div class="field">
-                        <div class="field-body">
-                            <div class="field">
-                                <div class="control icons-left">
-                                    <input class="input" type="number" placeholder="Quantité en stock"
-                                        name="qte_en_stock" autocomplete="off">
-                                    <span class="icon left"><span class="mdi mdi-store"></span></span>
-                                </div>
+                  <div class="field">
+                    <div class="field-body">
+                        <div class="field">
+                            <div class="control icons-left">
+                                <select class="form-control" id="pack_id" name="pack_id">
+                                  @foreach($list_premiers as $premiersSecours)
+                                  <option value="{{ $premiersSecours->id }}">{{ $premiersSecours->nom }}</option>
+                                  @endforeach
+                                </select>
+                                <span class="icon left"><span class="mdi mdi-medical-bag"></span></span>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                  <div class="field-body">
-                    <div class="field">
-                      <div class="field">
-                        <div class="control icons-left">
-                            <select class="input" name="premiers_secours[]" multiple required>
-                                @foreach($list_premiers as $premiersSecours)
-                                <option value="{{ $premiersSecours->id }}">{{ $premiersSecours->nom }}</option>
-                                @endforeach
-                            </select>
-                            <span class="icon left"><span class="mdi mdi-medical-bag"></span></span>
-                        </div>
+                      <div class="form-group">
+                          <label for="premiers_secours">Produits premiers secours inclus:</label>
+                          <select class="form-control" id="premiers_secours" name="premiers_secours[]" multiple required>
+                              @foreach($list_premiers as $premiersSecours)
+                                  <option value="{{ $premiersSecours->id }}">{{ $premiersSecours->nom }}</option>
+                              @endforeach
+                          </select>
                       </div>
-                    </div>
-                  </div>
+                  
+                      <button type="submit" class="btn btn-primary">Ajouter</button>
+                      
+
+                        
+                  
                 
                   <hr>
 

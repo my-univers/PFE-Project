@@ -221,7 +221,6 @@
                             <th></th>
                             <th scope="col">#</th>
                             <th scope="col">Nom</th>
-                            <th scope="col">Description</th>
                             <th scope="col">Prix</th>
                             <th></th>
                         </tr>
@@ -233,8 +232,7 @@
                                 <td></td>
                                 <td scope="row">{{ $p->id }}</td>
                                 <td>{{ $p->pack->nom }}</td>                                
-                                <td>{{ $p->description }}</td>
-                                <td>{{ $p->prix }} DH</td>
+                                <td>{{ $p->pack->prix }} DH</td>
                                 <td class="actions-cell">
                                     <div class="buttons right nowrap">
                                         <a class="button small green --jb-modal"

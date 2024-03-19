@@ -291,9 +291,7 @@
             window.location.href = '/packs';
         };
     </script>
-    @foreach($list as $pack)
       <a class="button red --jb-modal-close" href="/packs/delete/{{$pack->id}}">Confirmer</a>
-    @endforeach
     </footer>
   </div>
 </div>

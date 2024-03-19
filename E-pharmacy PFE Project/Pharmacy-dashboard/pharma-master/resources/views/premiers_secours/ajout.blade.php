@@ -216,9 +216,6 @@
                         </p>
                     </header>
                     <div class="card-content">
-
-                        <form method="post" action="/premiers_secours/add" enctype="multipart/form-data">
-                            @csrf
                         <form method="post" action="/premiers_secours/add" enctype="multipart/form-data">
                             @csrf
                             <div class="field">

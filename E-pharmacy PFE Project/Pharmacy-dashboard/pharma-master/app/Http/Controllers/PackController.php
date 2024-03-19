@@ -42,6 +42,8 @@ class PackController extends Controller
             $premiersSecoursPack->premiers_secours_id = $premiersSecoursId;
             $premiersSecoursPack->save();
         }
+        return redirect('/packs');
+
     }
     
     public function showUpdateForm($id){

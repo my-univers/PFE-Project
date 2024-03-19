@@ -214,7 +214,7 @@
           </p>
         </header>
         <div class="card-content">
-          <form method="post" action="/packs/update/{{$pack->id}}">
+          <form method="post" action="/packs/update/{{$pack->id}}" enctype="multipart/form-data">
             @csrf
                 <div class="field">
                   <div class="field-body">
