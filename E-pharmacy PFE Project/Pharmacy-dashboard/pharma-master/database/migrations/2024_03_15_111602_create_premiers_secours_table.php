@@ -11,6 +11,7 @@ class CreatePremiersSecoursTable extends Migration
      *
      * @return void
      */
+    
     public function up()
     {
         Schema::create('premiers_secours', function (Blueprint $table) {

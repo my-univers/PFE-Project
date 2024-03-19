@@ -83,11 +83,13 @@
               <span class="icon"><i class="mdi mdi-logout"></i></span>
               <span>Déconnexion</span>
             </a>
-          </div>
+        </div>
       </div>
     </div>
   </div>
 </nav>
+
+@yield('aside')
 
 
 @yield('content')

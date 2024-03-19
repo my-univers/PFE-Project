@@ -32,17 +32,20 @@ class ComplementAlimentaireController extends Controller
         $complement->prix = $prix_field;
         $complement->qte_en_stock = $qte_stock_field;
 
-        // Traitement de l'image si elle est présente
-        $image = $request->file('image');
-        $imageName = time() . '_' . $image->getClientOriginalName();
-        $image->move(public_path('img'), $imageName);
-        $complement->image_path = 'img/' . $imageName;
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('img'), $imageName);
+            $complement->image_path = 'img/' . $imageName;
+        }
+
+
 
         $complement->save();
-
+    
         return redirect("/complements");
-
     }
+    
 
     public function showUpdateForm($id){
         $c = ComplementsAlimentaires::find($id);

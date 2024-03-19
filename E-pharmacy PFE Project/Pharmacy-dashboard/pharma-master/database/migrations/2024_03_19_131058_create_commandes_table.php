@@ -14,8 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('commandes', function (Blueprint $table) {
-            // @my-univers Hahya commande creatha tatshofi shno les champs li ghaykono fiha
             $table->id();
+            $table->foreignId('client_id')->constrained('clients');
+            $table->date('date_commande')->nullable(false);
+            $table->decimal('total', 10, 2)->nullable(false);
+            $table->string('statut')->nullable(false);
             $table->timestamps();
         });
     }

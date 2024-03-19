@@ -39,6 +39,7 @@
             </li>
           </ul>
         </li>
+
         <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-doctor"></i></span>
@@ -58,6 +59,41 @@
             </li>
           </ul>
         </li>
+        <li>
+            <a class="dropdown">
+              <span class="icon"><i class="mdi mdi-pill"></i></span>
+              <span class="menu-item-label">Produits</span>
+              <span class="icon"><i class="mdi mdi-plus"></i></span>
+            </a>
+            <ul>
+              <li>
+                <a href="/produits/list">
+                  <span>Liste</span>
+                </a>
+              </li>
+              <li>
+                <a href="/produits/addForm">
+                  <span>Ajout</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <li>
+              <a class="dropdown">
+                <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
+                <span class="menu-item-label">Catégories</span>
+                <span class="icon"><i class="mdi mdi-plus"></i></span>
+              </a>
+              <ul>
+                <li>
+                  <a href="/categories/list">
+                      <span>Liste</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          <li>
         <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-pill"></i></span>
