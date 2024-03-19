@@ -9,11 +9,8 @@ class Client extends Model
 {
     use HasFactory;
 
-    public function medicamentCommandes() {
-        return $this->hasMany(MedicamentCommande::class);
-    }
-
-    public function complementAlimentaireCommandes() {
-        return $this->hasMany(ComplementAlimentaireCommande::class);
+    public function commandes()
+    {
+        return $this->hasMany(Commande::class);
     }
 }
