@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\Auth\RegisteredAdminController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedAdminController;
+use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\CommandeController;
+use App\Http\Controllers\ProduitController;
 use PharIo\Manifest\AuthorElement;
 
 /*
@@ -182,7 +185,7 @@ Route::get('/packs_premiers_secours/delete/{id}', [PackPremiersSecoursController
 
 /***************Commandes***************/
 
-
+Route::get('/commandes', [CommandeController::class, 'showList']);
 
 
 /****************Admin Profile****************/
@@ -192,4 +195,34 @@ Route::get('/profil', [AuthenticatedAdminController::class, 'showProfile']);
 Route::post('/profil/edit', [AuthenticatedAdminController::class, 'updateProfile']);
 
 Route::post('/profil/editPassword', [AuthenticatedAdminController::class, 'updatePassword'])->name('profil.updatePassword');
+
+
+/*****************Produits*****************/
+
+Route::get('/produits/list', [ProduitController::class, 'showList']);
+
+Route::get('/produits/addForm', [ProduitController::class, 'addProduitForm']);
+
+Route::post('/produits/add', [ProduitController::class, 'addProduit']);
+
+Route::get('/produits/updateForm/{id}', [ProduitController::class, 'updateProduitForm']);
+
+Route::post('/produits/update/{id}', [ProduitController::class, 'updateProduit']);
+
+Route::get('/produits/delete/{id}', [ProduitController::class,'deleteProduit']);
+
+
+/******************Categories*****************/
+
+Route::get('/categories/list', [CategorieController::class, 'showList']);
+
+Route::get('/categories/addForm', [CategorieController::class, 'addCategorieForm']);
+
+Route::post('/categories/add', [CategorieController::class, 'addCategorie']);
+
+Route::get('/categories/updateForm/{id}', [CategorieController::class, 'updateCategorieForm']);
+
+Route::post('/categories/update/{id}', [CategorieController::class, 'updateCategorie']);
+
+Route::get('/categories/delete/{id}', [CategorieController::class,'deleteCategorie']);
 

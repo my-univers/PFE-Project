@@ -77,6 +77,41 @@
       </li>
       <li>
         <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-pill"></i></span>
+          <span class="menu-item-label">Produits</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/produits/list">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/produits/addForm">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
+            <span class="menu-item-label">Catégories</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/categories/list">
+                  <span>Liste</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      <li>
+      <li>
+        <a class="dropdown">
           <span class="icon"><i class="mdi mdi-needle"></i></span>
           <span class="menu-item-label">Compléments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
@@ -115,7 +150,7 @@
       </li>
       <li>
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+          <span class="icon"><i class="mdi mdi-cart"></i></span>
           <span class="menu-item-label">Commandes</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -185,7 +220,6 @@
 @endsection
 
 @section('content')
-
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>

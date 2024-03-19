@@ -1,5 +1,4 @@
 @extends('master')
-
 @section('aside')
 <aside class="aside is-placed-left is-expanded">
   <div class="aside-tools">
@@ -19,7 +18,7 @@
     </ul>
     <p class="menu-label">Gestion</p>
     <ul class="menu-list">
-      <li class="active">
+      <li >
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-account-group"></i></span>
           <span class="menu-item-label">Clients</span>
@@ -38,6 +37,7 @@
           </li>
         </ul>
       </li>
+
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
@@ -57,7 +57,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      <li class="active">
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
           <span class="menu-item-label">Produits</span>
@@ -225,7 +225,7 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Clients </li>
+      <li>Produits </li>
     </ul>
   </div>
 </section>
@@ -233,7 +233,7 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-        Liste des Clients
+        Liste des Produits
     </h1>
   </div>
 </section>
@@ -242,8 +242,8 @@
     <div class="card has-table">
       <header class="card-header">
         <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-          Clients
+          <span class="icon"><i class="mdi mdi-pill"></i></span>
+          Médicaments
         </p>
         <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -256,24 +256,26 @@
             <th></th>
             <th>#</th>
             <th>Nom</th>
-            <th>E-mail</th>
-            <th>Adresse</th>
-            <th>Téléphone</th>
+            <th style="width: 400px">Description</th>
+            <th>Catégotie</th>
+            <th>Prix</th>
+            <th>Quantité en stock</th>
             <th></th>
           </tr>
           </thead>
           <tbody>
-            @foreach($clients as $c)
+            @foreach($produits as $p)
             <tr>
                 <td></td>
-                <td>{{ $c->id }}</td>
-                <td>{{ $c->nom }}</td>
-                <td>{{ $c->email }}</td>
-                <td>{{ $c->adresse }}</td>
-                <td>{{ $c->telephone }}</td>
+                <td>{{ $p->id }}</td>
+                <td>{{ $p->nom }}</td>
+                <td>{{ $p->descr }}</td>
+                <td>{{ $p->categorie->nom }}</td>
+                <td>{{ $p->prix }} DH</td>
+                <td>{{ $p->qte_en_stock }}</td>
                 <td class="actions-cell">
                 <div class="buttons right nowrap">
-                    <a class="button small green --jb-modal" href="/clients/updateForm/{{$c->id}}">
+                    <a class="button small green --jb-modal" href="/produits/updateForm/{{$p->id}}">
                     <span class="icon"><i class="mdi mdi-pencil"></i></span>
                     </a>
                     <button class="button small red --jb-modal" data-target="sample-modal" type="button">
@@ -282,6 +284,23 @@
                 </div>
                 </td>
             </tr>
+            <!-- Modal -->
+            <div id="sample-modal" class="modal">
+                <div class="modal-background --jb-modal-close"></div>
+                <div class="modal-card">
+                  <header class="modal-card-head">
+                    <p class="modal-card-title">Confirmer la Suppression</p>
+                  </header>
+                  <section class="modal-card-body">
+                    <p>Êtes-vous sûr de vouloir supprimer ce produit ?</p>
+                    <p>Cette action est irréversible</p>
+                  </section>
+                  <footer class="modal-card-foot">
+                    <button class="button --jb-modal-close">Annuler</button>
+                    <a class="button red --jb-modal-close" href="/produits/delete/{{$p->id}}">Confirmer</a>
+                  </footer>
+                </div>
+              </div>
             @endforeach
           </tbody>
         </table>
@@ -299,23 +318,6 @@
     </div>
   </section>
 
-<div id="sample-modal" class="modal">
-  <div class="modal-background --jb-modal-close"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Confirmer la Suppression</p>
-    </header>
-    <section class="modal-card-body">
-      <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
-      <p>Cette action est irréversible</p>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button --jb-modal-close">Annuler</button>
-      <a class="button red --jb-modal-close" href="/clients/delete/{{$c->id}}">Confirmer</a>
-    </footer>
-  </div>
-</div>
-
 {{-- <div id="sample-modal-2" class="modal">
   <div class="modal-background --jb-modal-close"></div>
   <div class="modal-card">
@@ -332,5 +334,7 @@
     </footer>
   </div>
 </div> --}}
+
+</div>
 
 @endsection
