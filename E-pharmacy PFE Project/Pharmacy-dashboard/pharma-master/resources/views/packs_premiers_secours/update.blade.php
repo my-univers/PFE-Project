@@ -58,6 +58,41 @@
                 </li>
                 <li>
                     <a class="dropdown">
+                      <span class="icon"><i class="mdi mdi-pill"></i></span>
+                      <span class="menu-item-label">Produits</span>
+                      <span class="icon"><i class="mdi mdi-plus"></i></span>
+                    </a>
+                    <ul>
+                      <li>
+                        <a href="/produits/list">
+                          <span>Liste</span>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="/produits/addForm">
+                          <span>Ajout</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <li>
+                      <a class="dropdown">
+                        <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
+                        <span class="menu-item-label">Catégories</span>
+                        <span class="icon"><i class="mdi mdi-plus"></i></span>
+                      </a>
+                      <ul>
+                        <li>
+                          <a href="/categories/list">
+                              <span>Liste</span>
+                          </a>
+                        </li>
+                      </ul>
+                    </li>
+                  <li>
+                <li>
+                    <a class="dropdown">
                         <span class="icon"><i class="mdi mdi-pill"></i></span>
                         <span class="menu-item-label">Médicaments</span>
                         <span class="icon"><i class="mdi mdi-plus"></i></span>
@@ -197,7 +232,7 @@
     <section class="is-hero-bar">
         <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
             <h1 class="title">
-                Packs Premiers Secours
+                Modifier Pack Premiers Secours
             </h1>
         </div>
     </section>
@@ -208,8 +243,8 @@
             <div class="card mb-6">
                 <header class="card-header">
                     <p class="card-header-title">
-                        <span class="icon"><i class="mdi mdi-ballot"></i></span>
-                        Modifier Pack Premiers Secours
+                        <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+                        Pack Premiers Secours
                     </p>
                 </header>
                 <div class="card-content">
@@ -222,7 +257,7 @@
                                     <div class="control icons-left">
                                         <input class="input" type="text" placeholder="Nom" name="nom"
                                             value="{{ $pack->nom }}">
-                                        <span class="icon left"><i class="mdi mdi-account"></i></span>
+                                        <span class="icon left"><i class="mdi mdi-tag"></i></span>
                                     </div>
                                 </div>
                             </div>

@@ -61,6 +61,41 @@
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
+          <span class="menu-item-label">Produits</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/produits/list">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/produits/addForm">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
+            <span class="menu-item-label">Catégories</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/categories/list">
+                  <span>Liste</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      <li>
+      <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-pill"></i></span>
           <span class="menu-item-label">Médicaments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -195,12 +230,6 @@
         <li>Premiers Secours</li>
       </ul>
     </div>
-    <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-      <ul>
-        <li>Admin</li>
-        <li>Premiers Secours</li>
-      </ul>
-    </div>
 </section>
 
 <section class="is-hero-bar">
@@ -239,8 +268,8 @@
                   <div class="control">
                     <textarea class="textarea" placeholder="Description" name="description">{{$premier->description}}</textarea>
                 </div>
-                
-                
+
+
                     <div class="field-body">
                       <div class="field">
                         <div class="control icons-left">
@@ -330,5 +359,24 @@
             </div>
     </section>
 </div>
+
+<script type="text/javascript" src="../../js/main.min.js?v=1628755089081"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script type="text/javascript" src="../../js/chart.sample.min.js"></script>
+
+
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '658339141622648');
+  fbq('track', 'PageView');
+</script>
 
 @endsection

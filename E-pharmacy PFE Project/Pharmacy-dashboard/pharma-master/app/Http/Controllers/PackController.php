@@ -28,14 +28,19 @@ class PackController extends Controller
         $pack->qte_en_stock = $req->qte_en_stock;
         $pack->prix = $req->prix;
         $pack->description = $req->description;
+
+        // Traitement de l'image si elle est présente
         if ($req->hasFile('image')) {
             $image = $req->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('img'), $imageName);
             $pack->image_path = 'img/' . $imageName;
         }
-        $pack->save(); 
+
+        $pack->save();
+
         $premiersSecoursIds = $req->input('premiers_secours');
+        
         foreach ($premiersSecoursIds as $premiersSecoursId) {
             $premiersSecoursPack = new PackPremierSecours();
             $premiersSecoursPack->pack_id = $pack->id;
@@ -45,7 +50,7 @@ class PackController extends Controller
         return redirect('/packs');
 
     }
-    
+
     public function showUpdateForm($id){
         $p = Pack::find($id);
         return view("packs.update", ['pack' => $p]);
@@ -58,7 +63,20 @@ class PackController extends Controller
         $c->description = $request->description;
         $c->prix = $request->prix;
         $c->qte_en_stock = $request->qte_stock;
-        $c->image_path = $request->image;
+
+        // Traitement de la nouvelle image si elle est présente
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('img'), $imageName);
+
+            // Suppression de l'ancienne image si elle existe
+            if ($c->image_path) {
+                unlink(public_path($c->image_path));
+            }
+
+            $c->image_path = 'img/' . $imageName;
+        }
 
         $c->save();
 
@@ -70,5 +88,5 @@ class PackController extends Controller
         $c->delete();
         return redirect('/packs');
     }
-    
+
 }

@@ -60,6 +60,41 @@
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
+          <span class="menu-item-label">Produits</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/produits/list">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/produits/addForm">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li>
+      <li>
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
+            <span class="menu-item-label">Catégories</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/categories/list">
+                  <span>Liste</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      <li>
+      <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-pill"></i></span>
           <span class="menu-item-label">Médicaments</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -207,7 +242,7 @@
         <div class="card has-table">
             <header class="card-header">
                 <p class="card-header-title">
-                    <span class="icon"><span class="mdi mdi-medication"></span></span>
+                    <span class="icon"><span class="mdi mdi-medical-bag"></span></span>
                     Packs Premiers Secours
                 </p>
                 <a href="#" class="card-header-icon">
@@ -219,7 +254,6 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th scope="col">#</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Prix</th>
                             <th></th>
@@ -286,9 +320,7 @@
                         window.location.href = '/packs_premiers_secours/list';
                     };
                 </script>
-                @foreach ($list_packs as $p)
                 <a class="button red --jb-modal-close" href="/packs_premiers_secours/delete/{{ $p->id }}">Confirmer</a>
-                @endforeach
               </footer>
         </div>
     </div>

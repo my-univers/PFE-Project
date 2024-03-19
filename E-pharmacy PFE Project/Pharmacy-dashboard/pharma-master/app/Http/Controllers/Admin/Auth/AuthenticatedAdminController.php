@@ -151,7 +151,7 @@ class AuthenticatedAdminController extends Controller
         return redirect()->back()->with('success', 'Mot de passe mis à jour avec succès.');
     }
 
-    /**********Forgot password**********/
+    /***********Forgot password***********/
 
     public function verifyEmailForm() {
         return view('auth.verify-email');

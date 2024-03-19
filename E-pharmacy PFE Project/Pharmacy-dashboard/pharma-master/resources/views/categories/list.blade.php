@@ -19,7 +19,7 @@
     </ul>
     <p class="menu-label">Gestion</p>
     <ul class="menu-list">
-      <li class="active">
+      <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-account-group"></i></span>
           <span class="menu-item-label">Clients</span>
@@ -76,8 +76,7 @@
           </li>
         </ul>
       </li>
-      <li>
-        <li>
+        <li class="active">
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
             <span class="menu-item-label">Catégories</span>
@@ -225,15 +224,19 @@
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Clients </li>
+      <li>Catégories </li>
     </ul>
+    <a href="/categories/addForm" class="button blue">
+        <span class="icon"><i class="mdi mdi-plus"></i></span>
+        <span>Ajouter</span>
+      </a>
   </div>
 </section>
 
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-        Liste des Clients
+        Liste des Catégories
     </h1>
   </div>
 </section>
@@ -242,7 +245,7 @@
     <div class="card has-table">
       <header class="card-header">
         <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+          <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
           Clients
         </p>
         <a href="#" class="card-header-icon">
@@ -256,30 +259,41 @@
             <th></th>
             <th>#</th>
             <th>Nom</th>
-            <th>E-mail</th>
-            <th>Adresse</th>
-            <th>Téléphone</th>
             <th></th>
           </tr>
           </thead>
           <tbody>
-            @foreach($clients as $c)
+            @foreach($categories as $c)
             <tr>
                 <td></td>
                 <td>{{ $c->id }}</td>
                 <td>{{ $c->nom }}</td>
-                <td>{{ $c->email }}</td>
-                <td>{{ $c->adresse }}</td>
-                <td>{{ $c->telephone }}</td>
                 <td class="actions-cell">
                 <div class="buttons right nowrap">
-                    <a class="button small green --jb-modal" href="/clients/updateForm/{{$c->id}}">
+                    <a class="button small green --jb-modal" href="/categories/updateForm/{{$c->id}}">
                     <span class="icon"><i class="mdi mdi-pencil"></i></span>
                     </a>
-                    <button class="button small red --jb-modal" data-target="sample-modal" type="button">
+                    <button class="button small red --jb-modal" data-id="{{ $c->id }}" data-target="sample-modal" type="button">
                     <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                     </button>
                 </div>
+
+                <div id="sample-modal" class="modal">
+                    <div class="modal-background --jb-modal-close"></div>
+                    <div class="modal-card">
+                      <header class="modal-card-head">
+                        <p class="modal-card-title">Confirmer la Suppression</p>
+                      </header>
+                      <section class="modal-card-body">
+                        <p>Êtes-vous sûr de vouloir supprimer cette catégorie ?</p>
+                        <p>Cette action est irréversible</p>
+                      </section>
+                      <footer class="modal-card-foot">
+                        <button class="button --jb-modal-close">Annuler</button>
+                        <a class="button red --jb-modal-close" href="/categories/delete/{{$c->id}}">Confirmer</a>
+                      </footer>
+                    </div>
+                  </div>
                 </td>
             </tr>
             @endforeach
@@ -299,22 +313,7 @@
     </div>
   </section>
 
-<div id="sample-modal" class="modal">
-  <div class="modal-background --jb-modal-close"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Confirmer la Suppression</p>
-    </header>
-    <section class="modal-card-body">
-      <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
-      <p>Cette action est irréversible</p>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button --jb-modal-close">Annuler</button>
-      <a class="button red --jb-modal-close" href="/clients/delete/{{$c->id}}">Confirmer</a>
-    </footer>
-  </div>
-</div>
+
 
 {{-- <div id="sample-modal-2" class="modal">
   <div class="modal-background --jb-modal-close"></div>
