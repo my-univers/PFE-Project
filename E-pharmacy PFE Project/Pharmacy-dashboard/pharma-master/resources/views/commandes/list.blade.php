@@ -173,7 +173,7 @@
             <span class="menu-item-label">Packs</span>
             <span class="icon"><i class="mdi mdi-plus"></i></span>
           </a>
-          <ul> 
+          <ul>
             <li>
               <a href="/packs">
                 <span>Liste</span>
@@ -220,7 +220,7 @@
 @endsection
 
 @section('content')
-    
+
 
 @section('content')
 <section class="is-title-bar">
@@ -271,7 +271,6 @@
                 <td></td>
                 <td>{{ $c->id }}</td>
                 <td>{{ $c->client->nom }}</td>
-                <td>{{ $c->client->adresse }}</td>
                 <td>{{ $c->date_commande }}</td>
                 <td>{{ $c->client->adresse }}</td>
                 <td
