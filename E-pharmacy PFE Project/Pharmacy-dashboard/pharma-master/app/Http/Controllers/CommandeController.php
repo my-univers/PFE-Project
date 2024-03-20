@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class CommandeController extends Controller
 {
     public function showList(Request $request) {
-        $commandes = Commande::all();
+        $commandes = Commande::paginate(10);
         return view('commandes.list', ['commandes' => $commandes]);
     }
 

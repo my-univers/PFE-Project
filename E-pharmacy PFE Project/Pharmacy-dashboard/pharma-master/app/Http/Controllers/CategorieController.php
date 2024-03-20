@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategorieController extends Controller
 {
     public function showList(Request $request) {
-        $categories = Categorie::all();
+        $categories = DB::table('categories')->paginate(10);
 
         return view('categories.list', ['categories' => $categories]);
     }

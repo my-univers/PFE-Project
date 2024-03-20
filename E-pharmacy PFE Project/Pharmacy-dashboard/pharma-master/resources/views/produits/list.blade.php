@@ -346,14 +346,25 @@
           </tbody>
         </table>
         <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
+            <div class="flex items-center justify-between">
+                <div class="buttons">
+                    @if ($produits->onFirstPage())
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                    @else
+                        <a href="{{ $produits->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                    @endif
+
+                    @for ($i = 1; $i <= $produits->lastPage(); $i++)
+                        <button type="button" class="button @if ($produits->currentPage() == $i) active @endif">{{ $i }}</button>
+                    @endfor
+
+                    @if ($produits->hasMorePages())
+                        <a href="{{ $produits->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                    @else
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                    @endif
+                </div>
             </div>
-            <small>Page 1 of 3</small>
-          </div>
         </div>
       </div>
     </div>

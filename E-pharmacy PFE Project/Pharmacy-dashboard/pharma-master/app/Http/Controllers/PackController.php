@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\DB;
 class PackController extends Controller
 {
     public function showList(){
-        $packs_list = Pack::all();
+        $packs_list = Pack::paginate(10);
         return view("packs.list" ,['list' => $packs_list ] );
     }
 

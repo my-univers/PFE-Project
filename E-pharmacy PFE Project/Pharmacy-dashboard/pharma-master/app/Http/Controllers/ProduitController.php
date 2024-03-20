@@ -17,7 +17,7 @@ class ProduitController extends Controller
         if ($categorieId) {
             $query->where('categorie_id', $categorieId);
         }
-        $produits = $query->get();
+        $produits = $query->paginate(10);
 
         // Récupérer toutes les catégories pour le menu déroulant de filtrage
         $categories = Categorie::all();

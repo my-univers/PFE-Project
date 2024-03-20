@@ -274,7 +274,7 @@
                     <a class="button small green --jb-modal" href="/categories/updateForm/{{$c->id}}">
                     <span class="icon"><i class="mdi mdi-pencil"></i></span>
                     </a>
-                    <button class="button small red --jb-modal" data-target="sample-modal-{{$c->id}}" type="button"> 
+                    <button class="button small red --jb-modal" data-target="sample-modal-{{$c->id}}" type="button">
                     <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                     </button>
                 </div>
@@ -303,14 +303,25 @@
           </tbody>
         </table>
         <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
+            <div class="flex items-center justify-between">
+                <div class="buttons">
+                    @if ($categories->onFirstPage())
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                    @else
+                        <a href="{{ $categories->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                    @endif
+
+                    @for ($i = 1; $i <= $categories->lastPage(); $i++)
+                        <button type="button" class="button @if ($categories->currentPage() == $i) active @endif">{{ $i }}</button>
+                    @endfor
+
+                    @if ($categories->hasMorePages())
+                        <a href="{{ $categories->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                    @else
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                    @endif
+                </div>
             </div>
-            <small>Page 1 of 3</small>
-          </div>
         </div>
       </div>
     </div>

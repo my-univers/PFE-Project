@@ -15,6 +15,7 @@ class DashboardController extends Controller
         $clients = Client::all();
         $produits = Produit::all();
         $commandes = Commande::all();
+        $commandes_paginate = Commande::paginate(10);
 
         $clients_count = Client::count();
         $commandes_count = Commande::count();
@@ -37,7 +38,8 @@ class DashboardController extends Controller
             'produits_epuises_count' => $produits_epuises_count,
             'category_count' => $category_count,
             'produits_epuises' => $produits_epuises,
-            'commandes' => $commandes
+            'commandes' => $commandes,
+            'commandes_paginate' => $commandes_paginate
         ]);
     }
 }
