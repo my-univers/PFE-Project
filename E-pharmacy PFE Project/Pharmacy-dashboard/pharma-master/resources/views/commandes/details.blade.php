@@ -21,7 +21,7 @@
     <ul class="menu-list">
       <li>
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-account-group"></i></span>
+          <span class="icon"><i class="mdi mdi-account"></i></span>
           <span class="menu-item-label">Clients</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -187,7 +187,7 @@
           </li>
         </ul>
       </li>
-      {{-- <li>
+      <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Packs Produits</span>
@@ -195,17 +195,17 @@
         </a>
         <ul>
           <li>
-            <a href="/packs_premiers_secours">
+            <a href="/packs_produits">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="/packs_premiers_secours/form">
+            <a href="/packs_produits/form">
               <span>Ajout</span>
             </a>
           </li>
         </ul>
-      </li> --}}
+      </li>
     </ul>
     <p class="menu-label">A Propos</p>
     <ul class="menu-list">
