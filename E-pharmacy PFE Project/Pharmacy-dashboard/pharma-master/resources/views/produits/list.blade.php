@@ -9,7 +9,7 @@
   <div class="menu is-menu-main">
     <p class="menu-label">General</p>
     <ul class="menu-list">
-      <li > 
+      <li >
         <a href="/dashboard">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Tableau de Bord</span>
@@ -245,9 +245,31 @@
           <span class="icon"><i class="mdi mdi-pill"></i></span>
           Produits
         </p>
-        <a href="#" class="card-header-icon">
-          <span class="icon"><i class="mdi mdi-reload"></i></span>
-        </a>
+        <form action="/produits/list" method="get" class="card-header-icon">
+            <span>
+                <label class="label">Filtrer par Catégorie :</label>
+            </span>
+            &nbsp; &nbsp;
+            <span>
+                <div class="field">
+                    <div class="control">
+                        <div class="select">
+                        <select name="categorie">
+                            @foreach ($categories as $c)
+                            <option value="{{ $c->id }}">{{ $c->nom }}</option>
+                            @endforeach
+                        </select>
+                        </div>
+                    </div>
+                </div>
+            </span>
+            &nbsp; &nbsp;
+            <span>
+                <button type="submit" class="button small blue" type="button">
+                    <span class="icon"><i class="mdi mdi-filter"></i></span>
+                </button>
+            </span>
+        </form>
       </header>
       <div class="card-content">
         <table>
@@ -256,7 +278,7 @@
             <th></th>
             <th>#</th>
             <th>Nom</th>
-            <th style="width: 400px">Description</th>
+            <th style="width: 300px">Description</th>
             <th>Catégotie</th>
             <th>Prix</th>
             <th>Quantité en stock</th>
@@ -281,6 +303,23 @@
                     <button class="button small red --jb-modal" data-target="sample-modal" type="button">
                     <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                     </button>
+
+                    <div id="sample-modal" class="modal">
+                        <div class="modal-background --jb-modal-close"></div>
+                        <div class="modal-card">
+                          <header class="modal-card-head">
+                            <p class="modal-card-title">Confirmer la Suppression</p>
+                          </header>
+                          <section class="modal-card-body">
+                            <p>Êtes-vous sûr de vouloir supprimer ce produit ?</p>
+                            <p>Cette action est irréversible</p>
+                          </section>
+                          <footer class="modal-card-foot">
+                            <button class="button --jb-modal-close">Annuler</button>
+                            <a class="button red --jb-modal-close" href="/produits/delete/{{$p->id}}">Confirmer</a>
+                          </footer>
+                        </div>
+                      </div>
                 </div>
                 </td>
             </tr>
@@ -317,22 +356,5 @@
     </footer>
   </div>
 </div> --}}
-
-<div id="sample-modal" class="modal">
-  <div class="modal-background --jb-modal-close"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Confirmer la Suppression</p>
-    </header>
-    <section class="modal-card-body">
-      <p>Êtes-vous sûr de vouloir supprimer ce produit ?</p>
-      <p>Cette action est irréversible</p>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button --jb-modal-close">Annuler</button>
-      <a class="button red --jb-modal-close" href="/produits/delete/{{$p->id}}">Confirmer</a>
-    </footer>
-  </div>
-</div>
 
 @endsection

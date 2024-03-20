@@ -9,11 +9,23 @@ use Illuminate\Http\Request;
 class ProduitController extends Controller
 {
     public function showList(Request $request) {
-        $produits = Produit::all();
-        return view('produits.list', ['produits' => $produits]);
+        // Récupérer l'ID de la catégorie à filtrer depuis la requête
+        $categorieId = $request->input('categorie');
+
+        // Récupérer tous les produits ou filtrer par catégorie si une catégorie est spécifiée
+        $query = Produit::query();
+        if ($categorieId) {
+            $query->where('categorie_id', $categorieId);
+        }
+        $produits = $query->get();
+
+        // Récupérer toutes les catégories pour le menu déroulant de filtrage
+        $categories = Categorie::all();
+
+        return view('produits.list', ['produits' => $produits, 'categories' => $categories]);
     }
 
-    public function addProduitForm(Request $request) {
+    public function addProduitForm() {
         $categories = Categorie::all();
 
         return view('produits.add', ['categories' => $categories]);
@@ -62,14 +74,13 @@ class ProduitController extends Controller
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('img'), $imageName);
 
-            // // Suppression de l'ancienne image si elle existe
-            // if ($p->image_path) {
-            //     unlink(public_path($p->image_path));
-            // }
+            // Suppression de l'ancienne image si elle existe
+            if ($p->image_path) {
+                unlink(public_path($p->image_path));
+            }
 
             $p->image_path = 'img/' . $imageName;
         }
-
 
         $p->save();
 
@@ -80,10 +91,9 @@ class ProduitController extends Controller
 
         $p = Produit::findOrFail($id);
 
-         //\\    Suppression de l'image associée si elle existe
-        //  \\     if ($p->image_path) {
-       //    \\    unlink(public_path($p->image_path));
-      //      \\   }
+        if ($p->image_path) {
+            unlink(public_path($p->image_path));
+        }
 
         $p->delete();
 
