@@ -41,7 +41,7 @@ class PackController extends Controller
         $pack->save();
 
         $premiersSecoursIds = $req->input('premiers_secours');
-        
+
         foreach ($premiersSecoursIds as $premiersSecoursId) {
             $premiersSecoursPack = new PackPremierSecours();
             $premiersSecoursPack->pack_id = $pack->id;
@@ -72,10 +72,10 @@ class PackController extends Controller
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('img'), $imageName);
 
-             // Suppression de l'ancienne image si elle existe
-            // if ($c->image_path) {
-            //     unlink(public_path($c->image_path));
-            // }
+            // Suppression de l'ancienne image si elle existe
+            if ($c->image_path) {
+                unlink(public_path($c->image_path));
+            }
 
             $c->image_path = 'img/' . $imageName;
         }
