@@ -103,7 +103,7 @@
         <div class="row align-items-stretch section-overlap">
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
             <div class="banner-wrap bg-primary h-100">
-              <a href="#" class="h-100">
+              <a class="h-100">
                 <h5>Livraison <br> Gratuite </h5>
                 <p>
                   Livraison gratuite sur toutes les commandes
@@ -114,7 +114,7 @@
           </div>
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
             <div class="banner-wrap h-100">
-              <a href="#" class="h-100">
+              <a class="h-100">
                 <h5>Vente Saisonnière <br>50% de Réduction</h5>
                 <p>
                   Obtenez une réduction de 50% sur une séléction de produits
@@ -125,7 +125,7 @@
           </div>
           <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
             <div class="banner-wrap bg-warning h-100">
-              <a href="#" class="h-100">
+              <a class="h-100">
                 <h5>Acheter <br>Une Carte-Cadeau</h5>
                 <p>
                   Offrez à vos proches la liberté de choisir avec notre carte-cadeau
@@ -196,7 +196,7 @@
       </div>
     </div>
 
-    
+
     <div class="site-section bg-light">
       <div class="container">
         <div class="row">
@@ -248,7 +248,7 @@
         <div class="row">
           <div class="col-md-12 block-3 products-wrap">
             <div class="nonloop-block-3 no-direction owl-carousel">
-        
+
               <div class="testimony">
                 <blockquote>
                   <img src="images/person_1.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
@@ -258,40 +258,40 @@
 
                 <p>&mdash; Kelly Holmes</p>
               </div>
-        
+
               <div class="testimony">
                 <blockquote>
                   <img src="images/person_2.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-                  <p>&ldquo;Service clientèle impeccable ! J'ai eu une question concernant un produit et j'ai obtenu une réponse rapide et détaillée. La qualité des médicaments est excellente et les prix sont compétitifs. 
+                  <p>&ldquo;Service clientèle impeccable ! J'ai eu une question concernant un produit et j'ai obtenu une réponse rapide et détaillée. La qualité des médicaments est excellente et les prix sont compétitifs.
                     Je suis très content de mon expérience avec Pharma et je recommande cette pharmacie en ligne sans hésitation&rdquo;</p>
                 </blockquote>
-              
+
                 <p>&mdash; Rebecca Morando</p>
               </div>
-        
+
               <div class="testimony">
                 <blockquote>
                   <img src="images/person_3.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
                   <p>&ldquo;
-                    Pharma est devenu mon magasin préféré pour acheter mes médicaments. 
-                    La variété des produits est impressionnante et j'apprécie la facilité de navigation sur le site. Les livraisons sont toujours rapides et les produits sont de grande qualité. 
+                    Pharma est devenu mon magasin préféré pour acheter mes médicaments.
+                    La variété des produits est impressionnante et j'apprécie la facilité de navigation sur le site. Les livraisons sont toujours rapides et les produits sont de grande qualité.
                     Je recommande vivement cette pharmacie en ligne &rdquo;</p>
                 </blockquote>
-              
+
                 <p>&mdash; Lucas Gallone</p>
               </div>
-        
+
               <div class="testimony">
                 <blockquote>
                   <img src="images/person_4.jpg" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
-                  <p>&ldquo;Je suis très satisfait de mon expérience avec Pharma. 
-                    Le processus de commande est sécurisé, et j'ai toujours reçu mes produits dans les délais prévus. Le service clientèle est également excellent, avec des réponses utiles à mes questions. 
+                  <p>&ldquo;Je suis très satisfait de mon expérience avec Pharma.
+                    Le processus de commande est sécurisé, et j'ai toujours reçu mes produits dans les délais prévus. Le service clientèle est également excellent, avec des réponses utiles à mes questions.
                     Je recommande Pharma à tous ceux qui cherchent un service de qualité &rdquo;</p>
                 </blockquote>
-              
+
                 <p>&mdash; Andrew Neel</p>
               </div>
-        
+
             </div>
           </div>
         </div>
