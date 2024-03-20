@@ -91,7 +91,7 @@ class PackPremiersSecoursController extends Controller
     //         if (!$pack_id->premiersSecours()->where('id', $premiersSecoursId)->exists()) {
     //             $pack_id->premiersSecours()->associate($premiersSecoursId);
     //         }
-    //     }
+    //     }    
     //     return redirect("packs_premiers_secours");
     // } else {
     //     return redirect()->back()->with('error', 'Aucun produit premier secours sélectionné.');

@@ -54,6 +54,7 @@ class ClientController extends Controller
     }
 
     public function deleteClient($id) {
+        
         $c = Client::find($id);
         $c->delete();
 

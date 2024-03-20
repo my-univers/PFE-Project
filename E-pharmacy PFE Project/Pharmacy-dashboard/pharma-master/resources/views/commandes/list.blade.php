@@ -1,15 +1,15 @@
 @extends('master')
 @section('aside')
-
 <aside class="aside is-placed-left is-expanded">
-  <div class="aside-tools">
-    <div>
-      Pharma <b class="font-black">One</b>
+    <div class="aside-tools">
+      <div>
+        Pharma <b class="font-black">One</b>
+      </div>
     </div>
     <div class="menu is-menu-main">
       <p class="menu-label">General</p>
       <ul class="menu-list">
-        <li >
+        <li>
           <a href="/dashboard">
             <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
             <span class="menu-item-label">Tableau de Bord</span>
@@ -37,10 +37,10 @@
             </li>
           </ul>
         </li>
-        <li >
+        <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-doctor"></i></span>
-            <span class="menu-item-label">Medecins</span>
+            <span class="menu-item-label">Médecins</span>
             <span class="icon"><i class="mdi mdi-plus"></i></span>
           </a>
           <ul>
@@ -75,23 +75,22 @@
               </li>
             </ul>
           </li>
-          <li>
-            <li>
-              <a class="dropdown">
-                <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
-                <span class="menu-item-label">Catégories</span>
-                <span class="icon"><i class="mdi mdi-plus"></i></span>
-              </a>
-              <ul>
-                <li>
-                  <a href="/categories/list">
-                      <span>Liste</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-          <li>
         <li>
+          <li>
+            <a class="dropdown">
+              <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
+              <span class="menu-item-label">Catégories</span>
+              <span class="icon"><i class="mdi mdi-plus"></i></span>
+            </a>
+            <ul>
+              <li>
+                <a href="/categories/list">
+                    <span>Liste</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+        {{-- <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-pill"></i></span>
             <span class="menu-item-label">Médicaments</span>
@@ -109,8 +108,8 @@
               </a>
             </li>
           </ul>
-        </li>
-        <li>
+        </li> --}}
+        {{-- <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-needle"></i></span>
             <span class="menu-item-label">Compléments</span>
@@ -128,8 +127,8 @@
               </a>
             </li>
           </ul>
-        </li>
-        <li>
+        </li> --}}
+        {{-- <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
             <span class="menu-item-label">Premiers Secours</span>
@@ -147,7 +146,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> --}}
         <li class="active">
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-cart"></i></span>
@@ -169,11 +168,11 @@
         </li>
         <li>
           <a class="dropdown">
-            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+            <span class="icon"><i class="mdi mdi-package-variant"></i></span>
             <span class="menu-item-label">Packs</span>
             <span class="icon"><i class="mdi mdi-plus"></i></span>
           </a>
-          <ul>
+          <ul> 
             <li>
               <a href="/packs">
                 <span>Liste</span>
@@ -186,6 +185,25 @@
             </li>
           </ul>
         </li>
+        {{-- <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+            <span class="menu-item-label">Packs Premiers Secours</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/packs_premiers_secours">
+                <span>Liste</span>
+              </a>
+            </li>
+            <li>
+              <a href="/packs_premiers_secours/form">
+                <span>Ajout</span>
+              </a>
+            </li>
+          </ul>
+        </li> --}}
       </ul>
       <p class="menu-label">A Propos</p>
       <ul class="menu-list">
@@ -198,12 +216,16 @@
       </ul>
     </div>
   </aside>
+@endsection
+
+@section('content')
+    
 
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>
       <li>Admin</li>
-      <li>Médicaments </li>
+      <li>Commandes </li>
     </ul>
   </div>
 </section>
@@ -211,7 +233,7 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-        Liste des Médicaments
+        Liste des Commandes
     </h1>
   </div>
 </section>
@@ -220,8 +242,8 @@
     <div class="card has-table">
       <header class="card-header">
         <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-pill"></i></span>
-          Médicaments
+          <span class="icon"><i class="mdi mdi-cart"></i></span>
+          Commandes
         </p>
         <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -246,8 +268,8 @@
             <tr>
                 <td></td>
                 <td>{{ $c->id }}</td>
-                <td>{{ $c->com->nom }}</td>
-                <td>{{ $c->adresse }} DH</td>
+                <td>{{ $c->client->nom }}</td>
+                <td>{{ $c->client->adresse }}</td>
                 <td>{{ $c->date_commande }}</td>
                 <td>{{ $c->statut }}</td>
                 <td>{{ $c->total }} DH</td>

@@ -41,7 +41,7 @@
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
-          <span class="menu-item-label">Medecins</span>
+          <span class="menu-item-label">Médecins</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
@@ -92,7 +92,7 @@
           </ul>
         </li>
       <li>
-      <li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
           <span class="menu-item-label">Médicaments</span>
@@ -129,8 +129,8 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li>
+      </li> --}}
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Premiers Secours</span>
@@ -148,7 +148,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-cart"></i></span>
@@ -187,7 +187,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Packs Premiers Secours</span>
@@ -205,7 +205,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
     </ul>
     <p class="menu-label">A Propos</p>
     <ul class="menu-list">

@@ -9,7 +9,7 @@
   <div class="menu is-menu-main">
     <p class="menu-label">General</p>
     <ul class="menu-list">
-      <li >
+      <li > 
         <a href="/dashboard">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Tableau de Bord</span>
@@ -41,7 +41,7 @@
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
-          <span class="menu-item-label">Medecins</span>
+          <span class="menu-item-label">Médecins</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
@@ -92,7 +92,7 @@
           </ul>
         </li>
       <li>
-      <li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
           <span class="menu-item-label">Médicaments</span>
@@ -110,8 +110,8 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li>
+      </li> --}}
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-needle"></i></span>
           <span class="menu-item-label">Compléments</span>
@@ -129,8 +129,8 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li>
+      </li> --}}
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Premiers Secours</span>
@@ -148,7 +148,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-cart"></i></span>
@@ -187,7 +187,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Packs Premiers Secours</span>
@@ -205,7 +205,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
     </ul>
     <p class="menu-label">A Propos</p>
     <ul class="menu-list">
@@ -243,7 +243,7 @@
       <header class="card-header">
         <p class="card-header-title">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
-          Médicaments
+          Produits
         </p>
         <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -284,23 +284,6 @@
                 </div>
                 </td>
             </tr>
-            <!-- Modal -->
-            <div id="sample-modal" class="modal">
-                <div class="modal-background --jb-modal-close"></div>
-                <div class="modal-card">
-                  <header class="modal-card-head">
-                    <p class="modal-card-title">Confirmer la Suppression</p>
-                  </header>
-                  <section class="modal-card-body">
-                    <p>Êtes-vous sûr de vouloir supprimer ce produit ?</p>
-                    <p>Cette action est irréversible</p>
-                  </section>
-                  <footer class="modal-card-foot">
-                    <button class="button --jb-modal-close">Annuler</button>
-                    <a class="button red --jb-modal-close" href="/produits/delete/{{$p->id}}">Confirmer</a>
-                  </footer>
-                </div>
-              </div>
             @endforeach
           </tbody>
         </table>
@@ -335,6 +318,21 @@
   </div>
 </div> --}}
 
+<div id="sample-modal" class="modal">
+  <div class="modal-background --jb-modal-close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Confirmer la Suppression</p>
+    </header>
+    <section class="modal-card-body">
+      <p>Êtes-vous sûr de vouloir supprimer ce produit ?</p>
+      <p>Cette action est irréversible</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button --jb-modal-close">Annuler</button>
+      <a class="button red --jb-modal-close" href="/produits/delete/{{$p->id}}">Confirmer</a>
+    </footer>
+  </div>
 </div>
 
 @endsection

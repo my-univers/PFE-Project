@@ -91,7 +91,7 @@
               </li>
             </ul>
           </li>
-        <li>
+        {{-- <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-pill"></i></span>
             <span class="menu-item-label">Médicaments</span>
@@ -109,8 +109,8 @@
               </a>
             </li>
           </ul>
-        </li>
-        <li>
+        </li> --}}
+        {{-- <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-needle"></i></span>
             <span class="menu-item-label">Compléments</span>
@@ -128,8 +128,8 @@
               </a>
             </li>
           </ul>
-        </li>
-        <li>
+        </li> --}}
+        {{-- <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
             <span class="menu-item-label">Premiers Secours</span>
@@ -147,7 +147,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> --}}
         <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-cart"></i></span>
@@ -186,7 +186,7 @@
             </li>
           </ul>
         </li>
-        <li>
+        {{-- <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
             <span class="menu-item-label">Packs Premiers Secours</span>
@@ -204,7 +204,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> --}}
       </ul>
       <p class="menu-label">A Propos</p>
       <ul class="menu-list">
@@ -217,6 +217,7 @@
       </ul>
     </div>
   </aside>
+@endsection
 
 @section('content')
 <section class="is-title-bar">
@@ -238,6 +239,7 @@
 
 <section class="section main-section">
     <div class="grid gap-6 grid-cols-1 md:grid-cols-3 mb-6">
+      
       <div class="card">
         <div class="card-content">
           <div class="flex items-center justify-between">
@@ -286,11 +288,64 @@
       </div>
     </div>
 
+    <div class="grid gap-6 grid-cols-1 md:grid-cols-3 mb-6">
+      
+      <div class="card">
+        <div class="card-content">
+          <div class="flex items-center justify-between">
+            <div class="widget-label">
+              <h3>
+                Produits
+              </h3>
+              <h1>
+                {{ $produits_count }}
+              </h1>
+            </div>
+            <span class="icon widget-icon text-blue-500"><i class="mdi mdi-pill mdi-48px"></i></span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-content">
+          <div class="flex items-center justify-between">
+            <div class="widget-label">
+              <h3>
+                Prouits épuisés
+              </h3>
+              <h1>
+                {{ $produits_epuises_count }}
+              </h1>
+            </div>
+            <span class="icon widget-icon text-red-500"><i class="mdi mdi-alert-box-outline mdi-48px"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-content">
+          <div class="flex items-center justify-between">
+            <div class="widget-label">
+              <h3>
+                Catégories
+              </h3>
+              <h1>
+                {{ $category_count }}
+              </h1>
+            </div>
+            <span class="icon widget-icon text-green-500"><i class="mdi mdi-format-list-bulleted-type mdi-48px"></i></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <div class="card has-table">
       <header class="card-header">
+
+        @if(!$produits_epuises->isEmpty())
         <p class="card-header-title">
           <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-          Clients
+          Produits épuisés
         </p>
         <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -303,24 +358,20 @@
               <th></th>
               <th>#</th>
               <th>Nom</th>
-              <th>E-mail</th>
-              <th>Adresse</th>
-              <th>Téléphone</th>
+              <th>Catégorie</th>
               <th></th>
             </tr>
             </thead>
             <tbody>
-              @foreach($clients as $c)
+              @foreach($produits_epuises as $c)
               <tr>
                   <td></td>
                   <td>{{ $c->id }}</td>
                   <td>{{ $c->nom }}</td>
-                  <td>{{ $c->email }}</td>
-                  <td>{{ $c->adresse }}</td>
-                  <td>{{ $c->telephone }}</td>
+                  <td>{{ $c->categorie->nom }}</td>
                   <td class="actions-cell">
                   <div class="buttons right nowrap">
-                      <a class="button small green --jb-modal" href="/clients/updateForm/{{$c->id}}">
+                      <a class="button small green --jb-modal" href="/produits/updateForm/{{$c->id}}">
                       <span class="icon"><i class="mdi mdi-eye"></i></span>
                       </a>
                   </div>
@@ -329,6 +380,51 @@
               @endforeach
             </tbody>
           </table>
+          @else
+
+          <p class="card-header-title">
+            <span class="icon"><i class="mdi mdi-cart"></i></span>
+            Commandes
+          </p>
+          <a href="#" class="card-header-icon">
+            <span class="icon"><i class="mdi mdi-reload"></i></span>
+          </a>
+        </header>
+        <div class="card-content">
+          <table>
+              <thead>
+              <tr>
+                <th></th>
+                <th>#</th>
+                <th>Client</th>
+                <th>Date</th>
+                <th>Statut</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+                @foreach($commandes as $c)
+                <tr>
+                    <td></td>
+                    <td>{{ $c->id }}</td>
+                    <td>{{ $c->client->nom }}</td>
+                    <td>{{ $c->date_commande }}</td>
+                    <td>{{ $c->statut }}</td>
+                    <td class="actions-cell">
+                    <div class="buttons right nowrap">
+                        <a class="button small green --jb-modal" href="/commandes">
+                        <span class="icon"><i class="mdi mdi-eye"></i></span>
+                        </a>
+                    </div>
+                    </td>
+                </tr>
+                @endforeach
+              </tbody>
+            </table>
+
+            @endif
+
+
         <div class="table-pagination">
           <div class="flex items-center justify-between">
             <div class="buttons">
@@ -341,6 +437,7 @@
         </div>
       </div>
     </div>
+
   </section>
 
 <div id="sample-modal" class="modal">

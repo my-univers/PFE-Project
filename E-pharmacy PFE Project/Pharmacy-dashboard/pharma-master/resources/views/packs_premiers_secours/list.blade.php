@@ -263,7 +263,6 @@
                     <tbody>
                         @foreach ($list_packs as $p)
                             <tr>
-                                <td></td>
                                 <td scope="row">{{ $p->id }}</td>
                                 <td>{{ $p->pack->nom }}</td>                                
                                 <td>{{ $p->pack->prix }} DH</td>
@@ -313,6 +312,7 @@
                 <p>Êtes-vous sûr de vouloir supprimer cet élément ?</p>
                 <p> Cette action est irréversible.</p>
             </section>
+            
             <footer class="modal-card-foot">
                 <button class="button --jb-modal-close">Annuler</button>
                 <script>

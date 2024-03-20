@@ -41,7 +41,7 @@
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
-          <span class="menu-item-label">Medecins</span>
+          <span class="menu-item-label">Médecins</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
@@ -92,7 +92,7 @@
           </ul>
         </li>
       <li>
-      <li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
           <span class="menu-item-label">Médicaments</span>
@@ -110,8 +110,8 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li>
+      </li> --}}
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-needle"></i></span>
           <span class="menu-item-label">Compléments</span>
@@ -129,8 +129,8 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li>
+      </li> --}}
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Premiers Secours</span>
@@ -148,7 +148,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-cart"></i></span>
@@ -187,7 +187,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Packs Premiers Secours</span>
@@ -205,7 +205,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
     </ul>
     <p class="menu-label">A Propos</p>
     <ul class="menu-list">
@@ -282,8 +282,11 @@
                 </div>
                 </td>
             </tr>
+
+           
             @endforeach
           </tbody>
+
         </table>
         <div class="table-pagination">
           <div class="flex items-center justify-between">
@@ -299,23 +302,22 @@
     </div>
   </section>
 
-<div id="sample-modal" class="modal">
-  <div class="modal-background --jb-modal-close"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Confirmer la Suppression</p>
-    </header>
-    <section class="modal-card-body">
-      <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
-      <p>Cette action est irréversible</p>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button --jb-modal-close">Annuler</button>
-      <a class="button red --jb-modal-close" href="/clients/delete/{{$c->id}}">Confirmer</a>
-    </footer>
+  <div id="sample-modal" class="modal">
+    <div class="modal-background --jb-modal-close"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Confirmer la Suppression</p>
+      </header>
+      <section class="modal-card-body">
+        <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
+        <p>Cette action est irréversible</p>
+      </section>
+      <footer class="modal-card-foot">
+        <button class="button --jb-modal-close">Annuler</button>
+        <a class="button red --jb-modal-close" href="/clients/delete/{{$c->id}}">Confirmer</a>
+      </footer>
+    </div>
   </div>
-</div>
-
 {{-- <div id="sample-modal-2" class="modal">
   <div class="modal-background --jb-modal-close"></div>
   <div class="modal-card">

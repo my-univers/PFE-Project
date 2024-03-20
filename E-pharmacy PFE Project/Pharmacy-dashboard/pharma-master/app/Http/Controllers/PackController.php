@@ -28,6 +28,7 @@ class PackController extends Controller
         $pack->qte_en_stock = $req->qte_en_stock;
         $pack->prix = $req->prix;
         $pack->description = $req->description;
+        $pack->composition = $req->composition;
 
         // Traitement de l'image si elle est présente
         if ($req->hasFile('image')) {
@@ -63,6 +64,7 @@ class PackController extends Controller
         $c->description = $request->description;
         $c->prix = $request->prix;
         $c->qte_en_stock = $request->qte_stock;
+        $c->composition = $request->composition;
 
         // Traitement de la nouvelle image si elle est présente
         if ($request->hasFile('image')) {
@@ -70,10 +72,10 @@ class PackController extends Controller
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('img'), $imageName);
 
-            // Suppression de l'ancienne image si elle existe
-            if ($c->image_path) {
-                unlink(public_path($c->image_path));
-            }
+             // Suppression de l'ancienne image si elle existe
+            // if ($c->image_path) {
+            //     unlink(public_path($c->image_path));
+            // }
 
             $c->image_path = 'img/' . $imageName;
         }

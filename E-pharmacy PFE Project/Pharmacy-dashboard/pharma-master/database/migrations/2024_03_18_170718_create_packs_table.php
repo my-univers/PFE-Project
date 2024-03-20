@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nom');
             $table->text('description');
             $table->decimal('prix', 8, 2);
+            $table->text('composition');
             $table->integer('qte_en_stock');
             $table->string('image_path', 2500);
             $table->timestamps();

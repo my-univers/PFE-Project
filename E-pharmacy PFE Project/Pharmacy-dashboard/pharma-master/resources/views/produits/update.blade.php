@@ -41,7 +41,7 @@
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
-          <span class="menu-item-label">Medecins</span>
+          <span class="menu-item-label">Médecins</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
@@ -92,7 +92,7 @@
           </ul>
         </li>
       <li>
-      <li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
           <span class="menu-item-label">Médicaments</span>
@@ -129,8 +129,8 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li>
+      </li> --}}
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Premiers Secours</span>
@@ -148,7 +148,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-cart"></i></span>
@@ -187,7 +187,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Packs Premiers Secours</span>
@@ -205,7 +205,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
     </ul>
     <p class="menu-label">A Propos</p>
     <ul class="menu-list">
@@ -327,7 +327,7 @@
                 </div>
               </div>
             </div>
-            <hr>
+            <hr> 
             <div class="field grouped">
               <div class="control">
                 <button type="submit" class="button green">
@@ -335,35 +335,28 @@
                 </button>
               </div>
               <div class="control">
-                <button type="reset" class="button red" onclick="resetForm()">
+                <button type="reset" class="button red" onclick="annuler()">
                   Annuler
                 </button>
                 <script>
-                  function resetForm() {
-                      document.getElementById('nom').value = "";
-                      document.getElementById('description').value = "";
-                      document.getElementById('prix').value = "";
-                      document.getElementById('qte_en_stock').value = "";
-                      document.getElementById('image').value = "";
-                      document.getElementById('preview').style.display = "none";
-                      document.getElementById('image-name').innerText = "";
-                      document.getElementById('ordonnance').checked = false;
-                  }
+                  function annuler() {
+                              window.location.href = '/produits/list';
+                  };
 
                   function displayImagePreview() {
-                      var input = document.getElementById('image');
-                      var preview = document.getElementById('preview');
-                      var imageName = document.getElementById('image-name');
-                      if (input.files && input.files[0]) {
-                          var reader = new FileReader();
-                          reader.onload = function (e) {
-                              preview.src = e.target.result;
-                              preview.style.display = "block"; // Ajout de cette ligne pour afficher l'aperçu de l'image
-                          }
-                          reader.readAsDataURL(input.files[0]);
-                          imageName.innerText = input.files[0].name;
-                      }
-                  }
+                                var input = document.getElementById('image');
+                                var preview = document.getElementById('preview');
+                                var imageName = document.getElementById('image-name');
+                                if (input.files && input.files[0]) {
+                                    var reader = new FileReader();
+                                    reader.onload = function (e) {
+                                        preview.src = e.target.result;
+                                        preview.style.display = "block"; // Ajout de cette ligne pour afficher l'aperçu de l'image
+                                    }
+                                    reader.readAsDataURL(input.files[0]);
+                                    imageName.innerText = input.files[0].name;
+                                }
+                           }
                 </script>
               </div>
             </div>

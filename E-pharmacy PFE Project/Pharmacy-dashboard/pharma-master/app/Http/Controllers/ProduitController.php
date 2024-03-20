@@ -57,19 +57,19 @@ class ProduitController extends Controller
         $p->ordonnance = $request->ordonnance;
         $p->categorie_id = $request->categorie;
 
-        // Traitement de la nouvelle image si elle est présente
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('img'), $imageName);
 
-            // Suppression de l'ancienne image si elle existe
-            if ($p->image_path) {
-                unlink(public_path($p->image_path));
-            }
+            // // Suppression de l'ancienne image si elle existe
+            // if ($p->image_path) {
+            //     unlink(public_path($p->image_path));
+            // }
 
             $p->image_path = 'img/' . $imageName;
         }
+
 
         $p->save();
 
@@ -77,12 +77,13 @@ class ProduitController extends Controller
     }
 
     public function deleteProduit($id) {
+
         $p = Produit::findOrFail($id);
 
-        // Suppression de l'image associée si elle existe
-        if ($p->image_path) {
-            unlink(public_path($p->image_path));
-        }
+         //\\    Suppression de l'image associée si elle existe
+        //  \\     if ($p->image_path) {
+       //    \\    unlink(public_path($p->image_path));
+      //      \\   }
 
         $p->delete();
 

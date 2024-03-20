@@ -41,7 +41,7 @@
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
-          <span class="menu-item-label">Medecins</span>
+          <span class="menu-item-label">Médecins</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
@@ -91,8 +91,7 @@
             </li>
           </ul>
         </li>
-      <li>
-      <li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
           <span class="menu-item-label">Médicaments</span>
@@ -129,8 +128,8 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li>
+      </li> --}}
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Premiers Secours</span>
@@ -148,7 +147,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
@@ -187,7 +186,7 @@
           </li>
         </ul>
       </li>
-      <li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Packs Premiers Secours</span>
@@ -205,7 +204,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
     </ul>
     <p class="menu-label">A Propos</p>
     <ul class="menu-list">
@@ -274,7 +273,7 @@
                   <div class="field-body">
                     <div class="field">
                       <div class="control icons-left">
-                        <input class="input" type="number" placeholder="Prix" name="prix" value="{{$pack->prix}}">
+                        <input class="input" type="text" placeholder="Prix" name="prix" value="{{$pack->prix}}">
                         <span class="icon left"><span class="mdi mdi-cash"></span></span>
                       </div>
                     </div>
@@ -290,6 +289,12 @@
                         </div>
                       </div>
                     </div>
+                  </div>
+
+                  <div class="field">
+                    <div class="control">
+                      <textarea class="textarea" placeholder="Composition" name="composition">{{$pack->composition}}</textarea>
+                  </div>
                   </div>
 
                 <div class="field">
@@ -321,7 +326,7 @@
                       </button>
                       <script>
                         function annuler() {
-                              window.location.href = '/packs/list';
+                              window.location.href = '/packs';
                         };
 
                         function displayImagePreview() {
