@@ -22,7 +22,7 @@ class ProduitController extends Controller
         // Récupérer toutes les catégories pour le menu déroulant de filtrage
         $categories = Categorie::all();
 
-        return view('produits.list', ['produits' => $produits, 'categories' => $categories]);
+        return view('produits.list', ['produits' => $produits, 'categories' => $categories, 'categorieId' => $categorieId]);
     }
 
     public function addProduitForm() {
