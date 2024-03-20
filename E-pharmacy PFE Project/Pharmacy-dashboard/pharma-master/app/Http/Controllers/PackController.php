@@ -87,6 +87,11 @@ class PackController extends Controller
 
     public function deletePack($id) {
         $c = Pack::find($id);
+
+        if ($c->image_path) {
+            unlink(public_path($c->image_path));
+        }
+
         $c->delete();
         return redirect('/packs');
     }
