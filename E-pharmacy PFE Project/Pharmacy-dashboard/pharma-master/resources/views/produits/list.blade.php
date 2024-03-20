@@ -278,12 +278,30 @@
                     <a class="button small green --jb-modal" href="/produits/updateForm/{{$p->id}}">
                     <span class="icon"><i class="mdi mdi-pencil"></i></span>
                     </a>
-                    <button class="button small red --jb-modal" data-target="sample-modal" type="button">
+                    <button class="button small red --jb-modal" data-target="sample-modal-{{$p->id}}" type="button">
                     <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                     </button>
                 </div>
                 </td>
             </tr>
+
+            <div id="sample-modal-{{$p->id}}" class="modal">
+              <div class="modal-background --jb-modal-close"></div>
+              <div class="modal-card">
+                <header class="modal-card-head">
+                  <p class="modal-card-title">Confirmer la Suppression</p>
+                </header>
+                <section class="modal-card-body">
+                  <p>Êtes-vous sûr de vouloir supprimer ce produit ?</p>
+                  <p>Cette action est irréversible</p>
+                </section>
+                <footer class="modal-card-foot">
+                  <button class="button --jb-modal-close">Annuler</button>
+                  <a class="button red --jb-modal-close" href="/produits/delete/{{$p->id}}">Confirmer</a>
+                </footer>
+              </div>
+            </div>
+            
             @endforeach
           </tbody>
         </table>
@@ -300,39 +318,4 @@
       </div>
     </div>
   </section>
-
-{{-- <div id="sample-modal-2" class="modal">
-  <div class="modal-background --jb-modal-close"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Sample modal</p>
-    </header>
-    <section class="modal-card-body">
-      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-      <p>This is sample modal</p>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button --jb-modal-close">Cancel</button>
-      <button class="button blue --jb-modal-close">Confirm</button>
-    </footer>
-  </div>
-</div> --}}
-
-<div id="sample-modal" class="modal">
-  <div class="modal-background --jb-modal-close"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Confirmer la Suppression</p>
-    </header>
-    <section class="modal-card-body">
-      <p>Êtes-vous sûr de vouloir supprimer ce produit ?</p>
-      <p>Cette action est irréversible</p>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button --jb-modal-close">Annuler</button>
-      <a class="button red --jb-modal-close" href="/produits/delete/{{$p->id}}">Confirmer</a>
-    </footer>
-  </div>
-</div>
-
 @endsection

@@ -281,12 +281,35 @@
                           <a class="button small green --jb-modal" href="/packs/updateForm/{{$pack->id}}">
                           <span class="icon"><i class="mdi mdi-pencil"></i></span>
                           </a>
-                          <button class="button small red --jb-modal" data-target="sample-modal" type="button">
+                          <button class="button small red --jb-modal" data-target="sample-modal-{{$pack->id}}" type="button">
                           <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                           </button>
                       </div>
                       </td>
                 </tr>
+
+                <div id="sample-modal-{{$pack->id}}" class="modal">
+                  <div class="modal-background --jb-modal-close"></div>
+                  <div class="modal-card">
+                    <header class="modal-card-head">
+                      <p class="modal-card-title">Confirmation de Suppression</p>
+                    </header>
+                    <section class="modal-card-body">
+                      <p>Êtes-vous sûr de vouloir supprimer cet élément ?</p>
+                      <p> Cette action est irréversible.</p>
+                    </section>
+                    <footer class="modal-card-foot">
+                      <button class="button --jb-modal-close">Annuler</button>
+                      <script>
+                        function annuler() {
+                            window.location.href = '/packs';
+                        };
+                    </script>
+                      <a class="button red --jb-modal-close" href="/packs/delete/{{$pack->id}}">Confirmer</a>
+                    </footer>
+                  </div>
+                </div>
+
                 @endforeach
           </table>
           </tbody>
@@ -306,26 +329,4 @@
     </div>
   </section>
 
-
-<div id="sample-modal" class="modal">
-  <div class="modal-background --jb-modal-close"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Confirmation de Suppression</p>
-    </header>
-    <section class="modal-card-body">
-      <p>Êtes-vous sûr de vouloir supprimer cet élément ?</p>
-      <p> Cette action est irréversible.</p>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button --jb-modal-close">Annuler</button>
-      <script>
-        function annuler() {
-            window.location.href = '/packs';
-        };
-    </script>
-      <a class="button red --jb-modal-close" href="/packs/delete/{{$pack->id}}">Confirmer</a>
-    </footer>
-  </div>
-</div>
 @endsection
