@@ -187,6 +187,16 @@ Route::get('/packs_premiers_secours/delete/{id}', [PackPremiersSecoursController
 
 Route::get('/commandes', [CommandeController::class, 'showList']);
 
+Route::get('/commandes/details/{id}', [CommandeController::class, 'showDetails']);
+
+Route::get('/commandes/valider/{id}', [CommandeController::class, 'validerCommande']);
+
+Route::get('/commandes/form', [CommandeController::class, 'addCommandeForm']);
+
+Route::post('/commandes/add', [CommandeController::class, 'addCommande']);
+
+Route::get('/commandes/cancel/{id}', [CommandeController::class, 'annulerCommande']);
+
 
 /****************Admin Profile****************/
 
