@@ -255,6 +255,7 @@
                     <div class="control">
                         <div class="select">
                         <select name="categorie">
+                            <option value="">Tous</option>
                             @foreach ($categories as $c)
                             <option value="{{ $c->id }}">{{ $c->nom }}</option>
                             @endforeach
@@ -277,7 +278,7 @@
           <tr>
             <th></th>
             <th>#</th>
-            <th>Nom</th>
+            <th style="">Nom</th>
             <th style="width: 300px">Description</th>
             <th>Catégotie</th>
             <th>Prix</th>
@@ -300,7 +301,7 @@
                     <a class="button small green --jb-modal" href="/produits/updateForm/{{$p->id}}">
                     <span class="icon"><i class="mdi mdi-pencil"></i></span>
                     </a>
-                    <button class="button small red --jb-modal" data-target="sample-modal" type="button">
+                    <button class="button small red --jb-modal" data-target="sample-modal-{{$p->id}}" type="button">
                     <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                     </button>
 
@@ -323,6 +324,24 @@
                 </div>
                 </td>
             </tr>
+
+            <div id="sample-modal-{{$p->id}}" class="modal">
+              <div class="modal-background --jb-modal-close"></div>
+              <div class="modal-card">
+                <header class="modal-card-head">
+                  <p class="modal-card-title">Confirmer la Suppression</p>
+                </header>
+                <section class="modal-card-body">
+                  <p>Êtes-vous sûr de vouloir supprimer ce produit ?</p>
+                  <p>Cette action est irréversible</p>
+                </section>
+                <footer class="modal-card-foot">
+                  <button class="button --jb-modal-close">Annuler</button>
+                  <a class="button red --jb-modal-close" href="/produits/delete/{{$p->id}}">Confirmer</a>
+                </footer>
+              </div>
+            </div>
+
             @endforeach
           </tbody>
         </table>
