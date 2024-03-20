@@ -233,126 +233,100 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-        Liste des Commandes
+        Détails de la Commande {{ $commande->id }}
     </h1>
   </div>
 </section>
 
-  <section class="section main-section">
-    <div class="card has-table">
+<section class="section main-section">
+    <div class="card mb-6">
       <header class="card-header">
         <p class="card-header-title">
           <span class="icon"><i class="mdi mdi-cart"></i></span>
-          Commandes
+          Commande
         </p>
-        <a href="#" class="card-header-icon">
-          <span class="icon"><i class="mdi mdi-reload"></i></span>
-        </a>
       </header>
       <div class="card-content">
+        <button class="button blue" style="width: 210px" title="Détails de Base de la Commande">
+            <span class="icon"><i class="mdi mdi-shopping"></i></span>&nbsp; Détails de Base
+        </button>
+        <br><br>
         <table>
-          <thead>
-          <tr>
-            <th></th>
-            <th>#</th>
-            <th>Client</th>
-            <th>Date Commande</th>
-            <th>Adresse</th>
-            <th>Statut</th>
-            <th>Total</th>
-            <th></th>
-          </tr>
-          </thead>
-          <tbody>
-            @foreach($commandes as $c)
-            <tr>
-                <td></td>
-                <td>{{ $c->id }}</td>
-                <td>{{ $c->client->nom }}</td>
-                <td>{{ $c->date_commande }}</td>
-                <td>{{ $c->client->adresse }}</td>
-                <td
-                    @if ($c->statut == "En attente")
-                        style="color:orange;"
-                    @elseif( $c->statut == "Validée")
-                        style="color:green;"
-                    @elseif( $c->statut == "Annulée")
-                        style="color:red;"
-                    @endif
-                >
-                    {{ $c->statut }}
-                </td>
-                <td>{{ $c->total }} DH</td>
-                <td class="actions-cell">
-                    <div class="buttons right nowrap">
-                        @if ($c->statut == "En attente")
-                        <a class="button small green --jb-modal" title="Valider la commande" href="/commandes/valider/{{$c->id}}">
-                            <span class="icon"><i class="mdi mdi-check-bold"></i></span>
-                        </a>
-                        @endif
-
-                        <a class="button small blue --jb-modal" href="/commandes/details/{{$c->id}}">
-                        <span class="icon"><i class="mdi mdi-eye"></i></span>
-                        </a>
-
-                        <button class="button small red" onclick="confirmerAnnulation({{ $c->id }})">
-                            <span class="icon"><i class="mdi mdi-close"></i></span>
-                        </button>
-
-                        {{-- <div id="sample-modal" class="modal">
-                            <div class="modal-background --jb-modal-close"></div>
-                            <div class="modal-card">
-                              <header class="modal-card-head">
-                                <p class="modal-card-title">Confirmer l'annulation</p>
-                              </header>
-                              <section class="modal-card-body">
-                                <p>Êtes-vous sûr de vouloir annuler cette commande ?</p>
-                                <p>Cette action est irréversible</p>
-                              </section>
-                              <footer class="modal-card-foot">
-                                <button class="button --jb-modal-close">Annuler</button>
-                                <a class="button red --jb-modal-close" href="/commandes/cancel/{{$c->id}}">Confirmer</a>
-                              </footer>
-                            </div>
-                        </div> --}}
-                        <script>
-                            function confirmerAnnulation(commandeId) {
-                                if (confirm("Êtes-vous sûr de vouloir annuler cette commande ?")) {
-                                    // Si l'utilisateur confirme, rediriger vers l'URL d'annulation de la commande
-                                    window.location.href = '/commandes/cancel/' + commandeId;
-                                }
-                            }
-                        </script>
-                    </div>
-                </td>
-            </tr>
-            @endforeach
-          </tbody>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Date de Commande</th>
+                    <th>Statut de la Commande</th>
+                    <th>Total de la Commande</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td>{{ $commande->date_commande }}</td>
+                    <td> {{ $commande->statut }}</td>
+                    <td>{{ $totalCommande }} DH</td>
+                </tr>
+            </tbody>
         </table>
-        <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
-            </div>
-            <small>Page 1 of 3</small>
-          </div>
-        </div>
+
+        <br>
+        <br>
+        <button class="button red" style="width: 210px" title="Détails du Client">
+            <span class="icon"><i class="mdi mdi-account"></i></span>&nbsp; Client
+        </button>
+        <br><br>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Nom</th>
+                    <th>Adresse</th>
+                    <th>Téléphone</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td>{{ $client->nom }}</td>
+                    <td>{{ $client->adresse }}</td>
+                    <td>{{ $client->telephone }}</td>
+                    <td>{{ $client->email }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <br>
+        <br>
+        <button class="button green">
+            <span class="icon" title="Détails des Produits Commandés"><i class="mdi mdi-pill"></i></span>
+            &nbsp; Produits Commandés
+        </button>
+        <br><br>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Prix unitaire</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($produits as $produit)
+                <tr>
+                    <td></td>
+                    <td>{{ $produit->nom }}</td>
+                    <td>{{ $produit->pivot->quantite }}</td>
+                    <td>{{ $produit->prix }} DH</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
       </div>
     </div>
   </section>
-
-  {{-- <script>
-    document.querySelectorAll('.button.red.--jb-modal-close').forEach(button => {
-    button.addEventListener('click', function(event) {
-            event.preventDefault();
-            const commandeId = this.getAttribute('data-commande-id');
-            const confirmationUrl = `/commandes/cancel/${commandeId}`;
-            window.location.href = confirmationUrl;
-        });
-    });
-  </script> --}}
 
 {{-- <div id="sample-modal-2" class="modal">
   <div class="modal-background --jb-modal-close"></div>
@@ -372,5 +346,25 @@
 </div> --}}
 
 </div>
+
+<!-- Scripts below are for demo only -->
+<script type="text/javascript" src="../../js/main.min.js?v=1628755089081"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script type="text/javascript" src="../../js/chart.sample.min.js"></script>
+
+
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '658339141622648');
+  fbq('track', 'PageView');
+</script>
 
 @endsection

@@ -233,126 +233,125 @@
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
-        Liste des Commandes
+        Ajouter une Commande
     </h1>
   </div>
 </section>
 
-  <section class="section main-section">
-    <div class="card has-table">
+<section class="section main-section">
+    <div class="card mb-6">
       <header class="card-header">
         <p class="card-header-title">
           <span class="icon"><i class="mdi mdi-cart"></i></span>
-          Commandes
+          Commande
         </p>
-        <a href="#" class="card-header-icon">
-          <span class="icon"><i class="mdi mdi-reload"></i></span>
-        </a>
       </header>
       <div class="card-content">
-        <table>
-          <thead>
-          <tr>
-            <th></th>
-            <th>#</th>
-            <th>Client</th>
-            <th>Date Commande</th>
-            <th>Adresse</th>
-            <th>Statut</th>
-            <th>Total</th>
-            <th></th>
-          </tr>
-          </thead>
-          <tbody>
-            @foreach($commandes as $c)
-            <tr>
-                <td></td>
-                <td>{{ $c->id }}</td>
-                <td>{{ $c->client->nom }}</td>
-                <td>{{ $c->date_commande }}</td>
-                <td>{{ $c->client->adresse }}</td>
-                <td
-                    @if ($c->statut == "En attente")
-                        style="color:orange;"
-                    @elseif( $c->statut == "Validée")
-                        style="color:green;"
-                    @elseif( $c->statut == "Annulée")
-                        style="color:red;"
-                    @endif
-                >
-                    {{ $c->statut }}
-                </td>
-                <td>{{ $c->total }} DH</td>
-                <td class="actions-cell">
-                    <div class="buttons right nowrap">
-                        @if ($c->statut == "En attente")
-                        <a class="button small green --jb-modal" title="Valider la commande" href="/commandes/valider/{{$c->id}}">
-                            <span class="icon"><i class="mdi mdi-check-bold"></i></span>
-                        </a>
-                        @endif
-
-                        <a class="button small blue --jb-modal" href="/commandes/details/{{$c->id}}">
-                        <span class="icon"><i class="mdi mdi-eye"></i></span>
-                        </a>
-
-                        <button class="button small red" onclick="confirmerAnnulation({{ $c->id }})">
-                            <span class="icon"><i class="mdi mdi-close"></i></span>
-                        </button>
-
-                        {{-- <div id="sample-modal" class="modal">
-                            <div class="modal-background --jb-modal-close"></div>
-                            <div class="modal-card">
-                              <header class="modal-card-head">
-                                <p class="modal-card-title">Confirmer l'annulation</p>
-                              </header>
-                              <section class="modal-card-body">
-                                <p>Êtes-vous sûr de vouloir annuler cette commande ?</p>
-                                <p>Cette action est irréversible</p>
-                              </section>
-                              <footer class="modal-card-foot">
-                                <button class="button --jb-modal-close">Annuler</button>
-                                <a class="button red --jb-modal-close" href="/commandes/cancel/{{$c->id}}">Confirmer</a>
-                              </footer>
-                            </div>
-                        </div> --}}
-                        <script>
-                            function confirmerAnnulation(commandeId) {
-                                if (confirm("Êtes-vous sûr de vouloir annuler cette commande ?")) {
-                                    // Si l'utilisateur confirme, rediriger vers l'URL d'annulation de la commande
-                                    window.location.href = '/commandes/cancel/' + commandeId;
-                                }
-                            }
-                        </script>
+        <form method="post" action="/commandes/add">
+            @csrf
+            <div class="field">
+                <button type="button" class="button blue" style="width: 260px" title="Client associé à la Commande">
+                    <span class="icon"><i class="mdi mdi-account"></i></span>&nbsp; Client Concerné
+                </button>
+                <br><br>
+                <table class="is-striped">
+                    <thead>
+                    <tr>
+                        <th style="width: 20%">#</th>
+                        <th style="width: 80%">Nom du Client</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($clients as $c)
+                        <tr>
+                            <td class="checkbox-cell">
+                                <label class="checkbox">
+                                <input type="checkbox" name="client_id" value="{{ $c->id }}">
+                                <span class="check"></span>
+                                </label>
+                            </td>
+                            <td>{{ $c->nom }}</td>
+                            <td></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="table-pagination">
+                    <div class="flex items-center justify-between">
+                    <div class="buttons">
+                        <button type="button" class="button active">1</button>
+                        <button type="button" class="button">2</button>
+                        <button type="button" class="button">3</button>
                     </div>
-                </td>
-            </tr>
-            @endforeach
-          </tbody>
-        </table>
-        <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
+                    <small>Page 1 of 3</small>
+                    </div>
+                </div>
             </div>
-            <small>Page 1 of 3</small>
-          </div>
-        </div>
+            <hr>
+            <div class="field">
+                <button type="button" class="button green" style="width: 260px" title="Produit(s)">
+                    <span class="icon"><i class="mdi mdi-shopping"></i></span>&nbsp; Produits à Commander
+                </button>
+                <br><br>
+                <table class="is-striped">
+                    <thead>
+                    <tr>
+                        <th style="width: 100px">#</th>
+                        <th>Nom du Produit</th>
+                        <th>Prix</th>
+                        <th style="width: 60px">Quantité</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($produits as $produit)
+                        <tr>
+                            <td class="checkbox-cell">
+                                <label class="checkbox">
+                                <input type="checkbox" name="produit_id[]" value="{{ $produit->id }}">
+                                <span class="check"></span>
+                                </label>
+                            </td>
+                            <td>{{ $produit->nom }}</td>
+                            <td>{{ $produit->prix }} DH</td>
+                            <td>
+                                <input class="input is-small" type="number" name="quantite[{{ $produit->id }}]" value="1" min="1">
+                            </td>
+                            <td></td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                <div class="table-pagination">
+                    <div class="flex items-center justify-between">
+                    <div class="buttons">
+                        <button type="button" class="button active">1</button>
+                        <button type="button" class="button">2</button>
+                        <button type="button" class="button">3</button>
+                    </div>
+                    <small>Page 1 of 3</small>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="field grouped">
+                <div class="control">
+                    <button type="submit" class="button green" onclick="ajouterChampQuantite()">
+                        Ajouter
+                    </button>
+                </div>
+                <div class="control">
+                    <button type="reset" class="button red" onclick="reset()">
+                        Annuler
+                    </button>
+                </div>
+            </div>
+        </form>
+        </script>
       </div>
     </div>
-  </section>
-
-  {{-- <script>
-    document.querySelectorAll('.button.red.--jb-modal-close').forEach(button => {
-    button.addEventListener('click', function(event) {
-            event.preventDefault();
-            const commandeId = this.getAttribute('data-commande-id');
-            const confirmationUrl = `/commandes/cancel/${commandeId}`;
-            window.location.href = confirmationUrl;
-        });
-    });
-  </script> --}}
+</section>
 
 {{-- <div id="sample-modal-2" class="modal">
   <div class="modal-background --jb-modal-close"></div>
