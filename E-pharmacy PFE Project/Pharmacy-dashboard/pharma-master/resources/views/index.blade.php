@@ -397,7 +397,7 @@
                 <th></th>
                 <th>#</th>
                 <th>Client</th>
-                <th>Date</th>
+                <th>Date de la Commande</th>
                 <th>Statut</th>
                 <th></th>
               </tr>
