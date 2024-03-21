@@ -198,11 +198,11 @@
               <span>Liste</span>
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a href="/packs_produits/form">
               <span>Ajout</span>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </li>
     </ul>
@@ -289,12 +289,6 @@
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                  <div class="field">
-                    <div class="control">
-                      <textarea class="textarea" placeholder="Composition" name="composition">{{$pack->composition}}</textarea>
-                  </div>
                   </div>
 
                 <div class="field">

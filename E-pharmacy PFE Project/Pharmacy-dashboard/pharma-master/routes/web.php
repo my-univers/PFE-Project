@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\Auth\RegisteredAdminController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedAdminController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommandeController;
+use App\Http\Controllers\PackProduitController;
 use App\Http\Controllers\ProduitController;
 use PharIo\Manifest\AuthorElement;
 
@@ -103,52 +104,6 @@ Route::post('/medecins/update/{id}', [MedecinController::class, 'updateMedecin']
 Route::get('/medecins/delete/{id}', [MedecinController::class, 'deleteMedecin']);
 
 
-/******************Medicaments****************/
-
-Route::get('/medicaments/list', [MedicamentController::class, 'showMedicsList']);
-
-Route::get('/medicaments/addForm', [MedicamentController::class, 'addMedicForm']);
-
-Route::post('/medicaments/add', [MedicamentController::class, 'addMedicament']);
-
-Route::get('/medicaments/updateForm/{id}', [MedicamentController::class, 'updateMedicForm']);
-
-Route::post('/medicaments/update/{id}', [MedicamentController::class, 'updateMedicament']);
-
-Route::get('/medicaments/delete/{id}', [MedicamentController::class, 'deleteMedicament']);
-
-
-/***************Complements Alimentaires***************/
-
-Route::get('/complements', [ComplementAlimentaireController::class, 'showComplementsList'])->name('complements.list');
-
-Route::get('/complements/form', [ComplementAlimentaireController::class, 'showForm'])->name('complements.form');
-
-Route::post('/complements/add', [ComplementAlimentaireController::class, 'addComplement']);
-
-Route::get('/complements/updateForm/{id}', [ComplementAlimentaireController::class, 'showUpdateForm']);
-
-Route::post('/complements/update/{id}', [ComplementAlimentaireController::class, 'updateComplement']);
-
-Route::get('/complements/delete/{id}', [ComplementAlimentaireController::class, 'deleteComplement']);
-
-
-/***************Premiers Secours***************/
-
-Route::get('/premiers_secours', [PremierSecoursController::class, 'showList']);
-
-Route::get('/premiers_secours/form', [PremierSecoursController::class, 'showForm']);
-
-Route::post('/premiers_secours/add', [PremierSecoursController::class, 'addPremier']);
-Route::post('/premiers_secours/add', [PremierSecoursController::class, 'addPremier']);
-
-Route::get('/premiers_secours/updateForm/{id}', [PremierSecoursController::class, 'showUpdateForm']);
-
-Route::post('/premiers_secours/update/{id}', [PremierSecoursController::class, 'updatePremier']);
-
-Route::get('/premiers_secours/delete/{id}', [PremierSecoursController::class, 'deletePremier']);
-
-
 /*****************Packs******************/
 
 Route::get('/packs', [PackController::class, 'showList']);
@@ -162,25 +117,6 @@ Route::get('/packs/updateForm/{id}', [PackController::class, 'showUpdateForm']);
 Route::post('/packs/update/{id}', [PackController::class, 'updatePack']);
 
 Route::get('/packs/delete/{id}', [PackController::class, 'deletePack']);
-
-
-/*****************Packs Premiers Secours******************/
-
-Route::get('/packs_premiers_secours', [PackPremiersSecoursController::class, 'showList']);
-
-Route::get('/packs_premiers_secours/form', [PackPremiersSecoursController::class, 'showForm']);
-
-Route::get('/packs_premiers_secours/add', [PackPremiersSecoursController::class, 'addPackPremierSecours']);
-
-Route::get('/packs_premiers_secours/addToPackForm/{id}', [PackPremiersSecoursController::class, 'showAddToPackForm']);
-
-Route::post('/packs_premiers_secours/addToPack/{id}', [PackPremiersSecoursController::class, 'AddToPack']);
-
-Route::get('/packs_premiers_secours/updateForm/{id}', [PackPremiersSecoursController::class, 'updateForm']);
-
-Route::post('/packs_premiers_secours/update/{id}', [PackPremiersSecoursController::class, 'updatePack']);
-
-Route::get('/packs_premiers_secours/delete/{id}', [PackPremiersSecoursController::class, 'deletePack']);
 
 
 /***************Commandes***************/
@@ -236,3 +172,100 @@ Route::post('/categories/update/{id}', [CategorieController::class, 'updateCateg
 
 Route::get('/categories/delete/{id}', [CategorieController::class,'deleteCategorie']);
 
+
+/*****************Packs Produits******************/
+
+Route::get('/packs_produits', [PackProduitController::class, 'showList']);
+
+Route::get('/packs_produits/updateForm/{id}', [PackProduitController::class, 'updateForm']);
+
+Route::post('/packs_produits/update/{id}', [PackProduitController::class, 'updatePackProduit']);
+
+Route::get('/packs_produits/delete/{id}', [PackProduitController::class, 'deletePackProduit']);
+
+Route::get('/packs_produits/details/{id}', [PackProduitController::class, 'showDetails']);
+
+Route::get('/packs_produits/addToPack/{produit_id}/{pack_id}', [PackProduitController::class, 'addToPack']);
+
+Route::get('/packs_produits/removeProduct/{pack_id}/{produit_id}', [PackProduitController::class, 'removeProduct'])->name('packs_produits.removeFromPack');
+
+
+// Route::get('/packs_produits/addToPackForm/{id}', [PackProduitController::class, 'showAddToPackForm']);
+
+// Route::post('/packs_premiers_secours/addToPack/{id}', [PackProduitController::class, 'AddToPack']);
+
+// Route::get('/packs_produits/form', [PackProduitController::class, 'showForm']);
+
+
+
+
+
+
+
+
+
+
+
+/*****************Packs Premiers Secours******************/
+
+Route::get('/packs_premiers_secours', [PackPremiersSecoursController::class, 'showList']);
+
+Route::get('/packs_premiers_secours/form', [PackPremiersSecoursController::class, 'showForm']);
+
+Route::get('/packs_premiers_secours/add', [PackPremiersSecoursController::class, 'addPackPremierSecours']);
+
+Route::get('/packs_premiers_secours/addToPackForm/{id}', [PackPremiersSecoursController::class, 'showAddToPackForm']);
+
+Route::post('/packs_premiers_secours/addToPack/{id}', [PackPremiersSecoursController::class, 'AddToPack']);
+
+Route::get('/packs_premiers_secours/updateForm/{id}', [PackPremiersSecoursController::class, 'updateForm']);
+
+Route::post('/packs_premiers_secours/update/{id}', [PackPremiersSecoursController::class, 'updatePack']);
+
+Route::get('/packs_premiers_secours/delete/{id}', [PackPremiersSecoursController::class, 'deletePack']);
+
+
+/******************Medicaments****************/
+
+Route::get('/medicaments/list', [MedicamentController::class, 'showMedicsList']);
+
+Route::get('/medicaments/addForm', [MedicamentController::class, 'addMedicForm']);
+
+Route::post('/medicaments/add', [MedicamentController::class, 'addMedicament']);
+
+Route::get('/medicaments/updateForm/{id}', [MedicamentController::class, 'updateMedicForm']);
+
+Route::post('/medicaments/update/{id}', [MedicamentController::class, 'updateMedicament']);
+
+Route::get('/medicaments/delete/{id}', [MedicamentController::class, 'deleteMedicament']);
+
+
+/***************Complements Alimentaires***************/
+
+Route::get('/complements', [ComplementAlimentaireController::class, 'showComplementsList'])->name('complements.list');
+
+Route::get('/complements/form', [ComplementAlimentaireController::class, 'showForm'])->name('complements.form');
+
+Route::post('/complements/add', [ComplementAlimentaireController::class, 'addComplement']);
+
+Route::get('/complements/updateForm/{id}', [ComplementAlimentaireController::class, 'showUpdateForm']);
+
+Route::post('/complements/update/{id}', [ComplementAlimentaireController::class, 'updateComplement']);
+
+Route::get('/complements/delete/{id}', [ComplementAlimentaireController::class, 'deleteComplement']);
+
+
+/***************Premiers Secours***************/
+
+Route::get('/premiers_secours', [PremierSecoursController::class, 'showList']);
+
+Route::get('/premiers_secours/form', [PremierSecoursController::class, 'showForm']);
+
+Route::post('/premiers_secours/add', [PremierSecoursController::class, 'addPremier']);
+Route::post('/premiers_secours/add', [PremierSecoursController::class, 'addPremier']);
+
+Route::get('/premiers_secours/updateForm/{id}', [PremierSecoursController::class, 'showUpdateForm']);
+
+Route::post('/premiers_secours/update/{id}', [PremierSecoursController::class, 'updatePremier']);
+
+Route::get('/premiers_secours/delete/{id}', [PremierSecoursController::class, 'deletePremier']);

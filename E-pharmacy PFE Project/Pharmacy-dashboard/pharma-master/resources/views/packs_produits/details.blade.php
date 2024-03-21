@@ -21,7 +21,7 @@
     <ul class="menu-list">
       <li>
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-account-group"></i></span>
+          <span class="icon"><i class="mdi mdi-account"></i></span>
           <span class="menu-item-label">Clients</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -41,7 +41,7 @@
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
-          <span class="menu-item-label">Medecins</span>
+          <span class="menu-item-label">Médecins</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
@@ -92,7 +92,7 @@
           </ul>
         </li>
       <li>
-      <li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
           <span class="menu-item-label">Médicaments</span>
@@ -129,8 +129,8 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li>
+      </li> --}}
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Premiers Secours</span>
@@ -148,7 +148,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-cart"></i></span>
@@ -190,17 +190,17 @@
       <li class="active">
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
-          <span class="menu-item-label">Packs Premiers Secours</span>
+          <span class="menu-item-label">Packs Produits</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
           <li>
-            <a href="/packs_premiers_secours">
+            <a href="/packs_produits">
               <span>Liste</span>
             </a>
           </li>
           <li>
-            <a href="/packs_premiers_secours/form">
+            <a href="/packs_produits/form">
               <span>Ajout</span>
             </a>
           </li>
@@ -221,108 +221,152 @@
 @endsection
 
 @section('content')
-    <section class="is-title-bar">
-        <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-            <ul>
-                <li>Admin</li>
-                <li>Packs Premiers Secours</li>
-            </ul>
-        </div>
-    </section>
+<section class="is-title-bar">
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+    <ul>
+      <li>Admin</li>
+      <li>Packs Produits </li>
+    </ul>
+  </div>
+</section>
 
-    <section class="is-hero-bar">
-        <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-            <h1 class="title">
-                Liste des Packs Premiers Secours
-            </h1>
-        </div>
-    </section>
+<section class="is-hero-bar">
+  <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+    <h1 class="title">
+        Détails de {{ $pack->nom }}
+    </h1>
+    <a class="button blue" href='/packs_produits'>
+      Retour
+    </a>
+  </div>
+</section>
 
-    <section class="section main-section">
-        <div class="card has-table">
-            <header class="card-header">
-                <p class="card-header-title">
-                    <span class="icon"><span class="mdi mdi-medical-bag"></span></span>
-                    Packs Premiers Secours
-                </p>
-                <a href="#" class="card-header-icon">
-                    <span class="icon"><i class="mdi mdi-reload"></i></span>
-                </a>
-            </header>
-            <div class="card-content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th scope="col">Nom</th>
-                            <th scope="col">Prix</th>
-                            <th></th>
-                        </tr>
-                    </thead>
+<section class="section main-section">
+    <div class="card mb-6">
+      <header class="card-header">
+        <p class="card-header-title">
+          <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+          Packs Produits
+        </p>
+      </header>
 
-                    <tbody>
-                        @foreach ($list_packs as $p)
-                            <tr>
-                                <td scope="row">{{ $p->id }}</td>
-                                <td>{{ $p->pack->nom }}</td>                                
-                                <td>{{ $p->pack->prix }} DH</td>
-                                <td class="actions-cell">
-                                    <div class="buttons right nowrap">
-                                        <a class="button small green --jb-modal"
-                                            href="/packs_premiers_secours/updateForm/{{ $p->id }}">
-                                            <span class="icon"><i class="mdi mdi-pencil"></i></span>
-                                        </a>
-                                        <button class="button small red --jb-modal" data-target="sample-modal"
-                                            type="button">
-                                            <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                                        </button>
-                                        <a class="button small blue "
-                                            href="/packs_premiers_secours/addToPackForm/{{ $p->id }}">
-                                            <span class="icon"><i class="mdi mdi-plus"></i></span>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+      <div class="card-content">
+        <button class="button blue" style="width: 210px" title="Détails de Base de Pack">
+            <span class="icon"><i class="mdi mdi-shopping"></i></span>&nbsp; Détails de Base
+        </button>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Nom</th>
+                    <th>Quantité</th>
+                    <th  style="width: 400px">Prix</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td>{{ $pack->nom }}</td>
+                    <td> {{ $pack->qte_en_stock }}</td>
+                    <td>{{ $totalPack }} DH</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <br>
 
-                <div class="table-pagination">
-                    <div class="flex items-center justify-between">
-                        <div class="buttons">
-                            <button type="button" class="button active">1</button>
-                            <button type="button" class="button">2</button>
-                            <button type="button" class="button">3</button>
-                        </div>
-                        <small>Page 1 of 3</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <div id="sample-modal" class="modal">
-        <div class="modal-background --jb-modal-close"></div>
-        <div class="modal-card">
-            <header class="modal-card-head">
-                <p class="modal-card-title">Confirmation de Suppression</p>
-            </header>
-            <section class="modal-card-body">
-                <p>Êtes-vous sûr de vouloir supprimer cet élément ?</p>
-                <p> Cette action est irréversible.</p>
-            </section>
-            
-            <footer class="modal-card-foot">
-                <button class="button --jb-modal-close">Annuler</button>
-                <script>
-                    function annuler() {
-                        window.location.href = '/packs_premiers_secours/list';
-                    };
-                </script>
-                <a class="button red --jb-modal-close" href="/packs_premiers_secours/delete/{{ $p->id }}">Confirmer</a>
-              </footer>
-        </div>
+        <button class="button green">
+            <span class="icon" title="Détails des Produits"><i class="mdi mdi-pill"></i></span>
+            &nbsp; Produits du Pack
+        </button>
+        <table class="is-striped">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Nom du Produit</th>
+                <th>Quantité</th>
+                <th>Prix</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach ($produits as $produit)
+                <tr>
+                    <td></td>
+                    <td>{{ $produit->nom }}</td>
+                    <td>{{ $produit->qte_en_stock}}</td>
+                    <td>{{ $produit->prix }} DH</td>
+                    <td>
+                      <a class="button small red" href="/packs_produits/removeProduct/{{$pack->id}}/{{$produit->id}}">
+                        <span class="icon"><i class="mdi mdi-close"></i></span>
+                      </a>
+                    </td>
+                    <td></td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <br>
+        <br>
+        <button class="button red">
+            <span class="icon" title="Détails des Produits"><i class="mdi mdi-plus"></i></span>
+            &nbsp; Produits à Ajouter
+        </button>
+        <table class="is-striped">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Nom du Produit</th>
+                <th>Quantité</th>
+                <th>Prix</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+                @foreach ($allProducts as $produit)
+                @if (!$produits->contains($produit))
+                <tr>
+                    <td></td>
+                    <td>{{ $produit->nom }}</td>
+                    <td>{{ $produit->qte_en_stock}}</td>
+                    <td>{{ $produit->prix }} DH</td>
+                    <td>
+                      <a class="button small blue" href="/packs_produits/addToPack/{{$produit->id}}/{{$pack->id}}">
+                        <span class="icon"><i class="mdi mdi-plus"></i></span>
+                      </a>
+                    </td>
+                    <td></td>
+                </tr>
+                @endif
+                @endforeach
+            </tbody>
+        </table>
+      </div>
     </div>
+  </section>
+
+</div>
+
+<!-- Scripts below are for demo only -->
+<script type="text/javascript" src="../../js/main.min.js?v=1628755089081"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script type="text/javascript" src="../../js/chart.sample.min.js"></script>
+
+
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '658339141622648');
+  fbq('track', 'PageView');
+</script>
 
 @endsection

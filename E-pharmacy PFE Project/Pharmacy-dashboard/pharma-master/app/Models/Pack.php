@@ -11,14 +11,15 @@ class Pack extends Model
 
     protected $fillable = ['nom', 'description', 'prix', 'qte_en_stock','image_path'];
 
-    public function packsPremiersSecours()
+    public function packsProduits()
     {
-        return $this->hasMany(PackPremierSecours::class, 'id_pack');
+        return $this->hasMany(PackProduit::class, 'pack_id');
     }
 
-    public function premiersSecours()
+
+    public function produits()
     {
-        return $this->belongsToMany(PremiersSecours::class, 'packs_premiers_secours');
+        return $this->belongsToMany(Produit::class, 'packs_produits','pack_id', 'produits_id');
     }
 
 } 

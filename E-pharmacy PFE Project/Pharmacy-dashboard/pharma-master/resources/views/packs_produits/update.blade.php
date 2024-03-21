@@ -20,7 +20,7 @@
             <ul class="menu-list">
                 <li>
                     <a class="dropdown">
-                        <span class="icon"><i class="mdi mdi-account-group"></i></span>
+                        <span class="icon"><i class="mdi mdi-account"></i></span>
                         <span class="menu-item-label">Clients</span>
                         <span class="icon"><i class="mdi mdi-plus"></i></span>
                     </a>
@@ -40,7 +40,7 @@
                 <li>
                     <a class="dropdown">
                         <span class="icon"><i class="mdi mdi-doctor"></i></span>
-                        <span class="menu-item-label">Medecins</span>
+                        <span class="menu-item-label">Médecins</span>
                         <span class="icon"><i class="mdi mdi-plus"></i></span>
                     </a>
                     <ul>
@@ -91,7 +91,7 @@
                       </ul>
                     </li>
                   <li>
-                <li>
+                {{-- <li>
                     <a class="dropdown">
                         <span class="icon"><i class="mdi mdi-pill"></i></span>
                         <span class="menu-item-label">Médicaments</span>
@@ -109,8 +109,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li>
+                </li> --}}
+                {{-- <li>
                     <a class="dropdown">
                         <span class="icon"><i class="mdi mdi-needle"></i></span>
                         <span class="menu-item-label">Compléments</span>
@@ -128,8 +128,8 @@
                             </a>
                         </li>
                     </ul>
-                </li>
-                <li>
+                </li> --}}
+                {{-- <li>
                     <a class="dropdown">
                         <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
                         <span class="menu-item-label">Premiers Secours</span>
@@ -147,7 +147,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 <li>
                     <a class="dropdown">
                         <span class="icon"><i class="mdi mdi-cart"></i></span>
@@ -189,20 +189,20 @@
                 <li class="active">
                     <a class="dropdown">
                         <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
-                        <span class="menu-item-label">Packs Premiers Secours</span>
+                        <span class="menu-item-label">Packs Produits</span>
                         <span class="icon"><i class="mdi mdi-plus"></i></span>
                     </a>
                     <ul>
                         <li>
-                            <a href="/packs_premiers_secours">
+                            <a href="/packs_produits">
                                 <span>Liste</span>
                             </a>
                         </li>
-                        <li>
-                            <a href="/packs_premiers_secours/form">
+                        {{-- <li>
+                            <a href="/packs_produits/form">
                                 <span>Ajout</span>
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </li>
             </ul>
@@ -224,7 +224,7 @@
         <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
             <ul>
                 <li>Admin</li>
-                <li>Packs Premiers Secours</li>
+                <li>Packs Produits</li>
             </ul>
         </div>
     </section>
@@ -232,7 +232,7 @@
     <section class="is-hero-bar">
         <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
             <h1 class="title">
-                Modifier Pack Premiers Secours
+                Modifier Pack Produits
             </h1>
         </div>
     </section>
@@ -244,11 +244,11 @@
                 <header class="card-header">
                     <p class="card-header-title">
                         <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
-                        Pack Premiers Secours
+                        Pack Produits
                     </p>
                 </header>
                 <div class="card-content">
-                    <form method="post" action="/packs_premiers_secours/update/{{ $pack->id }}">
+                    <form method="post" action="/packs_produits/update/{{ $pack->id }}">
                         @csrf
 
                         <div class="field">
@@ -260,13 +260,6 @@
                                         <span class="icon left"><i class="mdi mdi-tag"></i></span>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-
-                        <div class="field">
-                            <div class="control">
-                                <textarea class="textarea" placeholder="Description" name="description">{{ $pack->description }}</textarea>
                             </div>
                         </div>
 
@@ -284,6 +277,14 @@
                             </div>
                         </div>
 
+
+                        <div class="field">
+                            <div class="control">
+                                <textarea class="textarea" placeholder="Description" name="description">{{ $pack->description }}</textarea>
+                            </div>
+                        </div>
+
+
                         <div class="field">
                             <div class="field-body">
                                 <div class="field">
@@ -297,23 +298,56 @@
                         </div>
                         <hr>
 
-                        <div class="field grouped">
+                        <div class="field">
+                            <label class="label">Image</label>
+                            <div class="field-body">
+                                <div class="field file">
+                                    <label class="upload control">
+                                        <a class="button blue">
+                                            Télécharger
+                                        </a>
+                                        <input type="file" id="image" name="image" onchange="displayImagePreview()">
+                                    </label>
+                                </div>
+                                <div id="image-preview" style="margin-top: 10px;">
+                                    <img id="preview" src="{{ asset($pack->image_path) }}" alt="Aperçu de l'image" style="max-width: 100px; max-height: 100px; display: block;">
+                                    <span id="image-name">{{ basename($pack->image_path) }}</span>
+                                </div>
+                            </div>
+                        <hr>
+
+                          <div class="field grouped">
                             <div class="control">
-                                <button type="submit" class="button green">
-                                    Modifier
-                                </button>
+                              <button type="submit" class="button green">
+                                Modifier
+                              </button>
                             </div>
                             <div class="control">
-                                <button type="reset" class="button red" onclick="annuler()">
-                                    Annuler
-                                </button>
-                                <script>
-                                    function annuler() {
-                                        window.location.href = '/premiers_secours';
+                              <button type="reset" class="button red" onclick="annuler()">
+                                Annuler
+                              </button>
+                              <script>
+                                function annuler() {
+                                      window.location.href = '/packs_produits';
+                                };
+        
+                                function displayImagePreview() {
+                                    var input = document.getElementById('image');
+                                    var preview = document.getElementById('preview');
+                                    var imageName = document.getElementById('image-name');
+                                    if (input.files && input.files[0]) {
+                                        var reader = new FileReader();
+                                        reader.onload = function (e) {
+                                            preview.src = e.target.result;
+                                            preview.style.display = "block"; // Ajout de cette ligne pour afficher l'aperçu de l'image
+                                        }
+                                        reader.readAsDataURL(input.files[0]);
+                                        imageName.innerText = input.files[0].name;
                                     }
-                                </script>
+                                }
+                              </script>
                             </div>
-                        </div>
+                          </div>
 
                     </form>
                 </div>

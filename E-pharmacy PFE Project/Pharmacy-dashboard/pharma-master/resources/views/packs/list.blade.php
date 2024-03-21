@@ -199,11 +199,11 @@
               <span>Liste</span>
             </a>
           </li>
-          <li>
+          {{-- <li>
             <a href="/packs_produits/form">
               <span>Ajout</span>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </li>
     </ul>
@@ -268,7 +268,7 @@
 
               <tbody>
                 @foreach($list as $pack)
-                <tr>
+                <tr> 
                     <td></td>
                     <td scope="row">{{ $pack->id }}</td>
                     <td>{{ $pack->nom }}</td>

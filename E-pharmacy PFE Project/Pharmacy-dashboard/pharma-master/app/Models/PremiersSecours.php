@@ -18,7 +18,7 @@ class PremiersSecours extends Model
 
     public function pack()
     {
-        return $this->belongsToMany(Pack::class, 'packs_premiers_secours');
+        return $this->belongsToMany(Pack::class, 'packs_produit');
     }
 }
 

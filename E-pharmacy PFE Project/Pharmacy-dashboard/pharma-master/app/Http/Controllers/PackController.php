@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Pack;
 use App\Models\PackPremierSecours;
+use App\Models\PackProduit;
 use App\Models\PremiersSecours;
+use App\Models\Produit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -17,19 +19,20 @@ class PackController extends Controller
 
     public function showForm(){
         $packs= Pack::all();
-        $premiers_secours = PremiersSecours::all();
-        return view('packs.add', ['list' => $premiers_secours, 'list_packs' => $packs]);
+        $produits = Produit::all();
+        return view('packs.add', ['list_packs' => $packs, 'produits' => $produits]);
     }
 
 
     public function addPack(Request $req){
+        
         $pack = new Pack();
         $pack->nom = $req->nom;
         $pack->qte_en_stock = $req->qte_en_stock;
         $pack->prix = $req->prix;
         $pack->description = $req->description;
-        $pack->composition = $req->composition;
 
+        
         // Traitement de l'image si elle est présente
         if ($req->hasFile('image')) {
             $image = $req->file('image');
@@ -40,14 +43,13 @@ class PackController extends Controller
 
         $pack->save();
 
-        $premiersSecoursIds = $req->input('premiers_secours');
+        $produitId = $req->produit_id;
+
+        PackProduit::create([
+            'pack_id' => $pack->id,
+            'produits_id' => $produitId
+        ]);
         
-        foreach ($premiersSecoursIds as $premiersSecoursId) {
-            $premiersSecoursPack = new PackPremierSecours();
-            $premiersSecoursPack->pack_id = $pack->id;
-            $premiersSecoursPack->premiers_secours_id = $premiersSecoursId;
-            $premiersSecoursPack->save();
-        }
         return redirect('/packs');
 
     }

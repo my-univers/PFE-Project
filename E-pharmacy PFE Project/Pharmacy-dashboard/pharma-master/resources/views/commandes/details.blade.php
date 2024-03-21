@@ -235,6 +235,9 @@
     <h1 class="title">
         Détails de la Commande {{ $commande->id }}
     </h1>
+    <a class="button blue" href='/commandes'>
+      Retour
+    </a>
   </div>
 </section>
 
