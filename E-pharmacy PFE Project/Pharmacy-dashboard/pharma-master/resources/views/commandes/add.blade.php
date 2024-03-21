@@ -279,12 +279,24 @@
                 </table>
                 <div class="table-pagination">
                     <div class="flex items-center justify-between">
-                    <div class="buttons">
-                        <button type="button" class="button active">1</button>
-                        <button type="button" class="button">2</button>
-                        <button type="button" class="button">3</button>
-                    </div>
-                    <small>Page 1 of 3</small>
+                        <div class="buttons">
+                            @if ($clients->onFirstPage())
+                                <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                            @else
+                                <a href="{{ $clients->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                            @endif
+
+                            @foreach ($clients->getUrlRange(1, $clients->lastPage()) as $page => $url)
+                                <button type="button" class="button {{ $clients->currentPage() === $page ? 'active' : '' }}">{{ $page }}</button>
+                            @endforeach
+
+                            @if ($clients->hasMorePages())
+                                <a href="{{ $clients->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                            @else
+                                <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                            @endif
+                        </div>
+                        <small>Page {{ $clients->currentPage() }} of {{ $clients->lastPage() }}</small>
                     </div>
                 </div>
             </div>
