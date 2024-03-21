@@ -409,7 +409,7 @@
                     <td>{{ $c->id }}</td>
                     <td>{{ $c->client->nom }}</td>
                     <td>{{ $c->date_commande }}</td>
-                    <td>{{ $c->statut }}</td>
+                    <td @if($c->statut == "En attente") style="color: orange" @elseif($c->statut == "Validée") style="color: green" @elseif($c->statut == "Annulée") style="color: red" @endif>{{ $c->statut }}</td>
                     <td class="actions-cell">
                     <div class="buttons right nowrap">
                         <a class="button small green --jb-modal" href="/commandes/details/{{ $c->id }}">
