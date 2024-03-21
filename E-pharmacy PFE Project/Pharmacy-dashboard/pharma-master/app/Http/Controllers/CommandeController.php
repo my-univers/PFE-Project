@@ -37,8 +37,8 @@ class CommandeController extends Controller
     }
 
     public function addCommandeForm() {
-        $clients = Client::all();
-        $produits = Produit::all();
+        $clients = Client::paginate(5);
+        $produits = Produit::paginate(5);
 
         return view('commandes.add', ['clients' => $clients, 'produits' => $produits]);
     }
