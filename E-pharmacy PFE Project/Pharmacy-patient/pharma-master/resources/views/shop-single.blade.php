@@ -28,7 +28,7 @@
 
 
     <div class="site-navbar py-2">
-    
+
       <div class="search-wrap">
         <div class="container">
           <a href="#" class="search-close js-search-close"><span class="icon-close2"></span></a>
@@ -37,7 +37,7 @@
           </form>
         </div>
       </div>
-    
+
       <div class="container">
         <div class="d-flex align-items-center justify-content-between">
           <div class="logo">
@@ -48,8 +48,8 @@
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li class="active"><a href="{{ route('index') }}">Home</a></li>
-                <li><a href="{{ route('shop') }}">Store</a></li>
+                <li><a href="{{ route('index') }}">Home</a></li>
+                <li  class="active"><a href="{{ route('shop') }}">Store</a></li>
                 <li class="has-children">
                   <a href="#">Dropdown</a>
                   <ul class="dropdown">
@@ -65,7 +65,7 @@
                     </li>
                     <li><a href="#">Diet &amp; Nutrition</a></li>
                     <li><a href="#">Tea &amp; Coffee</a></li>
-    
+
                   </ul>
                 </li>
                 <li><a href="{{ route('about') }}">About</a></li>
@@ -108,12 +108,12 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, vitae, explicabo? Incidunt facere, natus
               soluta dolores iusto! Molestiae expedita veritatis nesciunt doloremque sint asperiores fuga voluptas,
               distinctio, aperiam, ratione dolore.</p>
-            
+
 
             <p><del>$95.00</del>  <strong class="text-primary h4">$55.00</strong></p>
 
-            
-            
+
+
             <div class="mb-5">
               <div class="input-group mb-3" style="max-width: 220px;">
                 <div class="input-group-prepend">
@@ -125,7 +125,7 @@
                   <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                 </div>
               </div>
-    
+
             </div>
             <p><a href="{{ route('cart') }}" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Add To Cart</a></p>
 
@@ -139,7 +139,7 @@
                   <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab"
                     aria-controls="pills-profile" aria-selected="false">Specifications</a>
                 </li>
-            
+
               </ul>
               <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
@@ -165,14 +165,14 @@
                         <td>Pain Management: Acetaminophen PM Extra-Strength Caplets, 500 mg, 100/Bottle</td>
                         <td>1 EA</td>
                       </tr>
-                      
+
                     </tbody>
                   </table>
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-            
+
                   <table class="table custom-table">
-            
+
                     <tbody>
                       <tr>
                         <td>HPIS CODE</td>
@@ -192,13 +192,13 @@
                       </tr>
                     </tbody>
                   </table>
-            
+
                 </div>
-            
+
               </div>
             </div>
 
-    
+
           </div>
         </div>
       </div>

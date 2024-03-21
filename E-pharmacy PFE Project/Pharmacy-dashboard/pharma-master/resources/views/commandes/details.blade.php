@@ -258,9 +258,9 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Date de Commande</th>
-                    <th>Statut de la Commande</th>
-                    <th>Total de la Commande</th>
+                    <th style="width: 33.3%">Date de Commande</th>
+                    <th style="width: 33.3%">Statut de la Commande</th>
+                    <th style="width: 33.3%">Total de la Commande</th>
                 </tr>
             </thead>
             <tbody>
@@ -311,9 +311,9 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th>Produit</th>
-                    <th>Quantité</th>
-                    <th>Prix unitaire</th>
+                    <th style="width: 33.3%">Produit</th>
+                    <th style="width: 33.3%">Quantité</th>
+                    <th style="width: 33.3%">Prix unitaire</th>
                 </tr>
             </thead>
             <tbody>

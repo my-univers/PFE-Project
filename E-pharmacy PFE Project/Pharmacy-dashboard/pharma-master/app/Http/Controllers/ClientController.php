@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class ClientController extends Controller
 {
     public function showClientsList() {
-        $clients = Client::all();
+        $clients = Client::paginate(10);
         return view("clients.list", ['clients' => $clients ]);
     }
 
@@ -54,7 +54,7 @@ class ClientController extends Controller
     }
 
     public function deleteClient($id) {
-        
+
         $c = Client::find($id);
         $c->delete();
 

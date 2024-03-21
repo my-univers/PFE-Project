@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Medecin;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MedecinController extends Controller
 {
     public function showMedsList() {
-        $medecins = Medecin::all();
+        $medecins = DB::table('medecins')->paginate(10);
         return view('medecins.list', ['medecins' => $medecins]);
     }
 

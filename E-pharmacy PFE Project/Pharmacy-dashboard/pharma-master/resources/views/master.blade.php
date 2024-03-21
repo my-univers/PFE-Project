@@ -84,10 +84,7 @@
               <span>Déconnexion</span>
             </a>
         </div>
-        <hr class="navbar-divider">
-          <a class="navbar-item" href="/logout">
-            <span class="icon"><i class="mdi mdi-logout"></i></span>
-          </a>
+
       </div>
     </div>
   </div>

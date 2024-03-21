@@ -239,7 +239,7 @@
 
 <section class="section main-section">
     <div class="grid gap-6 grid-cols-1 md:grid-cols-3 mb-6">
-      
+
       <div class="card">
         <div class="card-content">
           <div class="flex items-center justify-between">
@@ -289,7 +289,7 @@
     </div>
 
     <div class="grid gap-6 grid-cols-1 md:grid-cols-3 mb-6">
-      
+
       <div class="card">
         <div class="card-content">
           <div class="flex items-center justify-between">
@@ -310,7 +310,7 @@
           <div class="flex items-center justify-between">
             <div class="widget-label">
               <h3>
-                Prouits épuisés
+                Prouits Épuisés
               </h3>
               <h1>
                 {{ $produits_epuises_count }}
@@ -345,7 +345,7 @@
         @if(!$produits_epuises->isEmpty())
         <p class="card-header-title">
           <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-          Produits épuisés
+          Produits Épuisés
         </p>
         <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -397,7 +397,7 @@
                 <th></th>
                 <th>#</th>
                 <th>Client</th>
-                <th>Date</th>
+                <th>Date de la Commande</th>
                 <th>Statut</th>
                 <th></th>
               </tr>
@@ -409,10 +409,10 @@
                     <td>{{ $c->id }}</td>
                     <td>{{ $c->client->nom }}</td>
                     <td>{{ $c->date_commande }}</td>
-                    <td>{{ $c->statut }}</td>
+                    <td @if($c->statut == "En attente") style="color: orange" @elseif($c->statut == "Validée") style="color: green" @elseif($c->statut == "Annulée") style="color: red" @endif>{{ $c->statut }}</td>
                     <td class="actions-cell">
                     <div class="buttons right nowrap">
-                        <a class="button small green --jb-modal" href="/commandes">
+                        <a class="button small green --jb-modal" href="/commandes/details/{{ $c->id }}">
                         <span class="icon"><i class="mdi mdi-eye"></i></span>
                         </a>
                     </div>
@@ -423,18 +423,27 @@
             </table>
 
             @endif
+            <div class="table-pagination">
+                <div class="flex items-center justify-between">
+                    <div class="buttons">
+                        @if ($commandes_paginate->onFirstPage())
+                            <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                        @else
+                            <a href="{{ $commandes_paginate->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                        @endif
 
+                        @for ($i = 1; $i <= $commandes_paginate->lastPage(); $i++)
+                            <button type="button" class="button @if ($commandes_paginate->currentPage() == $i) active @endif">{{ $i }}</button>
+                        @endfor
 
-        <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
+                        @if ($commandes_paginate->hasMorePages())
+                            <a href="{{ $commandes_paginate->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                        @else
+                            <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                        @endif
+                    </div>
+                </div>
             </div>
-            <small>Page 1 of 3</small>
-          </div>
-        </div>
       </div>
     </div>
 

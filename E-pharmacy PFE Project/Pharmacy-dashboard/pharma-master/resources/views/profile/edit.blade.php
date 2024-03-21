@@ -94,7 +94,7 @@
               </ul>
             </li>
           <li>
-        <li>
+        {{-- <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-pill"></i></span>
             <span class="menu-item-label">Médicaments</span>
@@ -150,7 +150,7 @@
               </a>
             </li>
           </ul>
-        </li>
+        </li> --}}
         <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-cart"></i></span>

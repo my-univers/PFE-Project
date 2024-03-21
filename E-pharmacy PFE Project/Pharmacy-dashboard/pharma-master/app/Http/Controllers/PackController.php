@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 class PackController extends Controller
 {
     public function showList(){
-        $packs_list = Pack::all();
+        $packs_list = Pack::paginate(10);
         return view("packs.list" ,['list' => $packs_list ] );
     }
 
@@ -74,10 +74,10 @@ class PackController extends Controller
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('img'), $imageName);
 
-             // Suppression de l'ancienne image si elle existe
-            // if ($c->image_path) {
-            //     unlink(public_path($c->image_path));
-            // }
+            // Suppression de l'ancienne image si elle existe
+            if ($c->image_path) {
+                unlink(public_path($c->image_path));
+            }
 
             $c->image_path = 'img/' . $imageName;
         }
@@ -89,6 +89,11 @@ class PackController extends Controller
 
     public function deletePack($id) {
         $c = Pack::find($id);
+
+        if ($c->image_path) {
+            unlink(public_path($c->image_path));
+        }
+
         $c->delete();
         return redirect('/packs');
     }

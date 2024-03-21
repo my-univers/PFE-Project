@@ -9,7 +9,7 @@
   <div class="menu is-menu-main">
     <p class="menu-label">General</p>
     <ul class="menu-list">
-      <li > 
+      <li >
         <a href="/dashboard">
           <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
           <span class="menu-item-label">Tableau de Bord</span>
@@ -245,9 +245,32 @@
           <span class="icon"><i class="mdi mdi-pill"></i></span>
           Produits
         </p>
-        <a href="#" class="card-header-icon">
-          <span class="icon"><i class="mdi mdi-reload"></i></span>
-        </a>
+        <form action="/produits/list" method="get" class="card-header-icon">
+            <span>
+                <label class="label">Filtrer par Catégorie :</label>
+            </span>
+            &nbsp; &nbsp;
+            <span>
+                <div class="field">
+                    <div class="control">
+                        <div class="select">
+                        <select name="categorie">
+                            <option value="">Tous</option>
+                            @foreach ($categories as $c)
+                            <option value="{{ $c->id }}" @if($categorieId == $c->id) selected @endif>{{ $c->nom }}</option>
+                            @endforeach
+                        </select>
+                        </div>
+                    </div>
+                </div>
+            </span>
+            &nbsp; &nbsp;
+            <span>
+                <button type="submit" class="button small blue" type="button">
+                    <span class="icon"><i class="mdi mdi-filter"></i></span>
+                </button>
+            </span>
+        </form>
       </header>
       <div class="card-content">
         <table>
@@ -255,8 +278,8 @@
           <tr>
             <th></th>
             <th>#</th>
-            <th>Nom</th>
-            <th style="width: 400px">Description</th>
+            <th style="">Nom</th>
+            <th style="width: 300px">Description</th>
             <th>Catégotie</th>
             <th>Prix</th>
             <th>Quantité en stock</th>
@@ -281,6 +304,23 @@
                     <button class="button small red --jb-modal" data-target="sample-modal-{{$p->id}}" type="button">
                     <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                     </button>
+
+                    <div id="sample-modal" class="modal">
+                        <div class="modal-background --jb-modal-close"></div>
+                        <div class="modal-card">
+                          <header class="modal-card-head">
+                            <p class="modal-card-title">Confirmer la Suppression</p>
+                          </header>
+                          <section class="modal-card-body">
+                            <p>Êtes-vous sûr de vouloir supprimer ce produit ?</p>
+                            <p>Cette action est irréversible</p>
+                          </section>
+                          <footer class="modal-card-foot">
+                            <button class="button --jb-modal-close">Annuler</button>
+                            <a class="button red --jb-modal-close" href="/produits/delete/{{$p->id}}">Confirmer</a>
+                          </footer>
+                        </div>
+                      </div>
                 </div>
                 </td>
             </tr>
@@ -301,21 +341,50 @@
                 </footer>
               </div>
             </div>
-            
+
             @endforeach
           </tbody>
         </table>
         <div class="table-pagination">
-          <div class="flex items-center justify-between">
-            <div class="buttons">
-              <button type="button" class="button active">1</button>
-              <button type="button" class="button">2</button>
-              <button type="button" class="button">3</button>
+            <div class="flex items-center justify-between">
+                <div class="buttons">
+                    @if ($produits->onFirstPage())
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                    @else
+                        <a href="{{ $produits->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                    @endif
+
+                    @for ($i = 1; $i <= $produits->lastPage(); $i++)
+                        <button type="button" class="button @if ($produits->currentPage() == $i) active @endif">{{ $i }}</button>
+                    @endfor
+
+                    @if ($produits->hasMorePages())
+                        <a href="{{ $produits->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                    @else
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                    @endif
+                </div>
             </div>
-            <small>Page 1 of 3</small>
-          </div>
         </div>
       </div>
     </div>
   </section>
+
+{{-- <div id="sample-modal-2" class="modal">
+  <div class="modal-background --jb-modal-close"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Sample modal</p>
+    </header>
+    <section class="modal-card-body">
+      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
+      <p>This is sample modal</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button --jb-modal-close">Cancel</button>
+      <button class="button blue --jb-modal-close">Confirm</button>
+    </footer>
+  </div>
+</div> --}}
+
 @endsection
