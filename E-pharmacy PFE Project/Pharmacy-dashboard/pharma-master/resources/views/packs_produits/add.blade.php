@@ -20,7 +20,7 @@
     <ul class="menu-list">
       <li>
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-account-group"></i></span>
+          <span class="icon"><i class="mdi mdi-account"></i></span>
           <span class="menu-item-label">Clients</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -40,7 +40,7 @@
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
-          <span class="menu-item-label">Medecins</span>
+          <span class="menu-item-label">Médecins</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>
@@ -91,7 +91,7 @@
           </ul>
         </li>
       <li>
-      <li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
           <span class="menu-item-label">Médicaments</span>
@@ -109,8 +109,8 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li>
+      </li> --}}
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-needle"></i></span>
           <span class="menu-item-label">Compléments</span>
@@ -147,7 +147,7 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-cart"></i></span>
@@ -188,8 +188,8 @@
       </li>
       <li class="active">
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
-          <span class="menu-item-label">Packs Premiers Secours</span>
+          <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
+          <span class="menu-item-label">Packs Produits</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
         <ul>

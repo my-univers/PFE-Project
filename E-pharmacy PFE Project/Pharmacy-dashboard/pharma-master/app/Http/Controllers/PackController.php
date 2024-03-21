@@ -29,7 +29,7 @@ class PackController extends Controller
         $pack = new Pack();
         $pack->nom = $req->nom;
         $pack->qte_en_stock = $req->qte_en_stock;
-        $pack->prix = $req->prix;
+        $pack->prix = 0;
         $pack->description = $req->description;
 
         

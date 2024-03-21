@@ -189,7 +189,7 @@
       </li>
       <li class="active">
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+          <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
           <span class="menu-item-label">Packs Produits</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -277,7 +277,7 @@
         <br>
         <br>
 
-        <button class="button green">
+        <button class="button green" style="width: 210px">
             <span class="icon" title="Détails des Produits"><i class="mdi mdi-pill"></i></span>
             &nbsp; Produits du Pack
         </button>
@@ -310,7 +310,7 @@
         </table>
         <br>
         <br>
-        <button class="button red">
+        <button class="button red" style="width: 210px">
             <span class="icon" title="Détails des Produits"><i class="mdi mdi-plus"></i></span>
             &nbsp; Produits à Ajouter
         </button>

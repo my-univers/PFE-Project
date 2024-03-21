@@ -189,7 +189,7 @@
                 </li>
                 <li class="active">
                     <a class="dropdown">
-                        <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+                        <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
                         <span class="menu-item-label">Packs Produits</span>
                         <span class="icon"><i class="mdi mdi-plus"></i></span>
                     </a>
