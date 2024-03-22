@@ -42,14 +42,14 @@
         <div class="d-flex align-items-center justify-content-between">
           <div class="logo">
             <div class="site-logo">
-              <a href="{{ route('index') }}" class="js-logo-clone">Pharma</a>
+              <a href="/" class="js-logo-clone">Pharma</a>
             </div>
           </div>
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li><a href="{{ route('index') }}">Accueil</a></li>
-                <li><a href="{{ route('shop') }}">Magasin</a></li>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/shop">Magasin</a></li>
                 <li class="has-children">
                   <a href="#">Catégories</a>
                   <ul class="dropdown">
@@ -88,7 +88,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-0">
-            <a href="{{ route('index') }}">Accueil</a> <span class="mx-2 mb-0">/</span> 
+            <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span> 
             <strong class="text-black">Contact</strong>
           </div>
         </div>

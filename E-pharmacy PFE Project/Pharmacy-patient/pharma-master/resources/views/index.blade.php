@@ -41,31 +41,24 @@
         <div class="d-flex align-items-center justify-content-between">
           <div class="logo">
             <div class="site-logo">
-              <a href="{{ route('index') }}" class="js-logo-clone">Pharma</a>
+              <a href="/" class="js-logo-clone">Pharma</a>
             </div>
           </div>
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li class="active"><a href="{{ route('index') }}">Accueil</a></li>
-                <li><a href="{{ route('shop') }}">Magasin</a></li>
+                <li class="active"><a href="/">Accueil</a></li>
+                <li><a href="/shop">Magasin</a></li>
                 <li class="has-children">
                   <a href="#">Catégories</a>
                   <ul class="dropdown">
-                    <li><a href="#">Compléments Alimentaires</a></li>
-                    <li class="has-children">
-                      <a href="#">Vitamines</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Supplements</a></li>
-                        <li><a href="#">Vitamins</a></li>
-                        <li><a href="#">Diet &amp; Nutrition</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#"> Régime &amp; Nutrition</a></li>
+                    <li><a href="/medicments">Médicaments</a></li>
+                    <li><a href="/complements">Compléments Alimentaires</a></li>
+                    <li><a href="/premiers">Premiers Secours</a></li>
                   </ul>
                 </li>
-                <li><a href="{{ route('about') }}">A Propos</a></li>
-                <li><a href="{{ route('contact') }}">Contact</a></li>
+                <li><a href="/about">A Propos</a></li>
+                <li><a href="/contact">Contact</a></li>
               </ul>
             </nav>
           </div>
@@ -90,7 +83,7 @@
               <h2 class="sub-title">MÉDICAMENT EFFICACE, NOUVEAU MÉDICAMENT CHAQUE JOUR</h2>
               <h1>Bienvenue chez Pharma</h1>
               <p>
-                <a href="{{ route('shop') }}" class="btn btn-primary px-5 py-3">Acheter maintenant</a>
+                <a href="/shop" class="btn btn-primary px-5 py-3">Acheter maintenant</a>
               </p>
             </div>
           </div>
@@ -148,49 +141,27 @@
         </div>
 
         <div class="row">
-
+          @foreach ($products as $product)
           <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <span class="tag">En promotion</span>
-            <a href="{{ route('shop-single') }}"> <img src="images/product_01.png" alt="Image"></a>
-            <h3 class="text-dark"><a href="{{ route('shop-single') }}">Bioderma</a></h3>
-            <p class="price"><del>95.00</del> &mdash; $55.00</p>
+              @if ($product->qte_en_stock < 1)
+              <span class="tag">OUT OF STOCK</span>
+              @endif
+              <a href="/shop-single/{{ $product->id }}"><img src="{{ $product->image_path }}" alt="Image" class="product-image"></a>
+              <style>
+                .product-image {
+                    width: 200px;
+                    height: 200px;
+                }
+            </style>
+              <h3 class="text-dark"><a href="/shop-single/{{ $product->id }}">{{ $product->nom }}</a></h3>
+              <p class="price">{{ $product->prix }} DH</p>
           </div>
+          @endforeach
+      </div>
 
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="{{ route('shop-single') }}"> <img src="images/product_02.png" alt="Image"></a>
-            <h3 class="text-dark"><a href="{{ route('shop-single') }}">Chanca Piedra</a></h3>
-            <p class="price">$70.00</p>
-          </div>
-
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="{{ route('shop-single') }}"> <img src="images/product_03.png" alt="Image"></a>
-            <h3 class="text-dark"><a href="{{ route('shop-single') }}">Umcka Cold Care</a></h3>
-            <p class="price">$120.00</p>
-          </div>
-
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-
-            <a href="{{ route('shop-single') }}"> <img src="images/product_04.png" alt="Image"></a>
-            <h3 class="text-dark"><a href="{{ route('shop-single') }}">Cetyl Pure</a></h3>
-            <p class="price"><del>45.00</del> &mdash; $20.00</p>
-          </div>
-
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <a href="{{ route('shop-single') }}"> <img src="images/product_05.png" alt="Image"></a>
-            <h3 class="text-dark"><a href="{{ route('shop-single') }}">CLA Core</a></h3>
-            <p class="price">$38.00</p>
-          </div>
-
-          <div class="col-sm-6 col-lg-4 text-center item mb-4">
-            <span class="tag">En promotion</span>
-            <a href="{{ route('shop-single') }}"> <img src="images/product_06.png" alt="Image"></a>
-            <h3 class="text-dark"><a href="{{ route('shop-single') }}">Poo Pourri</a></h3>
-            <p class="price"><del>$89</del> &mdash; $38.00</p>
-          </div>
-        </div>
         <div class="row mt-5">
           <div class="col-12 text-center">
-            <a href="{{ route('shop') }}" class="btn btn-primary px-4 py-3">Voir tous les produits</a>
+            <a href="/shop" class="btn btn-primary px-4 py-3">Voir tous les produits</a>
           </div>
         </div>
       </div>
@@ -207,31 +178,15 @@
         <div class="row">
           <div class="col-md-12 block-3 products-wrap">
             <div class="nonloop-block-3 owl-carousel">
+              
+                @foreach ($recentProducts as $product)
+                <div class="col-md-3 text-center item mb-4">
+                    <a href="/shop-single"> <img src="{{ $product->image_path }}" alt="Image"></a>
+                   
+                    <h3 class="text-dark"><a href="/shop-single">{{ $product->nom }}</a></h3>
+                </div>
 
-              <div class="text-center item mb-4">
-                <a href="{{ route('shop-single') }}"> <img src="images/product_03.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="{{ route('shop-single') }}">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-              <div class="text-center item mb-4">
-                <a href="{{ route('shop-single') }}"> <img src="images/product_01.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="{{ route('shop-single') }}"">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-              <div class="text-center item mb-4">
-                <a href="{{ route('shop-single') }}"> <img src="images/product_02.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="{{ route('shop-single') }}">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
-              <div class="text-center item mb-4">
-                <a href="{{ route('shop-single') }}"> <img src="images/product_04.png" alt="Image"></a>
-                <h3 class="text-dark"><a href="{{ route('shop-single') }}">Umcka Cold Care</a></h3>
-                <p class="price">$120.00</p>
-              </div>
-
+                @endforeach
             </div>
           </div>
         </div>

@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\IndexController;
+use App\Http\Controllers\shopController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,17 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
-
-Route::get('/index', function () {
-    return view('index');
-})->name('index');
-
-Route::get('/shop', function () {
-    return view('shop');
-})->name('shop');
 
 Route::get('/about', function () {
     return view('about');
@@ -48,3 +40,14 @@ Route::get('/thankyou', function () {
 Route::get('/checkout', function () {
     return view('checkout');
 })->name('checkout');
+
+/*--------------------------------DASHBOARD---------------------------------------*/
+ 
+Route::get('/', [IndexController::class, 'popularProducts']);
+
+Route::get('/shop', [IndexController::class, 'showMagasin']);
+
+Route::get('/products', [shopController::class, 'filterProducts']);
+
+
+// Route::get('/shop', [ShopController::class, '']);
