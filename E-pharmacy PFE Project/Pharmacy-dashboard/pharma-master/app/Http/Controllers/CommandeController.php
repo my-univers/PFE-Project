@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use App\Models\Commande;
+use App\Models\Pack;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 
@@ -44,8 +45,11 @@ class CommandeController extends Controller
         // Récupérer les produits avec une quantité en stock supérieure ou égale à 1 et une page de pagination distincte
         $produits = Produit::where('qte_en_stock', '>=', 1)->paginate(5, ['*'], 'produits_page');
 
+        // Récupérer les packs de produits
+        $packs = Pack::paginate(5, ['*'], 'packs_page');
+
         // Retourner la vue avec les clients et les produits
-        return view('commandes.add', ['clients' => $clients, 'produits' => $produits]);
+        return view('commandes.add', ['clients' => $clients, 'produits' => $produits, 'packs' => $packs]);
     }
 
     public function addCommande(Request $request)

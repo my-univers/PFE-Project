@@ -340,7 +340,7 @@
                 <tr>
                     <td></td>
                     <td>{{ $produit->nom }}</td>
-                    <td>{{ $produit->qte_en_stock}}</td>
+                    <td @if($produit->qte_en_stock <= 1) style="color: red"  @endif>{{ $produit->qte_en_stock }}</td>
                     <td>{{ $produit->prix }} DH</td>
                     <td>
                       <a class="button small red" href="/packs_produits/removeProduct/{{$pack->id}}/{{$produit->id}}">
