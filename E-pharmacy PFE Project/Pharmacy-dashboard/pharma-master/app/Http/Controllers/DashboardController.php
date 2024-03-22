@@ -22,11 +22,9 @@ class DashboardController extends Controller
         $medecins_count = Medecin::count();
         $produits_count = Produit::count();
         $category_count = Categorie::count();
+
         $produits_epuises_count = Produit::where('qte_en_stock', 0)->count();
-
         $produits_epuises = Produit::where('qte_en_stock', 0)->get();
-
-
 
         return view('index',
             ['clients' => $clients,

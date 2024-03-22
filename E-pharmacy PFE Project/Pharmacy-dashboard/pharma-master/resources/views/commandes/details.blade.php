@@ -316,7 +316,7 @@
         </table>
 
         <br>
-        <br>
+        <hr>
         <button class="button red" style="width: 210px" title="Détails du Client">
             <span class="icon"><i class="mdi mdi-account"></i></span>&nbsp; Client
         </button>
@@ -343,8 +343,8 @@
         </table>
 
         <br>
-        <br>
-        <button class="button green">
+        <hr>
+        <button class="button green" style="width: 210px">
             <span class="icon" title="Détails des Produits Commandés"><i class="mdi mdi-pill"></i></span>
             &nbsp; Produits Commandés
         </button>
@@ -363,7 +363,7 @@
                 <tr>
                     <td></td>
                     <td>{{ $produit->nom }}</td>
-                    <td>{{ $produit->pivot->quantite }}</td>
+                    <td @if($produit->pivot->quantite <= 1) style="color: red"  @endif>{{ $produit->pivot->quantite }}</td>
                     <td>{{ $produit->prix }} DH</td>
                 </tr>
                 @endforeach
@@ -389,6 +389,63 @@
                     @endif
                 </div>
                 <small>Page {{ $produits->currentPage() }} of {{ $produits->lastPage() }}</small>
+            </div>
+        </div>
+
+        <hr>
+        <button class="button green" style="width: 210px">
+            <span class="icon" title="Détails des Packs Commandés"><i class="mdi mdi-package-variant-closed"></i></span>
+            &nbsp; Packs Commandés
+        </button>
+        <br><br>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th style="width: 33.3%">Packs</th>
+                    <th style="width: 33.3%">Quantité</th>
+                    <th style="width: 33.3%">Prix unitaire</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($packs as $pack)
+                <tr>
+                    <td></td>
+                    <td>{{ $pack->nom }}</td>
+                    <td @if($pack->pivot->quantite <= 1) style="color: red"  @endif>{{ $pack->pivot->quantite }}</td>
+                    <td>{{ $pack->prix }} DH</td>
+                    <td class="actions-cell">
+                        <div class="buttons right nowrap">
+                            <a class="button small blue "
+                               href="/packs_produits/details/{{ $pack->id }}">
+                               <span class="icon"><i class="mdi mdi-eye"></i></span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+        <div class="table-pagination">
+            <div class="flex items-center justify-between">
+                <div class="buttons">
+                    @if ($packs->onFirstPage())
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                    @else
+                        <a href="{{ $packs->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                    @endif
+
+                    @foreach ($packs->getUrlRange(1, $packs->lastPage()) as $page => $url)
+                        <button type="button" class="button {{ $packs->currentPage() === $page ? 'active' : '' }}">{{ $page }}</button>
+                    @endforeach
+
+                    @if ($packs->hasMorePages())
+                        <a href="{{ $packs->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                    @else
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                    @endif
+                </div>
+                <small>Page {{ $packs->currentPage() }} of {{ $packs->lastPage() }}</small>
             </div>
         </div>
       </div>

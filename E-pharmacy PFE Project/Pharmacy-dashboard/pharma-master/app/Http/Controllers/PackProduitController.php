@@ -40,7 +40,9 @@ class PackProduitController extends Controller
     public function showDetails($id) {
         $pack= Pack::find($id);
         $produits = $pack->produits()->paginate(5);
-        $allProducts = Produit::paginate(10);
+        // get all products where qte_en_stock >= 1
+        $allProducts = Produit::where('qte_en_stock','>=',1)->paginate(5);
+
 
         $total = 0;
         foreach ($produits as $produit) {
@@ -123,13 +125,8 @@ class PackProduitController extends Controller
 
         public function deletePackProduit($id) {
             $packProduit = PackProduit::find($id);
-
-            if ($packProduit) {
-                $packProduit->delete();
-                return redirect()->back()->with('success', 'Le pack produit a été supprimé avec succès.');
-            } else {
-                return redirect()->back()->with('error', 'Le pack produit que vous essayez de supprimer n\'existe pas.');
-            }
+            $packProduit->delete();
+            return redirect()->back()->with('success', 'Le pack produit a été supprimé avec succès.');
 
         
         }

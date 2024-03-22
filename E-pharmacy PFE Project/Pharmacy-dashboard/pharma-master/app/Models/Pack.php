@@ -22,4 +22,9 @@ class Pack extends Model
         return $this->belongsToMany(Produit::class, 'packs_produits','pack_id', 'produits_id');
     }
 
-} 
+    public function commandes()
+    {
+        return $this->belongsToMany(Commande::class, 'packs_commandes')->withPivot('quantite');
+    }
+
+}

@@ -316,7 +316,7 @@
                                 <td>{{ $p->packs->nom }}</td>
                                 <td>{{ $p->packs->description }}</td>
                                 <td>{{ $p->packs->prix }} DH</td>
-                                <td>{{ $p->packs->qte_en_stock }}</td>
+                                <td @if($p->packs->qte_en_stock <= 1) style="color: red"  @endif>{{ $p->packs->qte_en_stock }}</td>
                                 <td class="actions-cell">
                                     <div class="buttons right nowrap">
                                         {{-- <a class="button small green --jb-modal" href="/packs_produits/updateForm/{{$p->packs->id}}">

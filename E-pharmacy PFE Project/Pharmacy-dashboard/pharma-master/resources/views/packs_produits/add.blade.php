@@ -294,7 +294,7 @@
                 <form method="post" action="/packs_produits/add">
                     @csrf
                     <div class="field">
-                        <button type="button" class="button blue" style="width: 260px" title="Client associé à la Commande">
+                        <button type="button" class="button blue" style="width: 240px" title="Client associé à la Commande">
                             <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>&nbsp; Pack à Remplir (1)
                         </button>
                         <br><br>
@@ -346,7 +346,7 @@
                     </div>
                     <hr>
                     <div class="field">
-                        <button type="button" class="button green" style="width: 260px" title="Produit(s)">
+                        <button type="button" class="button green" style="width: 240px" title="Produit(s)">
                             <span class="icon"><i class="mdi mdi-pill"></i></span>&nbsp; Produits à Inclure
                         </button>
                         <br><br>

@@ -14,7 +14,7 @@ class PackController extends Controller
 {
     public function showList(){
         // Récupérer la liste paginée des packs
-        $packs_list = Pack::paginate(10);
+        $packs_list = Pack::where('qte_en_stock', '>=', 1)->paginate(10);
 
         // Retourner la vue avec la liste des packs mise à jour
         return view("packs.list", ['list' => $packs_list]);
