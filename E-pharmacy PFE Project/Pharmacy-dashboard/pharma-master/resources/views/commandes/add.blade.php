@@ -373,7 +373,7 @@
                             </td>
                             <td>{{ $produit->nom }}</td>
                             <td>{{ $produit->prix }} DH</td>
-                            <td>{{ $produit->qte_en_stock }}</td>
+                            <td @if($produit->qte_en_stock <= 1) style="color: red"  @endif>{{ $produit->qte_en_stock }}</td>
                             <td>
                                 <input class="input is-small" type="number" name="quantite[{{ $produit->id }}]" value="1" min="1">
                             </td>

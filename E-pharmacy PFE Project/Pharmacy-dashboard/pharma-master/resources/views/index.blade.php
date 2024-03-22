@@ -387,7 +387,7 @@
 
         @if(!$produits_epuises->isEmpty())
         <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+          <span class="icon"><i class="mdi mdi-pill"></i></span>
           Produits Épuisés
         </p>
         <a href="#" class="card-header-icon">
