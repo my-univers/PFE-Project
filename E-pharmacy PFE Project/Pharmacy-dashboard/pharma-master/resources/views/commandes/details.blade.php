@@ -369,6 +369,28 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="table-pagination">
+            <div class="flex items-center justify-between">
+                <div class="buttons">
+                    @if ($produits->onFirstPage())
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                    @else
+                        <a href="{{ $produits->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                    @endif
+
+                    @foreach ($produits->getUrlRange(1, $produits->lastPage()) as $page => $url)
+                        <button type="button" class="button {{ $produits->currentPage() === $page ? 'active' : '' }}">{{ $page }}</button>
+                    @endforeach
+
+                    @if ($produits->hasMorePages())
+                        <a href="{{ $produits->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                    @else
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                    @endif
+                </div>
+                <small>Page {{ $produits->currentPage() }} of {{ $produits->lastPage() }}</small>
+            </div>
+        </div>
       </div>
     </div>
   </section>
