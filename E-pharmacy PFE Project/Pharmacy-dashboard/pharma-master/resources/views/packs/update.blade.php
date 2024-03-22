@@ -19,7 +19,7 @@
     </ul>
     <p class="menu-label">Gestion</p>
     <ul class="menu-list">
-      <li>
+      {{-- <li class="active">
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-account"></i></span>
           <span class="menu-item-label">Clients</span>
@@ -37,8 +37,14 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
+        <a href="/clients/list">
+          <span class="icon"><i class="mdi mdi-account"></i></span>
+          <span class="menu-item-label">Clients</span>
+        </a>
+      </li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
           <span class="menu-item-label">Médecins</span>
@@ -56,8 +62,14 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
+        <a href="/medecins/list">
+          <span class="icon"><i class="mdi mdi-doctor"></i></span>
+          <span class="menu-item-label">Médecins</span>
+        </a>
+      </li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
           <span class="menu-item-label">Produits</span>
@@ -75,8 +87,14 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
+        <a href="/produits/list">
+          <span class="icon"><i class="mdi mdi-pill"></i></span>
+          <span class="menu-item-label">Produits</span>
+        </a>
+      </li>
+      {{-- <li>
         <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
@@ -91,6 +109,13 @@
             </li>
           </ul>
         </li>
+      <li> --}}
+        <li>
+            <a href="/categories/list">
+              <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
+              <span class="menu-item-label">Catégories</span>
+            </a>
+          </li>
       {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
@@ -109,8 +134,8 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li>
+      </li> --}}
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-needle"></i></span>
           <span class="menu-item-label">Compléments</span>
@@ -148,9 +173,9 @@
           </li>
         </ul>
       </li> --}}
-      <li>
+      {{-- <li>
         <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+          <span class="icon"><i class="mdi mdi-cart"></i></span>
           <span class="menu-item-label">Commandes</span>
           <span class="icon"><i class="mdi mdi-plus"></i></span>
         </a>
@@ -166,8 +191,14 @@
             </a>
           </li>
         </ul>
+      </li> --}}
+      <li>
+        <a href="/commandes">
+          <span class="icon"><i class="mdi mdi-cart"></i></span>
+          <span class="menu-item-label">Commandes</span>
+        </a>
       </li>
-      <li class="active">
+      {{-- <li >
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-package-variant"></i></span>
           <span class="menu-item-label">Packs</span>
@@ -185,8 +216,14 @@
             </a>
           </li>
         </ul>
+      </li> --}}
+      <li class="active">
+        <a href="/packs">
+          <span class="icon"><i class="mdi mdi-package-variant"></i></span>
+          <span class="menu-item-label">Packs</span>
+        </a>
       </li>
-      <li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
           <span class="menu-item-label">Packs Produits</span>
@@ -198,12 +235,18 @@
               <span>Liste</span>
             </a>
           </li>
-          {{-- <li>
+          <li>
             <a href="/packs_produits/form">
               <span>Ajout</span>
             </a>
-          </li> --}}
+          </li>
         </ul>
+      </li> --}}
+      <li>
+        <a href="/packs_produits">
+          <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
+          <span class="menu-item-label">Packs Produits</span>
+        </a>
       </li>
     </ul>
     <p class="menu-label">A Propos</p>
@@ -234,6 +277,9 @@
       <h1 class="title">
         Modifier Pack
       </h1>
+      <a class="button blue" href='/packs'>
+        Retour
+      </a>
     </div>
 </section>
 

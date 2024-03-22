@@ -88,6 +88,7 @@ Route::post('/clients/update/{id}', [ClientController::class, 'updateClient']);
 
 Route::get('/clients/delete/{id}', [ClientController::class, 'deleteClient']);
 
+Route::get('/clients/search', [ClientController::class, 'searchClients']);
 
 /**********************Medecins***********************/
 
@@ -189,11 +190,11 @@ Route::get('/packs_produits/addToPack/{produit_id}/{pack_id}', [PackProduitContr
 
 Route::get('/packs_produits/removeProduct/{pack_id}/{produit_id}', [PackProduitController::class, 'removeProduct'])->name('packs_produits.removeFromPack');
 
-// Route::get('/packs_produits/addToPackForm/', [PackProduitController::class, 'showAddToPackForm']);
+Route::post('/packs_produits/add', [PackProduitController::class, 'addPackProduits']);
 
 // Route::post('/packs_premiers_secours/addToPack/{id}', [PackProduitController::class, 'AddToPack']);
 
-// Route::get('/packs_produits/form', [PackProduitController::class, 'showForm']);
+Route::get('/packs_produits/form', [PackProduitController::class, 'showForm']);
 
 
 

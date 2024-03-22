@@ -19,188 +19,235 @@
             </ul>
             <p class="menu-label">Gestion</p>
             <ul class="menu-list">
-                <li>
-                    <a class="dropdown">
-                        <span class="icon"><i class="mdi mdi-account"></i></span>
-                        <span class="menu-item-label">Clients</span>
-                        <span class="icon"><i class="mdi mdi-plus"></i></span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="/clients/list">
-                                <span>Liste</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/clients/addForm">
-                                <span>Ajout</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="dropdown">
-                        <span class="icon"><i class="mdi mdi-doctor"></i></span>
-                        <span class="menu-item-label">Médecins</span>
-                        <span class="icon"><i class="mdi mdi-plus"></i></span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="/medecins/list">
-                                <span>Liste</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/medecins/addForm">
-                                <span>Ajout</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="dropdown">
-                        <span class="icon"><i class="mdi mdi-pill"></i></span>
-                        <span class="menu-item-label">Produits</span>
-                        <span class="icon"><i class="mdi mdi-plus"></i></span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="/produits/list">
-                                <span>Liste</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/produits/addForm">
-                                <span>Ajout</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                <li>
-                    <a class="dropdown">
-                        <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
-                        <span class="menu-item-label">Catégories</span>
-                        <span class="icon"><i class="mdi mdi-plus"></i></span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="/categories/list">
-                                <span>Liste</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                {{-- <li>
-                <li>
-                    <a class="dropdown">
-                        <span class="icon"><i class="mdi mdi-pill"></i></span>
-                        <span class="menu-item-label">Médicaments</span>
-                        <span class="icon"><i class="mdi mdi-plus"></i></span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="/medicaments/list">
-                                <span>Liste</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/medicaments/addForm">
-                                <span>Ajout</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="dropdown">
-                        <span class="icon"><i class="mdi mdi-needle"></i></span>
-                        <span class="menu-item-label">Compléments</span>
-                        <span class="icon"><i class="mdi mdi-plus"></i></span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="/complements">
-                                <span>Liste</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/complements/form">
-                                <span>Ajout</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="dropdown">
-                        <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
-                        <span class="menu-item-label">Premiers Secours</span>
-                        <span class="icon"><i class="mdi mdi-plus"></i></span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="/premiers_secours">
-                                <span>Liste</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/premiers_secours/form">
-                                <span>Ajout</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li> --}}
-                <li>
-                    <a class="dropdown">
-                        <span class="icon"><i class="mdi mdi-cart"></i></span>
-                        <span class="menu-item-label">Commandes</span>
-                        <span class="icon"><i class="mdi mdi-plus"></i></span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="/commandes">
-                                <span>Liste</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/commandes/form">
-                                <span>Ajout</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a class="dropdown">
-                        <span class="icon"><i class="mdi mdi-package-variant"></i></span>
-                        <span class="menu-item-label">Packs</span>
-                        <span class="icon"><i class="mdi mdi-plus"></i></span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="/packs">
-                                <span>Liste</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/packs/form">
-                                <span>Ajout</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="active">
-                    <a class="dropdown">
-                        <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
-                        <span class="menu-item-label">Packs Produits</span>
-                        <span class="icon"><i class="mdi mdi-plus"></i></span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="/packs_produits">
-                                <span>Liste</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                {{-- <li class="active">
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-account"></i></span>
+          <span class="menu-item-label">Clients</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/clients/list">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/clients/addForm">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li> --}}
+      <li>
+        <a href="/clients/list">
+          <span class="icon"><i class="mdi mdi-account"></i></span>
+          <span class="menu-item-label">Clients</span>
+        </a>
+      </li>
+      {{-- <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-doctor"></i></span>
+          <span class="menu-item-label">Médecins</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/medecins/list">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/medecins/addForm">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li> --}}
+      <li>
+        <a href="/medecins/list">
+          <span class="icon"><i class="mdi mdi-doctor"></i></span>
+          <span class="menu-item-label">Médecins</span>
+        </a>
+      </li>
+      {{-- <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-pill"></i></span>
+          <span class="menu-item-label">Produits</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/produits/list">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/produits/addForm">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li> --}}
+      <li>
+        <a href="/produits/list">
+          <span class="icon"><i class="mdi mdi-pill"></i></span>
+          <span class="menu-item-label">Produits</span>
+        </a>
+      </li>
+      {{-- <li>
+        <li>
+          <a class="dropdown">
+            <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
+            <span class="menu-item-label">Catégories</span>
+            <span class="icon"><i class="mdi mdi-plus"></i></span>
+          </a>
+          <ul>
+            <li>
+              <a href="/categories/list">
+                  <span>Liste</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      <li> --}}
+        <li>
+            <a href="/categories/list">
+              <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
+              <span class="menu-item-label">Catégories</span>
+            </a>
+          </li>
+      {{-- <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-pill"></i></span>
+          <span class="menu-item-label">Médicaments</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/medicaments/list">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/medicaments/addForm">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li> --}}
+      {{-- <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-needle"></i></span>
+          <span class="menu-item-label">Compléments</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/complements">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/complements/form">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li> --}}
+      {{-- <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+          <span class="menu-item-label">Premiers Secours</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/premiers_secours">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/premiers_secours/form">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li> --}}
+      {{-- <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-cart"></i></span>
+          <span class="menu-item-label">Commandes</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/commandes">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/commandes/form">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li> --}}
+      <li>
+        <a href="/commandes">
+          <span class="icon"><i class="mdi mdi-cart"></i></span>
+          <span class="menu-item-label">Commandes</span>
+        </a>
+      </li>
+      {{-- <li >
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-package-variant"></i></span>
+          <span class="menu-item-label">Packs</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/packs">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/packs/form">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li> --}}
+      <li>
+        <a href="/packs">
+          <span class="icon"><i class="mdi mdi-package-variant"></i></span>
+          <span class="menu-item-label">Packs</span>
+        </a>
+      </li>
+      {{-- <li>
+        <a class="dropdown">
+          <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
+          <span class="menu-item-label">Packs Produits</span>
+          <span class="icon"><i class="mdi mdi-plus"></i></span>
+        </a>
+        <ul>
+          <li>
+            <a href="/packs_produits">
+              <span>Liste</span>
+            </a>
+          </li>
+          <li>
+            <a href="/packs_produits/form">
+              <span>Ajout</span>
+            </a>
+          </li>
+        </ul>
+      </li> --}}
+      <li class="active">
+        <a href="/packs_produits">
+          <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
+          <span class="menu-item-label">Packs Produits</span>
+        </a>
+      </li>
             </ul>
             <p class="menu-label">A Propos</p>
             <ul class="menu-list">
@@ -230,8 +277,9 @@
             <h1 class="title">
                 Liste des Packs Produits
             </h1>
-            <a class="button blue" href='/packs_produits/addToPackForm/'>
-                Ajouter
+            <a href="/packs_produits/form" class="button blue">
+                <span class="icon"><i class="mdi mdi-plus"></i></span>
+                <span>Ajouter</span>
             </a>
         </div>
     </section>
@@ -240,7 +288,7 @@
         <div class="card has-table">
             <header class="card-header">
                 <p class="card-header-title">
-                    <span class="icon"><span class="mdi mdi-medical-bag"></span></span>
+                    <span class="icon"><span class="mdi mdi-package-variant-closed"></span></span>
                     Packs Produits
                 </p>
                 <a href="#" class="card-header-icon">
@@ -252,8 +300,9 @@
                     <thead>
                         <tr>
                             <th></th>
+                            <th>#</th>
                             <th scope="col">Nom</th>
-                            <th scope="col">Description</th>
+                            <th scope="col" style="width: 350px">Description</th>
                             <th scope="col">Prix</th>
                             <th scope="col">Quantité</th>
                         </tr>
@@ -263,23 +312,24 @@
                         @foreach ($list_packs as $p)
                             <tr>
                                 <td></td>
+                                <td>{{ $p->packs->id }}</td>
                                 <td>{{ $p->packs->nom }}</td>
                                 <td>{{ $p->packs->description }}</td>
                                 <td>{{ $p->packs->prix }} DH</td>
                                 <td>{{ $p->packs->qte_en_stock }}</td>
                                 <td class="actions-cell">
                                     <div class="buttons right nowrap">
-                                        <a class="button small green --jb-modal"
-                                            href="/packs_produits/updateForm/{{ $p->packs->id }}">
+                                        {{-- <a class="button small green --jb-modal" href="/packs_produits/updateForm/{{$p->packs->id}}">
                                             <span class="icon"><i class="mdi mdi-pencil"></i></span>
+                                        </a> --}}
+                                        <a class="button small blue "
+                                           href="/packs_produits/details/{{ $p->packs->id }}">
+                                           <span class="icon"><i class="mdi mdi-eye"></i></span>
                                         </a>
-                                        {{-- <button class="button small red --jb-modal"
-                                            data-target="sample-modal-{{ $p->id }}" type="button">
-                                            <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                                        </button> --}}
-                                        <a class="button small blue " href="/packs_produits/details/{{ $p->packs->id }}">
-                                            <span class="icon"><i class="mdi mdi-eye"></i></span>
-                                        </a>
+                                        <button class="button small red --jb-modal"
+                                        data-target="sample-modal-{{ $p->packs->id }}" type="button">
+                                        <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                                    </button>
                                     </div>
                                 </td>
                             </tr>
@@ -291,11 +341,22 @@
                 <div class="table-pagination">
                     <div class="flex items-center justify-between">
                         <div class="buttons">
-                            <button type="button" class="button active">1</button>
-                            <button type="button" class="button">2</button>
-                            <button type="button" class="button">3</button>
+                            @if ($list_packs->onFirstPage())
+                                <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                            @else
+                                <a href="{{ $list_packs->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                            @endif
+
+                            @for ($i = 1; $i <= $list_packs->lastPage(); $i++)
+                                <button type="button" class="button @if ($list_packs->currentPage() == $i) active @endif">{{ $i }}</button>
+                            @endfor
+
+                            @if ($list_packs->hasMorePages())
+                                <a href="{{ $list_packs->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                            @else
+                                <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                            @endif
                         </div>
-                        <small>Page 1 of 3</small>
                     </div>
                 </div>
             </div>

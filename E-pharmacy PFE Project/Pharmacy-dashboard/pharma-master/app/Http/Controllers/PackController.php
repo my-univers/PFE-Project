@@ -13,8 +13,11 @@ use Illuminate\Support\Facades\DB;
 class PackController extends Controller
 {
     public function showList(){
+        // Récupérer la liste paginée des packs
         $packs_list = Pack::paginate(10);
-        return view("packs.list" ,['list' => $packs_list ] );
+
+        // Retourner la vue avec la liste des packs mise à jour
+        return view("packs.list", ['list' => $packs_list]);
     }
 
     public function showForm(){
@@ -23,15 +26,15 @@ class PackController extends Controller
         return view('packs.add', ['list_packs' => $packs, 'produits' => $produits]);
     }
 
-
     public function addPack(Request $req){
-        
+
         $pack = new Pack();
         $pack->nom = $req->nom;
         $pack->qte_en_stock = $req->qte_en_stock;
         $pack->prix = $req->prix;
         $pack->description = $req->description;
-        
+
+
         // Traitement de l'image si elle est présente
         if ($req->hasFile('image')) {
             $image = $req->file('image');
@@ -42,12 +45,12 @@ class PackController extends Controller
 
         $pack->save();
 
-        $produitId = $req->produit_id;
+        // $produitId = $req->produit_id;
 
-        PackProduit::create([
-            'pack_id' => $pack->id,
-            'produits_id' => $produitId
-        ]);
+        // PackProduit::create([
+        //     'pack_id' => $pack->id,
+        //     'produits_id' => $produitId
+        // ]);
 
         return redirect('/packs');
 

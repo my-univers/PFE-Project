@@ -7,16 +7,19 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-    public function showClientsList() {
+    public function showClientsList()
+    {
         $clients = Client::paginate(10);
-        return view("clients.list", ['clients' => $clients ]);
+        return view("clients.list", ['clients' => $clients]);
     }
 
-    public function addClientForm() {
+    public function addClientForm()
+    {
         return view('clients.add');
     }
 
-    public function addClient(Request $request) {
+    public function addClient(Request $request)
+    {
         $client = new Client();
 
         $nom = $request->nom;
@@ -34,13 +37,15 @@ class ClientController extends Controller
         return redirect('/clients/list');
     }
 
-    public function updateClientForm($id) {
+    public function updateClientForm($id)
+    {
         $c = Client::find($id);
 
         return view('clients.update', ['c' => $c]);
     }
 
-    public function updateClient(Request $request, $id) {
+    public function updateClient(Request $request, $id)
+    {
         $c = Client::find($id);
 
         $c->nom = $request->nom;
@@ -53,11 +58,37 @@ class ClientController extends Controller
         return redirect('/clients/list');
     }
 
-    public function deleteClient($id) {
+    public function deleteClient($id)
+    {
 
         $c = Client::find($id);
         $c->delete();
 
         return redirect('/clients/list');
     }
+
+
+
+    // public function searchClients(Request $request)
+    // {
+    //     $search_input = $request->input('search_input');
+
+    //     $query = Client::query();
+
+    //     if ($search_input) {
+    //         $query->where('nom', 'like', '%' . $search_input . '%')
+    //             ->orWhere('email', 'like', '%' . $search_input . '%');
+    //     }
+
+    //     // Ajouter d'autres critères de recherche si nécessaire
+    //     // if ($other_criteria) {
+    //     //     $query->where('autre_colonne', $other_criteria);
+    //     // }
+
+    //     // Exécuter la requête
+    //     $clients = $query->get();
+
+    //     // Passer les résultats à la vue
+    //     return view('clients.list', ['clients' => $clients]);
+    // }
 }

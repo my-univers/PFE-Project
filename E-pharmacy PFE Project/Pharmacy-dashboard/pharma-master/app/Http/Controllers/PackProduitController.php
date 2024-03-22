@@ -13,18 +13,35 @@ class PackProduitController extends Controller
     public function showList()
     {
         $list_packs = PackProduit::with(['packs', 'produits'])
-        ->select('pack_id') 
+        ->select('pack_id')
         ->groupBy('pack_id')
-        ->get();
+        ->paginate(10);
 
         return view('/packs_produits.list', ['list_packs' => $list_packs]);
     }
-    
+
+    public function addPackProduits(Request $request) {
+        // Récupérer les données du formulaire
+        $packId = $request->input('pack_id');
+        $produitIds = $request->input('produits_id');
+
+        // Insérer les entrées dans la table packs_produits
+        foreach ($produitIds as $produitId) {
+            PackProduit::create([
+                'pack_id' => $packId,
+                'produits_id' => $produitId
+            ]);
+        }
+
+        // Rediriger avec un message de succès
+        return redirect('/packs_produits');
+    }
 
     public function showDetails($id) {
         $pack= Pack::find($id);
-        $produits = $pack->produits()->get();
-        
+        $produits = $pack->produits()->paginate(5);
+        $allProducts = Produit::paginate(10);
+
         $total = 0;
         foreach ($produits as $produit) {
             $total += $produit->prix;
@@ -41,16 +58,14 @@ class PackProduitController extends Controller
 
     public function showForm()
     {
-        $packs = Pack::all();
-        $list_premiers = PremiersSecours::all();
-        return view("packs_produits.add", ['list_packs'=> $packs, 'list_premiers' => $list_premiers]);
+        // Sélectionner les packs qui n'ont pas de produits associés
+        $packs = Pack::whereNotIn('id', function ($query) {
+            $query->select('pack_id')->from('packs_produits');
+        })->paginate(5);
+        $produits = Produit::paginate(5);
+        return view("packs_produits.add", ['packs'=> $packs, 'produits' => $produits]);
     }
 
-    // public function showAddToPackForm() {
-    //     $packs = Pack::all();
-    //     $produits = Produit::all();
-    //     return view('/packs_produits/addToPack', ['list_packs' => $packs, 'list_produits' => $produits]);
-    // }    
 
     public function updateForm($id){
         $p = Pack::find($id);
@@ -89,28 +104,34 @@ class PackProduitController extends Controller
 
             $pack = Pack::findOrFail($pack_id);
             $produit = Produit::findOrFail($produit_id);
-        
+
             $pack->produits()->attach($produit);
-        
+
             return redirect()->back();
         }
 
 
         public function removeProduct($pack_id, $produit_id) {
 
-            $pack = Pack::find($pack_id);        
+            $pack = Pack::find($pack_id);
 
             $pack->produits()->detach($produit_id);
-        
+
             return redirect()->back();
         }
-        
+
 
         public function deletePackProduit($id) {
             $packProduit = PackProduit::find($id);
-            $packProduit->delete();
-                return redirect('/packs_produits');
+
+            if ($packProduit) {
+                $packProduit->delete();
+                return redirect()->back()->with('success', 'Le pack produit a été supprimé avec succès.');
+            } else {
+                return redirect()->back()->with('error', 'Le pack produit que vous essayez de supprimer n\'existe pas.');
             }
 
         
+        }
+
 }

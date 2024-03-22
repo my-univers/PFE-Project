@@ -19,7 +19,7 @@
     </ul>
     <p class="menu-label">Gestion</p>
     <ul class="menu-list">
-      <li>
+      {{-- <li class="active">
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-account"></i></span>
           <span class="menu-item-label">Clients</span>
@@ -37,8 +37,14 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
+        <a href="/clients/list">
+          <span class="icon"><i class="mdi mdi-account"></i></span>
+          <span class="menu-item-label">Clients</span>
+        </a>
+      </li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
           <span class="menu-item-label">Médecins</span>
@@ -56,8 +62,14 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
+        <a href="/medecins/list">
+          <span class="icon"><i class="mdi mdi-doctor"></i></span>
+          <span class="menu-item-label">Médecins</span>
+        </a>
+      </li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
           <span class="menu-item-label">Produits</span>
@@ -75,8 +87,14 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
+        <a href="/produits/list">
+          <span class="icon"><i class="mdi mdi-pill"></i></span>
+          <span class="menu-item-label">Produits</span>
+        </a>
+      </li>
+      {{-- <li>
         <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
@@ -91,7 +109,13 @@
             </li>
           </ul>
         </li>
-      <li>
+      <li> --}}
+        <li>
+            <a href="/categories/list">
+              <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
+              <span class="menu-item-label">Catégories</span>
+            </a>
+          </li>
       {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
@@ -110,8 +134,8 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li>
+      </li> --}}
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-needle"></i></span>
           <span class="menu-item-label">Compléments</span>
@@ -149,7 +173,7 @@
           </li>
         </ul>
       </li> --}}
-      <li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-cart"></i></span>
           <span class="menu-item-label">Commandes</span>
@@ -167,8 +191,14 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
+        <a href="/commandes">
+          <span class="icon"><i class="mdi mdi-cart"></i></span>
+          <span class="menu-item-label">Commandes</span>
+        </a>
+      </li>
+      {{-- <li >
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-package-variant"></i></span>
           <span class="menu-item-label">Packs</span>
@@ -186,8 +216,14 @@
             </a>
           </li>
         </ul>
+      </li> --}}
+      <li>
+        <a href="/packs">
+          <span class="icon"><i class="mdi mdi-package-variant"></i></span>
+          <span class="menu-item-label">Packs</span>
+        </a>
       </li>
-      <li class="active">
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
           <span class="menu-item-label">Packs Produits</span>
@@ -205,6 +241,12 @@
             </a>
           </li>
         </ul>
+      </li> --}}
+      <li class="active">
+        <a href="/packs_produits">
+          <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
+          <span class="menu-item-label">Packs Produits</span>
+        </a>
       </li>
     </ul>
     <p class="menu-label">A Propos</p>
@@ -245,22 +287,23 @@
     <div class="card mb-6">
       <header class="card-header">
         <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
+          <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
           Packs Produits
         </p>
       </header>
 
       <div class="card-content">
         <button class="button blue" style="width: 210px" title="Détails de Base de Pack">
-            <span class="icon"><i class="mdi mdi-shopping"></i></span>&nbsp; Détails de Base
+            <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>&nbsp; Détails de Base
         </button>
+        <br><br>
         <table>
             <thead>
                 <tr>
                     <th></th>
-                    <th>Nom</th>
-                    <th>Quantité</th>
-                    <th  style="width: 400px">Prix</th>
+                    <th style="width: 33.3%">Nom</th>
+                    <th style="width: 33.3%">Quantité</th>
+                    <th style="width: 33.3%">Prix</th>
                     <th></th>
                 </tr>
             </thead>
@@ -281,13 +324,14 @@
             <span class="icon" title="Détails des Produits"><i class="mdi mdi-pill"></i></span>
             &nbsp; Produits du Pack
         </button>
+        <br><br>
         <table class="is-striped">
             <thead>
             <tr>
                 <th></th>
-                <th>Nom du Produit</th>
-                <th>Quantité</th>
-                <th>Prix</th>
+                <th style="width: 33.3%">Nom du Produit</th>
+                <th style="width: 33.3%">Quantité</th>
+                <th style="width: 33.3%">Prix</th>
                 <th></th>
             </tr>
             </thead>
@@ -308,19 +352,42 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="table-pagination">
+            <div class="flex items-center justify-between">
+                <div class="buttons">
+                    @if ($produits->onFirstPage())
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                    @else
+                        <a href="{{ $produits->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                    @endif
+
+                    @foreach ($produits->getUrlRange(1, $produits->lastPage()) as $page => $url)
+                        <button type="button" class="button {{ $produits->currentPage() === $page ? 'active' : '' }}">{{ $page }}</button>
+                    @endforeach
+
+                    @if ($produits->hasMorePages())
+                        <a href="{{ $produits->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                    @else
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                    @endif
+                </div>
+                <small>Page {{ $produits->currentPage() }} of {{ $produits->lastPage() }}</small>
+            </div>
+        </div>
         <br>
         <br>
         <button class="button red" style="width: 210px">
-            <span class="icon" title="Ajouter Des Produits"><i class="mdi mdi-plus"></i></span>
-            &nbsp; Produits à Ajouter
+            <span class="icon" title="Détails des Produits"><i class="mdi mdi-plus"></i></span>
+            &nbsp; Ajouter Produits
         </button>
+        <br><br>
         <table class="is-striped">
             <thead>
             <tr>
                 <th></th>
-                <th>Nom du Produit</th>
-                <th>Quantité</th>
-                <th>Prix</th>
+                <th style="width: 33.3%">Nom du Produit</th>
+                <th style="width: 33.3%">Quantité</th>
+                <th style="width: 33.3%">Prix</th>
                 <th></th>
             </tr>
             </thead>
@@ -343,6 +410,28 @@
                 @endforeach
             </tbody>
         </table>
+        <div class="table-pagination">
+            <div class="flex items-center justify-between">
+                <div class="buttons">
+                    @if ($allProducts->onFirstPage())
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                    @else
+                        <a href="{{ $allProducts->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                    @endif
+
+                    @foreach ($allProducts->getUrlRange(1, $allProducts->lastPage()) as $page => $url)
+                        <button type="button" class="button {{ $allProducts->currentPage() === $page ? 'active' : '' }}">{{ $page }}</button>
+                    @endforeach
+
+                    @if ($allProducts->hasMorePages())
+                        <a href="{{ $allProducts->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                    @else
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                    @endif
+                </div>
+                <small>Page {{ $allProducts->currentPage() }} of {{ $allProducts->lastPage() }}</small>
+            </div>
+        </div>
       </div>
     </div>
   </section>

@@ -19,7 +19,7 @@
     </ul>
     <p class="menu-label">Gestion</p>
     <ul class="menu-list">
-      <li>
+      {{-- <li class="active">
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-account"></i></span>
           <span class="menu-item-label">Clients</span>
@@ -37,8 +37,14 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
+        <a href="/clients/list">
+          <span class="icon"><i class="mdi mdi-account"></i></span>
+          <span class="menu-item-label">Clients</span>
+        </a>
+      </li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
           <span class="menu-item-label">Médecins</span>
@@ -56,8 +62,14 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
+        <a href="/medecins/list">
+          <span class="icon"><i class="mdi mdi-doctor"></i></span>
+          <span class="menu-item-label">Médecins</span>
+        </a>
+      </li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
           <span class="menu-item-label">Produits</span>
@@ -75,8 +87,14 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
+        <a href="/produits/list">
+          <span class="icon"><i class="mdi mdi-pill"></i></span>
+          <span class="menu-item-label">Produits</span>
+        </a>
+      </li>
+      {{-- <li>
         <li>
           <a class="dropdown">
             <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
@@ -91,7 +109,13 @@
             </li>
           </ul>
         </li>
-      <li>
+      <li> --}}
+        <li>
+            <a href="/categories/list">
+              <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
+              <span class="menu-item-label">Catégories</span>
+            </a>
+          </li>
       {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
@@ -129,8 +153,8 @@
             </a>
           </li>
         </ul>
-      </li>
-      <li>
+      </li> --}}
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
           <span class="menu-item-label">Premiers Secours</span>
@@ -149,7 +173,7 @@
           </li>
         </ul>
       </li> --}}
-      <li class="active">
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-cart"></i></span>
           <span class="menu-item-label">Commandes</span>
@@ -167,8 +191,14 @@
             </a>
           </li>
         </ul>
+      </li> --}}
+      <li class="active">
+        <a href="/commandes">
+          <span class="icon"><i class="mdi mdi-cart"></i></span>
+          <span class="menu-item-label">Commandes</span>
+        </a>
       </li>
-      <li>
+      {{-- <li >
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-package-variant"></i></span>
           <span class="menu-item-label">Packs</span>
@@ -186,8 +216,14 @@
             </a>
           </li>
         </ul>
-      </li>
+      </li> --}}
       <li>
+        <a href="/packs">
+          <span class="icon"><i class="mdi mdi-package-variant"></i></span>
+          <span class="menu-item-label">Packs</span>
+        </a>
+      </li>
+      {{-- <li>
         <a class="dropdown">
           <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
           <span class="menu-item-label">Packs Produits</span>
@@ -205,6 +241,12 @@
             </a>
           </li>
         </ul>
+      </li> --}}
+      <li>
+        <a href="/packs_produits">
+          <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
+          <span class="menu-item-label">Packs Produits</span>
+        </a>
       </li>
     </ul>
     <p class="menu-label">A Propos</p>
@@ -235,6 +277,9 @@
     <h1 class="title">
         Ajouter une Commande
     </h1>
+    <a class="button blue" href='/commandes'>
+        Retour
+      </a>
   </div>
 </section>
 
@@ -251,13 +296,13 @@
             @csrf
             <div class="field">
                 <button type="button" class="button blue" style="width: 260px" title="Client associé à la Commande">
-                    <span class="icon"><i class="mdi mdi-account"></i></span>&nbsp; Client Concerné
+                    <span class="icon"><i class="mdi mdi-account"></i></span>&nbsp; Client Concerné (1)
                 </button>
                 <br><br>
                 <table class="is-striped">
                     <thead>
                     <tr>
-                        <th style="width: 20%">#</th>
+                        <th style="width: 20%"></th>
                         <th style="width: 80%">Nom du Client</th>
                         <th></th>
                     </tr>
@@ -309,10 +354,11 @@
                 <table class="is-striped">
                     <thead>
                     <tr>
-                        <th style="width: 100px">#</th>
+                        <th style="width: 100px"></th>
                         <th>Nom du Produit</th>
                         <th>Prix</th>
-                        <th style="width: 60px">Quantité</th>
+                        <th>Quantité en Stock</th>
+                        <th style="width: 40px">Quantité à Commander</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -321,12 +367,13 @@
                         <tr>
                             <td class="checkbox-cell">
                                 <label class="checkbox">
-                                <input type="checkbox" name="produit_id[]" value="{{ $produit->id }}">
+                                <input type="checkbox" name="produits_id[]" value="{{ $produit->id }}">
                                 <span class="check"></span>
                                 </label>
                             </td>
                             <td>{{ $produit->nom }}</td>
                             <td>{{ $produit->prix }} DH</td>
+                            <td>{{ $produit->qte_en_stock }}</td>
                             <td>
                                 <input class="input is-small" type="number" name="quantite[{{ $produit->id }}]" value="1" min="1">
                             </td>
