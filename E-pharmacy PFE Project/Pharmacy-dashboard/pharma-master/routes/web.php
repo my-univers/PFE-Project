@@ -189,7 +189,7 @@ Route::get('/packs_produits/addToPack/{produit_id}/{pack_id}', [PackProduitContr
 
 Route::get('/packs_produits/removeProduct/{pack_id}/{produit_id}', [PackProduitController::class, 'removeProduct'])->name('packs_produits.removeFromPack');
 
-Route::get('/packs_produits/addToPackForm/', [PackProduitController::class, 'showAddToPackForm']);
+// Route::get('/packs_produits/addToPackForm/', [PackProduitController::class, 'showAddToPackForm']);
 
 // Route::post('/packs_premiers_secours/addToPack/{id}', [PackProduitController::class, 'AddToPack']);
 

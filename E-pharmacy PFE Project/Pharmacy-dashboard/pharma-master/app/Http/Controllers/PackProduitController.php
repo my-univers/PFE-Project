@@ -46,11 +46,11 @@ class PackProduitController extends Controller
         return view("packs_produits.add", ['list_packs'=> $packs, 'list_premiers' => $list_premiers]);
     }
 
-    public function showAddToPackForm() {
-        $packs = Pack::all();
-        $produits = Produit::all();
-        return view('/packs_produits/addToPack', ['list_packs' => $packs, 'list_produits' => $produits]);
-    }    
+    // public function showAddToPackForm() {
+    //     $packs = Pack::all();
+    //     $produits = Produit::all();
+    //     return view('/packs_produits/addToPack', ['list_packs' => $packs, 'list_produits' => $produits]);
+    // }    
 
     public function updateForm($id){
         $p = Pack::find($id);
