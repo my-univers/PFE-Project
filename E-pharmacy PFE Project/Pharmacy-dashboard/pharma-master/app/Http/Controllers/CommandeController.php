@@ -19,6 +19,7 @@ class CommandeController extends Controller
         $commande = Commande::find($id);
         $client = $commande->client;
         $produits = $commande->produits()->withPivot('quantite')->paginate(5);
+        $packs = $commande->packs()->withPivot('quantite')->paginate(5);
 
         // Calcul du total de la commande
         $totalCommande = 0;
@@ -26,7 +27,13 @@ class CommandeController extends Controller
             $totalCommande += $produit->prix * $produit->pivot->quantite;
         }
 
-        return view('commandes.details', ['commande' => $commande, 'client' => $client, 'produits' => $produits, 'totalCommande' => $totalCommande]);
+        return view('commandes.details',
+            ['commande' => $commande,
+            'client' => $client,
+            'produits' => $produits,
+            'totalCommande' => $totalCommande,
+            'packs' => $packs
+        ]);
     }
 
     public function validerCommande($id) {
@@ -84,6 +91,26 @@ class CommandeController extends Controller
 
             // Ajouter le produit à la commande avec la quantité via la table pivot produits_commandes
             $commande->produits()->attach($produit_id, ['quantite' => $quantite]);
+        }
+
+        // Récupérer les packs sélectionnés avec leurs quantités
+        $packs = $request->input('packs_id');
+        $quantites_packs = $request->input('quantite');
+
+        // Associer les packs à la commande
+        foreach ($packs as $pack_id) {
+            $quantite_pack = $quantites_packs[$pack_id];
+            $pack = Pack::find($pack_id);
+
+            // Ajouter le prix du pack multiplié par la quantité à calculer
+            $total_commande += $pack->prix * $quantite_pack;
+
+            // Décrémenter la quantité en stock du pack
+            $pack->qte_en_stock -= $quantite_pack;
+            $pack->save();
+
+            // Ajouter le pack à la commande avec la quantité via la table pivot packs_commandes
+            $commande->packs()->attach($pack_id, ['quantite' => $quantite_pack]);
         }
 
         // Mettre à jour le total de la commande

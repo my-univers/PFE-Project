@@ -293,7 +293,7 @@
       </header>
 
       <div class="card-content">
-        <button class="button blue" style="width: 210px" title="Détails de Base de Pack">
+        <button class="button blue" style="width: 240px" title="Détails de Base de Pack">
             <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>&nbsp; Détails de Base
         </button>
         <br><br>
@@ -318,9 +318,8 @@
             </tbody>
         </table>
         <br>
-        <br>
-
-        <button class="button green" style="width: 210px">
+        <hr>
+        <button class="button green" style="width: 240px">
             <span class="icon" title="Détails des Produits"><i class="mdi mdi-pill"></i></span>
             &nbsp; Produits du Pack
         </button>
@@ -374,9 +373,9 @@
                 <small>Page {{ $produits->currentPage() }} of {{ $produits->lastPage() }}</small>
             </div>
         </div>
-        <br>
-        <br>
-        <button class="button red" style="width: 210px">
+
+        <hr>
+        <button class="button red" style="width: 240px">
             <span class="icon" title="Détails des Produits"><i class="mdi mdi-plus"></i></span>
             &nbsp; Ajouter Produits
         </button>
