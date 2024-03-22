@@ -41,17 +41,12 @@ class PackController extends Controller
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('img'), $imageName);
             $pack->image_path = 'img/' . $imageName;
+        } else {
+            // Si aucune image n'est téléchargée, attribuer l'image par défaut
+            $pack->image_path = 'img/default-pack.jpg';
         }
 
         $pack->save();
-
-        // $produitId = $req->produit_id;
-
-        // PackProduit::create([
-        //     'pack_id' => $pack->id,
-        //     'produits_id' => $produitId
-        // ]);
-
         return redirect('/packs');
 
     }
@@ -91,7 +86,7 @@ class PackController extends Controller
     public function deletePack($id) {
         $c = Pack::find($id);
 
-        if ($c->image_path) {
+        if ($c->image_path != 'img/default-pack.jpg') {
             unlink(public_path($c->image_path));
         }
 

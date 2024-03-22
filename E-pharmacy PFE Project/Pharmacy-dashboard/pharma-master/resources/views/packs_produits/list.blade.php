@@ -4,7 +4,7 @@
     <aside class="aside is-placed-left is-expanded">
         <div class="aside-tools">
             <div>
-                Pharma <b class="font-black">One</b>
+                <b class="font-black">Pharma</b> One
             </div>
         </div>
         <div class="menu is-menu-main">
@@ -334,10 +334,25 @@
                                 </td>
                             </tr>
 
+                            <div id="sample-modal-{{$p->packs->id}}" class="modal">
+                                <div class="modal-background --jb-modal-close"></div>
+                                <div class="modal-card">
+                                  <header class="modal-card-head">
+                                    <p class="modal-card-title">Confirmer la Suppression</p>
+                                  </header>
+                                  <section class="modal-card-body">
+                                    <p>Êtes-vous sûr de vouloir annuler ce pack de produits ?</p>
+                                    <p>Cette action est irréversible.</p>
+                                  </section>
+                                  <footer class="modal-card-foot">
+                                    <button class="button --jb-modal-close">Annuler</button>
+                                    <a class="button red --jb-modal-close" href="/packs/delete/{{$p->packs->id}}">Confirmer</a>
+                                  </footer>
+                                </div>
+                            </div>
                         @endforeach
                     </tbody>
                 </table>
-
                 <div class="table-pagination">
                     <div class="flex items-center justify-between">
                         <div class="buttons">

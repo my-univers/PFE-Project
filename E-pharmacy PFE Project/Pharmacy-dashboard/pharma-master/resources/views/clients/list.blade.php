@@ -4,7 +4,7 @@
 <aside class="aside is-placed-left is-expanded">
   <div class="aside-tools">
     <div>
-      Pharma <b class="font-black">One</b>
+        <b class="font-black">Pharma</b> One
     </div>
   </div>
   <div class="menu is-menu-main">
@@ -359,7 +359,7 @@
                 </header>
                 <section class="modal-card-body">
                   <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
-                  <p>Cette action est irréversible</p>
+                  <p>Cette action est irréversible.</p>
                 </section>
                 <footer class="modal-card-foot">
                   <button class="button --jb-modal-close">Annuler</button>

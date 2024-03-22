@@ -101,34 +101,32 @@ class PackProduitController extends Controller
         return redirect('/packs_produits');
     }
 
+    public function addToPack($produit_id, $pack_id) {
 
-        public function addToPack($produit_id, $pack_id) {
+        $pack = Pack::findOrFail($pack_id);
+        $produit = Produit::findOrFail($produit_id);
 
-            $pack = Pack::findOrFail($pack_id);
-            $produit = Produit::findOrFail($produit_id);
-
-            $pack->produits()->attach($produit);
-
-            return redirect()->back();
-        }
-
-
-        public function removeProduct($pack_id, $produit_id) {
-
-            $pack = Pack::find($pack_id);
-
-            $pack->produits()->detach($produit_id);
+        $pack->produits()->attach($produit);
 
             return redirect()->back();
         }
 
 
-        public function deletePackProduit($id) {
-            $packProduit = PackProduit::find($id);
-            $packProduit->delete();
-            return redirect()->back()->with('success', 'Le pack produit a été supprimé avec succès.');
+    public function removeProduct($pack_id, $produit_id) {
 
+        $pack = Pack::find($pack_id);
+
+        $pack->produits()->detach($produit_id);
+
+        return redirect()->back();
+    }
+
+
+    public function deletePackProduit($id) {
+        $packProduit = PackProduit::find($id);
+        $packProduit->delete();
         
-        }
+        return redirect('/packs_produits');
+    }
 
 }
