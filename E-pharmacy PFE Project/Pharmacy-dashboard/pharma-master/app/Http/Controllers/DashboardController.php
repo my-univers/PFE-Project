@@ -23,12 +23,12 @@ class DashboardController extends Controller
         $produits_count = Produit::count();
         $category_count = Categorie::count();
 
-        $produits_epuises_count = Produit::where('qte_en_stock', 0)->count();
+        $produits_epuises_count = Produit::whereIn('qte_en_stock', [0, 1])->count();
         $produits_epuises = Produit::where('qte_en_stock', 0)->get();
 
-        return view('index',
-            ['clients' => $clients,
-             'produits' => $produits,
+        return view('index', [
+            'clients' => $clients,
+            'produits' => $produits,
             'clients_count' => $clients_count,
             'commandes_count' => $commandes_count,
             'medecins_count' => $medecins_count,

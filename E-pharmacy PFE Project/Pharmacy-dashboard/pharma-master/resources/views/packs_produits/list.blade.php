@@ -4,7 +4,7 @@
     <aside class="aside is-placed-left is-expanded">
         <div class="aside-tools">
             <div>
-                Pharma <b class="font-black">One</b>
+                <b class="font-black">Pharma</b> One
             </div>
         </div>
         <div class="menu is-menu-main">

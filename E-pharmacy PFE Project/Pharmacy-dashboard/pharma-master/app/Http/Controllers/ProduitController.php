@@ -46,6 +46,9 @@ class ProduitController extends Controller
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('img'), $imageName);
             $produit->image_path = 'img/' . $imageName;
+        } else {
+            // Si aucune image n'est téléchargée, attribuer l'image par défaut
+            $produit->image_path = 'img/default-image.jpg';
         }
 
         $produit->save();

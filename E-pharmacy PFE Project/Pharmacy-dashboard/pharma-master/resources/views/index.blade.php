@@ -4,7 +4,7 @@
 <aside class="aside is-placed-left is-expanded">
     <div class="aside-tools">
       <div>
-        Pharma <b class="font-black">One</b>
+        <b class="font-black">Pharma</b> One
       </div>
     </div>
     <div class="menu is-menu-main">
@@ -423,8 +423,8 @@
               @endforeach
             </tbody>
           </table>
-          @else
 
+          @else
           <p class="card-header-title">
             <span class="icon"><i class="mdi mdi-cart"></i></span>
             Commandes
