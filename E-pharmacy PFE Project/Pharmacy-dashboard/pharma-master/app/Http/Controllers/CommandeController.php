@@ -17,7 +17,7 @@ class CommandeController extends Controller
     public function showDetails($id) {
         $commande = Commande::find($id);
         $client = $commande->client;
-        $produits = $commande->produits()->withPivot('quantite')->get();
+        $produits = $commande->produits()->withPivot('quantite')->paginate(5);
 
         // Calcul du total de la commande
         $totalCommande = 0;
@@ -36,10 +36,15 @@ class CommandeController extends Controller
         return redirect('/commandes');
     }
 
-    public function addCommandeForm() {
-        $clients = Client::paginate(5);
-        $produits = Produit::paginate(5);
+    public function addCommandeForm()
+    {
+        // Récupérer les clients paginés avec un nom de page distinct
+        $clients = Client::paginate(5, ['*'], 'clients_page');
 
+        // Récupérer les produits avec une quantité en stock supérieure ou égale à 1 et une page de pagination distincte
+        $produits = Produit::where('qte_en_stock', '>=', 1)->paginate(5, ['*'], 'produits_page');
+
+        // Retourner la vue avec les clients et les produits
         return view('commandes.add', ['clients' => $clients, 'produits' => $produits]);
     }
 
@@ -57,7 +62,7 @@ class CommandeController extends Controller
         $commande->save();
 
         // Récupérer les produits sélectionnés avec leurs quantités
-        $produits = $request->input('produit_id');
+        $produits = $request->input('produits_id');
         $quantites = $request->input('quantite');
 
         // Calculer le total de la commande et associer les produits à la commande
@@ -68,6 +73,10 @@ class CommandeController extends Controller
 
             // Ajouter le prix du produit multiplié par la quantité à calculer
             $total_commande += $produit->prix * $quantite;
+
+            // Décrémenter la quantité en stock du produit
+            $produit->qte_en_stock -= $quantite;
+            $produit->save();
 
             // Ajouter le produit à la commande avec la quantité via la table pivot produits_commandes
             $commande->produits()->attach($produit_id, ['quantite' => $quantite]);
