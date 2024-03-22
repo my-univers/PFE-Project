@@ -311,7 +311,7 @@
         <br>
         <br>
         <button class="button red" style="width: 210px">
-            <span class="icon" title="Détails des Produits"><i class="mdi mdi-plus"></i></span>
+            <span class="icon" title="Ajouter Des Produits"><i class="mdi mdi-plus"></i></span>
             &nbsp; Produits à Ajouter
         </button>
         <table class="is-striped">

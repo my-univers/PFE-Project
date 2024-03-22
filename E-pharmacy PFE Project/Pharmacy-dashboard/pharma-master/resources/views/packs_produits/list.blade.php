@@ -230,6 +230,9 @@
             <h1 class="title">
                 Liste des Packs Produits
             </h1>
+            <a class="button blue" href='/packs_produits/addToPackForm/'>
+                Ajouter
+            </a>
         </div>
     </section>
 
@@ -266,44 +269,21 @@
                                 <td>{{ $p->packs->qte_en_stock }}</td>
                                 <td class="actions-cell">
                                     <div class="buttons right nowrap">
-                                        <a class="button small green --jb-modal" href="/packs_produits/updateForm/{{$p->packs->id}}">
+                                        <a class="button small green --jb-modal"
+                                            href="/packs_produits/updateForm/{{ $p->packs->id }}">
                                             <span class="icon"><i class="mdi mdi-pencil"></i></span>
                                         </a>
-                                        <button class="button small red --jb-modal"
-                                            data-target="sample-modal-{{ $p->packs->id }}" type="button">
+                                        {{-- <button class="button small red --jb-modal"
+                                            data-target="sample-modal-{{ $p->id }}" type="button">
                                             <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                                        </button>
-                                        <a class="button small blue "
-                                           href="/packs_produits/details/{{ $p->packs->id }}">
-                                           <span class="icon"><i class="mdi mdi-eye"></i></span>
+                                        </button> --}}
+                                        <a class="button small blue " href="/packs_produits/details/{{ $p->packs->id }}">
+                                            <span class="icon"><i class="mdi mdi-eye"></i></span>
                                         </a>
                                     </div>
                                 </td>
                             </tr>
 
-                            <div id="sample-modal-{{ $p->packs->id }}" class="modal">
-                                <div class="modal-background --jb-modal-close"></div>
-                                <div class="modal-card">
-                                    <header class="modal-card-head">
-                                        <p class="modal-card-title">Confirmation de Suppression</p>
-                                    </header>
-                                    <section class="modal-card-body">
-                                        <p>Êtes-vous sûr de vouloir supprimer cet élément ?</p>
-                                        <p> Cette action est irréversible.</p>
-                                    </section>
-
-                                    <footer class="modal-card-foot">
-                                        <button class="button --jb-modal-close">Annuler</button>
-                                        <script>
-                                            function annuler() {
-                                                window.location.href = '/packs_produits/list';
-                                            };
-                                        </script>
-                                        <a class="button red --jb-modal-close"
-                                            href="/packs_produits/delete/{{ $p->packs->id }}">Confirmer</a>
-                                    </footer>
-                                </div>
-                            </div>
                         @endforeach
                     </tbody>
                 </table>

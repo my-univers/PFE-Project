@@ -24,8 +24,7 @@ class PackProduitController extends Controller
     public function showDetails($id) {
         $pack= Pack::find($id);
         $produits = $pack->produits()->get();
-        $allProducts = Produit::all();
-
+        
         $total = 0;
         foreach ($produits as $produit) {
             $total += $produit->prix;
@@ -47,6 +46,11 @@ class PackProduitController extends Controller
         return view("packs_produits.add", ['list_packs'=> $packs, 'list_premiers' => $list_premiers]);
     }
 
+    public function showAddToPackForm() {
+        $packs = Pack::all();
+        $produits = Produit::all();
+        return view('/packs_produits/addToPack', ['list_packs' => $packs, 'list_produits' => $produits]);
+    }    
 
     public function updateForm($id){
         $p = Pack::find($id);
@@ -91,6 +95,7 @@ class PackProduitController extends Controller
             return redirect()->back();
         }
 
+
         public function removeProduct($pack_id, $produit_id) {
 
             $pack = Pack::find($pack_id);        
@@ -103,13 +108,9 @@ class PackProduitController extends Controller
 
         public function deletePackProduit($id) {
             $packProduit = PackProduit::find($id);
-        
-            if ($packProduit) {
-                $packProduit->delete();
-                return redirect()->back()->with('success', 'Le pack produit a été supprimé avec succès.');
-            } else {
-                return redirect()->back()->with('error', 'Le pack produit que vous essayez de supprimer n\'existe pas.');
+            $packProduit->delete();
+                return redirect('/packs_produits');
             }
-        }
+
         
 }

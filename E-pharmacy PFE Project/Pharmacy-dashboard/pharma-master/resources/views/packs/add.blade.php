@@ -198,11 +198,7 @@
                                 <span>Liste</span>
                             </a>
                         </li>
-                        {{-- <li>
-            <a href="/packs_produits/form">
-              <span>Ajout</span>
-            </a>
-          </li> --}}
+
                     </ul>
                 </li>
             </ul>

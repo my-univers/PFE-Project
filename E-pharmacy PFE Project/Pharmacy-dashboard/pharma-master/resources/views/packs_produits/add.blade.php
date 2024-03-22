@@ -224,7 +224,7 @@
             <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
                 <ul>
                     <li>Admin</li>
-                    <li>Packs Premiers Secours</li>
+                    <li>Packs Produits</li>
                 </ul>
             </div>
         </section>
@@ -232,7 +232,7 @@
         <section class="is-hero-bar">
             <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
                 <h1 class="title">
-                    Ajouter Packs Premiers Secours
+                    Ajouter Packs Produits
                 </h1>
             </div>
         </section>
@@ -245,7 +245,7 @@
                     <header class="card-header">
                         <p class="card-header-title">
                             <span class="icon"><i class="mdi mdi-medical-bag"></i></span>
-                            Pack Premiers Secours
+                            Pack Produits
                         </p>
                     </header>
                     <div class="card-content">
