@@ -350,23 +350,6 @@
                     <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                     </button>
 
-                    <div id="sample-modal" class="modal">
-                        <div class="modal-background --jb-modal-close"></div>
-                        <div class="modal-card">
-                          <header class="modal-card-head">
-                            <p class="modal-card-title">Confirmer la Suppression</p>
-                          </header>
-                          <section class="modal-card-body">
-                            <p>Êtes-vous sûr de vouloir supprimer ce produit ?</p>
-                            <p>Cette action est irréversible</p>
-                          </section>
-                          <footer class="modal-card-foot">
-                            <button class="button --jb-modal-close">Annuler</button>
-                            <a class="button red --jb-modal-close" href="/produits/delete/{{$p->id}}">Confirmer</a>
-                          </footer>
-                        </div>
-                      </div>
-                </div>
                 </td>
             </tr>
 

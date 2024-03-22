@@ -94,7 +94,7 @@ class ProduitController extends Controller
 
         $p = Produit::findOrFail($id);
 
-        if ($p->image_path) {
+        if ($p->image_path != 'img/default-image.jpg') {
             unlink(public_path($p->image_path));
         }
 
