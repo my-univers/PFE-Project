@@ -36,21 +36,5 @@ class shopController extends Controller
         return view('shop', compact('products'));
     }
 
-    // public function showComplements(){
-    //     $complements = Produit::whereHas('categorie', function ($query) {
-    //         $query->where('nom', 'Compléments Alimentaires');
-    //     })->get();
-
-    //     return view('complements' , ['complements' => $complements]);
-
-    // }
-
-    // public function showMedicaments(){
-    //     $medicaments = Produit::whereHas('categorie', function ($query) {
-    //         $query->where('nom', 'Médicaments');
-    //     })->get();
-        
-    //     return view('complements' , ['medicaments' => $medicaments]);
-
-    // }
+   
 }
