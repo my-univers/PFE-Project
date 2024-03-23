@@ -41,13 +41,12 @@ Route::get('/checkout', function () {
     return view('checkout');
 })->name('checkout');
 
-/*--------------------------------DASHBOARD---------------------------------------*/
- 
+/*--------------------------------INDEX---------------------------------------*/
+
 Route::get('/', [IndexController::class, 'popularProducts']);
 
 Route::get('/shop', [IndexController::class, 'showMagasin']);
 
 Route::get('/products', [shopController::class, 'filterProducts']);
-
 
 // Route::get('/shop', [ShopController::class, '']);

@@ -140,7 +140,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row mt-5">
           @foreach ($products as $product)
           <div class="col-sm-6 col-lg-4 text-center item mb-4">
               @if ($product->qte_en_stock < 1)
@@ -149,8 +149,8 @@
               <a href="/shop-single/{{ $product->id }}"><img src="{{ $product->image_path }}" alt="Image" class="product-image"></a>
               <style>
                 .product-image {
-                    width: 200px;
                     height: 200px;
+                    width: calc(100 / 3);
                 }
             </style>
               <h3 class="text-dark"><a href="/shop-single/{{ $product->id }}">{{ $product->nom }}</a></h3>
@@ -175,17 +175,15 @@
             <h2 class="text-uppercase">Nouveaux Produits</h2>
           </div>
         </div>
-        <div class="row">
+        <div class="row mt-5">
           <div class="col-md-12 block-3 products-wrap">
             <div class="nonloop-block-3 owl-carousel">
-              
                 @foreach ($recentProducts as $product)
                 <div class="col-md-3 text-center item mb-4">
                     <a href="/shop-single"> <img src="{{ $product->image_path }}" alt="Image"></a>
-                   
+
                     <h3 class="text-dark"><a href="/shop-single">{{ $product->nom }}</a></h3>
                 </div>
-
                 @endforeach
             </div>
           </div>

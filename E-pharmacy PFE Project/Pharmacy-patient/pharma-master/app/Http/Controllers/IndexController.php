@@ -15,7 +15,7 @@ class IndexController extends Controller
     }
 
     public function showMagasin(){
-        $products = Produit::all();
+        $products = Produit::paginate(9);
         return view('shop', ['products' => $products]);
     }
 }

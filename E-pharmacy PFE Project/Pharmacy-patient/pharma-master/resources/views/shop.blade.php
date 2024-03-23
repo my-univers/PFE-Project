@@ -99,9 +99,7 @@
 
         <div class="site-section">
             <div class="container">
-
                 <div class="row">
-
                   <div class="col-lg-6">
                     <h3 class="mb-3 h6 text-uppercase text-black d-block">Filtrer par Référence</h3>
                     <button type="button" class="btn btn-secondary btn-md dropdown-toggle px-4" id="dropdownMenuReference" data-toggle="dropdown">Référence</button>
@@ -113,46 +111,51 @@
                         <a class="dropdown-item" href="/products?sort=price_asc">Prix, croissant</a>
                         <a class="dropdown-item" href="/products?sort=price_desc">Prix, décroissant</a>
                     </div>
+                  </div>
                 </div>
 
+                <div class="row mt-5">
+                    @foreach($products as $product)
+                    <div class="col-sm-6 col-lg-4 text-center item mb-4">
+                        <a href="{{ route('shop-single', $product->id) }}"> <img class="product-image" src="{{ asset($product->image_path) }}" alt="Image"></a>
+                        <h3 class="text-dark"><a href="{{ route('shop-single', $product->id) }}">{{ $product->nom }}</a></h3>
+                        <p class="price">{{ $product->prix }} DH</p>
+                      </div>
+                      <style>
+                        .product-image {
+                            height: 200px;
+                            width: calc(100 / 3);
+                        }
+                    </style>
+                    @endforeach
                 </div>
 
-                <div class="row">
-
-                    <div class="row">
-                        @foreach ($products as $product)
-                            <div class="col-sm-6 col-lg-4 text-center item mb-4">
-                                <a href="{{ route('shop-single', $product->id) }}">
-                                    <img src="{{ asset($product->image_path) }}" alt="Image"
-                                        class="product-image">
-                                    <style>
-                                        .product-image {
-                                            width: 200px;
-                                            height: 200px;
-                                        }
-                                    </style>
-                                </a>
-                                <h3 class="text-dark"><a
-                                        href="{{ route('shop-single', $product->id) }}">{{ $product->nom }}</a></h3>
-                                <p class="price">{{ $product->prix }} DH</p>
-                            </div>
-                        @endforeach
-                    </div>
-
-
-                    
-                </div>
                 <div class="row mt-5">
                     <div class="col-md-12 text-center">
                         <div class="site-block-27">
                             <ul>
-                                <li><a href="#">&lt;</a></li>
-                                <li class="active"><span>1</span></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&gt;</a></li>
+                                <!-- Bouton précédent -->
+                                @if ($products->onFirstPage())
+                                    <li class="disabled"><span>&lt;</span></li>
+                                @else
+                                    <li><a href="{{ $products->previousPageUrl() }}">&lt;</a></li>
+                                @endif
+
+                                <!-- Affichage des pages -->
+                                @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+                                    @if ($products->currentPage() === $page)
+                                        <li class="active"><span>{{ $page }}</span></li>
+                                    @else
+                                        <li><a href="{{ $url }}">{{ $page }}</a></li>
+                                    @endif
+                                @endforeach
+
+                                <!-- Bouton suivant -->
+                                @if ($products->hasMorePages())
+                                    <li><a href="{{ $products->nextPageUrl() }}">&gt;</a></li>
+                                @else
+                                    <li class="disabled"><span>&gt;</span></li>
+                                @endif
                             </ul>
                         </div>
                     </div>
