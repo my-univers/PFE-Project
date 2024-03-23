@@ -16,22 +16,6 @@ class IndexController extends Controller
         return view('index', ['products' => $products, 'recentProducts' => $recentProducts, 'categories' => $categories]);
     }
 
-    public function showMagasin(){
-        $products = Produit::paginate(9);
-        $categories = Categorie::all();
-
-        return view('shop', ['products' => $products, 'categories'=>$categories]);
-    }
-
-
-
-
-
-
-
-
-
-    
     // public function showComplements(){
     //     $complements = Produit::whereHas('categorie', function ($query) {
     //         $query->where('nom', 'Compléments Alimentaires');
