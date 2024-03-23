@@ -52,7 +52,7 @@
                 <li class="has-children">
                   <a href="#">Catégories</a>
                   <ul class="dropdown">
-                    <li><a href="/medicments">Médicaments</a></li>
+                    <li><a href="/medicaments">Médicaments</a></li>
                     <li><a href="/complements">Compléments Alimentaires</a></li>
                     <li><a href="/premiers">Premiers Secours</a></li>
                   </ul>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\shopController;
 use Illuminate\Support\Facades\Route;
@@ -50,4 +51,11 @@ Route::get('/shop', [IndexController::class, 'showMagasin']);
 Route::get('/products', [shopController::class, 'filterProducts']);
 
 
-// Route::get('/shop', [ShopController::class, '']);
+
+/*-----------------------------------Categories-----------------------------------------*/
+
+Route::get('/complements', [CategorieController::class, 'showComplements']);
+
+Route::get('/medicaments', [CategorieController::class, 'showMedicaments']);
+
+Route::get('/premiers', [CategorieController::class, 'showPremiers']);
