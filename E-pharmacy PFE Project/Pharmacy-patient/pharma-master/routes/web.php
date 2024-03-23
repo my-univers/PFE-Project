@@ -60,8 +60,6 @@ Route::get('/categorie/{id}', [CategorieController::class, 'showProducts'])->nam
 
 Route::get('/categorieFiltered/{id}', [CategorieController::class, 'filterProducts'])->name('categorie.filter');
 
-// Route::get('/categorie/{id}_filter', [CategorieController::class, 'filterProducts'])->name('filterProducts');
-
 // Route::get('/complements', [CategorieController::class, 'showComplements']);
 
 // Route::get('/medicaments', [CategorieController::class, 'showMedicaments']);
