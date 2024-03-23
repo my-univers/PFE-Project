@@ -83,7 +83,7 @@
                 <div class="row">
                     <div class="col-md-12 mb-0">
                         <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span>
-                        <strong class="text-black">Compléments Alimentaires</strong>
+                        <strong class="text-black">Médicaments</strong>
                     </div>
                 </div>
             </div>
