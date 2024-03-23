@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 
@@ -18,4 +19,24 @@ class IndexController extends Controller
         $products = Produit::paginate(9);
         return view('shop', ['products' => $products]);
     }
+
+    // public function showComplements(){
+    //     $complements = Produit::whereHas('categorie', function ($query) {
+    //         $query->where('nom', 'Compléments Alimentaires');
+    //     })->get();
+
+    //     return view('complements' , ['complements' => $complements]);
+
+    // }
+
+    // public function showMedicaments(){
+    //     $medicaments = Produit::whereHas('categorie', function ($query) {
+    //         $query->where('nom', 'Médicaments');
+    //     })->get();
+        
+    //     return view('complements' , ['medicaments' => $medicaments]);
+
+    // }
+
+
 }

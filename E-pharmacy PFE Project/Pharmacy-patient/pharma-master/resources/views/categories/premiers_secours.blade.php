@@ -39,42 +39,43 @@
             </div>
 
             <div class="container">
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="logo">
-                  <div class="site-logo">
-                    <a href="/" class="js-logo-clone">Pharma</a>
+                <div class="d-flex align-items-center justify-content-between">
+                  <div class="logo">
+                    <div class="site-logo">
+                      <a href="/" class="js-logo-clone">Pharma</a>
+                    </div>
                   </div>
-                </div>
-                <div class="main-nav d-none d-lg-block">
-                  <nav class="site-navigation text-right text-md-center" role="navigation">
-                    <ul class="site-menu js-clone-nav d-none d-lg-block">
-                      <li><a href="/">Accueil</a></li>
-                      <li class="active"><a href="/shop">Magasin</a></li>
-                      <li class="has-children">
-                        <a href="#">Catégories</a>
-                        <ul class="dropdown">
-                          <li><a href="/medicaments">Médicaments</a></li>
-                          <li><a href="/complements">Compléments Alimentaires</a></li>
-                          <li><a href="/premiers">Premiers Secours</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="/about">A Propos</a></li>
-                      <li><a href="/contact">Contact</a></li>
-                    </ul>
-                  </nav>
-                </div>
-                <div class="icons">
-                  <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-                  <a href="{{ route('cart') }}" class="icons-btn d-inline-block bag">
-                    <span class="icon-shopping-bag"></span>
-                    <span class="number">2</span>
-                  </a>
-                  <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
-                      class="icon-menu"></span></a>
+                  <div class="main-nav d-none d-lg-block">
+                    <nav class="site-navigation text-right text-md-center" role="navigation">
+                      <ul class="site-menu js-clone-nav d-none d-lg-block">
+                        <li><a href="/">Accueil</a></li>
+                        <li><a href="/shop">Magasin</a></li>
+                        <li class="has-children">
+                          <a>Catégories</a>
+                          <ul class="dropdown">
+                            <li><a href="/medicaments">Médicaments</a></li>
+                            <li><a href="/complements">Compléments Alimentaires</a></li>
+                            <li><a href="/premiers">Premiers Secours</a></li>
+                          </ul>
+                        </li>
+                        <li><a href="/about">A Propos</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                      </ul>
+                    </nav>
+                  </div>
+                  <div class="icons">
+                    <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
+                    <a href="/cart" class="icons-btn d-inline-block bag">
+                      <span class="icon-shopping-bag"></span>
+                      <span class="number">2</span>
+                    </a>
+                    <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
+                        class="icon-menu"></span></a>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+
 
 
         <div class="bg-light py-3">
@@ -82,7 +83,7 @@
                 <div class="row">
                     <div class="col-md-12 mb-0">
                         <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span>
-                        <strong class="text-black">Magasin</strong>
+                        <strong class="text-black">Compléments Alimentaires</strong>
                     </div>
                 </div>
             </div>
@@ -104,51 +105,39 @@
                         <a class="dropdown-item" href="/products?sort=price_asc">Prix, croissant</a>
                         <a class="dropdown-item" href="/products?sort=price_desc">Prix, décroissant</a>
                     </div>
-                  </div>
                 </div>
-
-                <div class="row mt-5">
-                    @foreach($products as $product)
-                    <div class="col-sm-6 col-lg-4 text-center item mb-4">
-                        <a href="{{ route('shop-single', $product->id) }}"> <img class="product-image" src="{{ asset($product->image_path) }}" alt="Image"></a>
-                        <h3 class="text-dark"><a href="{{ route('shop-single', $product->id) }}">{{ $product->nom }}</a></h3>
-                        <p class="price">{{ $product->prix }} DH</p>
-                      </div>
-                      <style>
-                        .product-image {
-                            height: 200px;
-                            width: calc(100 / 3);
-                        }
-                    </style>
-                    @endforeach
                 </div>
-
+            </div>
+        </div>
+    </div>
+                <div class="row">
+                        @foreach ($premiers as $premier)
+                            <div class="col-sm-6 col-lg-4 text-center item mb-4">
+                                <a href= "shop-single/ {{$premier->id}}">
+                                    <img src="{{ asset($premier->image_path) }}" alt="Image"class="product-image">
+                                    <style>
+                                        .product-image {
+                                            width: 200px;
+                                            height: 200px;
+                                        }
+                                    </style>
+                                </a>
+                                <h3 class="text-dark"><a href="shop-single/ {{$premier->id}}">{{ $premier->nom }}</a></h3>
+                                <p class="price">{{ $premier->prix }} DH</p>
+                            </div>
+                        @endforeach
+                </div>
                 <div class="row mt-5">
                     <div class="col-md-12 text-center">
                         <div class="site-block-27">
                             <ul>
-                                <!-- Bouton précédent -->
-                                @if ($products->onFirstPage())
-                                    <li class="disabled"><span>&lt;</span></li>
-                                @else
-                                    <li><a href="{{ $products->previousPageUrl() }}">&lt;</a></li>
-                                @endif
-
-                                <!-- Affichage des pages -->
-                                @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
-                                    @if ($products->currentPage() === $page)
-                                        <li class="active"><span>{{ $page }}</span></li>
-                                    @else
-                                        <li><a href="{{ $url }}">{{ $page }}</a></li>
-                                    @endif
-                                @endforeach
-
-                                <!-- Bouton suivant -->
-                                @if ($products->hasMorePages())
-                                    <li><a href="{{ $products->nextPageUrl() }}">&gt;</a></li>
-                                @else
-                                    <li class="disabled"><span>&gt;</span></li>
-                                @endif
+                                <li><a href="#">&lt;</a></li>
+                                <li class="active"><span>1</span></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">&gt;</a></li>
                             </ul>
                         </div>
                     </div>
@@ -257,3 +246,4 @@
 </body>
 
 </html>
+ 
