@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 
 class shopController extends Controller
 {
+    public function showMagasin(){
+        $products = Produit::paginate(9);
+        $categories = Categorie::all();
+
+        return view('shop', ['products' => $products, 'categories'=>$categories]);
+    }
+
     public function filterProducts(Request $request)
     {
         $query = Produit::query();
@@ -31,26 +39,11 @@ class shopController extends Controller
             }
         }
 
-        $products = $query->paginate(9); 
+        $categories = Categorie::all();
+        $products = $query->paginate(9);
 
-        return view('shop', compact('products'));
+        return view('shop', ['products' => $products, 'categories' => $categories]);
     }
 
-    // public function showComplements(){
-    //     $complements = Produit::whereHas('categorie', function ($query) {
-    //         $query->where('nom', 'Compléments Alimentaires');
-    //     })->get();
 
-    //     return view('complements' , ['complements' => $complements]);
-
-    // }
-
-    // public function showMedicaments(){
-    //     $medicaments = Produit::whereHas('categorie', function ($query) {
-    //         $query->where('nom', 'Médicaments');
-    //     })->get();
-        
-    //     return view('complements' , ['medicaments' => $medicaments]);
-
-    // }
 }

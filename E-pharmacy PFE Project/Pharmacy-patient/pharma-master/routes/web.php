@@ -46,18 +46,28 @@ Route::get('/checkout', function () {
 
 Route::get('/', [IndexController::class, 'popularProducts']);
 
-Route::get('/shop', [IndexController::class, 'showMagasin']);
+
+/*-------------------------------------Shop------------------------------------*/
+
+Route::get('/shop', [shopController::class, 'showMagasin']);
 
 Route::get('/products', [shopController::class, 'filterProducts']);
-
 
 
 /*-----------------------------------Categories-----------------------------------------*/
 
 Route::get('/categorie/{id}', [CategorieController::class, 'showProducts'])->name('categorie.products');
 
+Route::get('/categorie/{id}_filter', [CategorieController::class, 'filterProducts'])->name('filterProducts');
+
 // Route::get('/complements', [CategorieController::class, 'showComplements']);
 
 // Route::get('/medicaments', [CategorieController::class, 'showMedicaments']);
 
 // Route::get('/premiers', [CategorieController::class, 'showPremiers']);
+
+// Route::get('/complementsFiltered', [CategorieController::class, 'filterComplements']);
+
+// Route::get('/medicamentsFiltered', [CategorieController::class, 'filterMedicaments']);
+
+// Route::get('/premiersFiltered', [CategorieController::class, 'filterPremiers']);
