@@ -7,18 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="../fonts/icomoon/style.css">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
 
 
-    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="../css/aos.css">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
@@ -51,11 +51,13 @@
                                 <li><a href="/">Accueil</a></li>
                                 <li><a href="/shop">Magasin</a></li>
                                 <li class="has-children">
-                                    <a>Catégories</a>
+                                    <a href="#">Catégories</a>
                                     <ul class="dropdown">
-                                        <li><a href="/medicaments">Médicaments</a></li>
-                                        <li><a href="/complements">Compléments Alimentaires</a></li>
-                                        <li><a href="/premiers">Premiers Secours</a></li>
+                                        @foreach ($categories as $categorie)
+                                            <li>
+                                                <a href="{{ route('categorie.products', $categorie->id) }}">{{ $categorie->nom }}</a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </li>
                                 <li><a href="/about">A Propos</a></li>
@@ -77,20 +79,16 @@
             </div>
         </div>
 
-
-
         <div class="bg-light py-3">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 mb-0">
                         <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span>
-                        <strong class="text-black">Compléments Alimentaires</strong>
+                        <strong class="text-black">{{ $categorie->nom }}</strong>
                     </div>
                 </div>
             </div>
         </div>
-
-
 
         <div class="site-section">
             <div class="container">
@@ -112,17 +110,17 @@
 
                 <!--new code -->
                 <div class="row mt-5">
-                    @foreach ($premiers as $premier)
+                    @foreach ($produits as $produit)
                         <div class="col-sm-6 col-lg-4 text-center item mb-4">
-                            <a href="{{ route('shop-single', $premier->id) }}"> <img class="premier-image"
-                                    src="{{ asset($premier->image_path) }}" alt="Image"></a>
+                            <a href="{{ route('shop-single', $produit->id) }}"> <img class="produit-image"
+                                    src="{{ asset($produit->image_path) }}" alt="Image"></a>
                             <br><br>
-                            <h3 class="text-dark"><a href="{{ route('shop-single', $premier->id) }}">{{ $premier->nom }}</a>
+                            <h3 class="text-dark"><a href="{{ route('shop-single', $produit->id) }}">{{ $produit->nom }}</a>
                             </h3>
-                            <p class="price">{{ $premier->prix }} DH</p>
+                            <p class="price">{{ $produit->prix }} DH</p>
                         </div>
                         <style>
-                            .premier-image {
+                            .produit-image {
                                 height: 200px;
                                 width: calc(100 / 3);
                             }
@@ -136,15 +134,15 @@
                         <div class="site-block-27">
                             <ul>
                                 <!-- Bouton précédent -->
-                                @if ($premiers->onFirstPage())
+                                @if ($produits->onFirstPage())
                                     <li class="disabled"><span>&lt;</span></li>
                                 @else
-                                    <li><a href="{{ $premiers->previousPageUrl() }}">&lt;</a></li>
+                                    <li><a href="{{ $produits->previousPageUrl() }}">&lt;</a></li>
                                 @endif
 
                                 <!-- Affichage des pages -->
-                                @foreach ($premiers->getUrlRange(1, $premiers->lastPage()) as $page => $url)
-                                    @if ($premiers->currentPage() === $page)
+                                @foreach ($produits->getUrlRange(1, $produits->lastPage()) as $page => $url)
+                                    @if ($produits->currentPage() === $page)
                                         <li class="active"><span>{{ $page }}</span></li>
                                     @else
                                         <li><a href="{{ $url }}">{{ $page }}</a></li>
@@ -152,8 +150,8 @@
                                 @endforeach
 
                                 <!-- Bouton suivant -->
-                                @if ($premiers->hasMorePages())
-                                    <li><a href="{{ $premiers->nextPageUrl() }}">&gt;</a></li>
+                                @if ($produits->hasMorePages())
+                                    <li><a href="{{ $produits->nextPageUrl() }}">&gt;</a></li>
                                 @else
                                     <li class="disabled"><span>&gt;</span></li>
                                 @endif
@@ -164,12 +162,34 @@
             </div>
         </div>
     </div>
+    {{-- <div class="row">
+        @foreach ($complements as $complement)
+            @if ($complement->categorie->nom == 'Compléments Alimentaires')
+                <div class="col-sm-6 col-lg-4 text-center item mb-4">
+                    <a href= "shop-single/ {{ $complement->id }}">
+                        <img src="{{ asset($complement->image_path) }}" alt="Image"class="product-image">
+                        <style>
+                            .product-image {
+                                width: 200px;
+                                height: 200px;
+                            }
+                        </style>
+                    </a>
+                    <h3 class="text-dark"><a href="shop-single/ {{ $complement->id }}">{{ $complement->nom }}</a></h3>
+                    <p class="price">{{ $complement->prix }} DH</p>
+                </div>
+            @endif
+        @endforeach
+    </div> --}}
+    </div>
+    </div>
 
     <div class="site-section bg-secondary bg-image" style="background-image: url('images/bg_2.jpg');">
         <div class="container">
             <div class="row align-items-stretch">
                 <div class="col-lg-6 mb-5 mb-lg-0">
-                    <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_1.jpg');">
+                    <a href="#" class="banner-1 h-100 d-flex"
+                        style="background-image: url('../images/bg_1.jpg');">
                         <div class="banner-1-inner align-self-center">
                             <h2>Service Clientele exceptionnel</h2>
                             <p>Notre équipe est disponible 24h/7j pour répondre à toutes vos questions et
@@ -180,7 +200,7 @@
                 </div>
                 <div class="col-lg-6 mb-5 mb-lg-0">
                     <a href="#" class="banner-1 h-100 d-flex"
-                        style="background-image: url('images/bg_2.jpg');">
+                        style="background-image: url('../images/bg_2.jpg');">
                         <div class="banner-1-inner ml-auto  align-self-center">
                             <h2>Commandez rapidement</h2>
                             <p>En cas d'urgence médicale, vous pouvez appeler directement un docteur et passer votre
@@ -251,15 +271,15 @@
     <!--****** END FOOTER *******-->
     </div>
 
-    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-ui.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('js/aos.js') }}"></script>
+    <script src="{{ asset('../js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('../js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('../js/popper.min.js') }}"></script>
+    <script src="{{ asset('../js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('../js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('../js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('../js/aos.js') }}"></script>
 
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('../js/main.js') }}"></script>
 
 </body>
 

@@ -54,8 +54,10 @@ Route::get('/products', [shopController::class, 'filterProducts']);
 
 /*-----------------------------------Categories-----------------------------------------*/
 
-Route::get('/complements', [CategorieController::class, 'showComplements']);
+Route::get('/categorie/{id}', [CategorieController::class, 'showProducts'])->name('categorie.products');
 
-Route::get('/medicaments', [CategorieController::class, 'showMedicaments']);
+// Route::get('/complements', [CategorieController::class, 'showComplements']);
 
-Route::get('/premiers', [CategorieController::class, 'showPremiers']);
+// Route::get('/medicaments', [CategorieController::class, 'showMedicaments']);
+
+// Route::get('/premiers', [CategorieController::class, 'showPremiers']);

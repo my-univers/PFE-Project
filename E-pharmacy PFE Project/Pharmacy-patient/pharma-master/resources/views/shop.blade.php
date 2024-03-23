@@ -39,42 +39,45 @@
             </div>
 
             <div class="container">
-              <div class="d-flex align-items-center justify-content-between">
-                <div class="logo">
-                  <div class="site-logo">
-                    <a href="/" class="js-logo-clone">Pharma</a>
-                  </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <div class="logo">
+                        <div class="site-logo">
+                            <a href="/" class="js-logo-clone">Pharma</a>
+                        </div>
+                    </div>
+                    <div class="main-nav d-none d-lg-block">
+                        <nav class="site-navigation text-right text-md-center" role="navigation">
+                            <ul class="site-menu js-clone-nav d-none d-lg-block">
+                                <li><a href="/">Accueil</a></li>
+                                <li class="active"><a href="/shop">Magasin</a></li>
+                                <li class="has-children">
+                                    <a href="#">Catégories</a>
+                                    <ul class="dropdown">
+                                        @foreach ($categories as $categorie)
+                                            <li>
+                                                <a href="{{ route('categorie.products', $categorie->id) }}">{{ $categorie->nom }}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </li>
+                                <li><a href="/about">A Propos</a></li>
+                                <li><a href="/contact">Contact</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="icons">
+                        <a href="#" class="icons-btn d-inline-block js-search-open"><span
+                                class="icon-search"></span></a>
+                        <a href="{{ route('cart') }}" class="icons-btn d-inline-block bag">
+                            <span class="icon-shopping-bag"></span>
+                            <span class="number">2</span>
+                        </a>
+                        <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
+                                class="icon-menu"></span></a>
+                    </div>
                 </div>
-                <div class="main-nav d-none d-lg-block">
-                  <nav class="site-navigation text-right text-md-center" role="navigation">
-                    <ul class="site-menu js-clone-nav d-none d-lg-block">
-                      <li><a href="/">Accueil</a></li>
-                      <li class="active"><a href="/shop">Magasin</a></li>
-                      <li class="has-children">
-                        <a href="#">Catégories</a>
-                        <ul class="dropdown">
-                          <li><a href="/medicaments">Médicaments</a></li>
-                          <li><a href="/complements">Compléments Alimentaires</a></li>
-                          <li><a href="/premiers">Premiers Secours</a></li>
-                        </ul>
-                      </li>
-                      <li><a href="/about">A Propos</a></li>
-                      <li><a href="/contact">Contact</a></li>
-                    </ul>
-                  </nav>
-                </div>
-                <div class="icons">
-                  <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-                  <a href="{{ route('cart') }}" class="icons-btn d-inline-block bag">
-                    <span class="icon-shopping-bag"></span>
-                    <span class="number">2</span>
-                  </a>
-                  <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
-                      class="icon-menu"></span></a>
-                </div>
-              </div>
             </div>
-          </div>
+        </div>
 
 
         <div class="bg-light py-3">
@@ -93,36 +96,42 @@
         <div class="site-section">
             <div class="container">
                 <div class="row">
-                  <div class="col-lg-6">
-                    <h3 class="mb-3 h6 text-uppercase text-black d-block">Filtrer par Référence</h3>
-                    <button type="button" class="btn btn-secondary btn-md dropdown-toggle px-4" id="dropdownMenuReference" data-toggle="dropdown">Référence</button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                        <a class="dropdown-item" href="/products?sort=relevance">Pertinence</a>
-                        <a class="dropdown-item" href="/products?sort=name_asc">Nom, A à Z</a>
-                        <a class="dropdown-item" href="/products?sort=name_desc">Nom, Z à A</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/products?sort=price_asc">Prix, croissant</a>
-                        <a class="dropdown-item" href="/products?sort=price_desc">Prix, décroissant</a>
+                    <div class="col-lg-6">
+                        <h3 class="mb-3 h6 text-uppercase text-black d-block">Filtrer par Référence</h3>
+                        <button type="button" class="btn btn-secondary btn-md dropdown-toggle px-4"
+                            id="dropdownMenuReference" data-toggle="dropdown">Référence</button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
+                            <a class="dropdown-item" href="/products?sort=relevance">Pertinence</a>
+                            <a class="dropdown-item" href="/products?sort=name_asc">Nom, A à Z</a>
+                            <a class="dropdown-item" href="/products?sort=name_desc">Nom, Z à A</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/products?sort=price_asc">Prix, croissant</a>
+                            <a class="dropdown-item" href="/products?sort=price_desc">Prix, décroissant</a>
+                        </div>
                     </div>
-                  </div>
                 </div>
 
+                <!--new code -->
                 <div class="row mt-5">
-                    @foreach($products as $product)
-                    <div class="col-sm-6 col-lg-4 text-center item mb-4">
-                        <a href="{{ route('shop-single', $product->id) }}"> <img class="product-image" src="{{ asset($product->image_path) }}" alt="Image"></a>
-                        <h3 class="text-dark"><a href="{{ route('shop-single', $product->id) }}">{{ $product->nom }}</a></h3>
-                        <p class="price">{{ $product->prix }} DH</p>
-                      </div>
-                      <style>
-                        .product-image {
-                            height: 200px;
-                            width: calc(100 / 3);
-                        }
-                    </style>
+                    @foreach ($products as $product)
+                        <div class="col-sm-6 col-lg-4 text-center item mb-4">
+                            <a href="{{ route('shop-single', $product->id) }}"> <img class="product-image"
+                                    src="{{ asset($product->image_path) }}" alt="Image"></a>
+                            <br><br>
+                            <h3 class="text-dark"><a
+                                    href="{{ route('shop-single', $product->id) }}">{{ $product->nom }}</a></h3>
+                            <p class="price">{{ $product->prix }} DH</p>
+                        </div>
+                        <style>
+                            .product-image {
+                                height: 200px;
+                                width: calc(100 / 3);
+                            }
+                        </style>
                     @endforeach
                 </div>
 
+                <!-- new code-->
                 <div class="row mt-5">
                     <div class="col-md-12 text-center">
                         <div class="site-block-27">

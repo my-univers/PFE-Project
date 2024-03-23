@@ -12,14 +12,26 @@ class IndexController extends Controller
     {
         $recentProducts = Produit::orderBy('created_at', 'desc')->take(4)->get();
         $products = Produit::take(6)->get();
-        return view('index', ['products' => $products, 'recentProducts' => $recentProducts]);
+        $categories = Categorie::all();
+        return view('index', ['products' => $products, 'recentProducts' => $recentProducts, 'categories' => $categories]);
     }
 
     public function showMagasin(){
         $products = Produit::paginate(9);
-        return view('shop', ['products' => $products]);
+        $categories = Categorie::all();
+
+        return view('shop', ['products' => $products, 'categories'=>$categories]);
     }
 
+
+
+
+
+
+
+
+
+    
     // public function showComplements(){
     //     $complements = Produit::whereHas('categorie', function ($query) {
     //         $query->where('nom', 'Compléments Alimentaires');
@@ -33,7 +45,7 @@ class IndexController extends Controller
     //     $medicaments = Produit::whereHas('categorie', function ($query) {
     //         $query->where('nom', 'Médicaments');
     //     })->get();
-        
+
     //     return view('complements' , ['medicaments' => $medicaments]);
 
     // }
