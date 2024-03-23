@@ -58,7 +58,9 @@ Route::get('/products', [shopController::class, 'filterProducts']);
 
 Route::get('/categorie/{id}', [CategorieController::class, 'showProducts'])->name('categorie.products');
 
-Route::get('/categorie/{id}_filter', [CategorieController::class, 'filterProducts'])->name('filterProducts');
+Route::get('/categorieFiltered/{id}', [CategorieController::class, 'filterProducts'])->name('categorie.filter');
+
+// Route::get('/categorie/{id}_filter', [CategorieController::class, 'filterProducts'])->name('filterProducts');
 
 // Route::get('/complements', [CategorieController::class, 'showComplements']);
 

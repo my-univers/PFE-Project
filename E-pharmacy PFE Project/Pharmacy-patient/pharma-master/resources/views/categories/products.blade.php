@@ -53,10 +53,10 @@
                                 <li class="has-children">
                                     <a href="#">Catégories</a>
                                     <ul class="dropdown">
-                                        @foreach ($categories as $categorie)
+                                        @foreach ($categories as $c)
                                             <li>
                                                 <a
-                                                    href="{{ route('categorie.products', $categorie->id) }}">{{ $categorie->nom }}</a>
+                                                    href="{{ route('categorie.products', $c->id) }}">{{ $c->nom }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -94,28 +94,17 @@
         <div class="site-section">
             <div class="container">
                 <div class="row">
-
                     <div class="col-lg-6">
                         <h3 class="mb-3 h6 text-uppercase text-black d-block">Filtrer par Référence</h3>
-                        <form method="GET" action="{{ route('filterProducts', $categorie->id) }}">
+                        <form method="GET" action="{{ route('categorie.filter', $categorie->id) }}">
                             @csrf
-                            <button type="submit" class="btn btn-secondary btn-md dropdown-toggle px-4"
-                                id="dropdownMenuReference" data-toggle="dropdown">Référence</button>
+                            <button type="submit" class="btn btn-secondary btn-md dropdown-toggle px-4" id="dropdownMenuReference" data-toggle="dropdown">Référence</button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                                <a class="dropdown-item"
-                                    href="{{ route('filterProducts', [$categorie->id, 'sort' => 'relevance']) }}">Pertinence</a>
-                                <a class="dropdown-item"
-                                    href="{{ route('filterProducts', [$categorie->id, 'sort' => 'name_asc']) }}">Nom, A
-                                    à Z</a>
-                                <a class="dropdown-item"
-                                    href="{{ route('filterProducts', [$categorie->id, 'sort' => 'name_desc']) }}">Nom, Z
-                                    à A</a>
-                                <a class="dropdown-item"
-                                    href="{{ route('filterProducts', [$categorie->id, 'sort' => 'price_asc']) }}">Prix,
-                                    croissant</a>
-                                <a class="dropdown-item"
-                                    href="{{ route('filterProducts', [$categorie->id, 'sort' => 'price_desc']) }}">Prix,
-                                    décroissant</a>
+                                <a class="dropdown-item" href="{{ route('categorie.filter', [$categorie->id, 'sort' => 'relevance']) }}">Pertinence</a>
+                                <a class="dropdown-item" href="{{ route('categorie.filter', [$categorie->id, 'sort' => 'name_asc']) }}">Nom, A à Z</a>
+                                <a class="dropdown-item" href="{{ route('categorie.filter', [$categorie->id, 'sort' => 'name_desc']) }}">Nom, Z à A</a>
+                                <a class="dropdown-item" href="{{ route('categorie.filter', [$categorie->id, 'sort' => 'price_asc']) }}">Prix, croissant</a>
+                                <a class="dropdown-item" href="{{ route('categorie.filter', [$categorie->id, 'sort' => 'price_desc']) }}">Prix, décroissant</a>
                             </div>
                         </form>
                     </div>
