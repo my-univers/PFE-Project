@@ -17,43 +17,43 @@ class CategorieController extends Controller
         return view('categories.products', ['produits' => $produits, 'categories' => $categories, 'categorie' => $categorie]);
     }
 
-    // AYA : FIX REDIRECTION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1
     public function filterProducts(Request $request, $id)
     {
+        // Récupérer les paramètres de filtrage depuis la requête
+        $sort = $request->input('sort');
+
+        // Récupérer la catégorie
         $categorie = Categorie::find($id);
+
+        // Récupérer les produits de la catégorie avec filtrage
         $query = $categorie->produits();
 
-        // Vérifier les options de filtrage
-        if ($request->has('sort')) {
-            $sort = $request->input('sort');
-            switch ($sort) {
-                case 'relevance':
-                    // Tri par pertinence (option par défaut)
-                    // Vous pouvez ajouter votre logique de tri ici
-                    break;
-                case 'name_asc':
-                    $query->orderBy('nom', 'asc');
-                    break;
-                case 'name_desc':
-                    $query->orderBy('nom', 'desc');
-                    break;
-                case 'price_asc':
-                    $query->orderBy('prix', 'asc');
-                    break;
-                case 'price_desc':
-                    $query->orderBy('prix', 'desc');
-                    break;
-                default:
-                    // Tri par pertinence par défaut
-                    break;
-            }
+        switch ($sort) {
+            case 'relevance':
+                $query->orderBy('relevance_column');
+                break;
+            case 'name_asc':
+                $query->orderBy('nom', 'asc');
+                break;
+            case 'name_desc':
+                $query->orderBy('nom', 'desc');
+                break;
+            case 'price_asc':
+                $query->orderBy('prix', 'asc');
+                break;
+            case 'price_desc':
+                $query->orderBy('prix', 'desc');
+                break;
+            default:
+                // Aucun tri spécifié, utiliser un tri par défaut
+                $query->orderBy('relevance_column');
         }
 
-        // Paginer les résultats
         $produits = $query->paginate(9);
+        $categories = Categorie::all();
 
         // Retourner la vue avec les produits filtrés
-        return view('categories.products', ['produits' => $produits, 'categorie' => $categorie]);
+        return view('categories.products', ['categorie' => $categorie, 'categories' => $categories, 'produits' => $produits]);
     }
 
 
