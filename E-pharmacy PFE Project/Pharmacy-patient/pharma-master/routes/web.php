@@ -59,3 +59,9 @@ Route::get('/complements', [CategorieController::class, 'showComplements']);
 Route::get('/medicaments', [CategorieController::class, 'showMedicaments']);
 
 Route::get('/premiers', [CategorieController::class, 'showPremiers']);
+
+Route::get('/complementsFiltered', [CategorieController::class, 'filterComplements']);
+
+Route::get('/medicamentsFiltered', [CategorieController::class, 'filterMedicaments']);
+
+Route::get('/premiersFiltered', [CategorieController::class, 'filterPremiers']);

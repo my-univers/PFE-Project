@@ -98,12 +98,12 @@
                     <h3 class="mb-3 h6 text-uppercase text-black d-block">Filtrer par Référence</h3>
                     <button type="button" class="btn btn-secondary btn-md dropdown-toggle px-4" id="dropdownMenuReference" data-toggle="dropdown">Référence</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                        <a class="dropdown-item" href="/products?sort=relevance">Pertinence</a>
-                        <a class="dropdown-item" href="/products?sort=name_asc">Nom, A à Z</a>
-                        <a class="dropdown-item" href="/products?sort=name_desc">Nom, Z à A</a>
+                        <a class="dropdown-item" href="/premiersFiltered?sort=relevance">Pertinence</a>
+                        <a class="dropdown-item" href="/premiersFiltered?sort=nom_asc">Nom, A à Z</a>
+                        <a class="dropdown-item" href="/premiersFiltered?sort=nom_desc">Nom, Z à A</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/products?sort=price_asc">Prix, croissant</a>
-                        <a class="dropdown-item" href="/products?sort=price_desc">Prix, décroissant</a>
+                        <a class="dropdown-item" href="/premiersFiltered?sort=prix_asc">Prix, croissant</a>
+                        <a class="dropdown-item" href="/premiersFiltered?sort=prix_desc">Prix, décroissant</a>
                     </div>
                 </div>
                 </div>

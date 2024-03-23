@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <title>Pharma &mdash; Pharmacie en ligne</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
-
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-
-    <link rel="stylesheet" href="css/aos.css">
-
-    <link rel="stylesheet" href="css/style.css">
-
-</head>
+    <head>
+        <title>Pharma &mdash; Pharmacie en ligne</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+        <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
+        <link rel="stylesheet" href="fonts/icomoon/style.css">
+    
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/magnific-popup.css">
+        <link rel="stylesheet" href="css/jquery-ui.css">
+        <link rel="stylesheet" href="css/owl.carousel.min.css">
+        <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    
+    
+        <link rel="stylesheet" href="css/aos.css">
+    
+        <link rel="stylesheet" href="css/style.css">
+    
+    </head>
 
 <body>
 
@@ -89,8 +88,6 @@
             </div>
         </div>
 
-
-
         <div class="site-section">
             <div class="container">
                 <div class="row">
@@ -98,12 +95,12 @@
                     <h3 class="mb-3 h6 text-uppercase text-black d-block">Filtrer par Référence</h3>
                     <button type="button" class="btn btn-secondary btn-md dropdown-toggle px-4" id="dropdownMenuReference" data-toggle="dropdown">Référence</button>
                     <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                        <a class="dropdown-item" href="/products?sort=relevance">Pertinence</a>
-                        <a class="dropdown-item" href="/products?sort=name_asc">Nom, A à Z</a>
-                        <a class="dropdown-item" href="/products?sort=name_desc">Nom, Z à A</a>
+                        <a class="dropdown-item" href="/medicamentsFiltered?sort=relevance">Pertinence</a>
+                        <a class="dropdown-item" href="/medicamentsFiltered?sort=nom_asc">Nom, A à Z</a>
+                        <a class="dropdown-item" href="/medicamentsFiltered?sort=nom_desc">Nom, Z à A</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/products?sort=price_asc">Prix, croissant</a>
-                        <a class="dropdown-item" href="/products?sort=price_desc">Prix, décroissant</a>
+                        <a class="dropdown-item" href="/medicamentsFiltered?sort=prix_asc">Prix, croissant</a>
+                        <a class="dropdown-item" href="/medicamentsFiltered?sort=prix_desc">Prix, décroissant</a>
                     </div>
                 </div>
                 </div>
