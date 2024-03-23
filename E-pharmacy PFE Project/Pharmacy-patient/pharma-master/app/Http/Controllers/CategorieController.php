@@ -30,7 +30,6 @@ class CategorieController extends Controller
 
         switch ($sort) {
             case 'relevance':
-                $query->orderBy('relevance_column');
                 break;
             case 'name_asc':
                 $query->orderBy('nom', 'asc');
@@ -44,9 +43,6 @@ class CategorieController extends Controller
             case 'price_desc':
                 $query->orderBy('prix', 'desc');
                 break;
-            default:
-                // Aucun tri spécifié, utiliser un tri par défaut
-                $query->orderBy('relevance_column');
         }
 
         $produits = $query->paginate(9);
