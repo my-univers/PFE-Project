@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # E-Pharmacy PFE Project
 
 ## Description
@@ -39,6 +38,4 @@ php artisan migrate
 8. Lancer le serveur de développement :
 php artisan serve
 
-=======
-# PFE-Project
->>>>>>> cdd7797624d12aa99108292efffba18042911efd
+=============================================================================================================================
