@@ -63,8 +63,8 @@ class PackProduitController extends Controller
         // Sélectionner les packs qui n'ont pas de produits associés
         $packs = Pack::whereNotIn('id', function ($query) {
             $query->select('pack_id')->from('packs_produits');
-        })->paginate(5);
-        $produits = Produit::paginate(5);
+        })->paginate(5, ['*'], 'packs_page');
+        $produits = Produit::paginate(5, ['*'], 'produits_page');
         return view("packs_produits.add", ['packs'=> $packs, 'produits' => $produits]);
     }
 
@@ -125,7 +125,11 @@ class PackProduitController extends Controller
     public function deletePackProduit($id) {
         $packProduit = PackProduit::find($id);
         $packProduit->delete();
-        
+
+        if ($packProduit->pack->image_path != 'img/default-pack.jpg') {
+            unlink(public_path($packProduit->pack->image_path));
+        }
+
         return redirect('/packs_produits');
     }
 
