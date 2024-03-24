@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/aos.css') }}">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  
+
 </head>
 
 <body>
@@ -44,21 +44,28 @@
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
                 <li><a href="/">Accueil</a></li>
-                <li><a href="/shop">Magasin</a></li>
                 <li class="has-children">
-                  <a href="#">Catégories</a>
-                  <ul class="dropdown">
-                    <li><a href="#">Compléments Alimentaires</a></li>
-                    <li class="has-children">
-                      <a href="#">Vitamines</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Supplements</a></li>
-                        <li><a href="#">Vitamins</a></li>
-                        <li><a href="#">Diet &amp; Nutrition</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#"> Régime &amp; Nutrition</a></li>
-                  </ul>
+                    <a href="#">Magasin</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="/shop/produits">Produits</a>
+                            <a href="/shop/packs">Packs de Produits</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-children">
+                    <a href="#">Catégories</a>
+                    <ul class="dropdown">
+                        <?php
+                            use App\Models\Categorie;
+                            $categories = Categorie::all();
+                        ?>
+                        @foreach ($categories as $categorie)
+                            <li>
+                                <a href="{{ route('categorie.products', $categorie->id) }}">{{ $categorie->nom }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
                 </li>
                 <li class="active"><a href="{{ route('about') }}">A Propos</a></li>
                 <li><a href="{{ route('contact') }}">Contact</a></li>
@@ -103,27 +110,27 @@
                 <img src="images/bg_1.jpg" alt="Image placeholder" class="img-fluid rounded">
                 <a href="https://vimeo.com/channels/staffpicks/93951774" class="play-button popup-vimeo"><span
                     class="icon-play"></span></a>
-    
+
               </figure>
             </div>
           </div>
           <div class="col-md-1"></div>
           <div class="col-md-5">
-    
-    
+
+
             <div class="site-section-heading pt-3 mb-4">
               <h2 class="text-black">Comment nous avons commencé</h2>
             </div>
-            <p>Nous avons commencé notre parcours avec une vision simple mais ambitieuse : 
-              offrir un accès facile et sûr aux produits pharmaceutiques de qualité. 
-              Guidés par notre passion pour la santé et le bien-être, nous avons mis en place PHARMA avec un engagement ferme envers nos clients. 
-              Aujourd'hui, nous sommes fiers de notre parcours et nous nous engageons à continuer à servir notre communauté avec intégrité et dévouement.</p>  
+            <p>Nous avons commencé notre parcours avec une vision simple mais ambitieuse :
+              offrir un accès facile et sûr aux produits pharmaceutiques de qualité.
+              Guidés par notre passion pour la santé et le bien-être, nous avons mis en place PHARMA avec un engagement ferme envers nos clients.
+              Aujourd'hui, nous sommes fiers de notre parcours et nous nous engageons à continuer à servir notre communauté avec intégrité et dévouement.</p>
           </div>
         </div>
       </div>
     </div>
 
-    
+
 
     <div class="site-section bg-light custom-border-bottom" data-aos="fade">
       <div class="container">
@@ -134,13 +141,13 @@
                 <img src="images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded">
                 <a href="https://vimeo.com/channels/staffpicks/93951774" class="play-button popup-vimeo"><span
                     class="icon-play"></span></a>
-    
+
               </figure>
             </div>
           </div>
           <div class="col-md-5 mr-auto">
-    
-    
+
+
             <div class="site-section-heading pt-3 mb-4">
               <h2 class="text-black">Nous sommes une entreprise de confiance</h2>
             </div>
@@ -150,12 +157,12 @@
               Avec une équipe dévouée et des normes élevées en matière de professionnalisme,
               nous nous efforçons chaque jour de mériter la confiance de nos clients et de maintenir notre position en tant que partenaire de choix pour leurs besoins en santé.
             </p>
-    
+
           </div>
         </div>
       </div>
     </div>
-    
+
     <div class="site-section site-section-sm site-blocks-1 border-0" data-aos="fade">
       <div class="container">
         <div class="row">
@@ -189,7 +196,7 @@
         </div>
       </div>
     </div>
-    
+
 
     <div class="site-section bg-light custom-border-bottom" data-aos="fade">
       <div class="container">
@@ -200,7 +207,7 @@
         </div>
         <div class="row">
           <div class="col-md-6 col-lg-6 mb-5">
-    
+
             <div class="block-38 text-center">
               <div class="block-38-img">
                 <div class="block-38-header">

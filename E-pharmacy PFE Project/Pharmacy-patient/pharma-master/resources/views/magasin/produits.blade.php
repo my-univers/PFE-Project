@@ -7,18 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="../fonts/icomoon/style.css">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
 
 
-    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="../css/aos.css">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
@@ -49,7 +49,16 @@
                         <nav class="site-navigation text-right text-md-center" role="navigation">
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
                                 <li><a href="/">Accueil</a></li>
-                                <li class="active"><a href="/shop">Magasin</a></li>
+                                {{-- <li class="active"><a href="/shop">Magasin</a></li> --}}
+                                <li class="has-children">
+                                    <a href="#">Magasin</a>
+                                    <ul class="dropdown">
+                                        <li>
+                                            <a href="/shop/produits">Produits</a>
+                                            <a href="/shop/packs">Packs de Produits</a>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li class="has-children">
                                     <a href="#">Catégories</a>
                                     <ul class="dropdown">
@@ -86,6 +95,8 @@
                     <div class="col-md-12 mb-0">
                         <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span>
                         <strong class="text-black">Magasin</strong>
+                        <span class="mx-2 mb-0">/</span>
+                        <strong class="text-black">Produits</strong>
                     </div>
                 </div>
             </div>
@@ -171,7 +182,7 @@
                 <div class="row align-items-stretch">
                     <div class="col-lg-6 mb-5 mb-lg-0">
                         <a href="#" class="banner-1 h-100 d-flex"
-                            style="background-image: url('images/bg_1.jpg');">
+                            style="background-image: url('../images/bg_1.jpg');">
                             <div class="banner-1-inner align-self-center">
                                 <h2>Service Clientele exceptionnel</h2>
                                 <p>Notre équipe est disponible 24h/7j pour répondre à toutes vos questions et
@@ -182,7 +193,7 @@
                     </div>
                     <div class="col-lg-6 mb-5 mb-lg-0">
                         <a href="#" class="banner-1 h-100 d-flex"
-                            style="background-image: url('images/bg_2.jpg');">
+                            style="background-image: url('../images/bg_2.jpg');">
                             <div class="banner-1-inner ml-auto  align-self-center">
                                 <h2>Commandez rapidement</h2>
                                 <p>En cas d'urgence médicale, vous pouvez appeler directement un docteur et passer votre
@@ -253,16 +264,15 @@
         <!--****** END FOOTER *******-->
     </div>
 
-    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-ui.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('js/aos.js') }}"></script>
+    <script src="{{ asset('../js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('../js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('../js/popper.min.js') }}"></script>
+    <script src="{{ asset('../js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('../js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('../js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('../js/aos.js') }}"></script>
 
-    <script src="{{ asset('js/main.js') }}"></script>
-
+    <script src="{{ asset('../js/main.js') }}"></script>
 </body>
 
 </html>

@@ -39,9 +39,9 @@ class PackProduitController extends Controller
 
     public function showDetails($id) {
         $pack= Pack::find($id);
-        $produits = $pack->produits()->paginate(5);
+        $produits = $pack->produits()->paginate(5, ['*'], 'produits');
         // get all products where qte_en_stock >= 1
-        $allProducts = Produit::where('qte_en_stock','>=',1)->paginate(5);
+        $allProducts = Produit::where('qte_en_stock','>=',1)->paginate(5, ['*'], 'allProducts_page');
 
 
         $total = 0;

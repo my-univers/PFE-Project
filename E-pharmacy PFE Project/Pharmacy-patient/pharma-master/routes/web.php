@@ -49,9 +49,13 @@ Route::get('/', [IndexController::class, 'popularProducts']);
 
 /*-------------------------------------Shop------------------------------------*/
 
-Route::get('/shop', [shopController::class, 'showMagasin']);
+Route::get('/shop/produits', [shopController::class, 'showMagasinProduits']);
+
+Route::get('/shop/packs', [shopController::class, 'showMagasinPacks']);
 
 Route::get('/products', [shopController::class, 'filterProducts']);
+
+Route::get('/packs', [shopController::class, 'filterPacks']);
 
 
 /*-----------------------------------Categories-----------------------------------------*/
