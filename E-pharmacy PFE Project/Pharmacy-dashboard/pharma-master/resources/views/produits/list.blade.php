@@ -290,7 +290,7 @@
           <span class="icon"><i class="mdi mdi-pill"></i></span>
           Produits
         </p>
-        <form action="/produits/list" method="get" class="card-header-icon">
+        <form action="/produits/list" method="get" class="card-header-icon" id="filterForm">
             <span>
                 <label class="label">Filtrer par Catégorie </label>
             </span>
@@ -299,7 +299,7 @@
                 <div class="field">
                     <div class="control">
                         <div class="select">
-                        <select name="categorie">
+                        <select name="categorie" onchange="submitForm()">
                             <option value="">Tous</option>
                             @foreach ($categories as $c)
                             <option value="{{ $c->id }}" @if($categorieId == $c->id) selected @endif>{{ $c->nom }}</option>
@@ -309,13 +309,14 @@
                     </div>
                 </div>
             </span>
-            &nbsp; &nbsp;
-            <span>
-                <button type="submit" class="button small blue" type="button">
-                    <span class="icon"><i class="mdi mdi-filter"></i></span>
-                </button>
-            </span>
         </form>
+
+        <script>
+            function submitForm() {
+                document.getElementById("filterForm").submit();
+            }
+        </script>
+
       </header>
       <div class="card-content">
         <table>

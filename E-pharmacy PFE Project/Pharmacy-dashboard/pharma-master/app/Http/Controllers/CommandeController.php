@@ -10,12 +10,14 @@ use Illuminate\Http\Request;
 
 class CommandeController extends Controller
 {
-    public function showList(Request $request) {
+    public function showList(Request $request)
+    {
         $commandes = Commande::paginate(10);
         return view('commandes.list', ['commandes' => $commandes]);
     }
 
-    public function showDetails($id) {
+    public function showDetails($id)
+    {
         $commande = Commande::find($id);
         $client = $commande->client;
         $produits = $commande->produits()->withPivot('quantite')->paginate(5);
@@ -27,16 +29,20 @@ class CommandeController extends Controller
             $totalCommande += $produit->prix * $produit->pivot->quantite;
         }
 
-        return view('commandes.details',
-            ['commande' => $commande,
-            'client' => $client,
-            'produits' => $produits,
-            'totalCommande' => $totalCommande,
-            'packs' => $packs
-        ]);
+        return view(
+            'commandes.details',
+            [
+                'commande' => $commande,
+                'client' => $client,
+                'produits' => $produits,
+                'totalCommande' => $totalCommande,
+                'packs' => $packs
+            ]
+        );
     }
 
-    public function validerCommande($id) {
+    public function validerCommande($id)
+    {
         $commande = Commande::find($id);
         $commande->statut = "Validée";
         $commande->save();
@@ -121,7 +127,8 @@ class CommandeController extends Controller
         return redirect('/commandes');
     }
 
-    public function annulerCommande($id) {
+    public function annulerCommande($id)
+    {
         $commande = Commande::find($id);
         $commande->statut = "Annulée";
         $commande->save();
@@ -129,4 +136,30 @@ class CommandeController extends Controller
         return redirect('/commandes');
     }
 
+    public function filterCommandes(Request $request)
+    {
+        $query = Commande::query();
+
+        // Filtrage par date de commande
+        if ($request->has('date_commande')) {
+            $dateOrder = $request->date_commande;
+            if ($dateOrder == 'asc') {
+                $query->orderBy('date_commande', 'asc');
+            } elseif ($dateOrder == 'desc') {
+                $query->orderBy('date_commande', 'desc');
+            }
+        }
+
+        // Filtrage par statut
+        if ($request->has('statut')) {
+            $statut = $request->statut;
+            $query->where('statut', $statut);
+        }
+
+        // Exécuter la requête
+        $commandes = $query->paginate(10);
+
+        // Passer les résultats à la vue
+        return view('commandes.list', ['commandes' => $commandes]);
+    }
 }
