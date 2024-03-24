@@ -292,7 +292,7 @@
         </p>
         <form action="/produits/list" method="get" class="card-header-icon">
             <span>
-                <label class="label">Filtrer par Catégorie :</label>
+                <label class="label">Filtrer par Catégorie </label>
             </span>
             &nbsp; &nbsp;
             <span>

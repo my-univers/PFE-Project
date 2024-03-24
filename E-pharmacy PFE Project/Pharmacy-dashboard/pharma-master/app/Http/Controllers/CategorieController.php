@@ -8,13 +8,13 @@ use Illuminate\Support\Facades\DB;
 
 class CategorieController extends Controller
 {
-    public function showList(Request $request) {
+    public function showList() {
         $categories = DB::table('categories')->paginate(10);
 
         return view('categories.list', ['categories' => $categories]);
     }
 
-    public function addCategorieForm(Request $request) {
+    public function addCategorieForm() {
         return view('categories.add');
     }
 
@@ -34,7 +34,6 @@ class CategorieController extends Controller
         return view('categories.update', ['c' => $c]);
     }
 
-
     public function updateCategorie(Request $request, $id) {
         $c = Categorie::find($id);
         $c->nom = $request->nom;
@@ -49,4 +48,22 @@ class CategorieController extends Controller
 
         return redirect('/categories/list');
     }
+
+    public function searchCategorie(Request $request)
+    {
+        $search_input = $request->input('search_input');
+
+        $query = Categorie::query();
+
+        if ($search_input) {
+            $query->where('nom', 'like', '%' . $search_input . '%');
+        }
+
+        // Exécuter la requête
+        $categories = $query->paginate(10);
+
+        // Passer les résultats à la vue
+        return view('categories.list', ['categories' => $categories]);
+    }
+
 }

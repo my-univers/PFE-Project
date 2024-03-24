@@ -294,9 +294,10 @@
           <span class="icon"><i class="mdi mdi-cart"></i></span>
           Commandes
         </p>
-        <a href="#" class="card-header-icon">
+        {{-- <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
-        </a>
+        </a> --}}
+        
       </header>
       <div class="card-content">
         <table>

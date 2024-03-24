@@ -296,7 +296,7 @@
         </a> --}}
         <form action="/clients/search" method="get" class="card-header-icon">
           <span>
-              <label class="label">Rechercher:</label>
+              <label class="label">Rechercher</label>
           </span>
           &nbsp; &nbsp;
           <span>
