@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categorie;
 use App\Models\Produit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProduitController extends Controller
 {
@@ -45,6 +46,11 @@ class ProduitController extends Controller
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
             $image->move(public_path('img'), $imageName);
+
+            // Copier l'image vers le répertoire img du projet de l'interface client
+            $clientImagePath = base_path('../../Pharmacy-patient/pharma-master/public/img/' . $imageName);
+            copy(public_path('img/' . $imageName), $clientImagePath);
+
             $produit->image_path = 'img/' . $imageName;
         } else {
             // Si aucune image n'est téléchargée, attribuer l'image par défaut
@@ -64,41 +70,71 @@ class ProduitController extends Controller
     }
 
     public function updateProduit(Request $request, $id) {
-        $p = Produit::findOrFail($id);
-        $p->nom = $request->nom;
-        $p->descr = $request->descr;
-        $p->prix = $request->prix;
-        $p->qte_en_stock = $request->qte_en_stock;
-        $p->ordonnance = $request->ordonnance;
-        $p->categorie_id = $request->categorie;
+        $produit = Produit::findOrFail($id);
+        $produit->nom = $request->nom;
+        $produit->descr = $request->descr;
+        $produit->categorie_id = $request->categorie;
+        $produit->prix = $request->prix;
+        $produit->qte_en_stock = $request->qte_en_stock;
+        $produit->ordonnance = $request->ordonnance;
 
+        // Traitement de la nouvelle image si elle est présente
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('img'), $imageName);
+            // Supprimer l'ancienne image si ce n'est pas l'image par défaut
+            if ($produit->image_path != 'img/default-image.jpg') {
+                // Supprimer l'image du projet admin
+                $adminImagePath = public_path($produit->image_path);
+                if (file_exists($adminImagePath)) {
+                    unlink($adminImagePath);
+                }
 
-            // Suppression de l'ancienne image si elle existe
-            if ($p->image_path) {
-                unlink(public_path($p->image_path));
+                // Supprimer l'image du projet client
+                $clientImagePath = base_path('../../Pharmacy-patient/pharma-master/public/' . $produit->image_path);
+                if (file_exists($clientImagePath)) {
+                    unlink($clientImagePath);
+                }
             }
 
-            $p->image_path = 'img/' . $imageName;
+            // Stocker la nouvelle image dans les répertoires des deux projets
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+
+            // Stocker la nouvelle image dans le projet admin
+            $adminImagePath = public_path('img/' . $imageName);
+            $image->move(public_path('img'), $imageName);
+
+            // Stocker la nouvelle image dans le projet client
+            $clientImagePath = base_path('../../Pharmacy-patient/pharma-master/public/img/' . $imageName);
+            copy($adminImagePath, $clientImagePath);
+
+            $produit->image_path = 'img/' . $imageName;
         }
 
-        $p->save();
+        $produit->save();
 
         return redirect('/produits/list');
     }
 
     public function deleteProduit($id) {
+        $produit = Produit::findOrFail($id);
 
-        $p = Produit::findOrFail($id);
+        // Supprimer l'image associée si elle n'est pas l'image par défaut
+        if ($produit->image_path != 'img/default-image.jpg') {
+            // Supprimer l'image du projet admin
+            $adminImagePath = public_path($produit->image_path);
+            if (file_exists($adminImagePath)) {
+                unlink($adminImagePath);
+            }
 
-        if ($p->image_path != 'img/default-image.jpg') {
-            unlink(public_path($p->image_path));
+            // Supprimer l'image du projet client
+            $clientImagePath = base_path('../../Pharmacy-patient/pharma-master/public/' . $produit->image_path);
+            if (file_exists($clientImagePath)) {
+                unlink($clientImagePath);
+            }
         }
 
-        $p->delete();
+        // Supprimer le produit
+        $produit->delete();
 
         return redirect('/produits/list');
     }

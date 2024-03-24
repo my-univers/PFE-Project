@@ -63,3 +63,17 @@ Route::get('/categorie/{id}', [CategorieController::class, 'showProducts'])->nam
 
 Route::get('/categorieFiltered/{id}', [CategorieController::class, 'filterProducts'])->name('categorie.filter');
 
+<<<<<<< HEAD
+=======
+// Route::get('/complements', [CategorieController::class, 'showComplements']);
+
+// Route::get('/medicaments', [CategorieController::class, 'showMedicaments']);
+
+// Route::get('/premiers', [CategorieController::class, 'showPremiers']);
+
+// Route::get('/complementsFiltered', [CategorieController::class, 'filterComplements']);
+
+// Route::get('/medicamentsFiltered', [CategorieController::class, 'filterMedicaments']);
+
+// Route::get('/premiersFiltered', [CategorieController::class, 'filterPremiers']);
+>>>>>>> 94e10724dde24bda51dfbb2936d59063e7f50120

@@ -294,9 +294,51 @@
           <span class="icon"><i class="mdi mdi-cart"></i></span>
           Commandes
         </p>
-        <a href="#" class="card-header-icon">
+        {{-- <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
-        </a>
+        </a> --}}
+        <form action="/commandes/filterCommandes" method="get" class="card-header-icon" id="filterDateForm">
+            <span>
+                <label class="label">Date</label>
+            </span>
+            &nbsp; &nbsp;
+            <span>
+                <div class="field">
+                    <div class="control">
+                        <div class="select">
+                        <select name="date_commande" onchange="this.form.submit()">
+                            <option value="">Date de la Commande</option>
+                            <option value="asc">Croissante</option>
+                            <option value="desc">Décroissante</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+            </span>
+        </form>
+        
+        &nbsp;&nbsp;
+        <form action="/commandes/filterCommandes" method="get" class="card-header-icon" id="filterStatutForm">
+            <span>
+                <label class="label">Statut</label>
+            </span>
+            &nbsp; &nbsp;
+            <span>
+                <div class="field">
+                    <div class="control">
+                        <div class="select">
+                        <select name="statut" onchange="this.form.submit()">
+                            <option value="">Statut</option>
+                            <option value="En attente">En Attente</option>
+                            <option value="Validée">Validée</option>
+                            <option value="Annulée">Annulée</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+            </span>
+        </form>
+
       </header>
       <div class="card-content">
         <table>

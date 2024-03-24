@@ -88,7 +88,8 @@ Route::post('/clients/update/{id}', [ClientController::class, 'updateClient']);
 
 Route::get('/clients/delete/{id}', [ClientController::class, 'deleteClient']);
 
-Route::get('/clients/search', [ClientController::class, 'searchClients']);
+Route::get('/clients/search', [ClientController::class, 'searchClient']);
+
 
 /**********************Medecins***********************/
 
@@ -103,6 +104,8 @@ Route::get('/medecins/updateForm/{id}', [MedecinController::class, 'updateMedFor
 Route::post('/medecins/update/{id}', [MedecinController::class, 'updateMedecin']);
 
 Route::get('/medecins/delete/{id}', [MedecinController::class, 'deleteMedecin']);
+
+Route::get('/medecins/search', [MedecinController::class, 'searchMedecin']);
 
 
 /*****************Packs******************/
@@ -119,6 +122,8 @@ Route::post('/packs/update/{id}', [PackController::class, 'updatePack']);
 
 Route::get('/packs/delete/{id}', [PackController::class, 'deletePack']);
 
+Route::get('/packs/search', [PackController::class, 'searchPack']);
+
 
 /***************Commandes***************/
 
@@ -133,6 +138,12 @@ Route::get('/commandes/form', [CommandeController::class, 'addCommandeForm']);
 Route::post('/commandes/add', [CommandeController::class, 'addCommande']);
 
 Route::get('/commandes/cancel/{id}', [CommandeController::class, 'annulerCommande']);
+
+Route::get('/commandes/filterCommandes', [CommandeController::class, 'filterCommandes']);
+
+// Route::get('/commandes/filterDate', [CommandeController::class, 'filterByDate']);
+
+// Route::get('/commandes/filterStatut', [CommandeController::class, 'filterByStatut']);
 
 
 /****************Admin Profile****************/
@@ -173,6 +184,8 @@ Route::post('/categories/update/{id}', [CategorieController::class, 'updateCateg
 
 Route::get('/categories/delete/{id}', [CategorieController::class,'deleteCategorie']);
 
+Route::get('/categories/search', [CategorieController::class, 'searchCategorie']);
+
 
 /*****************Packs Produits******************/
 
@@ -192,9 +205,10 @@ Route::get('/packs_produits/removeProduct/{pack_id}/{produit_id}', [PackProduitC
 
 Route::post('/packs_produits/add', [PackProduitController::class, 'addPackProduits']);
 
-// Route::post('/packs_premiers_secours/addToPack/{id}', [PackProduitController::class, 'AddToPack']);
-
 Route::get('/packs_produits/form', [PackProduitController::class, 'showForm']);
+
+Route::get('/packs_produits/search', [PackProduitController::class, 'searchPackProduit']);
+
 
 
 

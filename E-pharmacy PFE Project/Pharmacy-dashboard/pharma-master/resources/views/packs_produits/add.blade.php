@@ -276,6 +276,9 @@
                 <h1 class="title">
                     Ajouter Packs Produits
                 </h1>
+                <a class="button blue" href='/packs_produits'>
+                    Retour
+                  </a>
             </div>
         </section>
 

@@ -44,6 +44,20 @@ return [
             'throw' => false,
         ],
 
+        'admin_public' => [
+            'driver' => 'local',
+            'root' => public_path('img'), // Chemin racine vers le répertoire img du projet d'administration
+            'url' => env('APP_URL').'/img', // URL vers le répertoire img du projet d'administration
+            'visibility' => 'public',
+        ],
+
+        'client_public' => [
+            'driver' => 'local',
+            'root' => public_path('img'), // Chemin racine vers le répertoire img du projet client
+            'url' => env('APP_URL').'/img', // URL vers le répertoire img du projet client
+            'visibility' => 'public',
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

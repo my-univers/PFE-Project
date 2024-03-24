@@ -67,28 +67,23 @@ class ClientController extends Controller
         return redirect('/clients/list');
     }
 
+    public function searchClient(Request $request)
+    {
+        $search_input = $request->input('search_input');
 
+        $query = Client::query();
 
-    // public function searchClients(Request $request)
-    // {
-    //     $search_input = $request->input('search_input');
+        if ($search_input) {
+            $query->where('nom', 'like', '%' . $search_input . '%')
+                ->orWhere('email', 'like', '%' . $search_input . '%')
+                ->orWhere('adresse', 'like', '%' . $search_input . '%');
+        }
 
-    //     $query = Client::query();
+        // Exécuter la requête
+        $clients = $query->paginate(10);
 
-    //     if ($search_input) {
-    //         $query->where('nom', 'like', '%' . $search_input . '%')
-    //             ->orWhere('email', 'like', '%' . $search_input . '%');
-    //     }
+        // Passer les résultats à la vue
+        return view('clients.list', ['clients' => $clients]);
+    }
 
-    //     // Ajouter d'autres critères de recherche si nécessaire
-    //     // if ($other_criteria) {
-    //     //     $query->where('autre_colonne', $other_criteria);
-    //     // }
-
-    //     // Exécuter la requête
-    //     $clients = $query->get();
-
-    //     // Passer les résultats à la vue
-    //     return view('clients.list', ['clients' => $clients]);
-    // }
 }

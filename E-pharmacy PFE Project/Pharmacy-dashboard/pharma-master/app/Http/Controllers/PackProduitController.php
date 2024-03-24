@@ -63,8 +63,8 @@ class PackProduitController extends Controller
         // Sélectionner les packs qui n'ont pas de produits associés
         $packs = Pack::whereNotIn('id', function ($query) {
             $query->select('pack_id')->from('packs_produits');
-        })->paginate(5);
-        $produits = Produit::paginate(5);
+        })->paginate(5, ['*'], 'packs_page');
+        $produits = Produit::paginate(5, ['*'], 'produits_page');
         return view("packs_produits.add", ['packs'=> $packs, 'produits' => $produits]);
     }
 
@@ -125,8 +125,35 @@ class PackProduitController extends Controller
     public function deletePackProduit($id) {
         $packProduit = PackProduit::find($id);
         $packProduit->delete();
-        
+
+        if ($packProduit->pack->image_path != 'img/default-pack.jpg') {
+            unlink(public_path($packProduit->pack->image_path));
+        }
+
         return redirect('/packs_produits');
+    }
+
+    public function searchPackProduit(Request $request)
+    {
+        $search_input = $request->input('search_input');
+
+        $query = PackProduit::with(['packs'])
+            ->selectRaw('pack_id, count(produits_id) as nombre_produits')
+            ->groupBy('pack_id');
+
+        if ($search_input) {
+            $query->whereHas('packs', function ($query) use ($search_input) {
+                $query->where('nom', 'like', '%' . $search_input . '%')
+                      ->orWhere('qte_en_stock', 'like', '%' . $search_input . '%')
+                      ->orWhere('prix', 'like', '%' . $search_input . '%');
+            });
+        }
+
+        // Exécuter la requête
+        $list_packs = $query->paginate(10);
+
+        // Passer les résultats à la vue
+        return view('packs_produits.list', ['list_packs' => $list_packs]);
     }
 
 }

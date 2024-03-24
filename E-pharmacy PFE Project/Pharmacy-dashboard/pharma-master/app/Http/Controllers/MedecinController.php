@@ -61,4 +61,25 @@ class MedecinController extends Controller
 
         return redirect('/medecins/list');
     }
+
+    public function searchMedecin(Request $request)
+    {
+        $search_input = $request->input('search_input');
+
+        $query = Medecin::query();
+
+        if ($search_input) {
+            $query->where('nom', 'like', '%' . $search_input . '%')
+                ->orWhere('email', 'like', '%' . $search_input . '%')
+                ->orWhere('specialite', 'like', '%' . $search_input . '%')
+                ->orWhere('ville', 'like', '%' . $search_input . '%');
+        }
+
+        // Exécuter la requête
+        $medecins = $query->paginate(10);
+
+        // Passer les résultats à la vue
+        return view('medecins.list', ['medecins' => $medecins]);
+    }
+
 }

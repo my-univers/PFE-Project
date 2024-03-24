@@ -27,7 +27,6 @@ class CategorieController extends Controller
 
         switch ($sort) {
             case 'relevance':
-                $query->orderBy('relevance_column');
                 break;
             case 'name_asc':
                 $query->orderBy('nom', 'asc');

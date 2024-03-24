@@ -291,9 +291,30 @@
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
           Médecins
         </p>
-        <a href="#" class="card-header-icon">
+        {{-- <a href="#" class="card-header-icon">
           <span class="icon"><i class="mdi mdi-reload"></i></span>
-        </a>
+        </a> --}}
+        <form action="/medecins/search" method="get" class="card-header-icon">
+            <span>
+                <label class="label">Rechercher</label>
+            </span>
+            &nbsp; &nbsp;
+            <span>
+                <div class="field">
+                    <div class="control">
+                        <div class="select">
+                          <input type="text" class="input" name="search_input">
+                        </div>
+                    </div>
+                </div>
+            </span>
+            &nbsp; &nbsp;
+            <span>
+                <button type="submit" class="button small blue" type="button">
+                    <span class="icon"><i class="mdi mdi-search-web"></i></span>
+                </button>
+            </span>
+        </form>
       </header>
       <div class="card-content">
         <table>

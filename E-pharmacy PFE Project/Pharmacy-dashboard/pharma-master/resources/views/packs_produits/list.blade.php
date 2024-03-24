@@ -291,9 +291,30 @@
                     <span class="icon"><span class="mdi mdi-package-variant-closed"></span></span>
                     Packs Produits
                 </p>
-                <a href="#" class="card-header-icon">
+                {{-- <a href="#" class="card-header-icon">
                     <span class="icon"><i class="mdi mdi-reload"></i></span>
-                </a>
+                </a> --}}
+                <form action="/packs_produits/search" method="get" class="card-header-icon">
+                    <span>
+                        <label class="label">Rechercher</label>
+                    </span>
+                    &nbsp; &nbsp;
+                    <span>
+                        <div class="field">
+                            <div class="control">
+                                <div class="select">
+                                  <input type="text" class="input" name="search_input">
+                                </div>
+                            </div>
+                        </div>
+                    </span>
+                    &nbsp; &nbsp;
+                    <span>
+                        <button type="submit" class="button small blue" type="button">
+                            <span class="icon"><i class="mdi mdi-search-web"></i></span>
+                        </button>
+                    </span>
+                </form>
             </header>
             <div class="card-content">
                 <table>
@@ -307,49 +328,46 @@
                             <th scope="col">Quantité</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         @foreach ($list_packs as $p)
-                            <tr>
-                                <td></td>
-                                <td>{{ $p->packs->id }}</td>
-                                <td>{{ $p->packs->nom }}</td>
-                                <td>{{ $p->packs->description }}</td>
-                                <td>{{ $p->packs->prix }} DH</td>
-                                <td @if($p->packs->qte_en_stock <= 1) style="color: red"  @endif>{{ $p->packs->qte_en_stock }}</td>
-                                <td class="actions-cell">
-                                    <div class="buttons right nowrap">
-                                        {{-- <a class="button small green --jb-modal" href="/packs_produits/updateForm/{{$p->packs->id}}">
-                                            <span class="icon"><i class="mdi mdi-pencil"></i></span>
-                                        </a> --}}
-                                        <a class="button small blue "
-                                           href="/packs_produits/details/{{ $p->packs->id }}">
-                                           <span class="icon"><i class="mdi mdi-eye"></i></span>
-                                        </a>
-                                        <button class="button small red --jb-modal"
-                                        data-target="sample-modal-{{ $p->packs->id }}" type="button">
+                        <tr>
+                            <td></td>
+                            <td>{{ $p->packs->id }}</td>
+                            <td>{{ $p->packs->nom }}</td>
+                            <td>{{ $p->packs->description }}</td>
+                            <td>{{ $p->packs->prix }} DH</td>
+                            <td @if($p->packs->qte_en_stock <= 1) style="color: red" @endif>{{ $p->packs->qte_en_stock }}</td>
+                            <td class="actions-cell">
+                                <div class="buttons right nowrap">
+                                    {{-- <a class="button small green --jb-modal" href="/packs_produits/updateForm/{{$p->packs->id}}">
+                                        <span class="icon"><i class="mdi mdi-pencil"></i></span>
+                                    </a> --}}
+                                    <a class="button small blue" href="/packs_produits/details/{{ $p->packs->id }}">
+                                        <span class="icon"><i class="mdi mdi-eye"></i></span>
+                                    </a>
+                                    <button class="button small red --jb-modal" data-target="sample-modal-{{ $p->packs->id }}"
+                                        type="button">
                                         <span class="icon"><i class="mdi mdi-trash-can"></i></span>
                                     </button>
-                                    </div>
-                                </td>
-                            </tr>
-
-                            <div id="sample-modal-{{$p->packs->id}}" class="modal">
-                                <div class="modal-background --jb-modal-close"></div>
-                                <div class="modal-card">
-                                  <header class="modal-card-head">
+                                </div>
+                            </td>
+                        </tr>
+                        <div id="sample-modal-{{$p->packs->id}}" class="modal">
+                            <div class="modal-background --jb-modal-close"></div>
+                            <div class="modal-card">
+                                <header class="modal-card-head">
                                     <p class="modal-card-title">Confirmer la Suppression</p>
-                                  </header>
-                                  <section class="modal-card-body">
+                                </header>
+                                <section class="modal-card-body">
                                     <p>Êtes-vous sûr de vouloir annuler ce pack de produits ?</p>
                                     <p>Cette action est irréversible.</p>
-                                  </section>
-                                  <footer class="modal-card-foot">
+                                </section>
+                                <footer class="modal-card-foot">
                                     <button class="button --jb-modal-close">Annuler</button>
                                     <a class="button red --jb-modal-close" href="/packs/delete/{{$p->packs->id}}">Confirmer</a>
-                                  </footer>
-                                </div>
+                                </footer>
                             </div>
+                        </div>
                         @endforeach
                     </tbody>
                 </table>
