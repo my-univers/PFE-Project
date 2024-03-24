@@ -45,5 +45,11 @@ class shopController extends Controller
         return view('shop', ['products' => $products, 'categories' => $categories]);
     }
 
+    public function showDetails($id){
+        $categories = Categorie::all();
+        $products = Produit::find($id);
+
+        return view('/shop-single', ['product' => $products, 'categories' => $categories]);
+    }
 
 }

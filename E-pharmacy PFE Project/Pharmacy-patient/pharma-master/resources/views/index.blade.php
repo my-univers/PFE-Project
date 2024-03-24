@@ -65,7 +65,7 @@
                     <div class="icons">
                         <a href="#" class="icons-btn d-inline-block js-search-open"><span
                                 class="icon-search"></span></a>
-                        <a href="{{ route('cart') }}" class="icons-btn d-inline-block bag">
+                        <a href="/cart" class="icons-btn d-inline-block bag">
                             <span class="icon-shopping-bag"></span>
                             <span class="number">2</span>
                         </a>
@@ -186,8 +186,7 @@
                         <div class="nonloop-block-3 owl-carousel">
                             @foreach ($recentProducts as $product)
                                 <div class="text-center item mb-4">
-                                    <a href="/shop-single"> <img
-                                            style="height: 200px; width: fit-content; margin: auto"
+                                    <a href="/shop-single"> <img style="height: 200px; width: fit-content; margin: auto"
                                             src="{{ $product->image_path }}" alt="Image"></a>
                                     <br><br>
                                     <h3 class="text-dark"><a href="/shop-single">{{ $product->nom }}</a></h3>

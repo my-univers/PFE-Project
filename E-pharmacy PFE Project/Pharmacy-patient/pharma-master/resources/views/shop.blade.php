@@ -68,7 +68,7 @@
                     <div class="icons">
                         <a href="#" class="icons-btn d-inline-block js-search-open"><span
                                 class="icon-search"></span></a>
-                        <a href="{{ route('cart') }}" class="icons-btn d-inline-block bag">
+                        <a href="/cart" class="icons-btn d-inline-block bag">
                             <span class="icon-shopping-bag"></span>
                             <span class="number">2</span>
                         </a>
@@ -115,11 +115,11 @@
                 <div class="row mt-5">
                     @foreach ($products as $product)
                         <div class="col-sm-6 col-lg-4 text-center item mb-4">
-                            <a href="{{ route('shop-single', $product->id) }}"> <img class="product-image"
+                            <a href="/shop-single/{{$product->id}}"> <img class="product-image"
                                     src="{{ asset($product->image_path) }}" alt="Image"></a>
                             <br><br>
                             <h3 class="text-dark"><a
-                                    href="{{ route('shop-single', $product->id) }}">{{ $product->nom }}</a></h3>
+                                    href="/shop-single/{{$product->id}}">{{ $product->nom }}</a></h3>
                             <p class="price">{{ $product->prix }} DH</p>
                         </div>
                         <style>
