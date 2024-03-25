@@ -394,7 +394,7 @@
             </div>
         @else
             <table>
-                <tr><td></td><td>Aucun produit disponible pour le moment.</td></tr>
+                <tr><td></td><td>Aucun produit n'est commandé.</td></tr>
             </table>
         @endif
 
@@ -457,7 +457,7 @@
             </div>
         @else
             <table>
-                <tr><td></td><td>Aucun pack disponible pour le moment.</td></tr>
+                <tr><td></td><td>Aucun pack de produits n'est commandé.</td></tr>
             </table>
         @endif
       </div>
