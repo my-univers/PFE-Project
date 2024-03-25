@@ -318,83 +318,86 @@
 
       </header>
       <div class="card-content">
+        @if ($clients->count() > 0)
         <table>
-          <thead>
-          <tr>
-            <th></th>
-            <th>#</th>
-            <th>Nom</th>
-            <th>E-mail</th>
-            <th>Adresse</th>
-            <th>Téléphone</th>
-            <th></th>
-          </tr>
-          </thead>
-          <tbody>
-            @foreach($clients as $c)
+            <thead>
             <tr>
-                <td></td>
-                <td>{{ $c->id }}</td>
-                <td>{{ $c->nom }}</td>
-                <td>{{ $c->email }}</td>
-                <td>{{ $c->adresse }}</td>
-                <td>{{ $c->telephone }}</td>
-                <td class="actions-cell">
-                <div class="buttons right nowrap">
-                    <a class="button small green --jb-modal" href="/clients/updateForm/{{$c->id}}">
-                    <span class="icon"><i class="mdi mdi-pencil"></i></span>
-                    </a>
-                    <button class="button small red --jb-modal" data-target="sample-modal-{{$c->id}}" type="button">
-                    <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                    </button>
-                </div>
-                </td>
+                <th></th>
+                <th>#</th>
+                <th>Nom</th>
+                <th>E-mail</th>
+                <th>Adresse</th>
+                <th>Téléphone</th>
+                <th></th>
             </tr>
+            </thead>
+            <tbody>
+                @foreach($clients as $c)
+                <tr>
+                    <td></td>
+                    <td>{{ $c->id }}</td>
+                    <td>{{ $c->nom }}</td>
+                    <td>{{ $c->email }}</td>
+                    <td>{{ $c->adresse }}</td>
+                    <td>{{ $c->telephone }}</td>
+                    <td class="actions-cell">
+                    <div class="buttons right nowrap">
+                        <a class="button small green --jb-modal" href="/clients/updateForm/{{$c->id}}">
+                        <span class="icon"><i class="mdi mdi-pencil"></i></span>
+                        </a>
+                        <button class="button small red --jb-modal" data-target="sample-modal-{{$c->id}}" type="button">
+                        <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                        </button>
+                    </div>
+                    </td>
+                </tr>
 
-            <div id="sample-modal-{{$c->id}}" class="modal">
-              <div class="modal-background --jb-modal-close"></div>
-              <div class="modal-card">
-                <header class="modal-card-head">
-                  <p class="modal-card-title">Confirmer la Suppression</p>
-                </header>
-                <section class="modal-card-body">
-                  <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
-                  <p>Cette action est irréversible.</p>
-                </section>
-                <footer class="modal-card-foot">
-                  <button class="button --jb-modal-close">Annuler</button>
-                  <a class="button red --jb-modal-close" href="/clients/delete/{{$c->id}}">Confirmer</a>
-                </footer>
-              </div>
-            </div>
-            @endforeach
-          </tbody>
-        </table>
-        <div class="table-pagination">
-            <div class="flex items-center justify-between">
-                <div class="buttons">
-                    @if ($clients->onFirstPage())
-                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
-                    @else
-                        <a href="{{ $clients->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
-                    @endif
+                <div id="sample-modal-{{$c->id}}" class="modal">
+                <div class="modal-background --jb-modal-close"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                    <p class="modal-card-title">Confirmer la Suppression</p>
+                    </header>
+                    <section class="modal-card-body">
+                    <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
+                    <p>Cette action est irréversible.</p>
+                    </section>
+                    <footer class="modal-card-foot">
+                    <button class="button --jb-modal-close">Annuler</button>
+                    <a class="button red --jb-modal-close" href="/clients/delete/{{$c->id}}">Confirmer</a>
+                    </footer>
+                </div>
+                </div>
+                @endforeach
+            </tbody>
+            </table>
+            <div class="table-pagination">
+                <div class="flex items-center justify-between">
+                    <div class="buttons">
+                        @if ($clients->onFirstPage())
+                            <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                        @else
+                            <a href="{{ $clients->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                        @endif
 
-                    @for ($i = 1; $i <= $clients->lastPage(); $i++)
-                        <button type="button" class="button @if ($clients->currentPage() == $i) active @endif">{{ $i }}</button>
-                    @endfor
+                        @for ($i = 1; $i <= $clients->lastPage(); $i++)
+                            <button type="button" class="button @if ($clients->currentPage() == $i) active @endif">{{ $i }}</button>
+                        @endfor
 
-                    @if ($clients->hasMorePages())
-                        <a href="{{ $clients->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
-                    @else
-                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
-                    @endif
+                        @if ($clients->hasMorePages())
+                            <a href="{{ $clients->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                        @else
+                            <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                        @endif
+                    </div>
                 </div>
             </div>
-        </div>
+        @else
+            <table>
+                <tr><td></td><td>Aucun client disponible pour le moment.</td></tr>
+            </table>
+        @endif
       </div>
     </div>
   </section>
-
-
-
 @endsection
