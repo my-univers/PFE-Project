@@ -91,7 +91,7 @@
             </div>
 
             <div class="field">
-                <label class="label">Photo (Facultatif)</label>
+                <label class="label">Photo <small>(Optionnelle)</small></label>
                 <div class="field-body">
                   <div class="field file">
                     <label class="upload control">
