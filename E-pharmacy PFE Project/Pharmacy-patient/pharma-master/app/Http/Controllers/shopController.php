@@ -93,4 +93,19 @@ class shopController extends Controller
 
         return view('magasin.packs', ['packs' => $packs, 'categories' => $categories]);
     }
+
+    public function showDetails($id){
+        $categories = Categorie::all();
+        $products = Produit::find($id);
+
+        return view('product-details', ['product' => $products, 'categories' => $categories]);
+    }
+
+    public function showPackDetails($id) {
+        $categories = Categorie::all();
+        $pack = Pack::find($id);
+
+        return view('packs-details', ['categories' => $categories, 'pack' => $pack]);
+    }
+
 }

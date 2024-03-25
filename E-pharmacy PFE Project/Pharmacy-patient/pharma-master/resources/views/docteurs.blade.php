@@ -7,18 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="{{ asset('fonts/icomoon/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="{{ asset('css/aos.css') }}">
 
-
-    <link rel="stylesheet" href="css/aos.css">
-
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 </head>
 
@@ -49,7 +47,6 @@
                         <nav class="site-navigation text-right text-md-center" role="navigation">
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
                                 <li><a href="/">Accueil</a></li>
-                                {{-- <li class="active"><a href="/shop">Magasin</a></li> --}}
                                 <li class="has-children">
                                     <a href="#">Magasin</a>
                                     <ul class="dropdown">
@@ -62,16 +59,21 @@
                                 <li class="has-children">
                                     <a href="#">Catégories</a>
                                     <ul class="dropdown">
+                                        <?php
+                                        use App\Models\Categorie;
+                                        $categories = Categorie::all();
+                                        ?>
                                         @foreach ($categories as $categorie)
                                             <li>
-                                                <a href="{{ route('categorie.products', $categorie->id) }}">{{ $categorie->nom }}</a>
+                                                <a
+                                                    href="{{ route('categorie.products', $categorie->id) }}">{{ $categorie->nom }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
                                 </li>
-                                <li><a href="/docteurs">Docteurs</a></li>
+                                <li class="active"><a href="/docteurs">Docteurs</a></li>
                                 <li><a href="/about">A Propos</a></li>
-                                <li><a href="/contact">Contact</a></li>
+                                <li><a href="/concact">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -89,93 +91,141 @@
             </div>
         </div>
 
-
         <div class="bg-light py-3">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 mb-0">
                         <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span>
-                        <strong class="text-black">Magasin</strong>
+                        <strong class="text-black">Docteurs Partenaires</strong>
                     </div>
                 </div>
             </div>
         </div>
-
-
 
         <div class="site-section">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <h3 class="mb-3 h6 text-uppercase text-black d-block">Filtrer par Référence</h3>
-                        <button type="button" class="btn btn-secondary btn-md dropdown-toggle px-4"
-                            id="dropdownMenuReference" data-toggle="dropdown">Référence</button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                            <a class="dropdown-item" href="/products?sort=relevance">Pertinence</a>
-                            <a class="dropdown-item" href="/products?sort=name_asc">Nom, A à Z</a>
-                            <a class="dropdown-item" href="/products?sort=name_desc">Nom, Z à A</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/products?sort=price_asc">Prix, croissant</a>
-                            <a class="dropdown-item" href="/products?sort=price_desc">Prix, décroissant</a>
+                    <form class="col-md-12" method="post">
+                        <div class="site-blocks-table">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Nom</th>
+                                        <th>Email</th>
+                                        <th>Téléphone</th>
+                                        <th>Spécialité</th>
+                                        <th>Ville</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($medecins as $m)
+                                        <tr>
+                                            <td>
+                                                <h2 class="h5 text-black">{{ $m->nom }}</h2>
+                                            </td>
+                                            <td>{{ $m->email }}</td>
+                                            <td>{{ $m->telephone }}</td>
+                                            <td>{{ $m->specialite }}</td>
+                                            <td>{{ $m->ville }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
+                        <br>
+                        <div class="row pagination">
+                            <div class="col-md-12 text-center">
+                                <div class="site-block-27">
+                                    <ul>
+                                        <!-- Bouton précédent -->
+                                        @if ($medecins->onFirstPage())
+                                            <li class="disabled"><span>&lt;</span></li>
+                                        @else
+                                            <li><a href="{{ $medecins->previousPageUrl() }}">&lt;</a></li>
+                                        @endif
+
+                                        <!-- Affichage des pages -->
+                                        @foreach ($medecins->getUrlRange(1, $medecins->lastPage()) as $page => $url)
+                                            @if ($medecins->currentPage() === $page)
+                                                <li class="active"><span>{{ $page }}</span></li>
+                                            @else
+                                                <li><a href="{{ $url }}">{{ $page }}</a></li>
+                                            @endif
+                                        @endforeach
+
+                                        <!-- Bouton suivant -->
+                                        @if ($medecins->hasMorePages())
+                                            <li><a href="{{ $medecins->nextPageUrl() }}">&gt;</a></li>
+                                        @else
+                                            <li class="disabled"><span>&gt;</span></li>
+                                        @endif
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
 
-                <!--new code -->
-                <div class="row mt-5">
-                    @foreach ($products as $product)
-                    
-                        <div class="col-sm-6 col-lg-4 text-center item mb-4">
-                            <a href="/product-details/{{$product->id}}"> <img class="product-image"
-                                    src="{{ asset($product->image_path) }}" alt="Image"></a>
-                            <br><br>
-                            <h3 class="text-dark"><a
-                                    href="/product-details/{{$product->id}}">{{ $product->nom }}</a></h3>
-                            <p class="price">{{ $product->prix }} DH</p>
-                        </div>
-                        <style>
-                            .product-image {
-                                height: 200px;
-                                width: calc(100 / 3);
-                            }
-                        </style>
-                    @endforeach
+                {{-- <div class="row">
+          <div class="col-md-6">
+            <div class="row mb-5">
+              <div class="col-md-6 mb-3 mb-md-0">
+                <button class="btn btn-primary btn-md btn-block">Modifier Panier</button>
+              </div>
+              <div class="col-md-6">
+                <button class="btn btn-outline-primary btn-md btn-block">Continuer les achats</button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <label class="text-black h4" for="coupon">Coupon</label>
+                <p>Entrez votre code coupon si vous en avez un.</p>
+              </div>
+              <div class="col-md-8 mb-3 mb-md-0">
+                <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
+              </div>
+              <div class="col-md-4">
+                <button class="btn btn-primary btn-md px-4">Appliquer le coupon</button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 pl-5">
+            <div class="row justify-content-end">
+              <div class="col-md-7">
+                <div class="row">
+                  <div class="col-md-12 text-right border-bottom mb-5">
+                    <h3 class="text-black h4 text-uppercase">Total du Panier </h3>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <span class="text-black">Sous-total</span>
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <strong class="text-black">$230.00</strong>
+                  </div>
+                </div>
+                <div class="row mb-5">
+                  <div class="col-md-6">
+                    <span class="text-black">Total</span>
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <strong class="text-black">$230.00</strong>
+                  </div>
                 </div>
 
-                <!-- new code-->
-                <div class="row mt-5">
-                    <div class="col-md-12 text-center">
-                        <div class="site-block-27">
-                            <ul>
-                                <!-- Boutton précédent -->
-                                @if ($products->onFirstPage())
-                                    <li class="disabled"><span>&lt;</span></li>
-                                @else
-                                    <li><a href="{{ $products->previousPageUrl() }}">&lt;</a></li>
-                                @endif
-
-                                <!-- Affichage des pages -->
-                                @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
-                                    @if ($products->currentPage() === $page)
-                                        <li class="active"><span>{{ $page }}</span></li>
-                                    @else
-                                        <li><a href="{{ $url }}">{{ $page }}</a></li>
-                                    @endif
-                                @endforeach
-
-                                <!-- Boutton suivant -->
-                                @if ($products->hasMorePages())
-                                    <li><a href="{{ $products->nextPageUrl() }}">&gt;</a></li>
-                                @else
-                                    <li class="disabled"><span>&gt;</span></li>
-                                @endif
-                            </ul>
-                        </div>
-                    </div>
+                <div class="row">
+                  <div class="col-md-12">
+                    <button class="btn btn-primary btn-lg btn-block" onclick="window.location='/checkout' ">Passer Au Paiemenet</button>
+                  </div>
                 </div>
+              </div>
+
+            </div>
+          </div>
+        </div> --}}
             </div>
         </div>
-
 
         <div class="site-section bg-secondary bg-image" style="background-image: url('images/bg_2.jpg');">
             <div class="container">
@@ -184,9 +234,9 @@
                         <a href="#" class="banner-1 h-100 d-flex"
                             style="background-image: url('images/bg_1.jpg');">
                             <div class="banner-1-inner align-self-center">
-                                <h2>Service Clientele exceptionnel</h2>
-                                <p>Notre équipe est disponible 24h/7j pour répondre à toutes vos questions et
-                                    préoccupations médicales.
+                                <h2>Pharma Products</h2>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem
+                                    odio voluptatem.
                                 </p>
                             </div>
                         </a>
@@ -195,9 +245,9 @@
                         <a href="#" class="banner-1 h-100 d-flex"
                             style="background-image: url('images/bg_2.jpg');">
                             <div class="banner-1-inner ml-auto  align-self-center">
-                                <h2>Commandez rapidement</h2>
-                                <p>En cas d'urgence médicale, vous pouvez appeler directement un docteur et passer votre
-                                    commande par téléphone.
+                                <h2>Rated by Experts</h2>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem
+                                    odio voluptatem.
                                 </p>
                             </div>
                         </a>
@@ -271,7 +321,6 @@
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('js/aos.js') }}"></script>
-
     <script src="{{ asset('js/main.js') }}"></script>
 
 </body>

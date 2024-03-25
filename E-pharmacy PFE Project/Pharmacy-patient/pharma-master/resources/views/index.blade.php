@@ -65,6 +65,7 @@
                                         @endforeach
                                     </ul>
                                 </li>
+                                <li><a href="/docteurs">Docteurs</a></li>
                                 <li><a href="/about">A Propos</a></li>
                                 <li><a href="/contact">Contact</a></li>
                             </ul>
@@ -73,7 +74,7 @@
                     <div class="icons">
                         <a href="#" class="icons-btn d-inline-block js-search-open"><span
                                 class="icon-search"></span></a>
-                        <a href="{{ route('cart') }}" class="icons-btn d-inline-block bag">
+                        <a href="/cart" class="icons-btn d-inline-block bag">
                             <span class="icon-shopping-bag"></span>
                             <span class="number">2</span>
                         </a>
@@ -92,7 +93,7 @@
                             <h2 class="sub-title">MÉDICAMENT EFFICACE, NOUVEAU MÉDICAMENT CHAQUE JOUR</h2>
                             <h1>Bienvenue chez Pharma</h1>
                             <p>
-                                <a href="/shop" class="btn btn-primary px-5 py-3">Acheter maintenant</a>
+                                <a href="/shop/produits" class="btn btn-primary px-5 py-3">Acheter maintenant</a>
                             </p>
                         </div>
                     </div>
@@ -156,7 +157,7 @@
                             @if ($product->qte_en_stock < 1)
                                 <span class="tag">OUT OF STOCK</span>
                             @endif
-                            <a href="/shop-single/{{ $product->id }}"><img src="{{ $product->image_path }}"
+                            <a href="/product-details/{{ $product->id }}"><img src="{{ $product->image_path }}"
                                     alt="Image" class="product-image"></a>
                             <br><br>
                             <style>
@@ -165,7 +166,7 @@
                                     width: calc(100 / 3);
                                 }
                             </style>
-                            <h3 class="text-dark"><a href="/shop-single/{{ $product->id }}">{{ $product->nom }}</a>
+                            <h3 class="text-dark"><a href="/product-details/{{ $product->id }}">{{ $product->nom }}</a>
                             </h3>
                             <p class="price">{{ $product->prix }} DH</p>
                         </div>
@@ -174,7 +175,7 @@
 
                 <div class="row mt-5">
                     <div class="col-12 text-center">
-                        <a href="/shop" class="btn btn-primary px-4 py-3">Voir tous les produits</a>
+                        <a href="/shop/produits" class="btn btn-primary px-4 py-3">Voir tous les produits</a>
                     </div>
                 </div>
             </div>
@@ -194,8 +195,7 @@
                         <div class="nonloop-block-3 owl-carousel">
                             @foreach ($recentProducts as $product)
                                 <div class="text-center item mb-4">
-                                    <a href="/shop-single"> <img
-                                            style="height: 200px; width: fit-content; margin: auto"
+                                    <a href="/shop-single"> <img style="height: 200px; width: fit-content; margin: auto"
                                             src="{{ $product->image_path }}" alt="Image"></a>
                                     <br><br>
                                     <h3 class="text-dark"><a href="/shop-single">{{ $product->nom }}</a></h3>

@@ -14,10 +14,7 @@
     <link rel="stylesheet" href="../css/jquery-ui.css">
     <link rel="stylesheet" href="../css/owl.carousel.min.css">
     <link rel="stylesheet" href="../css/owl.theme.default.min.css">
-
-
     <link rel="stylesheet" href="../css/aos.css">
-
     <link rel="stylesheet" href="../css/style.css">
 
 </head>
@@ -25,7 +22,6 @@
 <body>
 
     <div class="site-wrap">
-
 
         <div class="site-navbar py-2">
 
@@ -49,7 +45,6 @@
                         <nav class="site-navigation text-right text-md-center" role="navigation">
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
                                 <li><a href="/">Accueil</a></li>
-                                {{-- <li class="active"><a href="/shop">Magasin</a></li> --}}
                                 <li class="has-children">
                                     <a href="#">Magasin</a>
                                     <ul class="dropdown">
@@ -64,7 +59,8 @@
                                     <ul class="dropdown">
                                         @foreach ($categories as $categorie)
                                             <li>
-                                                <a href="{{ route('categorie.products', $categorie->id) }}">{{ $categorie->nom }}</a>
+                                                <a
+                                                    href="{{ route('categorie.products', $categorie->id) }}">{{ $categorie->nom }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -78,7 +74,7 @@
                     <div class="icons">
                         <a href="#" class="icons-btn d-inline-block js-search-open"><span
                                 class="icon-search"></span></a>
-                        <a href="{{ route('cart') }}" class="icons-btn d-inline-block bag">
+                        <a href="/cart" class="icons-btn d-inline-block bag">
                             <span class="icon-shopping-bag"></span>
                             <span class="number">2</span>
                         </a>
@@ -89,105 +85,130 @@
             </div>
         </div>
 
-
         <div class="bg-light py-3">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 mb-0">
-                        <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span>
-                        <strong class="text-black">Magasin</strong>
-                        <span class="mx-2 mb-0">/</span>
-                        <strong class="text-black">Packs</strong>
-                    </div>
+                    <div class="col-md-12 mb-0"><a href="/">Accueil</a> <span class="mx-2 mb-0">/</span> <a
+                            href="/shop/packs">Magasin</a> <span class="mx-2 mb-0">/</span> <strong
+                            class="text-black">{{ $pack->nom }}</strong></div>
                 </div>
             </div>
         </div>
-
-
 
         <div class="site-section">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-6">
-                        <h3 class="mb-3 h6 text-uppercase text-black d-block">Filtrer par Référence</h3>
-                        <button type="button" class="btn btn-secondary btn-md dropdown-toggle px-4"
-                            id="dropdownMenuReference" data-toggle="dropdown">Référence</button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                            <a class="dropdown-item" href="/packs?sort=relevance">Pertinence</a>
-                            <a class="dropdown-item" href="/packs?sort=name_asc">Nom, A à Z</a>
-                            <a class="dropdown-item" href="/packs?sort=name_desc">Nom, Z à A</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/packs?sort=price_asc">Prix, croissant</a>
-                            <a class="dropdown-item" href="/packs?sort=price_desc">Prix, décroissant</a>
+                    <div class="col-md-5 mr-auto">
+                        <div class="border text-center">
+                            <img src="../{{ $pack->image_path }}" alt="Image" class="img-fluid p-5">
                         </div>
                     </div>
-                </div>
+                    <div class="col-md-6">
+                        <h2 class="text-black">{{ $pack->nom }}</h2>
+                        <p>
+                            {{ $pack->descr }}
+                        </p>
+                        <p class="text-black">{{ $pack->prix }}DH</p>
 
-                <!--new code -->
-                <div class="row mt-5">
-                    @foreach ($packs as $pack)
-                        <div class="col-sm-6 col-lg-4 text-center item mb-4">
-                            <a href="/pack-details/{{$pack->id}}"> <img class="pack-image"
-                                    src="{{ asset($pack->image_path) }}" alt="Image"></a>
-                            <br><br>
-                            <h3 class="text-dark"><a
-                                    href="/pack-details/{{$pack->id}}">{{ $pack->nom }}</a></h3>
-                            <p class="price">{{ $pack->prix }} DH</p>
+                        <div class="mb-5">
+                            <div class="input-group mb-3" style="max-width: 220px;">
+                                <div class="input-group-prepend">
+                                    <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                </div>
+                                <input type="text" class="form-control text-center" value="1" placeholder=""
+                                    aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                </div>
+                            </div>
                         </div>
-                        <style>
-                            .pack-image {
-                                height: 200px;
-                                width: calc(100 / 3);
-                            }
-                        </style>
-                    @endforeach
-                </div>
 
-                <!-- new code-->
-                <div class="row mt-5">
-                    <div class="col-md-12 text-center">
-                        <div class="site-block-27">
-                            <ul>
-                                <!-- Bouton précédent -->
-                                @if ($packs->onFirstPage())
-                                    <li class="disabled"><span>&lt;</span></li>
-                                @else
-                                    <li><a href="{{ $packs->previousPageUrl() }}">&lt;</a></li>
-                                @endif
+                        <p id="addToCartBtn" style="display: none; ">
+                            <br>
+                            <a href="/cart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
+                            style="width: 247.438px">Ajouter au Panier</a>
+                        </p>
 
-                                <!-- Affichage des pages -->
-                                @foreach ($packs->getUrlRange(1, $packs->lastPage()) as $page => $url)
-                                    @if ($packs->currentPage() === $page)
-                                        <li class="active"><span>{{ $page }}</span></li>
-                                    @else
-                                        <li><a href="{{ $url }}">{{ $page }}</a></li>
-                                    @endif
-                                @endforeach
+                        <div class="mt-5">
+                            <ul class="nav nav-pills mb-3 custom-pill" id="pills-tab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="pills-home-tab" data-toggle="pill"
+                                        href="#pills-home" role="tab" aria-controls="pills-home"
+                                        aria-selected="true">Informations</a>
+                                </li>
+                                {{-- <li class="nav-item">
+                                    <a class="nav-link" id="pills-profile-tab" data-toggle="pill"
+                                        href="#pills-profile" role="tab" aria-controls="pills-profile"
+                                        aria-selected="false">Specifications</a>
+                                </li> --}}
 
-                                <!-- Bouton suivant -->
-                                @if ($packs->hasMorePages())
-                                    <li><a href="{{ $packs->nextPageUrl() }}">&gt;</a></li>
-                                @else
-                                    <li class="disabled"><span>&gt;</span></li>
-                                @endif
                             </ul>
+                            <div class="tab-content" id="pills-tabContent">
+                                <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                                    aria-labelledby="pills-home-tab">
+                                    <table class="table custom-table">
+                                        <thead>
+                                            <th>Description</th>
+                                            <th>Produits Inclus</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>{{ $pack->description }}</td>
+                                                <td>
+                                                    @foreach ($pack->produits as $p)
+                                                    <p>- <a href="/product-details/{{ $p->id }}">{{ $p->nom }}</a></p>
+                                                    @endforeach
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                {{-- <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                    aria-labelledby="pills-profile-tab">
+
+                                    <table class="table custom-table">
+
+                                        <tbody>
+                                            <tr>
+                                                <td>HPIS CODE</td>
+                                                <td class="bg-light">999_200_40_0</td>
+                                            </tr>
+                                            <tr>
+                                                <td>HEALTHCARE PROVIDERS ONLY</td>
+                                                <td class="bg-light">No</td>
+                                            </tr>
+                                            <tr>
+                                                <td>LATEX FREE</td>
+                                                <td class="bg-light">Yes, No</td>
+                                            </tr>
+                                            <tr>
+                                                <td>MEDICATION ROUTE</td>
+                                                <td class="bg-light">Topical</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div> --}}
+
+                            </div>
                         </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
 
-
-        <div class="site-section bg-secondary bg-image" style="background-image: url('images/bg_2.jpg');">
+        <div class="site-section bg-secondary bg-image" style="background-image: url('../images/bg_2.jpg');">
             <div class="container">
                 <div class="row align-items-stretch">
                     <div class="col-lg-6 mb-5 mb-lg-0">
                         <a href="#" class="banner-1 h-100 d-flex"
                             style="background-image: url('../images/bg_1.jpg');">
                             <div class="banner-1-inner align-self-center">
-                                <h2>Service Clientele exceptionnel</h2>
-                                <p>Notre équipe est disponible 24h/7j pour répondre à toutes vos questions et
-                                    préoccupations médicales.
+                                <h2>Pharma Products</h2>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem
+                                    odio voluptatem.
                                 </p>
                             </div>
                         </a>
@@ -196,9 +217,9 @@
                         <a href="#" class="banner-1 h-100 d-flex"
                             style="background-image: url('../images/bg_2.jpg');">
                             <div class="banner-1-inner ml-auto  align-self-center">
-                                <h2>Commandez rapidement</h2>
-                                <p>En cas d'urgence médicale, vous pouvez appeler directement un docteur et passer votre
-                                    commande par téléphone.
+                                <h2>Rated by Experts</h2>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem
+                                    odio voluptatem.
                                 </p>
                             </div>
                         </a>
@@ -272,8 +293,8 @@
     <script src="{{ asset('../js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('../js/jquery.magnific-popup.min.js') }}"></script>
     <script src="{{ asset('../js/aos.js') }}"></script>
-
     <script src="{{ asset('../js/main.js') }}"></script>
+
 
 </body>
 
