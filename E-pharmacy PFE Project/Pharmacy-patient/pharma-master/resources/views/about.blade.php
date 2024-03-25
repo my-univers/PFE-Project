@@ -48,20 +48,17 @@
                 <li class="has-children">
                   <a href="#">Catégories</a>
                   <ul class="dropdown">
-                    <li><a href="#">Compléments Alimentaires</a></li>
-                    <li class="has-children">
-                      <a href="#">Vitamines</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Supplements</a></li>
-                        <li><a href="#">Vitamins</a></li>
-                        <li><a href="#">Diet &amp; Nutrition</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#"> Régime &amp; Nutrition</a></li>
+                      @foreach ($categories as $c)
+                          <li>
+                              <a
+                                  href="{{ route('categorie.products', $c->id) }}">{{ $c->nom }}</a>
+                          </li>
+                      @endforeach
                   </ul>
-                </li>
-                <li class="active"><a href="{{ route('about') }}">A Propos</a></li>
-                <li><a href="{{ route('contact') }}">Contact</a></li>
+              </li>
+                <li><a href="/docteurs">Docteurs</a></li>
+                <li class="active"><a href='/about'>A Propos</a></li>
+                <li><a href="/contact">Contact</a></li>
               </ul>
             </nav>
           </div>

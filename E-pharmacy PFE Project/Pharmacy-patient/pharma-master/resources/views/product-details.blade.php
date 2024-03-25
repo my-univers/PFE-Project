@@ -61,6 +61,7 @@
                     <li><a href="/contact">Contact</a></li>
                 </ul>
             </nav>
+          </div>
         </div>
 
           <div class="icons">
@@ -116,15 +117,16 @@
             {{-- wach b3a khso ordonnance? --}}
             @if($product->ordonnance)
               {{-- ewa dir lih fin y telechargiha --}}
-              <label>
-                <a class="btn btn-primary">Télécharger Ordonnance</a>
-                <input type="file" id="image" name="image" onchange="displayImageName()">
-              </label>
-
-              <div id="image-preview" style="margin-top: 10px;">
-                  <img id="preview" src="" alt="Aperçu de l'image" style="max-width: 100px; max-height: 100px; display: none;">
-                  <span id="image-name"></span>
-              </div>
+              <div class="field">
+                <input type="file" id="image" name="image" style="display: none;" onchange="displayImageName()" onload="displayImageName()">
+                <a class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary" onclick="document.getElementById('image').click()">
+                    Télécharger Ordonnance
+                </a>
+                <div id="image-preview" style="margin-top: 10px;">
+                    <img id="preview" src="" alt="Aperçu de l'image" style="max-width: 100px; max-height: 100px; display: none;">
+                    <span id="image-name"></span>
+                </div>
+            </div>            
 
               <button href="/cart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary" disabled>Ajouter au Panier</button>              
                {{-- telechargeaha wla la  --}}
@@ -290,14 +292,18 @@
 </div>
 <script>
     function displayImageName() {
-                      var input = document.getElementById('image');
-                      var fileName = input.files[0].name;
-                      var preview = document.getElementById('preview');
-                      var imageName = document.getElementById('image-name');
-                      preview.src = URL.createObjectURL(input.files[0]);
-                      preview.style.display = "block";
-                      imageName.innerText = fileName;
-                  }
+    var input = document.getElementById('image');
+    var fileName = input.files[0].name;
+    var preview = document.getElementById('preview');
+    var imageName = document.getElementById('image-name');
+    preview.src = URL.createObjectURL(input.files[0]);
+    preview.style.display = "block";
+    imageName.innerText = fileName;
+
+    var addToCartBtn = document.getElementById('addToCartBtn');
+    addToCartBtn.disabled = false;
+}
+
 </script>
 
 <script src="{{ asset('../js/jquery-3.3.1.min.js') }}"></script>

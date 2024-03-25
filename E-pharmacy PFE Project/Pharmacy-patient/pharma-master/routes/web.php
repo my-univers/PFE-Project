@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\shopController;
 use Illuminate\Support\Facades\Route;
@@ -57,8 +58,19 @@ Route::get('/product-details/{id}', [shopController::class, 'showDetails']);
 
 
 
-/*----------------------------------Categories-----------------------------------------*/
+/*--------------------------------------Categories-----------------------------------------*/
 
 Route::get('/categorie/{id}', [CategorieController::class, 'showProducts'])->name('categorie.products');
 
 Route::get('/categorieFiltered/{id}', [CategorieController::class, 'filterProducts'])->name('categorie.filter');
+
+
+
+Route::get('/about', [IndexController::class, 'aboutPage']);
+
+Route::get('/contact', [IndexController::class, 'contactPage']);
+
+
+/*--------------------------------------Categories-----------------------------------------*/
+
+Route::post('/addMessage', [ContactController::class, 'addMessage']);

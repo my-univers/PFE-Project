@@ -149,7 +149,7 @@
                             @if ($product->qte_en_stock < 1)
                                 <span class="tag">OUT OF STOCK</span>
                             @endif
-                            <a href="/shop-single/{{ $product->id }}"><img src="{{ $product->image_path }}"
+                            <a href="/product-details/{{ $product->id }}"><img src="{{ $product->image_path }}"
                                     alt="Image" class="product-image"></a>
                             <br><br>
                             <style>
@@ -158,7 +158,7 @@
                                     width: calc(100 / 3);
                                 }
                             </style>
-                            <h3 class="text-dark"><a href="/shop-single/{{ $product->id }}">{{ $product->nom }}</a>
+                            <h3 class="text-dark"><a href="/product-details/{{ $product->id }}">{{ $product->nom }}</a>
                             </h3>
                             <p class="price">{{ $product->prix }} DH</p>
                         </div>

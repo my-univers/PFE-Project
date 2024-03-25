@@ -47,33 +47,29 @@
           </div>
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
-              <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li><a href="/">Accueil</a></li>
-                <li><a href="/shop">Magasin</a></li>
-                <li class="has-children">
-                  <a href="#">Catégories</a>
-                  <ul class="dropdown">
-                    <li><a href="#">Compléments Alimentaires</a></li>
+                <ul class="site-menu js-clone-nav d-none d-lg-block">
+                    <li><a href="/">Accueil</a></li>
+                    <li><a href="/shop">Magasin</a></li>
                     <li class="has-children">
-                      <a href="#">Vitamines</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Supplements</a></li>
-                        <li><a href="#">Vitamins</a></li>
-                        <li><a href="#">Diet &amp; Nutrition</a></li>
-                      </ul>
+                        <a href="#">Catégories</a>
+                        <ul class="dropdown">
+                            @foreach ($categories as $categorie)
+                                <li>
+                                    <a href="/categorie/{{$categorie->id}}">{{ $categorie->nom }}</a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </li>
-                    <li><a href="#"> Régime &amp; Nutrition</a></li>
-                  </ul>
-                </li>
-                <li><a href="{{ route('about') }}">A Propos</a></li>
-                <li  class="active"><a href="{{ route('contact') }}">Contact</a></li>
-              </ul>
+                    <li><a href="/docteurs">Docteurs</a></li>
+                    <li><a href="/about">A Propos</a></li>
+                    <li class="active"><a href="/contact">Contact</a></li>
+                </ul>
             </nav>
           </div>
 
           <div class="icons">
             <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
-            <a href="{{ route('cart') }}" class="icons-btn d-inline-block bag">
+            <a href="/cart" class="icons-btn d-inline-block bag">
               <span class="icon-shopping-bag"></span>
               <span class="number">2</span>
             </a>
@@ -103,36 +99,30 @@
           </div>
           <div class="col-md-12">
     
-            <form action="#" method="post">
+            <form action="/addMessage" method="post">
+              @csrf
     
               <div class="p-3 p-lg-5 border">
                 <div class="form-group row">
                   <div class="col-md-6">
                     <label for="c_fname" class="text-black">Nom <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="c_fname" name="c_fname">
+                    <input type="text" class="form-control" name="nom">
                   </div>
                   <div class="col-md-6">
                     <label for="c_lname" class="text-black">Prénom <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="c_lname" name="c_lname">
+                    <input type="text" class="form-control" name="prenom">
                   </div>
                 </div>
                 <div class="form-group row">
                   <div class="col-md-12">
                     <label for="c_email" class="text-black">Email <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="c_email" name="c_email" placeholder="">
+                    <input type="email" class="form-control" name="email" placeholder="">
                   </div>
                 </div>
-                <div class="form-group row">
-                  <div class="col-md-12">
-                    <label for="c_subject" class="text-black">Sujet </label>
-                    <input type="text" class="form-control" id="c_subject" name="c_subject">
-                  </div>
-                </div>
-    
                 <div class="form-group row">
                   <div class="col-md-12">
                     <label for="c_message" class="text-black">Message </label>
-                    <textarea name="c_message" id="c_message" cols="30" rows="7" class="form-control"></textarea>
+                    <textarea name="message" cols="30" rows="7" class="form-control"></textarea>
                   </div>
                 </div>
                 <div class="form-group row">
