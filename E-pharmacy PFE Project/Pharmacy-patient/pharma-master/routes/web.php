@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DocteurController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\shopController;
 use Illuminate\Support\Facades\Route;
@@ -30,9 +32,9 @@ Route::get('/cart', function () {
     return view('cart');
 })->name('cart');
 
-Route::get('/shop-single', function () {
-    return view('shop-single');
-})->name('shop-single');
+// Route::get('/shop-single', function () {
+//     return view('shop-single');
+// })->name('shop-single');
 
 Route::get('/thankyou', function () {
     return view('thankyou');
@@ -57,21 +59,26 @@ Route::get('/products', [shopController::class, 'filterProducts']);
 
 Route::get('/packs', [shopController::class, 'filterPacks']);
 
+Route::get('/product-details/{id}', [shopController::class, 'showDetails']);
 
-/*-----------------------------------Categories-----------------------------------------*/
+
+
+/*--------------------------------------Categories-----------------------------------------*/
 
 Route::get('/categorie/{id}', [CategorieController::class, 'showProducts'])->name('categorie.products');
 
 Route::get('/categorieFiltered/{id}', [CategorieController::class, 'filterProducts'])->name('categorie.filter');
 
-// Route::get('/complements', [CategorieController::class, 'showComplements']);
 
-// Route::get('/medicaments', [CategorieController::class, 'showMedicaments']);
+/*--------------------------------------Contact & About-----------------------------------------*/
 
-// Route::get('/premiers', [CategorieController::class, 'showPremiers']);
+Route::get('/about', [IndexController::class, 'aboutPage']);
 
-// Route::get('/complementsFiltered', [CategorieController::class, 'filterComplements']);
+Route::get('/contact', [IndexController::class, 'contactPage']);
 
-// Route::get('/medicamentsFiltered', [CategorieController::class, 'filterMedicaments']);
+Route::post('/addMessage', [ContactController::class, 'addMessage']);
 
-// Route::get('/premiersFiltered', [CategorieController::class, 'filterPremiers']);
+
+/*-----------------------Docteurs------------------------------*/
+
+Route::get('/docteurs', [DocteurController::class, 'showMedsList']);

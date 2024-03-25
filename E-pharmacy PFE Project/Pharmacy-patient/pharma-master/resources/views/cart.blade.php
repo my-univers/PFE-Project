@@ -70,8 +70,9 @@
                         @endforeach
                     </ul>
                 </li>
-                <li><a href="{{ route('about') }}">A Propos</a></li>
-                <li><a href="{{ route('contact') }}">Contact</a></li>
+                <li><a href="/docteurs">Docteurs</a></li>
+                <li><a href="/about">A Propos</a></li>
+                <li><a href="/concact">Contact</a></li>
               </ul>
             </nav>
           </div>

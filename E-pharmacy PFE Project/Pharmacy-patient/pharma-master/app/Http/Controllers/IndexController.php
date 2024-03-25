@@ -16,23 +16,13 @@ class IndexController extends Controller
         return view('index', ['products' => $products, 'recentProducts' => $recentProducts, 'categories' => $categories]);
     }
 
-    // public function showComplements(){
-    //     $complements = Produit::whereHas('categorie', function ($query) {
-    //         $query->where('nom', 'Compléments Alimentaires');
-    //     })->get();
+    public function aboutPage(){
+        $categories = Categorie::all();
+        return view('about', ['categories' => $categories]);
+    }
 
-    //     return view('complements' , ['complements' => $complements]);
-
-    // }
-
-    // public function showMedicaments(){
-    //     $medicaments = Produit::whereHas('categorie', function ($query) {
-    //         $query->where('nom', 'Médicaments');
-    //     })->get();
-
-    //     return view('complements' , ['medicaments' => $medicaments]);
-
-    // }
-
-
+    public function contactPage(){
+        $categories = Categorie::all();
+        return view('contact', ['categories' => $categories]);
+    }
 }

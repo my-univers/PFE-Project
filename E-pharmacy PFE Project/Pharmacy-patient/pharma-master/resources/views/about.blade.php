@@ -53,7 +53,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="has-children">
+                 <li class="has-children">
                     <a href="#">Catégories</a>
                     <ul class="dropdown">
                         <?php
@@ -67,9 +67,10 @@
                         @endforeach
                     </ul>
                 </li>
-                <li class="active"><a href="{{ route('about') }}">A Propos</a></li>
-                <li><a href="{{ route('contact') }}">Contact</a></li>
-              </ul>
+                <li><a href="/docteurs">Docteurs</a></li>
+                <li class="active"><a href='/about'>A Propos</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
             </nav>
           </div>
 

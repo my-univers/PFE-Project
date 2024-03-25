@@ -68,6 +68,7 @@
                                         @endforeach
                                     </ul>
                                 </li>
+                                <li><a href="/docteurs">Docteurs</a></li>
                                 <li><a href="/about">A Propos</a></li>
                                 <li><a href="/contact">Contact</a></li>
                             </ul>
@@ -123,11 +124,11 @@
                 <div class="row mt-5">
                     @foreach ($produits as $produit)
                         <div class="col-sm-6 col-lg-4 text-center item mb-4">
-                            <a href="{{ route('shop-single', $produit->id) }}"> <img class="produit-image"
+                            <a href="/product-details/{{$produit->id}}"> <img class="produit-image"
                                     src="{{ asset($produit->image_path) }}" alt="Image"></a>
                             <br><br>
                             <h3 class="text-dark"><a
-                                    href="{{ route('shop-single', $produit->id) }}">{{ $produit->nom }}</a>
+                                    href="/product-details/{{$produit->id}}">{{ $produit->nom }}</a>
                             </h3>
                             <p class="price">{{ $produit->prix }} DH</p>
                         </div>
