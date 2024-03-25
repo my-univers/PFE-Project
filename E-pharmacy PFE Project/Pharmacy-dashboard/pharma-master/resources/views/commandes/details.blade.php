@@ -364,7 +364,7 @@
                     <tr>
                         <td></td>
                         <td>{{ $produit->nom }}</td>
-                        <td @if($produit->pivot->quantite <= 1) style="color: red"  @endif>{{ $produit->pivot->quantite }}</td>
+                        <td >{{ $produit->pivot->quantite }}</td>
                         <td>{{ $produit->prix }} DH</td>
                     </tr>
                     @endforeach
@@ -419,7 +419,7 @@
                     <tr>
                         <td></td>
                         <td>{{ $pack->nom }}</td>
-                        <td @if($pack->pivot->quantite <= 1) style="color: red"  @endif>{{ $pack->pivot->quantite }}</td>
+                        <td>{{ $pack->pivot->quantite }}</td>
                         <td>{{ $pack->prix }} DH</td>
                         <td class="actions-cell">
                             <div class="buttons right nowrap">
