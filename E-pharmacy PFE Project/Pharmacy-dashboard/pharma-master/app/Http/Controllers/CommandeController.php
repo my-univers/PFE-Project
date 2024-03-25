@@ -119,7 +119,6 @@ class CommandeController extends Controller
         }
 
         // Mettre à jour le total de la commande
-        $total_commande -= ($total_commande * 0.05); // Appliquer la réduction de 5%
         $commande->total = $total_commande;
         $commande->save();
 
