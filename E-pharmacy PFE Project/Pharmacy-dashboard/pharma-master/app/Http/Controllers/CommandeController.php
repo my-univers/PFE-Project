@@ -86,7 +86,9 @@ class CommandeController extends Controller
                 $total_commande += $produit->prix * $quantite;
 
                 // Décrémenter la quantité en stock du produit
-                $produit->qte_en_stock -= $quantite;
+                if($produit->qte_en_stock >= 0) {
+                    $produit->qte_en_stock -= $quantite;
+                }
                 $produit->save();
 
                 // Ajouter le produit à la commande avec la quantité via la table pivot produits_commandes
