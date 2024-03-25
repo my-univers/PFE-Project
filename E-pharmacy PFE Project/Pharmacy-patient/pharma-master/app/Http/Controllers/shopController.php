@@ -49,7 +49,7 @@ class shopController extends Controller
         $categories = Categorie::all();
         $products = Produit::find($id);
 
-        return view('/shop-single', ['product' => $products, 'categories' => $categories]);
+        return view('/product-details', ['product' => $products, 'categories' => $categories]);
     }
 
 }

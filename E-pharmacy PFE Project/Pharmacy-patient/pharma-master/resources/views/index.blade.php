@@ -57,6 +57,7 @@
                                         @endforeach
                                     </ul>
                                 </li>
+                                <li><a href="/docteurs">Docteurs</a></li>
                                 <li><a href="/about">A Propos</a></li>
                                 <li><a href="/contact">Contact</a></li>
                             </ul>
