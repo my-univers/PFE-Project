@@ -141,10 +141,6 @@ Route::get('/commandes/cancel/{id}', [CommandeController::class, 'annulerCommand
 
 Route::get('/commandes/filterCommandes', [CommandeController::class, 'filterCommandes']);
 
-// Route::get('/commandes/filterDate', [CommandeController::class, 'filterByDate']);
-
-// Route::get('/commandes/filterStatut', [CommandeController::class, 'filterByStatut']);
-
 
 /****************Admin Profile****************/
 

@@ -299,51 +299,57 @@
                     <span class="icon"><i class="mdi mdi-account"></i></span>&nbsp; Client Concerné (1)
                 </button>
                 <br><br>
-                <table class="is-striped">
-                    <thead>
-                    <tr>
-                        <th style="width: 20%"></th>
-                        <th style="width: 80%">Nom du Client</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($clients as $c)
+                @if ($clients->count() > 0)
+                    <table class="is-striped">
+                        <thead>
                         <tr>
-                            <td class="checkbox-cell">
-                                <label class="checkbox">
-                                <input type="checkbox" name="client_id" value="{{ $c->id }}">
-                                <span class="check"></span>
-                                </label>
-                            </td>
-                            <td>{{ $c->nom }}</td>
-                            <td></td>
+                            <th style="width: 20%"></th>
+                            <th style="width: 80%">Nom du Client</th>
+                            <th></th>
                         </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <div class="table-pagination">
-                    <div class="flex items-center justify-between">
-                        <div class="buttons">
-                            @if ($clients->onFirstPage())
-                                <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
-                            @else
-                                <a href="{{ $clients->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
-                            @endif
-
-                            @foreach ($clients->getUrlRange(1, $clients->lastPage()) as $page => $url)
-                                <button type="button" class="button {{ $clients->currentPage() === $page ? 'active' : '' }}">{{ $page }}</button>
+                        </thead>
+                        <tbody>
+                            @foreach ($clients as $c)
+                            <tr>
+                                <td class="checkbox-cell">
+                                    <label class="checkbox">
+                                    <input type="checkbox" name="client_id" value="{{ $c->id }}">
+                                    <span class="check"></span>
+                                    </label>
+                                </td>
+                                <td>{{ $c->nom }}</td>
+                                <td></td>
+                            </tr>
                             @endforeach
+                        </tbody>
+                    </table>
+                    <div class="table-pagination">
+                        <div class="flex items-center justify-between">
+                            <div class="buttons">
+                                @if ($clients->onFirstPage())
+                                    <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                                @else
+                                    <a href="{{ $clients->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                                @endif
 
-                            @if ($clients->hasMorePages())
-                                <a href="{{ $clients->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
-                            @else
-                                <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
-                            @endif
+                                @foreach ($clients->getUrlRange(1, $clients->lastPage()) as $page => $url)
+                                    <button type="button" class="button {{ $clients->currentPage() === $page ? 'active' : '' }}">{{ $page }}</button>
+                                @endforeach
+
+                                @if ($clients->hasMorePages())
+                                    <a href="{{ $clients->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                                @else
+                                    <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                                @endif
+                            </div>
+                            <small>Page {{ $clients->currentPage() }} of {{ $clients->lastPage() }}</small>
                         </div>
-                        <small>Page {{ $clients->currentPage() }} of {{ $clients->lastPage() }}</small>
                     </div>
-                </div>
+                @else
+                    <table>
+                        <tr><td></td><td>Aucun client disponible pour le moment.</td></tr>
+                    </table>
+                @endif
             </div>
             <hr>
             <div class="field">
@@ -351,59 +357,65 @@
                     <span class="icon"><i class="mdi mdi-pill"></i></span>&nbsp; Produits à Commander
                 </button>
                 <br><br>
-                <table class="is-striped">
-                    <thead>
-                    <tr>
-                        <th style="width: 100px"></th>
-                        <th>Nom du Produit</th>
-                        <th>Prix</th>
-                        <th>Quantité en Stock</th>
-                        <th style="width: 40px">Quantité à Commander</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($produits as $produit)
+                @if ($produits->count() > 0)
+                    <table class="is-striped">
+                        <thead>
                         <tr>
-                            <td class="checkbox-cell">
-                                <label class="checkbox">
-                                <input type="checkbox" name="produits_id[]" value="{{ $produit->id }}">
-                                <span class="check"></span>
-                                </label>
-                            </td>
-                            <td>{{ $produit->nom }}</td>
-                            <td>{{ $produit->prix }} DH</td>
-                            <td @if($produit->qte_en_stock <= 1) style="color: red"  @endif>{{ $produit->qte_en_stock }}</td>
-                            <td>
-                                <input class="input is-small" type="number" name="quantite[{{ $produit->id }}]" value="1" min="1">
-                            </td>
-                            <td></td>
+                            <th style="width: 100px"></th>
+                            <th>Nom du Produit</th>
+                            <th>Prix</th>
+                            <th>Quantité en Stock</th>
+                            <th style="width: 40px">Quantité à Commander</th>
+                            <th></th>
                         </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <div class="table-pagination">
-                    <div class="flex items-center justify-between">
-                        <div class="buttons">
-                            @if ($produits->onFirstPage())
-                                <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
-                            @else
-                                <a href="{{ $produits->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
-                            @endif
-
-                            @foreach ($produits->getUrlRange(1, $produits->lastPage()) as $page => $url)
-                                <button type="button" class="button {{ $produits->currentPage() === $page ? 'active' : '' }}">{{ $page }}</button>
+                        </thead>
+                        <tbody>
+                            @foreach ($produits as $produit)
+                            <tr>
+                                <td class="checkbox-cell">
+                                    <label class="checkbox">
+                                    <input type="checkbox" name="produits_id[]" value="{{ $produit->id }}">
+                                    <span class="check"></span>
+                                    </label>
+                                </td>
+                                <td>{{ $produit->nom }}</td>
+                                <td>{{ $produit->prix }} DH</td>
+                                <td @if($produit->qte_en_stock <= 1) style="color: red"  @endif>{{ $produit->qte_en_stock }}</td>
+                                <td>
+                                    <input class="input is-small" type="number" name="quantite[{{ $produit->id }}]" value="1" min="1">
+                                </td>
+                                <td></td>
+                            </tr>
                             @endforeach
+                        </tbody>
+                    </table>
+                    <div class="table-pagination">
+                        <div class="flex items-center justify-between">
+                            <div class="buttons">
+                                @if ($produits->onFirstPage())
+                                    <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                                @else
+                                    <a href="{{ $produits->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                                @endif
 
-                            @if ($produits->hasMorePages())
-                                <a href="{{ $produits->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
-                            @else
-                                <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
-                            @endif
+                                @foreach ($produits->getUrlRange(1, $produits->lastPage()) as $page => $url)
+                                    <button type="button" class="button {{ $produits->currentPage() === $page ? 'active' : '' }}">{{ $page }}</button>
+                                @endforeach
+
+                                @if ($produits->hasMorePages())
+                                    <a href="{{ $produits->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                                @else
+                                    <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                                @endif
+                            </div>
+                            <small>Page {{ $produits->currentPage() }} of {{ $produits->lastPage() }}</small>
                         </div>
-                        <small>Page {{ $produits->currentPage() }} of {{ $produits->lastPage() }}</small>
                     </div>
-                </div>
+                @else
+                    <table>
+                        <tr><td></td><td>Aucun produit disponible pour le moment.</td></tr>
+                    </table>
+                @endif
             </div>
             <hr>
             <div class="field">
@@ -411,67 +423,73 @@
                     <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>&nbsp; Packs de Produits
                 </button>
                 <br><br>
-                <table class="is-striped">
-                    <thead>
-                    <tr>
-                        <th style="width: 100px"></th>
-                        <th>Nom du Pack</th>
-                        <th>Prix</th>
-                        <th style="width: 130px">Quantité en Stock</th>
-                        <th style="width: 40px">Quantité à Commander</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($packs as $pack)
+                @if ($packs->count() > 0)
+                    <table class="is-striped">
+                        <thead>
                         <tr>
-                            <td class="checkbox-cell">
-                                <label class="checkbox">
-                                <input type="checkbox" name="packs_id[]" value="{{ $pack->id }}">
-                                <span class="check"></span>
-                                </label>
-                            </td>
-                            <td>{{ $pack->nom }}</td>
-                            <td>{{ $pack->prix }} DH</td>
-                            <td @if($pack->qte_en_stock <= 1) style="color: red"  @endif>{{ $pack->qte_en_stock }}</td>
-                            <td>
-                                <input class="input is-small" type="number" name="quantite[{{ $pack->id }}]" value="1" min="1">
-                            </td>
-                            <td class="actions-cell">
-                                <div class="buttons right nowrap">
-                                    <a class="button small blue "
-                                       href="/packs_produits/details/{{ $pack->id }}">
-                                       <span class="icon"><i class="mdi mdi-eye"></i></span>
-                                    </a>
-                                </div>
-                            </td>
-                            <td></td>
+                            <th style="width: 100px"></th>
+                            <th>Nom du Pack</th>
+                            <th>Prix</th>
+                            <th style="width: 130px">Quantité en Stock</th>
+                            <th style="width: 40px">Quantité à Commander</th>
+                            <th></th>
                         </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                <div class="table-pagination">
-                    <div class="flex items-center justify-between">
-                        <div class="buttons">
-                            @if ($packs->onFirstPage())
-                                <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
-                            @else
-                                <a href="{{ $packs->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
-                            @endif
-
-                            @foreach ($packs->getUrlRange(1, $packs->lastPage()) as $page => $url)
-                                <button type="button" class="button {{ $packs->currentPage() === $page ? 'active' : '' }}">{{ $page }}</button>
+                        </thead>
+                        <tbody>
+                            @foreach ($packs as $pack)
+                            <tr>
+                                <td class="checkbox-cell">
+                                    <label class="checkbox">
+                                    <input type="checkbox" name="packs_id[]" value="{{ $pack->id }}">
+                                    <span class="check"></span>
+                                    </label>
+                                </td>
+                                <td>{{ $pack->nom }}</td>
+                                <td>{{ $pack->prix }} DH</td>
+                                <td @if($pack->qte_en_stock <= 1) style="color: red"  @endif>{{ $pack->qte_en_stock }}</td>
+                                <td>
+                                    <input class="input is-small" type="number" name="quantite[{{ $pack->id }}]" value="1" min="1">
+                                </td>
+                                <td class="actions-cell">
+                                    <div class="buttons right nowrap">
+                                        <a class="button small blue "
+                                        href="/packs_produits/details/{{ $pack->id }}">
+                                        <span class="icon"><i class="mdi mdi-eye"></i></span>
+                                        </a>
+                                    </div>
+                                </td>
+                                <td></td>
+                            </tr>
                             @endforeach
+                        </tbody>
+                    </table>
+                    <div class="table-pagination">
+                        <div class="flex items-center justify-between">
+                            <div class="buttons">
+                                @if ($packs->onFirstPage())
+                                    <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                                @else
+                                    <a href="{{ $packs->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                                @endif
 
-                            @if ($packs->hasMorePages())
-                                <a href="{{ $packs->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
-                            @else
-                                <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
-                            @endif
+                                @foreach ($packs->getUrlRange(1, $packs->lastPage()) as $page => $url)
+                                    <button type="button" class="button {{ $packs->currentPage() === $page ? 'active' : '' }}">{{ $page }}</button>
+                                @endforeach
+
+                                @if ($packs->hasMorePages())
+                                    <a href="{{ $packs->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                                @else
+                                    <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                                @endif
+                            </div>
+                            <small>Page {{ $packs->currentPage() }} of {{ $packs->lastPage() }}</small>
                         </div>
-                        <small>Page {{ $packs->currentPage() }} of {{ $packs->lastPage() }}</small>
                     </div>
-                </div>
+                @else
+                    <table>
+                        <tr><td></td><td>Aucun pack de produits disponible pour le moment.</td></tr>
+                    </table>
+                @endif
             </div>
             <hr>
             <div class="field grouped">

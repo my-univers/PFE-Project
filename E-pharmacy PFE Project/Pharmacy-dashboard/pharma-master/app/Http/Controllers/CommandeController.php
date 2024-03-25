@@ -23,19 +23,12 @@ class CommandeController extends Controller
         $produits = $commande->produits()->withPivot('quantite')->paginate(5);
         $packs = $commande->packs()->withPivot('quantite')->paginate(5);
 
-        // Calcul du total de la commande
-        $totalCommande = 0;
-        foreach ($produits as $produit) {
-            $totalCommande += $produit->prix * $produit->pivot->quantite;
-        }
-
         return view(
             'commandes.details',
             [
                 'commande' => $commande,
                 'client' => $client,
                 'produits' => $produits,
-                'totalCommande' => $totalCommande,
                 'packs' => $packs
             ]
         );
@@ -84,39 +77,45 @@ class CommandeController extends Controller
 
         // Calculer le total de la commande et associer les produits à la commande
         $total_commande = 0;
-        foreach ($produits as $produit_id) {
-            $quantite = $quantites[$produit_id];
-            $produit = Produit::find($produit_id);
+        if($produits) {
+            foreach ($produits as $produit_id) {
+                $quantite = $quantites[$produit_id];
+                $produit = Produit::find($produit_id);
 
-            // Ajouter le prix du produit multiplié par la quantité à calculer
-            $total_commande += $produit->prix * $quantite;
+                // Ajouter le prix du produit multiplié par la quantité à calculer
+                $total_commande += $produit->prix * $quantite;
 
-            // Décrémenter la quantité en stock du produit
-            $produit->qte_en_stock -= $quantite;
-            $produit->save();
+                // Décrémenter la quantité en stock du produit
+                $produit->qte_en_stock -= $quantite;
+                $produit->save();
 
-            // Ajouter le produit à la commande avec la quantité via la table pivot produits_commandes
-            $commande->produits()->attach($produit_id, ['quantite' => $quantite]);
+                // Ajouter le produit à la commande avec la quantité via la table pivot produits_commandes
+                $commande->produits()->attach($produit_id, ['quantite' => $quantite]);
+            }
         }
 
         // Récupérer les packs sélectionnés avec leurs quantités
         $packs = $request->input('packs_id');
         $quantites_packs = $request->input('quantite');
 
-        // Associer les packs à la commande
-        foreach ($packs as $pack_id) {
-            $quantite_pack = $quantites_packs[$pack_id];
-            $pack = Pack::find($pack_id);
+        if($packs) {
+            // Associer les packs à la commande
+            foreach ($packs as $pack_id) {
+                $quantite_pack = $quantites_packs[$pack_id];
+                $pack = Pack::find($pack_id);
 
-            // Ajouter le prix du pack multiplié par la quantité à calculer
-            $total_commande += $pack->prix * $quantite_pack;
+                // Ajouter le prix du pack multiplié par la quantité à calculer
+                $total_commande += $pack->prix * $quantite_pack;
 
-            // Décrémenter la quantité en stock du pack
-            $pack->qte_en_stock -= $quantite_pack;
-            $pack->save();
+                // Décrémenter la quantité en stock du pack
+                if($pack->qte_en_stock >= 0) {
+                    $pack->qte_en_stock -= $quantite_pack;
+                }
+                $pack->save();
 
-            // Ajouter le pack à la commande avec la quantité via la table pivot packs_commandes
-            $commande->packs()->attach($pack_id, ['quantite' => $quantite_pack]);
+                // Ajouter le pack à la commande avec la quantité via la table pivot packs_commandes
+                $commande->packs()->attach($pack_id, ['quantite' => $quantite_pack]);
+            }
         }
 
         // Mettre à jour le total de la commande
@@ -124,7 +123,7 @@ class CommandeController extends Controller
         $commande->save();
 
         // Rediriger vers la page des commandes avec un message de succès
-        return redirect('/commandes');
+        return redirect('/commandes')->with('success', 'Commande ajoutée avec succès');
     }
 
     public function annulerCommande($id)
@@ -162,4 +161,5 @@ class CommandeController extends Controller
         // Passer les résultats à la vue
         return view('commandes.list', ['commandes' => $commandes]);
     }
+
 }
