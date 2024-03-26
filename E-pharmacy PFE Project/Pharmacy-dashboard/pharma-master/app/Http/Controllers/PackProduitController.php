@@ -24,13 +24,18 @@ class PackProduitController extends Controller
         // Récupérer les données du formulaire
         $packId = $request->input('pack_id');
         $produitIds = $request->input('produits_id');
+        $quantites = $request->input('quantite');
 
         // Insérer les entrées dans la table packs_produits
         foreach ($produitIds as $produitId) {
-            PackProduit::create([
+            $quantite = $quantites[$produitId];
+
+            $pack_produits = PackProduit::create([
                 'pack_id' => $packId,
-                'produits_id' => $produitId
+                'produits_id' => $produitId,
+                'qte_produit' => $quantite
             ]);
+
         }
 
         $pack = Pack::find($packId);
@@ -113,12 +118,13 @@ class PackProduitController extends Controller
         return redirect('/packs_produits');
     }
 
-    public function addToPack($produit_id, $pack_id) {
+    public function addToPack($produit_id, $pack_id, Request $request) {
 
         $pack = Pack::findOrFail($pack_id);
         $produit = Produit::findOrFail($produit_id);
+        $quantites = $request->input('quantite');
 
-        $pack->produits()->attach($produit);
+        $pack->produits()->attach($produit, ['quantite'=>$quantites]);
 
             return redirect()->back();
         }

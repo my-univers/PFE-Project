@@ -328,9 +328,10 @@
             <thead>
             <tr>
                 <th></th>
-                <th style="width: 33.3%">Nom du Produit</th>
-                <th style="width: 33.3%">Quantité en Stock</th>
-                <th style="width: 33.3%">Prix</th>
+                <th style="width: 25%">Nom du Produit</th>
+                <th style="width: 25%">Quantité en Stock</th>
+                <th style="width: 25%">Prix</th>
+                <th style="width: 25%">Quantité dans le Pack</th>
                 <th></th>
             </tr>
             </thead>
@@ -341,6 +342,13 @@
                     <td>{{ $produit->nom }}</td>
                     <td @if($produit->qte_en_stock <= 1) style="color: red"  @endif>{{ $produit->qte_en_stock }}</td>
                     <td>{{ $produit->prix }} DH</td>
+                    <td>
+                        @foreach ($pack->produits as $pack_produit)
+                            @if ($pack_produit->id === $produit->id)
+                                {{ $pack_produit->pivot->qte_produit }}
+                            @endif
+                        @endforeach
+                    </td>
                     <td>
                       <a class="button small red" href="/packs_produits/removeProduct/{{$pack->id}}/{{$produit->id}}">
                         <span class="icon"><i class="mdi mdi-close"></i></span>
@@ -385,9 +393,10 @@
                 <thead>
                 <tr>
                     <th></th>
-                    <th style="width: 33.3%">Nom du Produit</th>
-                    <th style="width: 33.3%">Quantité</th>
-                    <th style="width: 33.3%">Prix</th>
+                    <th>Nom du Produit</th>
+                    <th>Quantité</th>
+                    <th>Prix</th>
+                    <th style="width: 130px">Quantité dans le Pack</th>
                     <th></th>
                 </tr>
                 </thead>
@@ -399,6 +408,9 @@
                         <td>{{ $produit->nom }}</td>
                         <td>{{ $produit->qte_en_stock}}</td>
                         <td>{{ $produit->prix }} DH</td>
+                        <td>
+                            <input class="input is-small" type="number" name="quantite[{{ $produit->id }}]" value="1" min="1">
+                        </td>
                         <td>
                         <a class="button small blue" href="/packs_produits/addToPack/{{$produit->id}}/{{$pack->id}}">
                             <span class="icon"><i class="mdi mdi-plus"></i></span>

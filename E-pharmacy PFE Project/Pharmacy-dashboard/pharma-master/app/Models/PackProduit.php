@@ -9,7 +9,7 @@ class PackProduit extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['pack_id', 'produits_id'];
+    protected $fillable = ['pack_id', 'produits_id', 'qte_produit'];
 
     protected $table = 'packs_produits';
 
