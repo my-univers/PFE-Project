@@ -306,3 +306,4 @@ Route::get('/premiers_secours/updateForm/{id}', [PremierSecoursController::class
 Route::post('/premiers_secours/update/{id}', [PremierSecoursController::class, 'updatePremier']);
 
 Route::get('/premiers_secours/delete/{id}', [PremierSecoursController::class, 'deletePremier']);
+

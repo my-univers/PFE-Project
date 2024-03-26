@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Mail;
 class ContactController extends Controller
 {
     public function showMessages(){
-        $messages = Contact::all();
+        $messages = Contact::paginate(10);
         return view('contacts.messages', ['messages' => $messages]);
     }
 
@@ -45,7 +45,7 @@ class ContactController extends Controller
         return back()->with('msg sent successfully');
 
     }
-    
+
 
 
 }

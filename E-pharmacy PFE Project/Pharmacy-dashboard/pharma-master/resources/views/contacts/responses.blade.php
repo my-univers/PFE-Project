@@ -121,14 +121,14 @@
 
           <div class="field">
             <div class="field-body">
-    
+
               <div class="field">
                 <div class="field-body">
-    
+
                   <div class="field">
                     <div class="control icons-left">
                       <input class="input" type="email" name="email" value="{{$message->email}}">
-                      <span class="icon left"><i class="mdi mdi-at"></i></span>
+                      <span class="icon left"><i class="mdi mdi-mail"></i></span>
                     </div>
                   </div>
 
@@ -138,7 +138,7 @@
                       <textarea class="textarea" name="body" placeholder="Message"></textarea>
                     </div>
                   </div>
-    
+
                   <hr>
 
                   <div class="field">

@@ -109,28 +109,29 @@
       </p>
     </header>
     <div class="card-content">
-      <table>
-          <thead>
-              <tr>
-                  <th></th>
+      @if ($messages->count() > 0)
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
                 <th scope="col">Nom</th>
                 <th scope="col">Prénom</th>
                 <th scope="col">Email</th>
-                <th scope="col" style="width: 350px">Messages</th>
+                <th scope="col" style="width: 350px">Message</th>
                 <th></th>
-              </tr>
+                </tr>
             </thead>
 
             <tbody>
-              @foreach($messages as $message)
-              <tr>
-                  <td></td>
-                  <td scope="row">{{ $message->nom }}</td>
-                  <td>{{ $message->prenom }}</td>
-                  <td>{{ $message->email }}</td>
-                  <td>{{ $message->message }}</td>
+                @foreach($messages as $message)
+                <tr>
+                    <td></td>
+                    <td scope="row">{{ $message->nom }}</td>
+                    <td>{{ $message->prenom }}</td>
+                    <td>{{ $message->email }}</td>
+                    <td>{{ $message->message }}</td>
 
-                  <td class="actions-cell">
+                    <td class="actions-cell">
                     <div class="buttons right nowrap">
                         <a class="button small green --jb-modal" href="/messages/showForm/{{$message->id}}">
                         <span class="icon"><i class="mdi mdi-reply"></i></span>
@@ -140,50 +141,53 @@
                         </button>
                     </div>
                     </td>
-              </tr>
+                </tr>
 
-              <div id="sample-modal-{{$message->id}}" class="modal">
-                  <div class="modal-background --jb-modal-close"></div>
-                  <div class="modal-card">
+                <div id="sample-modal-{{$message->id}}" class="modal">
+                    <div class="modal-background --jb-modal-close"></div>
+                    <div class="modal-card">
                     <header class="modal-card-head">
-                      <p class="modal-card-title">Confirmer la Suppression</p>
+                        <p class="modal-card-title">Confirmer la Suppression</p>
                     </header>
                     <section class="modal-card-body">
-                      <p>Êtes-vous sûr de vouloir annuler ce pack ?</p>
-                      <p>Cette action est irréversible.</p>
+                        <p>Êtes-vous sûr de vouloir annuler ce message ?</p>
                     </section>
                     <footer class="modal-card-foot">
-                      <button class="button --jb-modal-close">Annuler</button>
-                      <a class="button red --jb-modal-close" href="/messages/delete/{{$message->id}}">Confirmer</a>
+                        <button class="button --jb-modal-close">Annuler</button>
+                        <a class="button red --jb-modal-close" href="/messages/delete/{{$message->id}}">Confirmer</a>
                     </footer>
-                  </div>
-              </div>
-              @endforeach
+                    </div>
+                </div>
+                @endforeach
         </table>
         </tbody>
-      </table>
+        </table>
+        <div class="table-pagination">
+        <div class="flex items-center justify-between">
+            <div class="buttons">
+                @if ($messages->onFirstPage())
+                    <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                @else
+                    <a href="{{ $messages->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                @endif
 
-      {{-- <div class="table-pagination">
-          <div class="flex items-center justify-between">
-              <div class="buttons">
-                  @if ($messages->onFirstPage())
-                      <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
-                  @else
-                      <a href="{{ $messages->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
-                  @endif
+                @for ($i = 1; $i <= $messages->lastPage(); $i++)
+                    <button type="button" class="button @if ($messages->currentPage() == $i) active @endif">{{ $i }}</button>
+                @endfor
 
-                  @for ($i = 1; $i <= $messages->lastPage(); $i++)
-                      <button type="button" class="button @if ($messages->currentPage() == $i) active @endif">{{ $i }}</button>
-                  @endfor
-
-                  @if ($messages->hasMorePages())
-                      <a href="{{ $messages->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
-                  @else
-                      <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
-                  @endif
-              </div>
-          </div>
-      </div> --}}
+                @if ($messages->hasMorePages())
+                    <a href="{{ $messages->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                @else
+                    <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                @endif
+            </div>
+        </div>
+        </div>
+      @else
+        <table>
+            <tr><td></td><td>Aucun message disponible pour le moment.</td></tr>
+        </table>
+      @endif
     </div>
   </div>
 </section>

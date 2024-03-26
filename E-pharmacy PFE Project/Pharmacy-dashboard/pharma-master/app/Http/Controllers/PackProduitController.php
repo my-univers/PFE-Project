@@ -140,11 +140,11 @@ class PackProduitController extends Controller
 
 
     public function deletePackProduit($id) {
-        $packProduit = PackProduit::find($id);
-        $packProduit->delete();
+        $pack = Pack::find($id);
+        $pack->delete();
 
-        if ($packProduit->pack->image_path != 'img/default-pack.jpg') {
-            unlink(public_path($packProduit->pack->image_path));
+        if ($pack->image_path != 'img/default-pack.jpg') {
+            unlink(public_path($pack->image_path));
         }
 
         return redirect('/packs_produits');
