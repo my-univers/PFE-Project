@@ -222,7 +222,7 @@
 
                 <div class="row">
                   <div class="col-md-12">
-                    <button class="btn btn-primary btn-lg btn-block" onclick="window.location='/checkout' ">Passer Au Paiemenet</button>
+                    <button class="btn btn-primary btn-lg btn-block" onclick="window.location='/checkout' " style="width: fit-content">Passer Au Paiemenet</button>
                   </div>
                 </div>
               </div>
