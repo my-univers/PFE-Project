@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('pack_id')->constrained('packs')->onDelete('cascade');
             $table->foreignId('produit_id')->constrained('produits')->onDelete('cascade');
-            $table->integer('qte_produit')->nullable(false)->default(0);
+            $table->integer('qte_produit')->nullable(false);
             $table->timestamps();
         });
     }

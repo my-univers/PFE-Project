@@ -119,16 +119,15 @@ class PackProduitController extends Controller
     }
 
     public function addToPack($produit_id, $pack_id, Request $request) {
-
         $pack = Pack::findOrFail($pack_id);
         $produit = Produit::findOrFail($produit_id);
-        $quantites = $request->input('quantite');
+        $quantite = $request->input('quantite');
 
-        $pack->produits()->attach($produit, ['quantite'=>$quantites]);
+        // Attacher le produit avec la quantité au pack
+        $pack->produits()->attach($produit, ['qte_produit' => $quantite]);
 
-            return redirect()->back();
-        }
-
+        return redirect()->back();
+    }
 
     public function removeProduct($pack_id, $produit_id) {
 
