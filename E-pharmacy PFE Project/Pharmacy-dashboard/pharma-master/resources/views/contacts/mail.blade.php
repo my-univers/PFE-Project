@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <p>Bonjour {{$data['nom']}}</p>
+    <p>Bonjour {{$data['prenom']}}, </p>
     <p>{{ $data['body'] }}</p>
 </body>
 

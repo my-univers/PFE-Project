@@ -219,6 +219,30 @@ Route::post('/messages/reply', [ContactController::class, 'sendEmail']);
 
 Route::get('/messages/mail', [ContactController::class, 'showMail']);
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*****************Packs Premiers Secours******************/
 
 Route::get('/packs_premiers_secours', [PackPremiersSecoursController::class, 'showList']);

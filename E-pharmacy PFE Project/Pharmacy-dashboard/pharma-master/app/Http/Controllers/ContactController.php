@@ -32,11 +32,11 @@ class ContactController extends Controller
     public function sendEmail(Request $request){
 
         $userEmail = $request->email; 
-        $nom =  Contact::where('email', $userEmail)->value('nom');
+        $prenom =  Contact::where('email', $userEmail)->value('prenom');
 
         $data = [
             'body' => $request->body,
-            'nom' => $nom
+            'prenom' => $prenom
         ];
 
             Mail::to($userEmail)->send(new ReplyEmail($data));
