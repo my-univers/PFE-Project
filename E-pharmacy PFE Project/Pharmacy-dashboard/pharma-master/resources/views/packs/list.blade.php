@@ -248,6 +248,12 @@
           <span class="menu-item-label">Packs Produits</span>
         </a>
       </li>
+      <li>
+        <a href="/messages">
+          <span class="icon"><i class="mdi mdi-message"></i></span>
+          <span class="menu-item-label">Messages</span>
+        </a>
+      </li>
     </ul>
     <p class="menu-label">A Propos</p>
     <ul class="menu-list">
@@ -263,6 +269,7 @@
 @endsection
 
 @section('content')
+
 <section class="is-title-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <ul>

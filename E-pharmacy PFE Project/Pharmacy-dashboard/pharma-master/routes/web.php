@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\Auth\RegisteredAdminController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedAdminController;
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\CommandeController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\PackProduitController;
 use App\Http\Controllers\ProduitController;
 use PharIo\Manifest\AuthorElement;
@@ -141,10 +142,6 @@ Route::get('/commandes/cancel/{id}', [CommandeController::class, 'annulerCommand
 
 Route::get('/commandes/filterCommandes', [CommandeController::class, 'filterCommandes']);
 
-// Route::get('/commandes/filterDate', [CommandeController::class, 'filterByDate']);
-
-// Route::get('/commandes/filterStatut', [CommandeController::class, 'filterByStatut']);
-
 
 /****************Admin Profile****************/
 
@@ -210,15 +207,17 @@ Route::get('/packs_produits/form', [PackProduitController::class, 'showForm']);
 Route::get('/packs_produits/search', [PackProduitController::class, 'searchPackProduit']);
 
 
+/**********************************Contacts*******************************/
 
+Route::get('/messages', [ContactController::class, 'showMessages']);
 
+Route::get('/messages/showForm/{id}', [ContactController::class, 'showForm']);
 
+Route::get('/messages/delete/{id}', [ContactController::class, 'deleteMessages']);
 
+Route::post('/messages/reply', [ContactController::class, 'sendEmail']);
 
-
-
-
-
+Route::get('/messages/mail', [ContactController::class, 'showMail']);
 
 /*****************Packs Premiers Secours******************/
 
