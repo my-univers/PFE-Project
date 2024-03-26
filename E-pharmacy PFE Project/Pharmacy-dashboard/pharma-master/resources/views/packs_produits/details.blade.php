@@ -242,24 +242,30 @@
           </li>
         </ul>
       </li> --}}
-                <li class="active">
-                    <a href="/packs_produits">
-                        <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
-                        <span class="menu-item-label">Packs Produits</span>
-                    </a>
-                </li>
-            </ul>
-            <p class="menu-label">A Propos</p>
-            <ul class="menu-list">
-                <li>
-                    <a href="#" class="has-icon">
-                        <span class="icon"><i class="mdi mdi-github-circle"></i></span>
-                        <span class="menu-item-label">GitHub</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </aside>
+      <li class="active">
+        <a href="/packs_produits">
+          <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
+          <span class="menu-item-label">Packs Produits</span>
+        </a>
+      </li>
+      <li>
+        <a href="/messages">
+          <span class="icon"><i class="mdi mdi-message"></i></span>
+          <span class="menu-item-label">Messages</span>
+        </a>
+      </li>
+    </ul>
+    <p class="menu-label">A Propos</p>
+    <ul class="menu-list">
+      <li>
+        <a href="#" class="has-icon">
+          <span class="icon"><i class="mdi mdi-github-circle"></i></span>
+          <span class="menu-item-label">GitHub</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</aside>
 @endsection
 
 @section('content')

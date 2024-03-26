@@ -247,6 +247,12 @@
           <span class="menu-item-label">Packs Produits</span>
         </a>
       </li>
+      <li>
+        <a href="/messages">
+          <span class="icon"><i class="mdi mdi-message"></i></span>
+          <span class="menu-item-label">Messages</span>
+        </a>
+      </li>
         </ul>
       </li>
     </ul>
@@ -278,9 +284,9 @@
       <h1 class="title">
           Modifier Produits
       </h1>
-      <a class="button blue" href='/produits/list'>
+      {{-- <a class="button blue" href='/produits/list'>
         Retour
-      </a>
+      </a> --}}
     </div>
   </section>
 
