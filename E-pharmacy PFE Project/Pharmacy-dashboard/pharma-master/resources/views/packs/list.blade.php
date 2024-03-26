@@ -324,7 +324,7 @@
                         <th></th>
                     <th scope="col">#</th>
                     <th scope="col">Nom</th>
-                    <th scope="col" style="width: 350px">Description</th>
+                    <th scope="col" style="width: 300px">Description</th>
                     <th scope="col">Nombre de Produits</th>
                     <th scope="col">Quantité en stock</th>
                     <th></th>
