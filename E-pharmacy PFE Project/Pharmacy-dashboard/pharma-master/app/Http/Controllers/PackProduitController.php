@@ -33,6 +33,21 @@ class PackProduitController extends Controller
             ]);
         }
 
+        $pack = Pack::find($packId);
+
+        $total = 0;
+        foreach ($produitIds as $produitId) {
+            $produit = Produit::find($produitId);
+            $total += $produit->prix;
+        }
+
+        $reduction = $total * 0.05;
+        $totalPack = $total - $reduction;
+        $totalPack = number_format($totalPack, 2);
+
+        $pack->prix = $totalPack;
+        $pack->save();
+
         // Rediriger avec un message de succès
         return redirect('/packs_produits');
     }
@@ -43,7 +58,6 @@ class PackProduitController extends Controller
         // get all products where qte_en_stock >= 1
         $allProducts = Produit::where('qte_en_stock','>=',1)->paginate(5, ['*'], 'allProducts_page');
 
-
         $total = 0;
         foreach ($produits as $produit) {
             $total += $produit->prix;
@@ -52,9 +66,7 @@ class PackProduitController extends Controller
         $totalPack = $total - $reduction;
         $totalPack = number_format($totalPack, 2);
 
-        $pack->prix = $totalPack;
-        $pack->save();
-        return view('/packs_produits.details', ['pack' => $pack, 'produits' => $produits, 'totalPack' => $totalPack,'allProducts' => $allProducts ]);
+        return view('/packs_produits.details', ['pack' => $pack, 'produits' => $produits, 'allProducts' => $allProducts, 'total' => $totalPack]);
     }
 
 

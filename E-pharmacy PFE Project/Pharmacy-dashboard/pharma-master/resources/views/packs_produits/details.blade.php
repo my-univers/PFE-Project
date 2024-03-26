@@ -302,7 +302,7 @@
                 <tr>
                     <th></th>
                     <th style="width: 33.3%">Nom</th>
-                    <th style="width: 33.3%">Quantité</th>
+                    <th style="width: 33.3%">Quantité en Stock</th>
                     <th style="width: 33.3%">Prix</th>
                     <th></th>
                 </tr>
@@ -312,7 +312,7 @@
                     <td></td>
                     <td>{{ $pack->nom }}</td>
                     <td> {{ $pack->qte_en_stock }}</td>
-                    <td>{{ $totalPack }} DH</td>
+                    <td>{{ $total }} DH</td>
                     <td></td>
                 </tr>
             </tbody>
@@ -329,7 +329,7 @@
             <tr>
                 <th></th>
                 <th style="width: 33.3%">Nom du Produit</th>
-                <th style="width: 33.3%">Quantité</th>
+                <th style="width: 33.3%">Quantité en Stock</th>
                 <th style="width: 33.3%">Prix</th>
                 <th></th>
             </tr>

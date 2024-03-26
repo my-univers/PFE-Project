@@ -365,7 +365,7 @@
                                     </section>
                                     <footer class="modal-card-foot">
                                         <button class="button --jb-modal-close">Annuler</button>
-                                        <a class="button red --jb-modal-close" href="/packs/delete/{{$p->packs->id}}">Confirmer</a>
+                                        <a class="button red --jb-modal-close" href="/packs_produits/delete/{{$p->packs->id}}">Confirmer</a>
                                     </footer>
                                 </div>
                             </div>

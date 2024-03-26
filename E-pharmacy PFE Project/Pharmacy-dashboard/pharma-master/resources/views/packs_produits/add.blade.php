@@ -366,7 +366,7 @@
                                     <th style="width: 100px"></th>
                                     <th>Nom du Produit</th>
                                     <th>Prix</th>
-                                    <th>Quantité</th>
+                                    <th>Quantité en Stock</th>
                                     <th></th>
                                 </tr>
                                 </thead>
