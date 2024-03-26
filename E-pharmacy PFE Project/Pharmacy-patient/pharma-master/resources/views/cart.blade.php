@@ -13,11 +13,11 @@
   <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
   <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
-  
+
   <link rel="stylesheet" href="{{ asset('css/aos.css') }}">
-  
+
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-  
+
 </head>
 
 <body>
@@ -47,24 +47,32 @@
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
                 <li><a href="/">Accueil</a></li>
-                <li><a href ="/shop">Magasin</a></li>
                 <li class="has-children">
-                  <a href="#">Catégories</a>
-                  <ul class="dropdown">
-                    <li><a href="#">Compléments Alimentaires</a></li>
-                    <li class="has-children">
-                      <a href="#">Vitamines</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Supplements</a></li>
-                        <li><a href="#">Vitamins</a></li>
-                        <li><a href="#">Diet &amp; Nutrition</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#"> Régime &amp; Nutrition</a></li>
-                  </ul>
+                    <a href="#">Magasin</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="/shop/produits">Produits</a>
+                            <a href="/shop/packs">Packs de Produits</a>
+                        </li>
+                    </ul>
                 </li>
-                <li><a href="{{ route('about') }}">A Propos</a></li>
-                <li><a href="{{ route('contact') }}">Contact</a></li>
+                <li class="has-children">
+                    <a href="#">Catégories</a>
+                    <ul class="dropdown">
+                        <?php
+                            use App\Models\Categorie;
+                            $categories = Categorie::all();
+                        ?>
+                        @foreach ($categories as $categorie)
+                            <li>
+                                <a href="{{ route('categorie.products', $categorie->id) }}">{{ $categorie->nom }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+                <li><a href="/docteurs">Docteurs</a></li>
+                <li><a href="/about">A Propos</a></li>
+                <li><a href="/concact">Contact</a></li>
               </ul>
             </nav>
           </div>
@@ -85,7 +93,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-0">
-            <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span> 
+            <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span>
             <strong class="text-black">Panier</strong>
           </div>
         </div>
@@ -128,12 +136,12 @@
                           <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                         </div>
                       </div>
-    
+
                     </td>
                     <td>$49.00</td>
                     <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
                   </tr>
-    
+
                   <tr>
                     <td class="product-thumbnail">
                       <img src="images/product_01.png" alt="Image" class="img-fluid">
@@ -153,7 +161,7 @@
                           <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                         </div>
                       </div>
-    
+
                     </td>
                     <td>$49.00</td>
                     <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
@@ -163,7 +171,7 @@
             </div>
           </form>
         </div>
-    
+
         <div class="row">
           <div class="col-md-6">
             <div class="row mb-5">
@@ -211,14 +219,14 @@
                     <strong class="text-black">$230.00</strong>
                   </div>
                 </div>
-    
+
                 <div class="row">
                   <div class="col-md-12">
                     <button class="btn btn-primary btn-lg btn-block" onclick="window.location='/checkout' ">Passer Au Paiemenet</button>
                   </div>
                 </div>
               </div>
-              
+
             </div>
           </div>
         </div>

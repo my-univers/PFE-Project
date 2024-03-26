@@ -49,14 +49,21 @@
                         <nav class="site-navigation text-right text-md-center" role="navigation">
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
                                 <li><a href="/">Accueil</a></li>
-                                <li><a href="/shop">Magasin</a></li>
+                                <li class="has-children">
+                                    <a href="#">Magasin</a>
+                                    <ul class="dropdown">
+                                        <li>
+                                            <a href="/shop/produits">Produits</a>
+                                            <a href="/shop/packs">Packs de Produits</a>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li class="has-children">
                                     <a href="#">Catégories</a>
                                     <ul class="dropdown">
                                         @foreach ($categories as $c)
                                             <li>
-                                                <a
-                                                    href="{{ route('categorie.products', $c->id) }}">{{ $c->nom }}</a>
+                                                <a href="{{ route('categorie.products', $c->id) }}">{{ $c->nom }}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -86,6 +93,8 @@
                 <div class="row">
                     <div class="col-md-12 mb-0">
                         <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span>
+                        <strong class="text-black">Catégories</strong>
+                        <span class="mx-2 mb-0">/</span>
                         <strong class="text-black">{{ $categorie->nom }}</strong>
                     </div>
                 </div>

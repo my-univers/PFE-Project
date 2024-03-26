@@ -47,23 +47,35 @@
           </div>
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
-                <ul class="site-menu js-clone-nav d-none d-lg-block">
-                    <li><a href="/">Accueil</a></li>
-                    <li><a href="/shop">Magasin</a></li>
-                    <li class="has-children">
-                        <a href="#">Catégories</a>
-                        <ul class="dropdown">
-                            @foreach ($categories as $categorie)
-                                <li>
-                                    <a href="/categorie/{{$categorie->id}}">{{ $categorie->nom }}</a>
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
-                    <li><a href="/docteurs">Docteurs</a></li>
-                    <li><a href="/about">A Propos</a></li>
-                    <li class="active"><a href="/contact">Contact</a></li>
-                </ul>
+              <ul class="site-menu js-clone-nav d-none d-lg-block">
+                <li><a href="/">Accueil</a></li>
+                <li class="has-children">
+                    <a href="#">Magasin</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="/shop/produits">Produits</a>
+                            <a href="/shop/packs">Packs de Produits</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="has-children">
+                    <a href="#">Catégories</a>
+                    <ul class="dropdown">
+                        <?php
+                            use App\Models\Categorie;
+                            $categories = Categorie::all();
+                        ?>
+                        @foreach ($categories as $categorie)
+                            <li>
+                                <a href="{{ route('categorie.products', $categorie->id) }}">{{ $categorie->nom }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+                <li><a href="/docteurs">Docteurs</a></li>
+                <li><a href="/about">A Propos</a></li>
+                <li class="active"><a href="/contact">Contact</a></li>
+            </ul>
             </nav>
           </div>
 
@@ -84,7 +96,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-0">
-            <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span> 
+            <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span>
             <strong class="text-black">Contact</strong>
           </div>
         </div>
@@ -98,10 +110,9 @@
             <h2 class="h3 mb-5 text-black">Contactez-nous</h2>
           </div>
           <div class="col-md-12">
-    
-            <form action="/addMessage" method="post">
-              @csrf
-    
+
+            <form action="#" method="post">
+
               <div class="p-3 p-lg-5 border">
                 <div class="form-group row">
                   <div class="col-md-6">
@@ -121,6 +132,13 @@
                 </div>
                 <div class="form-group row">
                   <div class="col-md-12">
+                    <label for="c_subject" class="text-black">Sujet </label>
+                    <input type="text" class="form-control" id="c_subject" name="c_subject">
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-12">
                     <label for="c_message" class="text-black">Message </label>
                     <textarea name="message" cols="30" rows="7" class="form-control"></textarea>
                   </div>
@@ -133,7 +151,7 @@
               </div>
             </form>
           </div>
-          
+
         </div>
       </div>
     </div>
@@ -166,7 +184,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
 
 

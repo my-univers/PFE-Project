@@ -261,111 +261,139 @@
 
 
     <div class="card has-table">
-      <header class="card-header">
-
-        @if(!$produits_epuises->isEmpty())
-        <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-pill"></i></span>
-          Produits Épuisés
-        </p>
-        <a href="#" class="card-header-icon">
-          <span class="icon"><i class="mdi mdi-reload"></i></span>
-        </a>
-      </header>
-      <div class="card-content">
-        <table>
-            <thead>
-            <tr>
-              <th></th>
-              <th>#</th>
-              <th>Nom</th>
-              <th>Catégorie</th>
-              <th></th>
-            </tr>
-            </thead>
-            <tbody>
-              @foreach($produits_epuises as $c)
-              <tr>
-                  <td></td>
-                  <td>{{ $c->id }}</td>
-                  <td>{{ $c->nom }}</td>
-                  <td>{{ $c->categorie->nom }}</td>
-                  <td class="actions-cell">
-                  <div class="buttons right nowrap">
-                      <a class="button small green --jb-modal" href="/produits/updateForm/{{$c->id}}">
-                      <span class="icon"><i class="mdi mdi-eye"></i></span>
-                      </a>
-                  </div>
-                  </td>
-              </tr>
-              @endforeach
-            </tbody>
-          </table>
-
-          @else
-          <p class="card-header-title">
-            <span class="icon"><i class="mdi mdi-cart"></i></span>
-            Commandes
-          </p>
-          <a href="#" class="card-header-icon">
-            <span class="icon"><i class="mdi mdi-reload"></i></span>
-          </a>
+        <header class="card-header">
+            @if(!$produits_epuises->isEmpty())
+            <p class="card-header-title">
+                <span class="icon"><i class="mdi mdi-pill"></i></span>
+                Produits Épuisés
+            </p>
+            <a href="#" class="card-header-icon">
+                <span class="icon"><i class="mdi mdi-reload"></i></span>
+            </a>
         </header>
         <div class="card-content">
-          <table>
-              <thead>
-              <tr>
-                <th></th>
-                <th>#</th>
-                <th>Client</th>
-                <th>Date de la Commande</th>
-                <th>Statut</th>
-                <th></th>
-              </tr>
-              </thead>
-              <tbody>
-                @foreach($commandes as $c)
-                <tr>
-                    <td></td>
-                    <td>{{ $c->id }}</td>
-                    <td>{{ $c->client->nom }}</td>
-                    <td>{{ $c->date_commande }}</td>
-                    <td @if($c->statut == "En attente") style="color: orange" @elseif($c->statut == "Validée") style="color: green" @elseif($c->statut == "Annulée") style="color: red" @endif>{{ $c->statut }}</td>
-                    <td class="actions-cell">
-                    <div class="buttons right nowrap">
-                        <a class="button small green --jb-modal" href="/commandes/details/{{ $c->id }}">
-                        <span class="icon"><i class="mdi mdi-eye"></i></span>
-                        </a>
-                    </div>
-                    </td>
-                </tr>
-                @endforeach
-              </tbody>
+            @if(count($produits_epuises) > 0)
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Catégorie</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($produits_epuises as $produit)
+                    <tr>
+                        <td></td>
+                        <td>{{ $produit->id }}</td>
+                        <td>{{ $produit->nom }}</td>
+                        <td>{{ $produit->categorie->nom }}</td>
+                        <td class="actions-cell">
+                            <div class="buttons right nowrap">
+                                <a class="button small green --jb-modal" href="/produits/updateForm/{{$produit->id}}">
+                                    <span class="icon"><i class="mdi mdi-eye"></i></span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
             </table>
-
-            @endif
             <div class="table-pagination">
                 <div class="flex items-center justify-between">
                     <div class="buttons">
-                        @if ($commandes_paginate->onFirstPage())
-                            <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                        @if ($produits_epuises->onFirstPage())
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
                         @else
-                            <a href="{{ $commandes_paginate->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                        <a href="{{ $produits_epuises->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
                         @endif
-
-                        @for ($i = 1; $i <= $commandes_paginate->lastPage(); $i++)
-                            <button type="button" class="button @if ($commandes_paginate->currentPage() == $i) active @endif">{{ $i }}</button>
+                        @for ($i = 1; $i <= $produits_epuises->lastPage(); $i++)
+                        <button type="button" class="button @if ($produits_epuises->currentPage() == $i) active @endif">{{ $i }}</button>
                         @endfor
-
-                        @if ($commandes_paginate->hasMorePages())
-                            <a href="{{ $commandes_paginate->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                        @if ($produits_epuises->hasMorePages())
+                        <a href="{{ $produits_epuises->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
                         @else
-                            <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
                         @endif
                     </div>
                 </div>
             </div>
-      </div>
+            @else
+            <table>
+                <tr><td></td><td>Aucun produit épuisé pour le moment.</td></tr>
+            </table>
+            @endif
+        </div>
+        @else
+        <p class="card-header-title">
+            <span class="icon"><i class="mdi mdi-cart"></i></span>
+            Commandes
+        </p>
+        <a href="#" class="card-header-icon">
+            <span class="icon"><i class="mdi mdi-reload"></i></span>
+        </a>
+        </header>
+        <div class="card-content">
+            @if(count($commandes) > 0)
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>#</th>
+                        <th>Client</th>
+                        <th>Date de la Commande</th>
+                        <th>Statut</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($commandes as $commande)
+                    <tr>
+                        <td></td>
+                        <td>{{ $commande->id }}</td>
+                        <td>{{ $commande->client->nom }}</td>
+                        <td>{{ $commande->date_commande }}</td>
+                        <td @if($commande->statut == "En attente") style="color: orange" @elseif($commande->statut == "Validée") style="color: green" @elseif($commande->statut == "Annulée") style="color: red" @endif>{{ $commande->statut }}</td>
+                        <td class="actions-cell">
+                            <div class="buttons right nowrap">
+                                <a class="button small green --jb-modal" href="/commandes/details/{{ $commande->id }}">
+                                    <span class="icon"><i class="mdi mdi-eye"></i></span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div class="table-pagination">
+                <div class="flex items-center justify-between">
+                    <div class="buttons">
+                        @if ($commandes_paginate->onFirstPage())
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                        @else
+                        <a href="{{ $commandes_paginate->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                        @endif
+                        @for ($i = 1; $i <= $commandes_paginate->lastPage(); $i++)
+                        <button type="button" class="button @if ($commandes_paginate->currentPage() == $i) active @endif">{{ $i }}</button>
+                        @endfor
+                        @if ($commandes_paginate->hasMorePages())
+                        <a href="{{ $commandes_paginate->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                        @else
+                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        @else
+            <table>
+                <tr><td></td><td>Aucune commande disponible pour le moment.</td></tr>
+            </table>
+        @endif
+        </div>
+    </div>
+    @endif
     </div>
 
   </section>

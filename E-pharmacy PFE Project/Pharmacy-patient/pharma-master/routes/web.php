@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DocteurController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\shopController;
 use Illuminate\Support\Facades\Route;
@@ -50,12 +51,17 @@ Route::get('/', [IndexController::class, 'popularProducts']);
 
 /*-------------------------------------Shop------------------------------------*/
 
-Route::get('/shop', [shopController::class, 'showMagasin']);
+Route::get('/shop/produits', [shopController::class, 'showMagasinProduits']);
+
+Route::get('/shop/packs', [shopController::class, 'showMagasinPacks']);
 
 Route::get('/products', [shopController::class, 'filterProducts']);
 
+Route::get('/packs', [shopController::class, 'filterPacks']);
+
 Route::get('/product-details/{id}', [shopController::class, 'showDetails']);
 
+Route::get('/pack-details/{id}', [shopController::class, 'showPackDetails']);
 
 
 /*--------------------------------------Categories-----------------------------------------*/
@@ -65,12 +71,15 @@ Route::get('/categorie/{id}', [CategorieController::class, 'showProducts'])->nam
 Route::get('/categorieFiltered/{id}', [CategorieController::class, 'filterProducts'])->name('categorie.filter');
 
 
+/*--------------------------------------Contact & About-----------------------------------------*/
 
 Route::get('/about', [IndexController::class, 'aboutPage']);
 
 Route::get('/contact', [IndexController::class, 'contactPage']);
 
-
-/*--------------------------------------Categories-----------------------------------------*/
-
 Route::post('/addMessage', [ContactController::class, 'addMessage']);
+
+
+/*-----------------------Docteurs------------------------------*/
+
+Route::get('/docteurs', [DocteurController::class, 'showMedsList']);

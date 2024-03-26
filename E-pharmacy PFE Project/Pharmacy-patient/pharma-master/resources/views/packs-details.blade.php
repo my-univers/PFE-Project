@@ -89,8 +89,8 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 mb-0"><a href="/">Accueil</a> <span class="mx-2 mb-0">/</span> <a
-                            href="/shop/produits">Magasin</a> <span class="mx-2 mb-0">/</span> <strong
-                            class="text-black">{{ $product->nom }}</strong></div>
+                            href="/shop/packs">Magasin</a> <span class="mx-2 mb-0">/</span> <strong
+                            class="text-black">{{ $pack->nom }}</strong></div>
                 </div>
             </div>
         </div>
@@ -100,15 +100,15 @@
                 <div class="row">
                     <div class="col-md-5 mr-auto">
                         <div class="border text-center">
-                            <img src="../{{ $product->image_path }}" alt="Image" class="img-fluid p-5">
+                            <img src="../{{ $pack->image_path }}" alt="Image" class="img-fluid p-5">
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h2 class="text-black">{{ $product->nom }}</h2>
+                        <h2 class="text-black">{{ $pack->nom }}</h2>
                         <p>
-                            {{ $product->descr }}
+                            {{ $pack->descr }}
                         </p>
-                        <p class="text-black">{{ $product->prix }}DH</p>
+                        <p class="text-black">{{ $pack->prix }}DH</p>
 
                         <div class="mb-5">
                             <div class="input-group mb-3" style="max-width: 220px;">
@@ -123,55 +123,11 @@
                             </div>
                         </div>
 
-                        @if ($product->ordonnance)
-                        <p>
-                            <input type="file" id="image" name="image" style="display: none"
-                                onchange="displayImageName()" onload="displayImageName()">
-                            <a style="color: black" onclick="document.getElementById('image').click()"
-                                class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Télécharger
-                                Ordonnance</a>
-                                <style>
-                                    .buy-now:hover {
-                                        background-color: white;
-                                        color: #51EAEA !important;
-                                        transition: all 350ms ease-in-out !important;
-                                    }
-                                </style>
-                            <div id="image-preview" style="margin-top: 10px;">
-                                <img id="preview" src="" alt="Aperçu de l'image"
-                                    style="max-width: 100px; max-height: 100px; display: none;">
-                                <span id="image-name"></span>
-                            </div>
-                            <script>
-                                function displayImageName() {
-                                    var input = document.getElementById('image');
-                                    var fileName = input.files[0].name;
-                                    var preview = document.getElementById('preview');
-                                    var imageName = document.getElementById('image-name');
-                                    preview.src = URL.createObjectURL(input.files[0]);
-                                    preview.style.display = "block";
-                                    imageName.innerText = fileName;
-
-                                    // il uploada l'ordonnance, afficher l bouton "Ajouter au Panier"
-                                    var addToCartBtn = document.getElementById('addToCartBtn');
-                                    if (fileName !== "") {
-                                        addToCartBtn.style.display = "block";
-                                    } else {
-                                        addToCartBtn.style.display = "none";
-                                    }
-                                }
-                            </script>
-
-                            <p id="addToCartBtn" style="display: none; ">
-                                <br>
-                                <a href="/cart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
-                                style="width: 247.438px">Ajouter au Panier</a>
-                            </p>
+                        <p id="addToCartBtn" style="display: none; ">
+                            <br>
+                            <a href="/cart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
+                            style="width: 247.438px">Ajouter au Panier</a>
                         </p>
-                        @else
-                            <p><a href="/cart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Ajouter
-                                    au Panier</a></p>
-                        @endif
 
                         <div class="mt-5">
                             <ul class="nav nav-pills mb-3 custom-pill" id="pills-tab" role="tablist">
@@ -192,21 +148,18 @@
                                     aria-labelledby="pills-home-tab">
                                     <table class="table custom-table">
                                         <thead>
-                                            <th>Catégorie</th>
                                             <th>Description</th>
-                                            <th>Ordonnance</th>
+                                            <th>Produits Inclus</th>
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <th scope="row">{{ $product->categorie->nom }}</th>
-                                                <td>{{ $product->descr }}</td>
-                                                @if ($product->ordonnance)
-                                                    <td>Oui</td>
-                                                @else
-                                                    <td>Non</td>
-                                                @endif
+                                                <td>{{ $pack->description }}</td>
+                                                <td>
+                                                    @foreach ($pack->produits as $p)
+                                                    <p>- <a href="/product-details/{{ $p->id }}">{{ $p->nom }}</a></p>
+                                                    @endforeach
+                                                </td>
                                             </tr>
-
                                         </tbody>
                                     </table>
                                 </div>

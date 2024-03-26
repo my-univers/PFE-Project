@@ -196,7 +196,7 @@ Route::get('/packs_produits/delete/{id}', [PackProduitController::class, 'delete
 
 Route::get('/packs_produits/details/{id}', [PackProduitController::class, 'showDetails']);
 
-Route::get('/packs_produits/addToPack/{produit_id}/{pack_id}', [PackProduitController::class, 'addToPack']);
+Route::post('/packs_produits/addToPack/{produit_id}/{pack_id}', [PackProduitController::class, 'addToPack']);
 
 Route::get('/packs_produits/removeProduct/{pack_id}/{produit_id}', [PackProduitController::class, 'removeProduct'])->name('packs_produits.removeFromPack');
 

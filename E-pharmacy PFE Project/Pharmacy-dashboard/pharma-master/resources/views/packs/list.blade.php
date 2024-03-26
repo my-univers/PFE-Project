@@ -324,82 +324,88 @@
         </form>
       </header>
       <div class="card-content">
-        <table>
-            <thead>
-                <tr>
+        @if ($list->count() > 0)
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col" style="width: 350px">Description</th>
+                    <th scope="col">Nombre de Produits</th>
+                    <th scope="col">Quantité en stock</th>
                     <th></th>
-                  <th scope="col">#</th>
-                  <th scope="col">Nom</th>
-                  <th scope="col" style="width: 350px">Description</th>
-                  <th scope="col">Nombre de Produits</th>
-                  <th scope="col">Quantité en stock</th>
-                  <th></th>
-                </tr>
-              </thead>
+                    </tr>
+                </thead>
 
-              <tbody>
-                @foreach($list as $pack)
-                <tr>
-                    <td></td>
-                    <td scope="row">{{ $pack->id }}</td>
-                    <td>{{ $pack->nom }}</td>
-                    <td>{{ $pack->description }}</td>
-                    <td>{{ $pack->produits->count() }}</td>
-                    <td @if($pack->qte_en_stock <= 1) style="color: red"  @endif>{{ $pack->qte_en_stock }}</td>
-                    <td class="actions-cell">
-                      <div class="buttons right nowrap">
-                          <a class="button small green --jb-modal" href="/packs/updateForm/{{$pack->id}}">
-                          <span class="icon"><i class="mdi mdi-pencil"></i></span>
-                          </a>
-                          <button class="button small red --jb-modal" data-target="sample-modal-{{$pack->id}}" type="button">
-                          <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                          </button>
-                      </div>
-                      </td>
-                </tr>
+                <tbody>
+                    @foreach($list as $pack)
+                    <tr>
+                        <td></td>
+                        <td scope="row">{{ $pack->id }}</td>
+                        <td>{{ $pack->nom }}</td>
+                        <td>{{ $pack->description }}</td>
+                        <td>{{ $pack->produits->count() }}</td>
+                        <td @if($pack->qte_en_stock <= 1) style="color: red"  @endif>{{ $pack->qte_en_stock }}</td>
+                        <td class="actions-cell">
+                        <div class="buttons right nowrap">
+                            <a class="button small green --jb-modal" href="/packs/updateForm/{{$pack->id}}">
+                            <span class="icon"><i class="mdi mdi-pencil"></i></span>
+                            </a>
+                            <button class="button small red --jb-modal" data-target="sample-modal-{{$pack->id}}" type="button">
+                            <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                            </button>
+                        </div>
+                        </td>
+                    </tr>
 
-                <div id="sample-modal-{{$pack->id}}" class="modal">
-                    <div class="modal-background --jb-modal-close"></div>
-                    <div class="modal-card">
-                      <header class="modal-card-head">
-                        <p class="modal-card-title">Confirmer la Suppression</p>
-                      </header>
-                      <section class="modal-card-body">
-                        <p>Êtes-vous sûr de vouloir annuler ce pack ?</p>
-                        <p>Cette action est irréversible.</p>
-                      </section>
-                      <footer class="modal-card-foot">
-                        <button class="button --jb-modal-close">Annuler</button>
-                        <a class="button red --jb-modal-close" href="/packs/delete/{{$pack->id}}">Confirmer</a>
-                      </footer>
+                    <div id="sample-modal-{{$pack->id}}" class="modal">
+                        <div class="modal-background --jb-modal-close"></div>
+                        <div class="modal-card">
+                        <header class="modal-card-head">
+                            <p class="modal-card-title">Confirmer la Suppression</p>
+                        </header>
+                        <section class="modal-card-body">
+                            <p>Êtes-vous sûr de vouloir annuler ce pack ?</p>
+                            <p>Cette action est irréversible.</p>
+                        </section>
+                        <footer class="modal-card-foot">
+                            <button class="button --jb-modal-close">Annuler</button>
+                            <a class="button red --jb-modal-close" href="/packs/delete/{{$pack->id}}">Confirmer</a>
+                        </footer>
+                        </div>
+                    </div>
+                    @endforeach
+            </table>
+            </tbody>
+            </table>
+
+            <div class="table-pagination">
+                <div class="flex items-center justify-between">
+                    <div class="buttons">
+                        @if ($list->onFirstPage())
+                            <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
+                        @else
+                            <a href="{{ $list->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
+                        @endif
+
+                        @for ($i = 1; $i <= $list->lastPage(); $i++)
+                            <button type="button" class="button @if ($list->currentPage() == $i) active @endif">{{ $i }}</button>
+                        @endfor
+
+                        @if ($list->hasMorePages())
+                            <a href="{{ $list->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                        @else
+                            <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                        @endif
                     </div>
                 </div>
-                @endforeach
-          </table>
-          </tbody>
-        </table>
-
-        <div class="table-pagination">
-            <div class="flex items-center justify-between">
-                <div class="buttons">
-                    @if ($list->onFirstPage())
-                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
-                    @else
-                        <a href="{{ $list->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
-                    @endif
-
-                    @for ($i = 1; $i <= $list->lastPage(); $i++)
-                        <button type="button" class="button @if ($list->currentPage() == $i) active @endif">{{ $i }}</button>
-                    @endfor
-
-                    @if ($list->hasMorePages())
-                        <a href="{{ $list->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
-                    @else
-                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
-                    @endif
-                </div>
             </div>
-        </div>
+        @else
+            <table>
+                <tr><td></td><td>Aucun pack disponible pour le moment.</td></tr>
+            </table>
+        @endif
       </div>
     </div>
   </section>

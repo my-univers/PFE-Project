@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('packs_produits', function (Blueprint $table) {
             $table->id();
             $table->foreignId('pack_id')->constrained('packs')->onDelete('cascade');
-            $table->foreignId('produits_id')->constrained('produits')->onDelete('cascade');
+            $table->foreignId('produit_id')->constrained('produits')->onDelete('cascade');
+            $table->integer('qte_produit')->nullable(false);
             $table->timestamps();
         });
     }

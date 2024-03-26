@@ -7,18 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
+    <link rel="stylesheet" href="../fonts/icomoon/style.css">
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-    <link rel="stylesheet" href="css/jquery-ui.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/magnific-popup.css">
+    <link rel="stylesheet" href="../css/jquery-ui.css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/owl.theme.default.min.css">
 
 
-    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="../css/aos.css">
 
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 
 </head>
 
@@ -49,7 +49,16 @@
                         <nav class="site-navigation text-right text-md-center" role="navigation">
                             <ul class="site-menu js-clone-nav d-none d-lg-block">
                                 <li><a href="/">Accueil</a></li>
-                                <li class="active"><a href="/shop">Magasin</a></li>
+                                {{-- <li class="active"><a href="/shop">Magasin</a></li> --}}
+                                <li class="has-children">
+                                    <a href="#">Magasin</a>
+                                    <ul class="dropdown">
+                                        <li>
+                                            <a href="/shop/produits">Produits</a>
+                                            <a href="/shop/packs">Packs de Produits</a>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li class="has-children">
                                     <a href="#">Catégories</a>
                                     <ul class="dropdown">
@@ -69,7 +78,7 @@
                     <div class="icons">
                         <a href="#" class="icons-btn d-inline-block js-search-open"><span
                                 class="icon-search"></span></a>
-                        <a href="/cart" class="icons-btn d-inline-block bag">
+                        <a href="{{ route('cart') }}" class="icons-btn d-inline-block bag">
                             <span class="icon-shopping-bag"></span>
                             <span class="number">2</span>
                         </a>
@@ -87,6 +96,8 @@
                     <div class="col-md-12 mb-0">
                         <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span>
                         <strong class="text-black">Magasin</strong>
+                        <span class="mx-2 mb-0">/</span>
+                        <strong class="text-black">Packs</strong>
                     </div>
                 </div>
             </div>
@@ -102,30 +113,29 @@
                         <button type="button" class="btn btn-secondary btn-md dropdown-toggle px-4"
                             id="dropdownMenuReference" data-toggle="dropdown">Référence</button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                            <a class="dropdown-item" href="/products?sort=relevance">Pertinence</a>
-                            <a class="dropdown-item" href="/products?sort=name_asc">Nom, A à Z</a>
-                            <a class="dropdown-item" href="/products?sort=name_desc">Nom, Z à A</a>
+                            <a class="dropdown-item" href="/packs?sort=relevance">Pertinence</a>
+                            <a class="dropdown-item" href="/packs?sort=name_asc">Nom, A à Z</a>
+                            <a class="dropdown-item" href="/packs?sort=name_desc">Nom, Z à A</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/products?sort=price_asc">Prix, croissant</a>
-                            <a class="dropdown-item" href="/products?sort=price_desc">Prix, décroissant</a>
+                            <a class="dropdown-item" href="/packs?sort=price_asc">Prix, croissant</a>
+                            <a class="dropdown-item" href="/packs?sort=price_desc">Prix, décroissant</a>
                         </div>
                     </div>
                 </div>
 
                 <!--new code -->
                 <div class="row mt-5">
-                    @foreach ($products as $product)
-                    
+                    @foreach ($packs as $pack)
                         <div class="col-sm-6 col-lg-4 text-center item mb-4">
-                            <a href="/product-details/{{$product->id}}"> <img class="product-image"
-                                    src="{{ asset($product->image_path) }}" alt="Image"></a>
+                            <a href="/pack-details/{{$pack->id}}"> <img class="pack-image"
+                                    src="{{ asset($pack->image_path) }}" alt="Image"></a>
                             <br><br>
                             <h3 class="text-dark"><a
-                                    href="/product-details/{{$product->id}}">{{ $product->nom }}</a></h3>
-                            <p class="price">{{ $product->prix }} DH</p>
+                                    href="/pack-details/{{$pack->id}}">{{ $pack->nom }}</a></h3>
+                            <p class="price">{{ $pack->prix }} DH</p>
                         </div>
                         <style>
-                            .product-image {
+                            .pack-image {
                                 height: 200px;
                                 width: calc(100 / 3);
                             }
@@ -138,25 +148,25 @@
                     <div class="col-md-12 text-center">
                         <div class="site-block-27">
                             <ul>
-                                <!-- Boutton précédent -->
-                                @if ($products->onFirstPage())
+                                <!-- Bouton précédent -->
+                                @if ($packs->onFirstPage())
                                     <li class="disabled"><span>&lt;</span></li>
                                 @else
-                                    <li><a href="{{ $products->previousPageUrl() }}">&lt;</a></li>
+                                    <li><a href="{{ $packs->previousPageUrl() }}">&lt;</a></li>
                                 @endif
 
                                 <!-- Affichage des pages -->
-                                @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
-                                    @if ($products->currentPage() === $page)
+                                @foreach ($packs->getUrlRange(1, $packs->lastPage()) as $page => $url)
+                                    @if ($packs->currentPage() === $page)
                                         <li class="active"><span>{{ $page }}</span></li>
                                     @else
                                         <li><a href="{{ $url }}">{{ $page }}</a></li>
                                     @endif
                                 @endforeach
 
-                                <!-- Boutton suivant -->
-                                @if ($products->hasMorePages())
-                                    <li><a href="{{ $products->nextPageUrl() }}">&gt;</a></li>
+                                <!-- Bouton suivant -->
+                                @if ($packs->hasMorePages())
+                                    <li><a href="{{ $packs->nextPageUrl() }}">&gt;</a></li>
                                 @else
                                     <li class="disabled"><span>&gt;</span></li>
                                 @endif
@@ -173,7 +183,7 @@
                 <div class="row align-items-stretch">
                     <div class="col-lg-6 mb-5 mb-lg-0">
                         <a href="#" class="banner-1 h-100 d-flex"
-                            style="background-image: url('images/bg_1.jpg');">
+                            style="background-image: url('../images/bg_1.jpg');">
                             <div class="banner-1-inner align-self-center">
                                 <h2>Service Clientele exceptionnel</h2>
                                 <p>Notre équipe est disponible 24h/7j pour répondre à toutes vos questions et
@@ -184,7 +194,7 @@
                     </div>
                     <div class="col-lg-6 mb-5 mb-lg-0">
                         <a href="#" class="banner-1 h-100 d-flex"
-                            style="background-image: url('images/bg_2.jpg');">
+                            style="background-image: url('../images/bg_2.jpg');">
                             <div class="banner-1-inner ml-auto  align-self-center">
                                 <h2>Commandez rapidement</h2>
                                 <p>En cas d'urgence médicale, vous pouvez appeler directement un docteur et passer votre
@@ -255,15 +265,15 @@
         <!--****** END FOOTER *******-->
     </div>
 
-    <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-ui.js') }}"></script>
-    <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('js/aos.js') }}"></script>
+    <script src="{{ asset('../js/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('../js/jquery-ui.js') }}"></script>
+    <script src="{{ asset('../js/popper.min.js') }}"></script>
+    <script src="{{ asset('../js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('../js/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('../js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('../js/aos.js') }}"></script>
 
-    <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('../js/main.js') }}"></script>
 
 </body>
 
