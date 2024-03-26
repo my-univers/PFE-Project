@@ -247,6 +247,12 @@
           <span class="menu-item-label">Packs Produits</span>
         </a>
       </li>
+      <li>
+        <a href="/messages">
+          <span class="icon"><i class="mdi mdi-message"></i></span>
+          <span class="menu-item-label">Messages</span>
+        </a>
+      </li>
     </ul>
     <p class="menu-label">A Propos</p>
     <ul class="menu-list">
@@ -276,9 +282,9 @@
     <h1 class="title">
         Modifier Médecin
     </h1>
-    <a class="button blue" href='/medecins/list'>
+    {{-- <a class="button blue" href='/medecins/list'>
         Retour
-    </a>
+    </a> --}}
   </div>
 </section>
 
@@ -420,9 +426,14 @@
               </button>
             </div>
             <div class="control">
-              <button type="button" class="button red">
+              <button type="reset" class="button red" onclick="annuler()">
                 Annuler
               </button>
+              <script>
+                function annuler() {
+                      window.location.href = '/medecins/list';
+                };
+                </script>
             </div>
           </div>
         </form>
