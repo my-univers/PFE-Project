@@ -111,7 +111,8 @@
           </div>
           <div class="col-md-12">
 
-            <form action="#" method="post">
+            <form action="/addMessage" method="post">
+              @csrf
 
               <div class="p-3 p-lg-5 border">
                 <div class="form-group row">
@@ -127,16 +128,10 @@
                 <div class="form-group row">
                   <div class="col-md-12">
                     <label for="c_email" class="text-black">Email <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" name="email" placeholder="">
+                    <input type="email" class="form-control" name="email" placeholder="example@gmail.com">
                   </div>
                 </div>
-                <div class="form-group row">
-                  <div class="col-md-12">
-                    <label for="c_subject" class="text-black">Sujet </label>
-                    <input type="text" class="form-control" id="c_subject" name="c_subject">
-                  </div>
-                </div>
-
+            
                 <div class="form-group row">
                   <div class="col-md-12">
                     <label for="c_message" class="text-black">Message </label>
@@ -145,8 +140,13 @@
                 </div>
                 <div class="form-group row">
                   <div class="col-lg-12">
-                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Envoyer Message">
+                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Envoyer Message" onclick="returnToHome()">
                   </div>
+                  <script>
+                    function returnToHome(){
+                      window.locatoin.href='/';
+                    }
+                  </script>
                 </div>
               </div>
             </form>

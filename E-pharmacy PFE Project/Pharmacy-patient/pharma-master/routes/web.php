@@ -4,6 +4,7 @@ use App\Http\Controllers\CategorieController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DocteurController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\shopController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -71,15 +72,18 @@ Route::get('/categorie/{id}', [CategorieController::class, 'showProducts'])->nam
 Route::get('/categorieFiltered/{id}', [CategorieController::class, 'filterProducts'])->name('categorie.filter');
 
 
-/*--------------------------------------Contact & About-----------------------------------------*/
+/*--------------------------------------About-----------------------------------------*/
 
 Route::get('/about', [IndexController::class, 'aboutPage']);
 
 Route::get('/contact', [IndexController::class, 'contactPage']);
 
-Route::post('/addMessage', [ContactController::class, 'addMessage']);
-
 
 /*-----------------------Docteurs------------------------------*/
 
 Route::get('/docteurs', [DocteurController::class, 'showMedsList']);
+
+
+/*-----------------------Contact------------------------------*/
+
+Route::post('/addMessage', [MessageController::class, 'addMessage']);
