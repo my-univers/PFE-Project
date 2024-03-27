@@ -111,42 +111,48 @@
           </div>
           <div class="col-md-12">
 
-            <form action="/addMessage" method="post">
+            <form id="messageForm" action="/addMessage" method="post">
               @csrf
-
-              <div class="p-3 p-lg-5 border">
-                <div class="form-group row">
+              <div class="form-group row">
                   <div class="col-md-6">
-                    <label for="c_fname" class="text-black">Nom <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="nom">
+                      <label for="c_fname" class="text-black">Nom <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" name="nom" required>
                   </div>
                   <div class="col-md-6">
-                    <label for="c_lname" class="text-black">Prénom <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="prenom">
+                      <label for="c_lname" class="text-black">Prénom <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" name="prenom" required>
                   </div>
-                </div>
-                <div class="form-group row">
+              </div>
+              <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_email" class="text-black">Email <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" name="email" placeholder="example@gmail.com">
+                      <label for="c_email" class="text-black">Email <span class="text-danger">*</span></label>
+                      <input type="email" class="form-control" name="email" placeholder="example@gmail.com" required>
                   </div>
-                </div>
-            
-                <div class="form-group row">
+              </div>
+              
+              <div class="form-group row">
                   <div class="col-md-12">
-                    <label for="c_message" class="text-black">Message </label>
-                    <textarea name="message" cols="30" rows="7" class="form-control"></textarea>
+                      <label for="c_message" class="text-black">Message </label>
+                      <textarea name="message" cols="30" rows="7" class="form-control" required></textarea>
                   </div>
-                </div>
-                <div class="form-group row">
+              </div>
+              <div class="form-group row">
                   <div class="col-lg-12">
-                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Envoyer Message" onclick="returnToHome()">
-                  </div>
-                  <script>
-                    function returnToHome(){
-                      window.locatoin.href='/';
-                    }
-                  </script>
+                    <button onclick="reload()" class="btn btn-primary btn-lg btn-block" type="submit">Envoyer Message
+                      {{-- <input type="submit" value="Envoyer Message" class="btn btn-primary btn-lg btn-block"> --}}
+                    </button>
+                    </div>
+              </div>
+          </form>
+          
+          <script>
+  
+          
+              function reload() {
+                  window.location.reload();
+              }
+          </script>
+          
                 </div>
               </div>
             </form>
