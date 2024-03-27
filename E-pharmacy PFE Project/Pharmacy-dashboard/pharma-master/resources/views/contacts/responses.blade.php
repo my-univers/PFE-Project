@@ -159,6 +159,9 @@
                         </div>
                 </form>
 
+                <button class="button small red --jb-modal" data-target="sample-modal" type="button">
+                    <span class="icon"><i class="mdi mdi-trash-can"></i></span>
+                    </button>
                 
 
                 <div id="sample-modal" class="modal">
