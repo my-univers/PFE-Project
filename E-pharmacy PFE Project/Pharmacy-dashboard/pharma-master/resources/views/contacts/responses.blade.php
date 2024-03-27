@@ -147,7 +147,7 @@
                                     <div class="field">
                                         <div class="field grouped">
                                             <div class="control">
-                                                <button type="submit" class="button green" onclick="submitForm()" data-target="successModal">
+                                                <button type="submit" class="button green" onclick="submitForm()" data-target="sample-modal">
                                                     Envoyer
                                                 </button>
                                             </div>
@@ -159,7 +159,9 @@
                         </div>
                 </form>
 
-                <div id="successModal" class="modal">
+                
+
+                <div id="sample-modal" class="modal">
                     <div class="modal-background"></div>
                     <div class="modal-card">
                         <header class="modal-card-head">
@@ -182,10 +184,7 @@
                           alert('Veuillez saisir un message')
                         }
                     }
-                </script>
-
-
-                <script>
+          
                     function closeSuccessModal() {
                         document.getElementById('successModal').classList.remove('is-active');
                     }
@@ -195,22 +194,7 @@
                     });
                 </script>
 
-                {{-- <div id="sample-modal-{{$c->id}}" class="modal">
-          <div class="modal-background --jb-modal-close"></div>
-          <div class="modal-card">
-              <header class="modal-card-head">
-              <p class="modal-card-title">Confirmer la Suppression</p>
-              </header>
-              <section class="modal-card-body">
-              <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
-              <p>Cette action est irréversible.</p>
-              </section>
-              <footer class="modal-card-foot">
-              <button class="button --jb-modal-close">Annuler</button>
-              <a class="button red --jb-modal-close" href="/clients/delete/{{$c->id}}">Confirmer</a>
-              </footer>
-          </div>
-          </div> --}}
+               
             </div>
         </div>
     </section>
