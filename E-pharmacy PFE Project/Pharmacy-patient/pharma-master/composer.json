@@ -12,7 +12,8 @@
         "laravel/tinker": "^2.7",
         "realrashid/sweet-alert": "^7.1",
         "smalot/pdfparser": "^2.9",
-        "spatie/pdf-to-text": "^1.52"
+        "spatie/pdf-to-text": "^1.52",
+        "thiagoalessio/tesseract_ocr": "^2.13"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

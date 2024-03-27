@@ -7,9 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 // use Illuminate\Support\Str;
 use Smalot\PdfParser\Parser;
+use thiagoalessio\TesseractOCR\TesseractOCR;
 
 class ProduitController extends Controller
 {
+
     public function uploadOrder(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -20,22 +22,22 @@ class ProduitController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // Obtenez le nom du produit sélectionné
+        // Obtention du nom du produit sélectionné
         $product = Produit::find($request->product_id);
         $selectedProductName = $product->nom;
 
-        // Lecture du fichier PDF
-        $pdfParser = new Parser();
-        $pdf = $pdfParser->parseFile($request->file('image')->path());
-
-        // Récupération du texte ligne par ligne
-        $text = '';
-        foreach ($pdf->getPages() as $page) {
-            $text .= $page->getText();
+        // Vérification si le fichier est un PDF ou une image
+        $fileExtension = $request->file('image')->extension();
+        if ($fileExtension == 'pdf') {
+            // Lecture du texte du PDF
+            $pdfText = (new Parser())->parseFile($request->file('image')->path())->getText();
+        } else {
+            // Utilisation de l'OCR pour extraire le texte de l'image
+            $pdfText = (new TesseractOCR($request->file('image')->path()))->run();
         }
 
         // Recherche du nom du produit dans le texte du PDF
-        if (strpos($text, $selectedProductName) !== false) {
+        if (strpos($pdfText, $selectedProductName) !== false) {
             // Le nom du produit correspond, continuer avec le traitement de l'ordonnance
             session()->flash('order_validated', true);
             return redirect()->back()->with('success', 'Votre ordonnance a été téléchargée et validée.');
