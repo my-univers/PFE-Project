@@ -143,11 +143,11 @@
 
                                     <hr>
 
-                                    
+
                                     <div class="field">
                                         <div class="field grouped">
                                             <div class="control">
-                                                <button type="submit" class="button green" onclick="submitForm()" data-target="sample-modal">
+                                                <button type="submit" class="button green" onclick="submitForm()" data-target="sample-modal-{{ $message->id }}">
                                                     Envoyer
                                                 </button>
                                             </div>
@@ -164,7 +164,7 @@
                     </button>
                 
 
-                <div id="sample-modal" class="modal">
+                <div id="sample-modal-{{ $message->id }}" class="modal">
                     <div class="modal-background"></div>
                     <div class="modal-card">
                         <header class="modal-card-head">
@@ -187,7 +187,7 @@
                           alert('Veuillez saisir un message')
                         }
                     }
-          
+
                     function closeSuccessModal() {
                         document.getElementById('successModal').classList.remove('is-active');
                     }
@@ -197,7 +197,7 @@
                     });
                 </script>
 
-               
+
             </div>
         </div>
     </section>

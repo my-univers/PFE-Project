@@ -97,8 +97,9 @@ class shopController extends Controller
     public function showDetails($id){
         $categories = Categorie::all();
         $products = Produit::find($id);
+        $orderValidated = session()->get('order_validated', false);
 
-        return view('product-details', ['product' => $products, 'categories' => $categories]);
+        return view('product-details', ['product' => $products, 'categories' => $categories, 'orderValidated' => $orderValidated]);
     }
 
     public function showPackDetails($id) {

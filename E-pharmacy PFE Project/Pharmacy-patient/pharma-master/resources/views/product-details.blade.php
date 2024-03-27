@@ -115,7 +115,7 @@
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
                                 </div>
-                                <input type="text" class="form-control text-center" value="1" placeholder=""
+                                <input type="text" class="form-control text-center" name="quantite" value="1" placeholder=""
                                     aria-label="Example text with button addon" aria-describedby="button-addon1">
                                 <div class="input-group-append">
                                     <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
@@ -124,12 +124,18 @@
                         </div>
 
                         @if ($product->ordonnance)
-                        <p>
-                            <input type="file" id="image" name="image" style="display: none"
-                                onchange="displayImageName()" onload="displayImageName()">
-                            <a style="color: black" onclick="document.getElementById('image').click()"
-                                class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Télécharger
-                                Ordonnance</a>
+                            <p>
+                            <form method="POST" action="{{ route('upload.order') }}" enctype="multipart/form-data"
+                                id="orderForm">
+                                @csrf
+                                <input type="hidden" name="product_id"
+                                    value="{{ $product->id }}">
+                                <input type="file"
+                                    id="image" name="image" style="display: none"
+                                    onchange="submitOrderForm()">
+                                <a style="color: black" onclick="document.getElementById('image').click()"
+                                    class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Télécharger
+                                    Ordonnance</a>
                                 <style>
                                     .buy-now:hover {
                                         background-color: white;
@@ -137,11 +143,12 @@
                                         transition: all 350ms ease-in-out !important;
                                     }
                                 </style>
-                            <div id="image-preview" style="margin-top: 10px;">
-                                <img id="preview" src="" alt="Aperçu de l'image"
-                                    style="max-width: 100px; max-height: 100px; display: none;">
-                                <span id="image-name"></span>
-                            </div>
+                                <div id="image-preview" style="margin-top: 10px;">
+                                    <img id="preview" src="" alt="Aperçu de l'image"
+                                        style="max-width: 100px; max-height: 100px; display: none;">
+                                    <span id="image-name"></span>
+                                </div>
+                            </form>
                             <script>
                                 function displayImageName() {
                                     var input = document.getElementById('image');
@@ -152,22 +159,42 @@
                                     preview.style.display = "block";
                                     imageName.innerText = fileName;
 
-                                    // il uploada l'ordonnance, afficher l bouton "Ajouter au Panier"
-                                    var addToCartBtn = document.getElementById('addToCartBtn');
-                                    if (fileName !== "") {
-                                        addToCartBtn.style.display = "block";
-                                    } else {
-                                        addToCartBtn.style.display = "none";
-                                    }
+                                    // // il uploada l'ordonnance, afficher l bouton "Ajouter au Panier"
+                                    // var addToCartBtn = document.getElementById('addToCartBtn');
+                                    // if (fileName !== "") {
+                                    //     addToCartBtn.style.display = "block";
+                                    // } else {
+                                    //     addToCartBtn.style.display = "none";
+                                    // }
+                                }
+
+                                // la methode qui soumet le fichier telecharé pour le valider
+                                function submitOrderForm() {
+                                    document.getElementById('orderForm').submit();
                                 }
                             </script>
 
-                            <p id="addToCartBtn" style="display: none; ">
-                                <br>
-                                <a href="/cart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
-                                style="width: 247.438px">Ajouter au Panier</a>
+                            @if ($orderValidated)
+                                <p id="addToCartBtn"> {{-- style="display: none;" --}}
+                                    <br>
+                                    <a href="/cart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
+                                        style="width: 247.438px">Ajouter au Panier</a>
+                                </p>
+                            @endif
+
+                            <!-- messages -->
+                            @if (session()->has('success'))
+                                <div class="alert alert-success">
+                                    {{ session()->get('success') }}
+                                </div>
+                            @endif
+
+                            @if (session()->has('error'))
+                                <div class="alert alert-danger">
+                                    {{ session()->get('error') }}
+                                </div>
+                            @endif
                             </p>
-                        </p>
                         @else
                             <p><a href="/cart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Ajouter
                                     au Panier</a></p>

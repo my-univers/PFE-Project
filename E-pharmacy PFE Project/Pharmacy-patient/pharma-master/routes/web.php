@@ -5,6 +5,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DocteurController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\shopController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -87,3 +88,8 @@ Route::get('/docteurs', [DocteurController::class, 'showMedsList']);
 /*-----------------------Contact------------------------------*/
 
 Route::post('/addMessage', [MessageController::class, 'addMessage']);
+
+
+/*------------------------Produit--------------------------*/
+
+Route::post('/upload-order', [ProduitController::class, 'uploadOrder'])->name('upload.order');
