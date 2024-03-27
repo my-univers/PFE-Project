@@ -5,9 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
+// use Illuminate\Support\Str;
 use Smalot\PdfParser\Parser;
-use Spatie\PdfToText\Pdf;
 
 class ProduitController extends Controller
 {
