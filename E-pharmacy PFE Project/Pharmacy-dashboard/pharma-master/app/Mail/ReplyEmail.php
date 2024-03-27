@@ -21,7 +21,7 @@ class ReplyEmail extends Mailable
 
     public function build()
 {
-    return $this->from('flaarif141@gmail.com')
+    return $this->from('pharma1one1@gmail.com')
                 ->subject('Pharma One')
                 ->view('contacts.mail', ['data' => $this->data]);
 }
