@@ -9,18 +9,19 @@ class MessageController extends Controller
 {
     public function addMessage(Request $request)
     {
+
         $request->validate([
             'nom' => 'required',
             'prenom' => 'required',
             'email' => 'required|email',
-            'message' => 'nullable'
+            'message' => 'nullable',
         ]);
     
         Contact::create([
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'email' => $request->email,
-            'message' => $request->message
+            'message' => $request->message,
         ]);
     
         return redirect('/contact');
