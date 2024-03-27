@@ -124,9 +124,6 @@
                             </div>
                         </div>
                     </span>
-
-
-
                 </form>
 
                 <script>
@@ -134,9 +131,6 @@
                         document.getElementById("filterForm").submit();
                     }
                 </script>
-
-
-
             </header>
             <div class="card-content">
                 @if ($messages->count() > 0)
@@ -192,35 +186,42 @@
                                     </div>
                                 </div>
                             @endforeach
-                    </table>
-                    </tbody>
+                        </tbody>
                     </table>
                     <div class="table-pagination">
-        <div class="flex items-center justify-between">
-            <div class="buttons">
-                @if ($messages->onFirstPage())
-                    <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
-                @else
-                    <a href="{{ $messages->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
-                @endif
+                        <div class="flex items-center justify-between">
+                            <div class="buttons">
+                                @if ($messages->onFirstPage())
+                                    <button type="button" class="button disabled"><span
+                                            class="mdi mdi-chevron-left"></span></button>
+                                @else
+                                    <a href="{{ $messages->previousPageUrl() }}" class="button"><span
+                                            class="mdi mdi-chevron-left"></span></a>
+                                @endif
 
-                @for ($i = 1; $i <= $messages->lastPage(); $i++)
-                    <button type="button" class="button @if ($messages->currentPage() == $i) active @endif">{{ $i }}</button>
-                @endfor
+                                @for ($i = 1; $i <= $messages->lastPage(); $i++)
+                                    <button type="button"
+                                        class="button @if ($messages->currentPage() == $i) active @endif">{{ $i }}</button>
+                                @endfor
 
-                @if ($messages->hasMorePages())
-                    <a href="{{ $messages->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
+                                @if ($messages->hasMorePages())
+                                    <a href="{{ $messages->nextPageUrl() }}" class="button"><span
+                                            class="mdi mdi-chevron-right"></span></a>
+                                @else
+                                    <button type="button" class="button disabled"><span
+                                            class="mdi mdi-chevron-right"></span></button>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                 @else
-                    <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
+                    <table>
+                        <tr>
+                            <td></td>
+                            <td>Aucun message disponible pour le moment.</td>
+                        </tr>
+                    </table>
                 @endif
-            </div>
-        </div>
-        </div>
-      @else
-        <table>
-            <tr><td></td><td>Aucun message disponible pour le moment.</td></tr>
-        </table> -
-        @endif
             </div>
         </div>
     </section>
