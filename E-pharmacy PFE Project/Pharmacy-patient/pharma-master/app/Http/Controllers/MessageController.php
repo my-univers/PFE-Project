@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Contact;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
+use Alert;
 
 class MessageController extends Controller
 {
@@ -24,7 +26,9 @@ class MessageController extends Controller
             'message' => $request->message,
         ]);
     
-        return redirect('/contact');
+    FacadesAlert::success('Message envoyé avec succès');
+
+    return back();
     }
     
 }

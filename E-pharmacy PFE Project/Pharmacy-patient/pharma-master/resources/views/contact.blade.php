@@ -24,7 +24,9 @@
 
 <body>
 
+
   <div class="site-wrap">
+
 
 
     <div class="site-navbar py-2">
@@ -103,6 +105,10 @@
       </div>
     </div>
 
+    
+    @include('sweetalert::alert')
+
+
     <div class="site-section">
       <div class="container">
         <div class="row">
@@ -139,7 +145,6 @@
               <div class="form-group row">
                   <div class="col-lg-12">
                     <button onclick="reload()" class="btn btn-primary btn-lg btn-block" type="submit">Envoyer Message
-                      {{-- <input type="submit" value="Envoyer Message" class="btn btn-primary btn-lg btn-block"> --}}
                     </button>
                     </div>
               </div>
