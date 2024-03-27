@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('prenom', 150);
             $table->string('email', 150);
             $table->text('message');
+            $table->boolean('is_read')->default(0);
             $table->timestamps();
         });
     }

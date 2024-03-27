@@ -5,14 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <title>Contact</title>
 </head>
 
 <body>
-    <p>Bonjour {{$data['prenom']}}, </p>
-    <p>{{ $data['body'] }}</p>
+    <p>Bonjour Cher client(e) <span style="font-weight: bold;">{{$data['prenom']}}, </span></p>
+
+    <p style="margin-bottom: 20px;"> {{ $data['body'] }}</p>
+
+    <p><i>Merci,</i></p>
+    <p style="color: aqua; font-weight: bold;" >Pharma <span> One</span></p>
+
 </body>
 
 </html>

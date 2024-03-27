@@ -18,54 +18,54 @@
             </ul>
             <p class="menu-label">Gestion</p>
             <ul class="menu-list">
-      <li>
-        <a href="/clients/list">
-          <span class="icon"><i class="mdi mdi-account"></i></span>
-          <span class="menu-item-label">Clients</span>
-        </a>
-      </li>
-      <li>
-        <a href="/medecins/list">
-          <span class="icon"><i class="mdi mdi-doctor"></i></span>
-          <span class="menu-item-label">Médecins</span>
-        </a>
-      </li>
-      <li>
-        <a href="/produits/list">
-          <span class="icon"><i class="mdi mdi-pill"></i></span>
-          <span class="menu-item-label">Produits</span>
-        </a>
-      </li>
-        <li>
-            <a href="/categories/list">
-              <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
-              <span class="menu-item-label">Catégories</span>
-            </a>
-          </li>
-      <li>
-        <a href="/commandes">
-          <span class="icon"><i class="mdi mdi-cart"></i></span>
-          <span class="menu-item-label">Commandes</span>
-        </a>
-      </li>
-      <li>
-        <a href="/packs">
-          <span class="icon"><i class="mdi mdi-package-variant"></i></span>
-          <span class="menu-item-label">Packs</span>
-        </a>
-      </li>
-      <li>
-        <a href="/packs_produits">
-          <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
-          <span class="menu-item-label">Packs Produits</span>
-        </a>
-      </li>
-      <li class="active">
-        <a href="/messages">
-          <span class="icon"><i class="mdi mdi-message"></i></span>
-          <span class="menu-item-label">Messages</span>
-        </a>
-      </li>
+                <li>
+                    <a href="/clients/list">
+                        <span class="icon"><i class="mdi mdi-account"></i></span>
+                        <span class="menu-item-label">Clients</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/medecins/list">
+                        <span class="icon"><i class="mdi mdi-doctor"></i></span>
+                        <span class="menu-item-label">Médecins</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/produits/list">
+                        <span class="icon"><i class="mdi mdi-pill"></i></span>
+                        <span class="menu-item-label">Produits</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/categories/list">
+                        <span class="icon"><i class="mdi mdi-format-list-bulleted-type"></i></span>
+                        <span class="menu-item-label">Catégories</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/commandes">
+                        <span class="icon"><i class="mdi mdi-cart"></i></span>
+                        <span class="menu-item-label">Commandes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/packs">
+                        <span class="icon"><i class="mdi mdi-package-variant"></i></span>
+                        <span class="menu-item-label">Packs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/packs_produits">
+                        <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
+                        <span class="menu-item-label">Packs Produits</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="/messages">
+                        <span class="icon"><i class="mdi mdi-message"></i></span>
+                        <span class="menu-item-label">Messages</span>
+                    </a>
+                </li>
             </ul>
             <p class="menu-label">A Propos</p>
             <ul class="menu-list">
@@ -82,86 +82,136 @@
 
 
 @section('content')
+    <section class="is-title-bar">
+        <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+            <ul>
+                <li>Admin</li>
+                <li>Réponses</li>
+            </ul>
+        </div>
+    </section>
 
 
-<section class="is-title-bar">
-    <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-      <ul>
-        <li>Admin</li>
-        <li>Réponses</li>
-      </ul>
-    </div>
-</section>
+    <section class="is-hero-bar">
+        <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+            <h1 class="title">
+                Réponses
+            </h1>
+            <a href="/messages" class="button blue">
+                <span>Retour</span>
+            </a>
+        </div>
+    </section>
 
 
-<section class="is-hero-bar">
-    <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-      <h1 class="title">
-          Réponses
-      </h1>
-      <a href="/messages" class="button blue">
-          <span>Retour</span>
-      </a>
-    </div>
-</section>
+    <section class="section main-section">
+        <div class="card mb-6">
+            <header class="card-header">
+                <p class="card-header-title">
+                    <span class="icon"><i class="mdi mdi-message"></i></span>
+                    Messages
+                </p>
+            </header>
+
+            <div class="card-content">
+                <form method="post" action="/messages/reply">
+                    @csrf
+
+                    <input type="hidden" name="message_id" value="{{ $message->id }}">
 
 
-<section class="section main-section">
-    <div class="card mb-6">
-      <header class="card-header">
-        <p class="card-header-title">
-          <span class="icon"><i class="mdi mdi-message"></i></span>
-          Messages
-        </p>
-      </header>
+                    <div class="field">
+                        <div class="field-body">
 
-      <div class="card-content">
-        <form method="post" action="/messages/reply">
-            @csrf
+                            <div class="field">
+                                <div class="field-body">
 
-          <div class="field">
-            <div class="field-body">
+                                    <div class="field">
+                                        <div class="control icons-left">
+                                            <input class="input" type="email" name="email"
+                                                value="{{ $message->email }}">
+                                            <span class="icon left"><i class="mdi mdi-mail"></i></span>
+                                        </div>
+                                    </div>
 
-              <div class="field">
-                <div class="field-body">
+                                    <br>
+                                    <div class="field">
+                                        <div class="control">
+                                            <textarea class="textarea" name="body" placeholder="Message" id="message"></textarea>
+                                        </div>
+                                    </div>
 
-                  <div class="field">
-                    <div class="control icons-left">
-                      <input class="input" type="email" name="email" value="{{$message->email}}">
-                      <span class="icon left"><i class="mdi mdi-mail"></i></span>
-                    </div>
-                  </div>
+                                    <hr>
 
-                  <br>
-                  <div class="field">
-                    <div class="control">
-                      <textarea class="textarea" name="body" placeholder="Message"></textarea>
-                    </div>
-                  </div>
+                                    
+                                    <div class="field">
+                                        <div class="field grouped">
+                                            <div class="control">
+                                                <button type="submit" class="button green" onclick="submitForm()" data-target="successModal">
+                                                    Envoyer
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                  <hr>
-
-                  <div class="field">
-                    <div class="field grouped">
-                        <div class="control">
-                            <button type="submit" class="button green">
-                                Envoyer
-                            </button>
+                                </div>
+                            </div>
                         </div>
+                </form>
+
+                <div id="successModal" class="modal">
+                    <div class="modal-background"></div>
+                    <div class="modal-card">
+                        <header class="modal-card-head">
+                            <p class="modal-card-title">Message envoyé</p>
+                            <button class="delete" aria-label="close" onclick="closeSuccessModal()"></button>
+                        </header>
+                        <section class="modal-card-body">
+                            Votre message a été envoyé avec succès.
+                        </section>
+                        <footer class="modal-card-foot">
+                            <button class="button" onclick="closeSuccessModal()">OK</button>
+                        </footer>
                     </div>
-                  </div>
-
                 </div>
-            </div>
+
+                <script>
+                    function submitForm() {
+                        var message = document.getElementById('message').value;
+                        if(message == ""){
+                          alert('Veuillez saisir un message')
+                        }
+                    }
+                </script>
+
+
+                <script>
+                    function closeSuccessModal() {
+                        document.getElementById('successModal').classList.remove('is-active');
+                    }
+
+                    document.addEventListener('DOMContentLoaded', function() {
+                        document.getElementById('successModal').classList.remove('is-active');
+                    });
+                </script>
+
+                {{-- <div id="sample-modal-{{$c->id}}" class="modal">
+          <div class="modal-background --jb-modal-close"></div>
+          <div class="modal-card">
+              <header class="modal-card-head">
+              <p class="modal-card-title">Confirmer la Suppression</p>
+              </header>
+              <section class="modal-card-body">
+              <p>Êtes-vous sûr de vouloir supprimer ce client ?</p>
+              <p>Cette action est irréversible.</p>
+              </section>
+              <footer class="modal-card-foot">
+              <button class="button --jb-modal-close">Annuler</button>
+              <a class="button red --jb-modal-close" href="/clients/delete/{{$c->id}}">Confirmer</a>
+              </footer>
           </div>
-        </form>
-
-      </div>
-    </div>
-  </section>
+          </div> --}}
+            </div>
+        </div>
+    </section>
 @endsection
-
-
-
-
-
