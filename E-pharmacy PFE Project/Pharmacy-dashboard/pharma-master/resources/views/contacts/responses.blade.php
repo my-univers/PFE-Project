@@ -82,6 +82,9 @@
 
 
 @section('content')
+
+@include('sweetalert::alert')
+
     <section class="is-title-bar">
         <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
             <ul>
@@ -147,7 +150,8 @@
                                     <div class="field">
                                         <div class="field grouped">
                                             <div class="control">
-                                                <button type="submit" class="button green" onclick="submitForm()" data-target="sample-modal-{{ $message->id }}">
+                                                <button type="submit" class="button green" onclick="submitForm()"
+                                                    data-target="sample-modal">
                                                     Envoyer
                                                 </button>
                                             </div>
@@ -159,42 +163,16 @@
                         </div>
                 </form>
 
-                <button class="button small red --jb-modal" data-target="sample-modal" type="button">
-                    <span class="icon"><i class="mdi mdi-trash-can"></i></span>
-                    </button>
-                
-
-                <div id="sample-modal-{{ $message->id }}" class="modal">
-                    <div class="modal-background"></div>
-                    <div class="modal-card">
-                        <header class="modal-card-head">
-                            <p class="modal-card-title">Message envoyé</p>
-                            <button class="delete" aria-label="close" onclick="closeSuccessModal()"></button>
-                        </header>
-                        <section class="modal-card-body">
-                            Votre message a été envoyé avec succès.
-                        </section>
-                        <footer class="modal-card-foot">
-                            <button class="button" onclick="closeSuccessModal()">OK</button>
-                        </footer>
-                    </div>
-                </div>
 
                 <script>
                     function submitForm() {
                         var message = document.getElementById('message').value;
-                        if(message == ""){
-                          alert('Veuillez saisir un message')
+                        if (message == "") {
+                            alert('Veuillez saisir un message')
                         }
                     }
 
-                    function closeSuccessModal() {
-                        document.getElementById('successModal').classList.remove('is-active');
-                    }
-
-                    document.addEventListener('DOMContentLoaded', function() {
-                        document.getElementById('successModal').classList.remove('is-active');
-                    });
+                  
                 </script>
 
 
