@@ -73,7 +73,7 @@
                                 </li>
                                 <li class="active"><a href="/docteurs">Docteurs</a></li>
                                 <li><a href="/about">A Propos</a></li>
-                                <li><a href="/concact">Contact</a></li>
+                                <li><a href="/contact">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
