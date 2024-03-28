@@ -204,15 +204,6 @@
 
                 <div class="row mb-5">
                   <div class="col-md-6">
-                    <strong class="text-black" >Total</strong>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black">{{ number_format($FraixTotal, 2) }} DH</strong>
-                  </div>
-                </div>
-
-                <div class="row mb-5">
-                  <div class="col-md-6">
                     <span class="text-black">Sous-total</span>
                   </div>
                   <div class="col-md-6 text-right">
@@ -227,7 +218,14 @@
                   </div>
                 </div>
 
-               
+                <div class="row mb-5">
+                    <div class="col-md-6">
+                      <strong class="text-black" >Total</strong>
+                    </div>
+                    <div class="col-md-6 text-right">
+                      <strong class="text-black">{{ number_format($FraixTotal, 2) }} DH</strong>
+                    </div>
+                  </div>
 
                 @if ($total != 0)
                     <div class="row">

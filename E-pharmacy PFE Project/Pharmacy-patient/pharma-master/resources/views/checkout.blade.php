@@ -181,7 +181,7 @@
                                         </tr>
                                         <tr>
                                             <td class="text-black font-weight-bold"><strong>Total de la commande</strong></td>
-                                            <td class="text-black font-weight-bold"><strong>{{ $total }} DH</strong></td>
+                                            <td class="text-black font-weight-bold"><strong>{{ $total + 20 }} DH</strong></td>
                                         </tr>
                                     </tbody>
                                 </table>
