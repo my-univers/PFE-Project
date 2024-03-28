@@ -131,7 +131,7 @@
 
                                     <div class="field">
                                         <div class="control icons-left">
-                                            <input class="input" type="email" name="email"
+                                            <input class="input" type="email" name="email" readonly
                                                 value="{{ $message->email }}">
                                             <span class="icon left"><i class="mdi mdi-mail"></i></span>
                                         </div>
@@ -172,7 +172,7 @@
                         }
                     }
 
-                  
+
                 </script>
 
 
