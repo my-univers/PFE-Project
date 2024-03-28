@@ -82,9 +82,11 @@ class CartController extends Controller
                 // Si c'est un pack, multiplier le prix par la quantité
                 $total += $cartItem['item']->prix * $cartItem['quantity'];
             }
+
+            $FraixTotal = $total + 20;
         }
 
-        return view('cart', compact('cart', 'total'));
+        return view('cart', compact('cart', 'total', 'FraixTotal'));
     }
 
     public function removeItem($type, $itemId)
