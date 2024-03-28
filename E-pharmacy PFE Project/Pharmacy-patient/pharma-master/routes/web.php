@@ -76,6 +76,8 @@ Route::get('/checkout', [CartController::class, 'getItems']);
 
 Route::post('/passer-commande', [CartController::class, 'passerCommande'])->name('passer-commande');
 
+Route::post('/update-quantity', [CartController::class, 'updateQuantity'])->name('update.quantity');
+
 
 /*--------------------------------------Categories-----------------------------------------*/
 

@@ -103,41 +103,29 @@
 
         <div class="site-section">
             <div class="container">
-                <div class="row align-items-stretch section-overlap">
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-                        <div class="banner-wrap bg-primary h-100">
-                            <a class="h-100">
-                                <h5>Livraison <br> Gratuite </h5>
-                                <p>
-                                    Livraison gratuite sur toutes les commandes
-                                    <strong>pour une durée limitée</strong>
-                                </p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
-                        <div class="banner-wrap h-100">
-                            <a class="h-100">
-                                <h5>Vente Saisonnière <br>50% de Réduction</h5>
-                                <p>
-                                    Obtenez une réduction de 50% sur une séléction de produits
-                                    <strong>pour une durée limitée</strong>
-                                </p>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+                <div class="row align-items-stretch section-overlap d-flex justify-content-center align-items-center">
+                    <div class="col-md-6 col-lg-6 mb-4 mb-lg-0">
                         <div class="banner-wrap bg-warning h-100">
                             <a class="h-100">
-                                <h5>Acheter <br>Une Carte-Cadeau</h5>
+                                <h5>Frais de Livraison <br> Bon marché </h5>
                                 <p>
-                                    Offrez à vos proches la liberté de choisir avec notre carte-cadeau
-                                    <strong>à partir de $25</strong>
+                                    Livraison à seulement 20 DH pour toutes les commandes
+                                    <strong>pour une durée limitée</strong>
                                 </p>
                             </a>
                         </div>
                     </div>
-
+                    <div class="col-md-6 col-lg-6 mb-4 mb-lg-0">
+                        <div class="banner-wrap h-100">
+                            <a class="h-100">
+                                <h5>Vente Saisonnière <br>5% de Réduction</h5>
+                                <p>
+                                    Obtenez une réduction de 5% sur une sélection de packs produits
+                                    <strong>pour une durée limitée</strong>
+                                </p>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
