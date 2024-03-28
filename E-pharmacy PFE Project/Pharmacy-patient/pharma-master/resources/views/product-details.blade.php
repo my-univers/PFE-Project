@@ -76,7 +76,7 @@
                                 class="icon-search"></span></a>
                         <a href="/cart" class="icons-btn d-inline-block bag">
                             <span class="icon-shopping-bag"></span>
-                            <span class="number">2</span>
+                            <span class="number">{{ session('cart') ? count(session('cart')) : 0 }}</span>
                         </a>
                         <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                                 class="icon-menu"></span></a>
@@ -95,6 +95,8 @@
             </div>
         </div>
 
+    @include('sweetalert::alert')
+
         <div class="site-section">
             <div class="container">
                 <div class="row">
@@ -110,7 +112,7 @@
                         </p>
                         <p class="text-black">{{ $product->prix }}DH</p>
 
-                        <div class="mb-5">
+                        {{-- <div class="mb-5">
                             <div class="input-group mb-3" style="max-width: 220px;">
                                 <div class="input-group-prepend">
                                     <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
@@ -121,64 +123,96 @@
                                     <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
 
                         @if ($product->ordonnance)
-                            <p>
-                            <form method="POST" action="{{ route('upload.order') }}" enctype="multipart/form-data"
-                                id="orderForm">
-                                @csrf
-                                <input type="hidden" name="product_id"
-                                    value="{{ $product->id }}">
-                                <input type="file"
-                                    id="image" name="image" style="display: none"
-                                    onchange="submitOrderForm()">
-                                <a style="color: black" onclick="document.getElementById('image').click()"
-                                    class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Télécharger
-                                    Ordonnance</a>
-                                <style>
-                                    .buy-now:hover {
-                                        background-color: white;
-                                        color: #51EAEA !important;
-                                        transition: all 350ms ease-in-out !important;
+                            @if (!$orderValidated)
+                                <form method="POST" action="{{ route('upload.order') }}" enctype="multipart/form-data"
+                                    id="orderForm">
+                                    @csrf
+                                    <div class="mb-5">
+                                        {{-- <div class="input-group mb-3" style="max-width: 220px;">
+                                                <div class="input-group-prepend">
+                                                    <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                                </div>
+                                                <input type="text" class="form-control text-center" name="quantite" value="1" placeholder=""
+                                                    aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                                </div>
+                                            </div>
+                                        </div> --}}
+                                        <p>
+                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                            <input type="file" id="image" name="image" style="display: none"
+                                                onchange="submitOrderForm()">
+                                            <a style="color: black" onclick="document.getElementById('image').click()"
+                                                class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Télécharger
+                                                Ordonnance</a>
+                                            <style>
+                                                .buy-now:hover {
+                                                    background-color: white;
+                                                    color: #51EAEA !important;
+                                                    transition: all 350ms ease-in-out !important;
+                                                }
+                                            </style>
+                                        <div id="image-preview" style="margin-top: 10px;">
+                                            <img id="preview" src="" alt="Aperçu de l'image"
+                                                style="max-width: 100px; max-height: 100px; display: none;">
+                                            <span id="image-name"></span>
+                                        </div>
+                                        </p>
+                                </form>
+                                <script>
+                                    function displayImageName() {
+                                        var input = document.getElementById('image');
+                                        var fileName = input.files[0].name;
+                                        var preview = document.getElementById('preview');
+                                        var imageName = document.getElementById('image-name');
+                                        preview.src = URL.createObjectURL(input.files[0]);
+                                        preview.style.display = "block";
+                                        imageName.innerText = fileName;
+
+                                        // // il uploada l'ordonnance, afficher l bouton "Ajouter au Panier"
+                                        // var addToCartBtn = document.getElementById('addToCartBtn');
+                                        // if (fileName !== "") {
+                                        //     addToCartBtn.style.display = "block";
+                                        // } else {
+                                        //     addToCartBtn.style.display = "none";
+                                        // }
                                     }
-                                </style>
-                                <div id="image-preview" style="margin-top: 10px;">
-                                    <img id="preview" src="" alt="Aperçu de l'image"
-                                        style="max-width: 100px; max-height: 100px; display: none;">
-                                    <span id="image-name"></span>
-                                </div>
-                            </form>
-                            <script>
-                                function displayImageName() {
-                                    var input = document.getElementById('image');
-                                    var fileName = input.files[0].name;
-                                    var preview = document.getElementById('preview');
-                                    var imageName = document.getElementById('image-name');
-                                    preview.src = URL.createObjectURL(input.files[0]);
-                                    preview.style.display = "block";
-                                    imageName.innerText = fileName;
 
-                                    // // il uploada l'ordonnance, afficher l bouton "Ajouter au Panier"
-                                    // var addToCartBtn = document.getElementById('addToCartBtn');
-                                    // if (fileName !== "") {
-                                    //     addToCartBtn.style.display = "block";
-                                    // } else {
-                                    //     addToCartBtn.style.display = "none";
-                                    // }
-                                }
-
-                                // la methode qui soumet le fichier telecharé pour le valider
-                                function submitOrderForm() {
-                                    document.getElementById('orderForm').submit();
-                                }
-                            </script>
-
-                            @if ($orderValidated)
+                                    // la methode qui soumet le fichier telecharé pour le valider
+                                    function submitOrderForm() {
+                                        document.getElementById('orderForm').submit();
+                                    }
+                                </script>
+                            @elseif ($orderValidated)
                                 <p id="addToCartBtn"> {{-- style="display: none;" --}}
-                                    <br>
-                                    <a href="/cart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
-                                        style="width: 247.438px">Ajouter au Panier</a>
+                                <form method="POST" action="{{ route('add.to.cart') }}">
+                                    @csrf
+                                    <div class="mb-5">
+                                        <div class="input-group mb-3" style="max-width: 220px;">
+                                            <div class="input-group-prepend">
+                                                <button class="btn btn-outline-primary js-btn-minus"
+                                                    type="button">&minus;</button>
+                                            </div>
+                                            <input type="text" class="form-control text-center" name="quantity"
+                                                value="1" placeholder=""
+                                                aria-label="Example text with button addon"
+                                                aria-describedby="button-addon1">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-primary js-btn-plus"
+                                                    type="button">&plus;</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" name="type" value="product">
+                                    <input type="hidden" name="item_id" value="{{ $product->id }}">
+                                    <button type="submit"
+                                        class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
+                                        style="width: 247.438px">Ajouter au Panier</button>
+                                </form>
                                 </p>
                             @endif
 
@@ -194,10 +228,30 @@
                                     {{ session()->get('error') }}
                                 </div>
                             @endif
-                            </p>
                         @else
-                            <p><a href="/cart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Ajouter
-                                    au Panier</a></p>
+                            <form method="POST" action="{{ route('add.to.cart') }}">
+                                @csrf
+                                <div class="mb-5">
+                                    <div class="input-group mb-3" style="max-width: 220px;">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-primary js-btn-minus"
+                                                type="button">&minus;</button>
+                                        </div>
+                                        <input type="text" class="form-control text-center" name="quantity"
+                                            value="1" placeholder="" aria-label="Example text with button addon"
+                                            aria-describedby="button-addon1">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-primary js-btn-plus"
+                                                type="button">&plus;</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="type" value="product">
+                                <input type="hidden" name="item_id" value="{{ $product->id }}">
+                                <button type="submit"
+                                    class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Ajouter au
+                                    Panier</button>
+                            </form>
                         @endif
 
                         <div class="mt-5">

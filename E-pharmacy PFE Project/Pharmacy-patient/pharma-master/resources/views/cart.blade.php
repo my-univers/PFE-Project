@@ -80,7 +80,7 @@
             <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
             <a href="{{ route('cart') }}" class="icons-btn d-inline-block bag">
               <span class="icon-shopping-bag"></span>
-              <span class="number">2</span>
+              <span class="number">{{ session('cart') ? count(session('cart')) : 0 }}</span>
             </a>
             <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                 class="icon-menu"></span></a>
@@ -100,89 +100,87 @@
       </div>
     </div>
 
+    @include('sweetalert::alert')
+
     <div class="site-section">
       <div class="container">
         <div class="row mb-5">
-          <form class="col-md-12" method="post">
-            <div class="site-blocks-table">
-              <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th class="product-thumbnail">Image</th>
-                    <th class="product-name">Produit</th>
-                    <th class="product-price">Prix</th>
-                    <th class="product-quantity">Quantité</th>
-                    <th class="product-total">Total</th>
-                    <th class="product-remove">Supprimer</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img src="images/product_02.png" alt="Image" class="img-fluid">
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">Ibuprofen</h2>
-                    </td>
-                    <td>$55.00</td>
-                    <td>
-                      <div class="input-group mb-3" style="max-width: 120px;">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                        </div>
-                        <input type="text" class="form-control text-center" value="1" placeholder=""
-                          aria-label="Example text with button addon" aria-describedby="button-addon1">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                        </div>
-                      </div>
-
-                    </td>
-                    <td>$49.00</td>
-                    <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
-                  </tr>
-
-                  <tr>
-                    <td class="product-thumbnail">
-                      <img src="images/product_01.png" alt="Image" class="img-fluid">
-                    </td>
-                    <td class="product-name">
-                      <h2 class="h5 text-black">Bioderma</h2>
-                    </td>
-                    <td>$49.00</td>
-                    <td>
-                      <div class="input-group mb-3" style="max-width: 120px;">
-                        <div class="input-group-prepend">
-                          <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                        </div>
-                        <input type="text" class="form-control text-center" value="1" placeholder=""
-                          aria-label="Example text with button addon" aria-describedby="button-addon1">
-                        <div class="input-group-append">
-                          <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                        </div>
-                      </div>
-
-                    </td>
-                    <td>$49.00</td>
-                    <td><a href="#" class="btn btn-primary height-auto btn-sm">X</a></td>
-                  </tr>
-                </tbody>
-              </table>
+            {{-- @if (session()->has('success'))
+            <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">X</button>
+                {{ session()->get('success') }}
             </div>
-          </form>
+            @endif
+
+            @if (session()->has('error'))
+            <div class="alert alert-danger alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert">X</button>
+                {{ session()->get('error') }}
+              </div>
+            @endif --}}
+
+            <form class="col-md-12" action="" method="post">
+                <div class="site-blocks-table">
+                    @if (count($cart) > 0)
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="product-thumbnail">Image</th>
+                                    <th class="product-name">Nom</th>
+                                    <th class="product-quantity">Quantité</th>
+                                    <th class="product-price">Prix</th>
+                                    <th class="product-delete">Supprimer</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($cart as $item)
+                                <tr>
+                                    <td class="product-thumbnail">
+                                        <a @if($item['type'] == 'product') href="/product-details/{{ $item['item']->id }}" @elseif($item['type'] == 'pack') href="/pack-details/{{ $item['item']->id }}" @endif>
+                                            <img src="{{ $item['item']->image_path }}" alt="Image" width="100">
+                                        </a>
+                                    </td>
+                                    <td class="product-name">{{ $item['item']->nom }}</td>
+                                    <td>
+                                        <center>
+                                            <div class="input-group mb-3" style="max-width: 120px;">
+                                                <div class="input-group-prepend">
+                                                  <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                                </div>
+                                                <input type="text" class="form-control text-center" value="{{ $item['quantity'] }}" placeholder=""
+                                                  aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                                <div class="input-group-append">
+                                                  <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                                </div>
+                                            </div>
+                                        </center>
+                                    </td>
+                                    <td class="product-price">{{ $item['item']->prix }} DH</td>
+                                    <td class="product-delete">
+                                        <a href="{{ route('remove.item', ['type' => $item['type'], 'itemId' => $item['item']->id]) }}" class="btn btn-primary height-auto btn-sm">X</a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @else
+                        <h3>Aucun article dans le panier.</h3>
+                    @endif
+                </div>
+            </form>
         </div>
 
         <div class="row">
           <div class="col-md-6">
             <div class="row mb-5">
-              <div class="col-md-6 mb-3 mb-md-0">
+              {{-- <div class="col-md-6 mb-3 mb-md-0">
                 <button class="btn btn-primary btn-md btn-block">Modifier Panier</button>
-              </div>
+              </div> --}}
               <div class="col-md-6">
-                <button class="btn btn-outline-primary btn-md btn-block">Continuer les achats</button>
+                <a href="/shop/produits" class="btn btn-outline-primary btn-md btn-block">Continuer les achats</a>
               </div>
             </div>
-            <div class="row">
+            {{-- <div class="row">
               <div class="col-md-12">
                 <label class="text-black h4" for="coupon">Coupon</label>
                 <p>Entrez votre code coupon si vous en avez un.</p>
@@ -193,38 +191,40 @@
               <div class="col-md-4">
                 <button class="btn btn-primary btn-md px-4">Appliquer le coupon</button>
               </div>
-            </div>
+            </div> --}}
           </div>
           <div class="col-md-6 pl-5">
             <div class="row justify-content-end">
               <div class="col-md-7">
                 <div class="row">
-                  <div class="col-md-12 text-right border-bottom mb-5">
+                  <div class="col-md-12 text-center border-bottom mb-5">
                     <h3 class="text-black h4 text-uppercase">Total du Panier </h3>
                   </div>
                 </div>
-                <div class="row mb-3">
+                {{-- <div class="row mb-3">
                   <div class="col-md-6">
                     <span class="text-black">Sous-total</span>
                   </div>
                   <div class="col-md-6 text-right">
                     <strong class="text-black">$230.00</strong>
                   </div>
-                </div>
+                </div> --}}
                 <div class="row mb-5">
                   <div class="col-md-6">
                     <span class="text-black">Total</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
+                    <strong class="text-black">{{ number_format($total, 2) }} DH</strong>
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="col-md-12">
-                    <button class="btn btn-primary btn-lg btn-block" onclick="window.location='/checkout' " style="width: fit-content">Passer Au Paiemenet</button>
-                  </div>
-                </div>
+                @if ($total != 0)
+                    <div class="row">
+                        <div class="col-md-12">
+                        <a class="btn btn-primary btn-lg btn-block" href="/checkout">Passer Au Paiemenet</a>
+                        </div>
+                    </div>
+                @endif
               </div>
 
             </div>
@@ -238,20 +238,22 @@
         <div class="row align-items-stretch">
           <div class="col-lg-6 mb-5 mb-lg-0">
             <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_1.jpg');">
-              <div class="banner-1-inner align-self-center">
-                <h2>Pharma Products</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.
-                </p>
-              </div>
+                <div class="banner-1-inner align-self-center">
+                    <h2>Service Clientele exceptionnel</h2>
+                    <p>Notre équipe est disponible 24h/7j pour répondre à toutes vos questions et
+                        préoccupations médicales.
+                    </p>
+                </div>
             </a>
           </div>
           <div class="col-lg-6 mb-5 mb-lg-0">
             <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_2.jpg');">
-              <div class="banner-1-inner ml-auto  align-self-center">
-                <h2>Rated by Experts</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.
-                </p>
-              </div>
+                <div class="banner-1-inner ml-auto  align-self-center">
+                    <h2>Commandez rapidement</h2>
+                    <p>En cas d'urgence médicale, vous pouvez appeler directement un docteur et passer votre
+                        commande par téléphone.
+                    </p>
+                </div>
             </a>
           </div>
         </div>

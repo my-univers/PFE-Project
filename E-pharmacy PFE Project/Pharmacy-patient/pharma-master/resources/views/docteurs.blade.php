@@ -73,7 +73,7 @@
                                 </li>
                                 <li class="active"><a href="/docteurs">Docteurs</a></li>
                                 <li><a href="/about">A Propos</a></li>
-                                <li><a href="/concact">Contact</a></li>
+                                <li><a href="/contact">Contact</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -82,7 +82,7 @@
                                 class="icon-search"></span></a>
                         <a href="/cart" class="icons-btn d-inline-block bag">
                             <span class="icon-shopping-bag"></span>
-                            <span class="number">2</span>
+                            <span class="number">{{ session('cart') ? count(session('cart')) : 0 }}</span>
                         </a>
                         <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                                 class="icon-menu"></span></a>
@@ -234,9 +234,9 @@
                         <a href="#" class="banner-1 h-100 d-flex"
                             style="background-image: url('images/bg_1.jpg');">
                             <div class="banner-1-inner align-self-center">
-                                <h2>Pharma Products</h2>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem
-                                    odio voluptatem.
+                                <h2>Service Clientele exceptionnel</h2>
+                                <p>Notre équipe est disponible 24h/7j pour répondre à toutes vos questions et
+                                    préoccupations médicales.
                                 </p>
                             </div>
                         </a>
@@ -245,9 +245,9 @@
                         <a href="#" class="banner-1 h-100 d-flex"
                             style="background-image: url('images/bg_2.jpg');">
                             <div class="banner-1-inner ml-auto  align-self-center">
-                                <h2>Rated by Experts</h2>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem
-                                    odio voluptatem.
+                                <h2>Commandez rapidement</h2>
+                                <p>En cas d'urgence médicale, vous pouvez appeler directement un docteur et passer votre
+                                    commande par téléphone.
                                 </p>
                             </div>
                         </a>

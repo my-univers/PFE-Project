@@ -80,7 +80,7 @@
                                 class="icon-search"></span></a>
                         <a href="{{ route('cart') }}" class="icons-btn d-inline-block bag">
                             <span class="icon-shopping-bag"></span>
-                            <span class="number">2</span>
+                            <span class="number">{{ session('cart') ? count(session('cart')) : 0 }}</span>
                         </a>
                         <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                                 class="icon-menu"></span></a>
@@ -178,7 +178,7 @@
         </div>
 
 
-        <div class="site-section bg-secondary bg-image" style="background-image: url('images/bg_2.jpg');">
+        <div class="site-section bg-secondary bg-image" style="background-image: url('../images/bg_2.jpg');">
             <div class="container">
                 <div class="row align-items-stretch">
                     <div class="col-lg-6 mb-5 mb-lg-0">

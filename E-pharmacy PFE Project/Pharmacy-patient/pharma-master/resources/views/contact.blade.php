@@ -85,7 +85,7 @@
             <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
             <a href="/cart" class="icons-btn d-inline-block bag">
               <span class="icon-shopping-bag"></span>
-              <span class="number">2</span>
+              <span class="number">{{ session('cart') ? count(session('cart')) : 0 }}</span>
             </a>
             <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                 class="icon-menu"></span></a>
@@ -133,7 +133,7 @@
                       <input type="email" class="form-control" name="email" placeholder="example@gmail.com" required>
                   </div>
               </div>
-              
+
               <div class="form-group row">
                   <div class="col-md-12">
                       <label for="c_message" class="text-black">Message </label>
@@ -147,15 +147,15 @@
                     </div>
               </div>
           </form>
-          
+
           <script>
-  
-          
+
+
               function reload() {
                   window.location.reload();
               }
           </script>
-          
+
                 </div>
               </div>
             </form>
