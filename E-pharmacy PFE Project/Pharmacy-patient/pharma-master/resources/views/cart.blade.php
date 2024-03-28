@@ -218,11 +218,13 @@
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="col-md-12">
-                    <a class="btn btn-primary btn-lg btn-block" href="/checkout">Passer Au Paiemenet</a>
-                  </div>
-                </div>
+                @if ($total != 0)
+                    <div class="row">
+                        <div class="col-md-12">
+                        <a class="btn btn-primary btn-lg btn-block" href="/checkout">Passer Au Paiemenet</a>
+                        </div>
+                    </div>
+                @endif
               </div>
 
             </div>
