@@ -76,7 +76,7 @@
                                 class="icon-search"></span></a>
                         <a href="/cart" class="icons-btn d-inline-block bag">
                             <span class="icon-shopping-bag"></span>
-                            <span class="number">2</span>
+                            <span class="number">{{ session('cart') ? count(session('cart')) : 0 }}</span>
                         </a>
                         <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                                 class="icon-menu"></span></a>
@@ -95,6 +95,8 @@
             </div>
         </div>
 
+    @include('sweetalert::alert')
+
         <div class="site-section">
             <div class="container">
                 <div class="row">
@@ -110,24 +112,29 @@
                         </p>
                         <p class="text-black">{{ $pack->prix }}DH</p>
 
-                        <div class="mb-5">
-                            <div class="input-group mb-3" style="max-width: 220px;">
-                                <div class="input-group-prepend">
-                                    <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                                </div>
-                                <input type="text" class="form-control text-center" value="1" placeholder=""
-                                    aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                        <form action="{{ route('add.to.cart') }}" method="POST">
+                            @csrf
+                            <div class="mb-5">
+                                <div class="input-group mb-3" style="max-width: 220px;">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                    </div>
+                                    <input type="text" class="form-control text-center" name="quantity" value="1" placeholder=""
+                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <p id="addToCartBtn" style="display: none; ">
-                            <br>
-                            <a href="/cart" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
-                            style="width: 247.438px">Ajouter au Panier</a>
-                        </p>
+                            <input type="hidden" name="type" value="pack">
+                            <input type="hidden" name="item_id" value="{{ $pack->id }}">
+                            <p id="addToCartBtn">
+                                <br>
+                                <button type="submit" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
+                                style="width: 247.438px">Ajouter au Panier</button>
+                            </p>
+                        </form>
 
                         <div class="mt-5">
                             <ul class="nav nav-pills mb-3 custom-pill" id="pills-tab" role="tablist">
@@ -156,7 +163,7 @@
                                                 <td>{{ $pack->description }}</td>
                                                 <td>
                                                     @foreach ($pack->produits as $p)
-                                                    <p>- <a href="/product-details/{{ $p->id }}">{{ $p->nom }}</a></p>
+                                                    - <a href="/product-details/{{ $p->id }}">{{ $p->nom }}</a><br>
                                                     @endforeach
                                                 </td>
                                             </tr>

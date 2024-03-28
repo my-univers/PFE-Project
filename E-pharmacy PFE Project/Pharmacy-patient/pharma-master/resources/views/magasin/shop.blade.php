@@ -80,7 +80,7 @@
                                 class="icon-search"></span></a>
                         <a href="/cart" class="icons-btn d-inline-block bag">
                             <span class="icon-shopping-bag"></span>
-                            <span class="number">2</span>
+                            <span class="number">{{ session('cart') ? count(session('cart')) : 0 }}</span>
                         </a>
                         <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                                 class="icon-menu"></span></a>
@@ -124,7 +124,7 @@
                 <!--new code -->
                 <div class="row mt-5">
                     @foreach ($products as $product)
-                    
+
                         <div class="col-sm-6 col-lg-4 text-center item mb-4">
                             <a href="/product-details/{{$product->id}}"> <img class="product-image"
                                     src="{{ asset($product->image_path) }}" alt="Image"></a>

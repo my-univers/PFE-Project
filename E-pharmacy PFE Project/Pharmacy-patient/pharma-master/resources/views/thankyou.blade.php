@@ -7,20 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
+  <link rel="stylesheet" href="{{ asset('fonts/icomoon/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/owl.theme.default.min.css') }}">
 
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/magnific-popup.css">
-  <link rel="stylesheet" href="css/jquery-ui.css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="{{ asset('css/aos.css') }}">
 
-
-  <link rel="stylesheet" href="css/aos.css">
-
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
 </head>
+
 
 <body>
 
@@ -48,28 +47,33 @@
           <div class="main-nav d-none d-lg-block">
             <nav class="site-navigation text-right text-md-center" role="navigation">
               <ul class="site-menu js-clone-nav d-none d-lg-block">
-                <li><a href="/">Home</a></li>
-                <li class="active"><a href="{{ route('shop') }}">Store</a></li>
+                <li><a href="/">Accueil</a></li>
                 <li class="has-children">
-                  <a href="#">Dropdown</a>
-                  <ul class="dropdown">
-                    <li><a href="#">Supplements</a></li>
-                    <li class="has-children">
-                      <a href="#">Vitamins</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Supplements</a></li>
-                        <li><a href="#">Vitamins</a></li>
-                        <li><a href="#">Diet &amp; Nutrition</a></li>
-                        <li><a href="#">Tea &amp; Coffee</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="#">Diet &amp; Nutrition</a></li>
-                    <li><a href="#">Tea &amp; Coffee</a></li>
-
-                  </ul>
+                    <a href="#">Magasin</a>
+                    <ul class="dropdown">
+                        <li>
+                            <a href="/shop/produits">Produits</a>
+                            <a href="/shop/packs">Packs de Produits</a>
+                        </li>
+                    </ul>
                 </li>
-                <li><a href="{{ route('about') }}">About</a></li>
-                <li><a href="{{ route('contact') }}">Contact</a></li>
+                <li class="has-children">
+                    <a href="#">Catégories</a>
+                    <ul class="dropdown">
+                        <?php
+                            use App\Models\Categorie;
+                            $categories = Categorie::all();
+                        ?>
+                        @foreach ($categories as $categorie)
+                            <li>
+                                <a href="{{ route('categorie.products', $categorie->id) }}">{{ $categorie->nom }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+                <li><a href="/docteurs">Docteurs</a></li>
+                <li><a href="/about">A Propos</a></li>
+                <li><a href="/contact">Contact</a></li>
               </ul>
             </nav>
           </div>
@@ -77,7 +81,7 @@
             <a href="#" class="icons-btn d-inline-block js-search-open"><span class="icon-search"></span></a>
             <a href="{{ route('cart') }}" class="icons-btn d-inline-block bag">
               <span class="icon-shopping-bag"></span>
-              <span class="number">2</span>
+              <span class="number">{{ session('cart') ? count(session('cart')) : 0 }}</span>
             </a>
             <a href="#" class="site-menu-toggle js-menu-toggle ml-3 d-inline-block d-lg-none"><span
                 class="icon-menu"></span></a>
@@ -86,25 +90,27 @@
       </div>
     </div>
 
+    @include('sweetalert::alert')
+
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
           <div class="col-md-12 mb-0">
-            <a href="/">Home</a> <span class="mx-2 mb-0">/</span> 
-            <strong class="text-black">Thank you</strong>
+            <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span>
+            <strong class="text-black">Merci</strong>
           </div>
         </div>
       </div>
     </div>
-    
+
     <div class="site-section">
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
             <span class="icon-check_circle display-3 text-success"></span>
-            <h2 class="display-3 text-black">Thank you!</h2>
-            <p class="lead mb-5">You order was successfuly completed.</p>
-            <p><a href="{{ route('shop') }}" class="btn btn-md height-auto px-4 py-3 btn-primary">Back to store</a></p>
+            <h2 class="display-3 text-black">Merci!</h2>
+            <p class="lead mb-5">Vous avez passé votre commande avec succés.</p>
+            <p><a href="/" class="btn btn-md height-auto px-4 py-3 btn-primary">Revenir à l'Acceuil</a></p>
           </div>
         </div>
       </div>

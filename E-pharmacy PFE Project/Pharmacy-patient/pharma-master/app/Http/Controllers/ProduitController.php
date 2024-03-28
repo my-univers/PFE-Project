@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 // use Illuminate\Support\Str;
 use Smalot\PdfParser\Parser;
 use thiagoalessio\TesseractOCR\TesseractOCR;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
+use Alert;
 
 class ProduitController extends Controller
 {
@@ -40,7 +42,10 @@ class ProduitController extends Controller
         if (strpos($pdfText, $selectedProductName) !== false) {
             // Le nom du produit correspond, continuer avec le traitement de l'ordonnance
             session()->flash('order_validated', true);
-            return redirect()->back()->with('success', 'Votre ordonnance a été téléchargée et validée.');
+
+            FacadesAlert::success('Votre ordonnance a été téléchargée et validée!');
+
+            return back();
         } else {
             // Le nom du produit ne correspond pas
             return redirect()->back()->with('error', 'Le nom du produit dans l\'ordonnance ne correspond pas au produit sélectionné.');
