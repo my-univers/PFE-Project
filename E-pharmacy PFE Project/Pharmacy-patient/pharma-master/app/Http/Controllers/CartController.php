@@ -71,6 +71,7 @@ class CartController extends Controller
 
         // Initialiser le total
         $total = 0;
+        $FraixTotal = 0;
 
         // Calculer le total des articles dans le panier
         foreach ($cart as $cartItem) {
@@ -78,12 +79,13 @@ class CartController extends Controller
             if ($cartItem['type'] === 'product') {
                 // Si c'est un produit, multiplier le prix par la quantité
                 $total += $cartItem['item']->prix * $cartItem['quantity'];
+                $FraixTotal = $total + 20;
+
             } elseif ($cartItem['type'] === 'pack') {
                 // Si c'est un pack, multiplier le prix par la quantité
                 $total += $cartItem['item']->prix * $cartItem['quantity'];
+                $FraixTotal = $total + 20;
             }
-
-            $FraixTotal = $total + 20;
         }
 
         return view('cart', compact('cart', 'total', 'FraixTotal'));
@@ -196,10 +198,9 @@ class CartController extends Controller
         $commande->client_id = $client->id;
         $commande->date_commande = now();
         $commande->statut = "En attente";
-        $commande->total = $totalCommande;
+        $commande->total = $totalCommande + 20;
         $commande->save();
 
-        // Ajouter les articles de la commande dans les tables de liaison appropriées
         foreach ($cart as $item) {
             if ($item['type'] === 'product') {
                 $produitCommande = new ProduitCommande();

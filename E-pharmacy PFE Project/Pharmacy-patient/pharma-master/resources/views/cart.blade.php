@@ -119,7 +119,7 @@
               </div>
             @endif --}}
 
-            <form class="col-md-12" action="" method="post">
+            <div class="col-md-12">
                 <div class="site-blocks-table">
                     @if (count($cart) > 0)
                         <table class="table table-bordered">
@@ -147,7 +147,7 @@
                                                 <div class="input-group-prepend">
                                                   <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
                                                 </div>
-                                                <input type="text" class="form-control text-center" value="{{ $item['quantity'] }}" placeholder=""
+                                                <input type="text" class="form-control text-center" name="quantite" value="{{ $item['quantity'] }}" placeholder=""
                                                   aria-label="Example text with button addon" aria-describedby="button-addon1">
                                                 <div class="input-group-append">
                                                   <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
@@ -167,7 +167,7 @@
                         <h3>Aucun article dans le panier.</h3>
                     @endif
                 </div>
-            </form>
+            </div>
         </div>
 
         <div class="row">
@@ -204,15 +204,6 @@
 
                 <div class="row mb-5">
                   <div class="col-md-6">
-                    <strong class="text-black" >Total</strong>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black">{{ number_format($FraixTotal, 2) }} DH</strong>
-                  </div>
-                </div>
-
-                <div class="row mb-5">
-                  <div class="col-md-6">
                     <span class="text-black">Sous-total</span>
                   </div>
                   <div class="col-md-6 text-right">
@@ -227,7 +218,14 @@
                   </div>
                 </div>
 
-               
+                <div class="row mb-5">
+                    <div class="col-md-6">
+                      <strong class="text-black" >Total</strong>
+                    </div>
+                    <div class="col-md-6 text-right">
+                      <strong class="text-black">{{ number_format($FraixTotal, 2) }} DH</strong>
+                    </div>
+                  </div>
 
                 @if ($total != 0)
                     <div class="row">
