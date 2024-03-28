@@ -201,22 +201,33 @@
                     <h3 class="text-black h4 text-uppercase">Total du Panier </h3>
                   </div>
                 </div>
-                {{-- <div class="row mb-3">
+
+                <div class="row mb-5">
+                  <div class="col-md-6">
+                    <strong class="text-black" >Total</strong>
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <strong class="text-black">{{ number_format($FraixTotal, 2) }} DH</strong>
+                  </div>
+                </div>
+
+                <div class="row mb-5">
                   <div class="col-md-6">
                     <span class="text-black">Sous-total</span>
                   </div>
                   <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
-                  </div>
-                </div> --}}
-                <div class="row mb-5">
-                  <div class="col-md-6">
-                    <span class="text-black">Total</span>
-                  </div>
-                  <div class="col-md-6 text-right">
                     <strong class="text-black">{{ number_format($total, 2) }} DH</strong>
                   </div>
+
+                  <div class="col-md-6">
+                    <span class="text-black">Frais de livraison  </span>
+                  </div>
+                  <div class="col-md-6 text-right">
+                    <strong class="text-black">20 DH</strong>
+                  </div>
                 </div>
+
+               
 
                 @if ($total != 0)
                     <div class="row">

@@ -105,10 +105,8 @@
       </div>
     </div>
 
-
     @include('sweetalert::alert')
-
-
+    
     <div class="site-section">
       <div class="container">
         <div class="row">
