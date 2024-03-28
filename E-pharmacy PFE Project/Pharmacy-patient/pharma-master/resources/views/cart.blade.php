@@ -256,7 +256,7 @@
             </a>
           </div>
           <div class="col-lg-6 mb-5 mb-lg-0">
-            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_2.jpg');">
+            <a href="/docteurs" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_2.jpg');">
                 <div class="banner-1-inner ml-auto  align-self-center">
                     <h2>Commandez rapidement</h2>
                     <p>En cas d'urgence médicale, vous pouvez appeler directement un docteur et passer votre
