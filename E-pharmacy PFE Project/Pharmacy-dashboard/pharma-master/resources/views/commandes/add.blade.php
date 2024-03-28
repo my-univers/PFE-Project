@@ -511,7 +511,6 @@
                 </div>
             </div>
         </form>
-        </script>
       </div>
     </div>
 </section>
@@ -536,3 +535,6 @@
 </div>
 
 @endsection
+
+
+<!--------------Hnaya ghadi ntester pagination JQuery------------------->

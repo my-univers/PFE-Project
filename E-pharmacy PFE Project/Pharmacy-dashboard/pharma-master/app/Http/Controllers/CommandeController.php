@@ -124,7 +124,6 @@ class CommandeController extends Controller
         $commande->total = $total_commande;
         $commande->save();
 
-        // Rediriger vers la page des commandes avec un message de succès
         return redirect('/commandes')->with('success', 'Commande ajoutée avec succès');
     }
 
