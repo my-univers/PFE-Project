@@ -318,7 +318,7 @@
                             <td></td>
                             <td>{{ $pack->nom }}</td>
                             <td> {{ $pack->qte_en_stock }}</td>
-                            <td>{{ $total }} DH</td>
+                            <td>{{ $totalPack }} DH</td>
                             <td></td>
                         </tr>
                     </tbody>

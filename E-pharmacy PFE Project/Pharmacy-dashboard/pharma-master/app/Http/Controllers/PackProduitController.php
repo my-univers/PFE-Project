@@ -21,12 +21,10 @@ class PackProduitController extends Controller
     }
 
     public function addPackProduits(Request $request) {
-        // Récupérer les données du formulaire
         $packId = $request->input('pack_id');
         $produitIds = $request->input('produits_id');
         $quantites = $request->input('quantite');
 
-        // Insérer les entrées dans la table packs_produits
         foreach ($produitIds as $produitId) {
             $quantite = $quantites[$produitId];
 
@@ -35,15 +33,16 @@ class PackProduitController extends Controller
                 'produits_id' => $produitId,
                 'qte_produit' => $quantite
             ]);
-
         }
 
         $pack = Pack::find($packId);
-
         $total = 0;
-        foreach ($produitIds as $produitId) {
+
+        foreach ($produitIds as $key => $produitId) {
+            $quantite = $quantites[$key];
+
             $produit = Produit::find($produitId);
-            $total += $produit->prix;
+            $total += $produit->prix * $quantite;
         }
 
         $reduction = $total * 0.05;
@@ -53,8 +52,7 @@ class PackProduitController extends Controller
         $pack->prix = $totalPack;
         $pack->save();
 
-        // Rediriger avec un message de succès
-        return redirect('/packs_produits');
+        return view('/packs_produits/details', ['totalPack' => $totalPack]);
     }
 
     public function showDetails($id) {
