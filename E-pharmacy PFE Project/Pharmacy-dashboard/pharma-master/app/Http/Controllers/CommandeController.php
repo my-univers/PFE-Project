@@ -77,7 +77,7 @@ class CommandeController extends Controller
 
         // Calculer le total de la commande et associer les produits à la commande
         $total_commande = 0;
-        if($produits) {
+        if ($produits) {
             foreach ($produits as $produit_id) {
                 $quantite = $quantites[$produit_id];
                 $produit = Produit::find($produit_id);
@@ -86,7 +86,7 @@ class CommandeController extends Controller
                 $total_commande += $produit->prix * $quantite;
 
                 // Décrémenter la quantité en stock du produit
-                if($produit->qte_en_stock >= 0) {
+                if ($produit->qte_en_stock >= 0) {
                     $produit->qte_en_stock -= $quantite;
                 }
                 $produit->save();
@@ -100,7 +100,7 @@ class CommandeController extends Controller
         $packs = $request->input('packs_id');
         $quantites_packs = $request->input('quantite');
 
-        if($packs) {
+        if ($packs) {
             // Associer les packs à la commande
             foreach ($packs as $pack_id) {
                 $quantite_pack = $quantites_packs[$pack_id];
@@ -110,7 +110,7 @@ class CommandeController extends Controller
                 $total_commande += $pack->prix * $quantite_pack;
 
                 // Décrémenter la quantité en stock du pack
-                if($pack->qte_en_stock >= 0) {
+                if ($pack->qte_en_stock >= 0) {
                     $pack->qte_en_stock -= $quantite_pack;
                 }
                 $pack->save();
@@ -162,5 +162,4 @@ class CommandeController extends Controller
         // Passer les résultats à la vue
         return view('commandes.list', ['commandes' => $commandes]);
     }
-
 }
