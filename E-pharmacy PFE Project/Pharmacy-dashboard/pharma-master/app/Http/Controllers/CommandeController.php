@@ -58,6 +58,59 @@ class CommandeController extends Controller
         return view('commandes.add', ['clients' => $clients, 'produits' => $produits, 'packs' => $packs]);
     }
 
+    // public function addCommande(Request $request)
+    // {
+    //     // Récupérer l'ID du client sélectionné
+    //     $client_id = $request->input('client_id');
+
+    //     // Créer une nouvelle commande
+    //     $commande = new Commande();
+    //     $commande->client_id = $client_id;
+    //     $commande->date_commande = now(); // Ou utilisez la date fournie par le formulaire
+    //     $commande->total = 0; // Le total sera calculé plus tard
+    //     $commande->statut = "En attente"; // Vous pouvez définir un statut par défaut
+    //     $commande->save();
+
+    //     // Récupérer les produits sélectionnés avec leurs quantités
+    //     $selected_items = $request->input('selected_items');
+    //     $total_commande = 0;
+
+    //     if ($selected_items) {
+    //         foreach ($selected_items as $item_id) {
+    //             // Vérifier si l'élément est un produit ou un pack
+    //             $element = Produit::find($item_id);
+    //             if (!$element) {
+    //                 $element = Pack::find($item_id);
+    //             }
+
+    //             if ($element) {
+    //                 $quantite = $request->input('quantite')[$item_id];
+    //                 $prix_total = $element->prix * $quantite;
+    //                 $total_commande += $prix_total;
+
+    //                 // Mettre à jour le stock de l'élément
+    //                 if ($element->qte_en_stock >= 0) {
+    //                     $element->qte_en_stock -= $quantite;
+    //                     $element->save();
+    //                 }
+
+    //                 // Ajouter l'élément à la commande avec la quantité via la table pivot
+    //                 if ($element instanceof Produit) {
+    //                     $commande->produits()->attach($item_id, ['quantite' => $quantite]);
+    //                 } elseif ($element instanceof Pack) {
+    //                     $commande->packs()->attach($item_id, ['quantite' => $quantite]);
+    //                 }
+    //             }
+    //         }
+    //     }
+
+    //     // Mettre à jour le total de la commande
+    //     $commande->total = $total_commande;
+    //     $commande->save();
+
+    //     return redirect('/commandes')->with('success', 'Commande ajoutée avec succès');
+    // }
+
     public function addCommande(Request $request)
     {
         // Récupérer l'ID du client sélectionné
@@ -72,21 +125,27 @@ class CommandeController extends Controller
         $commande->save();
 
         // Récupérer les produits sélectionnés avec leurs quantités
-        $produits = $request->input('produits_id');
-        $quantites = $request->input('quantite');
+        $produits_ids = $request->input('produits_id');
+        $produits_quantites = $request->input('quantite');
+
+        // Récupérer les packs sélectionnés avec leurs quantités
+        $packs_ids = $request->input('packs_id');
+        $packs_quantites = $request->input('quantite_pack');
 
         // Calculer le total de la commande et associer les produits à la commande
         $total_commande = 0;
-        if ($produits) {
-            foreach ($produits as $produit_id) {
-                $quantite = $quantites[$produit_id];
+
+        // Associer les produits à la commande
+        if ($produits_ids) {
+            foreach ($produits_ids as $key => $produit_id) {
+                $quantite = $produits_quantites[$key];
                 $produit = Produit::find($produit_id);
 
                 // Ajouter le prix du produit multiplié par la quantité à calculer
                 $total_commande += $produit->prix * $quantite;
 
                 // Décrémenter la quantité en stock du produit
-                if ($produit->qte_en_stock >= 0) {
+                if ($produit->qte_en_stock >= $quantite) {
                     $produit->qte_en_stock -= $quantite;
                 }
                 $produit->save();
@@ -96,21 +155,17 @@ class CommandeController extends Controller
             }
         }
 
-        // Récupérer les packs sélectionnés avec leurs quantités
-        $packs = $request->input('packs_id');
-        $quantites_packs = $request->input('quantite');
-
-        if ($packs) {
-            // Associer les packs à la commande
-            foreach ($packs as $pack_id) {
-                $quantite_pack = $quantites_packs[$pack_id];
+        // Associer les packs à la commande
+        if ($packs_ids) {
+            foreach ($packs_ids as $key => $pack_id) {
+                $quantite_pack = $packs_quantites[$key];
                 $pack = Pack::find($pack_id);
 
                 // Ajouter le prix du pack multiplié par la quantité à calculer
                 $total_commande += $pack->prix * $quantite_pack;
 
                 // Décrémenter la quantité en stock du pack
-                if ($pack->qte_en_stock >= 0) {
+                if ($pack->qte_en_stock >= $quantite_pack) {
                     $pack->qte_en_stock -= $quantite_pack;
                 }
                 $pack->save();

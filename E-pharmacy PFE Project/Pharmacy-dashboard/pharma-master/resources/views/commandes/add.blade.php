@@ -388,7 +388,7 @@
                                 <td>{{ $produit->prix }} DH</td>
                                 <td @if($produit->qte_en_stock <= 1) style="color: red"  @endif>{{ $produit->qte_en_stock }}</td>
                                 <td>
-                                    <input class="input is-small" type="number" name="quantite[{{ $produit->id }}]" value="1" min="1">
+                                    <input class="input is-small" type="number" name="quantite[]" value="1" min="1">
                                 </td>
                                 <td></td>
                             </tr>
@@ -454,7 +454,7 @@
                                 <td>{{ $pack->prix }} DH</td>
                                 <td @if($pack->qte_en_stock <= 1) style="color: red"  @endif>{{ $pack->qte_en_stock }}</td>
                                 <td>
-                                    <input class="input is-small" type="number" name="quantite[{{ $pack->id }}]" value="1" min="1">
+                                    <input class="input is-small" type="number" name="quantite[]" value="1" min="1">
                                 </td>
                                 <td class="actions-cell">
                                     <div class="buttons right nowrap">
@@ -498,9 +498,11 @@
                 @endif
             </div>
             <hr>
+            <!-- Champs cachés pour stocker les éléments séléctionnés -->
+            <input type="hidden" name="selected_items[]" id="elements-selectionnes">
             <div class="field grouped">
                 <div class="control">
-                    <button type="submit" class="button green" onclick="ajouterChampQuantite()">
+                    <button type="submit" id="submit-form" class="button green" onclick="ajouterChampQuantite()">
                         Ajouter
                     </button>
                 </div>
@@ -510,27 +512,11 @@
                     </button>
                 </div>
             </div>
+
         </form>
       </div>
     </div>
 </section>
-
-{{-- <div id="sample-modal-2" class="modal">
-  <div class="modal-background --jb-modal-close"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Sample modal</p>
-    </header>
-    <section class="modal-card-body">
-      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-      <p>This is sample modal</p>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button --jb-modal-close">Cancel</button>
-      <button class="button blue --jb-modal-close">Confirm</button>
-    </footer>
-  </div>
-</div> --}}
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -544,8 +530,18 @@
             var itemId = $(this).val();
             var isChecked = $(this).is(':checked');
             if (isChecked) {
+                $(this).closest('tr').addClass('selected'); // Ajouter une classe pour marquer la sélection visuellement
+                // Ajouter l'identifiant unique au champ caché du formulaire
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: 'selected_items[]',
+                    value: itemId
+                }).appendTo('form');
                 selectedItems[itemId] = true;
             } else {
+                $(this).closest('tr').removeClass('selected'); // Retirer la classe de sélection
+                // Supprimer l'entrée du champ caché associée à cet élément
+                $('input[name="selected_items[]"][value="' + itemId + '"]').remove();
                 delete selectedItems[itemId];
             }
         });
@@ -616,10 +612,24 @@
                 }
             });
         }
+
+        // Soumission du formulaire
+        $('#submit-form').click(function() {
+            // Réinitialiser le champ caché des éléments sélectionnés
+            $('input[name="selected_items[]"]').remove();
+            // Ajouter les éléments sélectionnés au champ caché
+            for (var itemId in selectedItems) {
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: 'selected_items[]',
+                    value: itemId
+                }).appendTo('form');
+            }
+            // Soumettre le formulaire normalement
+            $('form').submit();
+        });
     });
 </script>
-
-
 
 
 @endsection
