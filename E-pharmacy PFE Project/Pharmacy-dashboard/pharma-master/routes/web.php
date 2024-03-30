@@ -200,6 +200,8 @@ Route::post('/packs_produits/addToPack/{produit_id}/{pack_id}', [PackProduitCont
 
 Route::get('/packs_produits/removeProduct/{pack_id}/{produit_id}', [PackProduitController::class, 'removeProduct'])->name('packs_produits.removeFromPack');
 
+Route::get('/packs_produits/minusProduct/{pack_id}/{produit_id}', [PackProduitController::class, 'minusProduct']);
+
 Route::post('/packs_produits/add', [PackProduitController::class, 'addPackProduits']);
 
 Route::get('/packs_produits/form', [PackProduitController::class, 'showForm']);
