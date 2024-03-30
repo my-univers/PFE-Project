@@ -130,7 +130,7 @@
                         <div class="form-group row mt-5">
                             <div class="col-md-6">
                                 <label for="c_email_address" class="text-black">Adresse e-mail <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="c_email_address" required name="c_email_address" placeholder="user@example.com">
+                                <input type="email" class="form-control" id="c_email_address" required name="c_email_address" placeholder="user@example.com">
                             </div>
                             <div class="col-md-6">
                                 <label for="c_phone" class="text-black">Téléphone <span class="text-danger">*</span></label>
@@ -186,7 +186,7 @@
                                     </tbody>
                                 </table>
 
-                                <div class="border mb-3">
+                                {{-- <div class="border mb-3">
                                     <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsebank" role="button"
                                             aria-expanded="false" aria-controls="collapsebank">Virement bancaire direct</a></h3>
 
@@ -223,6 +223,11 @@
                                                 sur notre compte.</p>
                                         </div>
                                     </div>
+                                </div> --}}
+
+                                <div class="mb-5 text-center">
+                                    <!-- Paiement à la livraison -->
+                                        <h4 class="font-size-sm text-uppercase mb-3">Paiement à la livraison</h4>
                                 </div>
 
                                 <div class="form-group">
