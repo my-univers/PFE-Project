@@ -388,7 +388,7 @@
                                 <td>{{ $produit->prix }} DH</td>
                                 <td @if($produit->qte_en_stock <= 1) style="color: red"  @endif>{{ $produit->qte_en_stock }}</td>
                                 <td>
-                                    <input class="input is-small" type="number" name="quantite[]" value="1" min="1">
+                                    <input class="input is-small" type="number" name="quantite[{{ $produit->id }}]" value="1" min="1">
                                 </td>
                                 <td></td>
                             </tr>
@@ -454,7 +454,7 @@
                                 <td>{{ $pack->prix }} DH</td>
                                 <td @if($pack->qte_en_stock <= 1) style="color: red"  @endif>{{ $pack->qte_en_stock }}</td>
                                 <td>
-                                    <input class="input is-small" type="number" name="quantite[]" value="1" min="1">
+                                    <input class="input is-small" type="number" name="quantite[{{ $pack->id }}]" value="1" min="1">
                                 </td>
                                 <td class="actions-cell">
                                     <div class="buttons right nowrap">
@@ -524,26 +524,45 @@
     $(document).ready(function() {
         // Objet pour stocker les éléments sélectionnés
         var selectedItems = {};
+        var quantities = {};
 
         // Gérer la sélection des éléments
+        // $(document).on('change', 'input[type="checkbox"]', function() {
+        //     var itemId = $(this).val();
+        //     var isChecked = $(this).is(':checked');
+        //     if (isChecked) {
+        //         $(this).closest('tr').addClass('selected'); // Ajouter une classe pour marquer la sélection visuellement
+        //         // Ajouter l'identifiant unique au champ caché du formulaire
+        //         $('<input>').attr({
+        //             type: 'hidden',
+        //             name: 'selected_items[]',
+        //             value: itemId
+        //         }).appendTo('form');
+        //         selectedItems[itemId] = true;
+        //     } else {
+        //         $(this).closest('tr').removeClass('selected'); // Retirer la classe de sélection
+        //         // Supprimer l'entrée du champ caché associée à cet élément
+        //         $('input[name="selected_items[]"][value="' + itemId + '"]').remove();
+        //         delete selectedItems[itemId];
+        //     }
+        // });
         $(document).on('change', 'input[type="checkbox"]', function() {
             var itemId = $(this).val();
             var isChecked = $(this).is(':checked');
             if (isChecked) {
                 $(this).closest('tr').addClass('selected'); // Ajouter une classe pour marquer la sélection visuellement
-                // Ajouter l'identifiant unique au champ caché du formulaire
-                $('<input>').attr({
-                    type: 'hidden',
-                    name: 'selected_items[]',
-                    value: itemId
-                }).appendTo('form');
                 selectedItems[itemId] = true;
             } else {
                 $(this).closest('tr').removeClass('selected'); // Retirer la classe de sélection
-                // Supprimer l'entrée du champ caché associée à cet élément
-                $('input[name="selected_items[]"][value="' + itemId + '"]').remove();
                 delete selectedItems[itemId];
             }
+        });
+
+        // Gérer les quantités saisies
+        $(document).on('input', 'input[type="number"]', function() {
+            var itemId = $(this).closest('tr').find('input[type="checkbox"]').val();
+            var quantity = $(this).val();
+            quantities[itemId] = quantity;
         });
 
         // Pagination pour les clients
@@ -562,6 +581,7 @@
 
                 // Rétablir les sélections après le chargement du contenu paginé
                 restoreSelections(targetTable);
+                restoreQuantities(targetTable);
             });
         });
 
@@ -581,6 +601,7 @@
 
                 // Rétablir les sélections après le chargement du contenu paginé
                 restoreSelections(targetTable);
+                restoreQuantities(targetTable);
             });
         });
 
@@ -600,6 +621,7 @@
 
                 // Rétablir les sélections après le chargement du contenu paginé
                 restoreSelections(targetTable);
+                restoreQuantities(targetTable);
             });
         });
 
@@ -609,6 +631,16 @@
                 var itemId = $(this).val();
                 if (selectedItems[itemId]) {
                     $(this).prop('checked', true);
+                }
+            });
+        }
+
+        // Fonction pour rétablir les quantités saisies après le chargement du contenu paginé
+        function restoreQuantities(table) {
+            $(table).find('input[type="number"]').each(function() {
+                var itemId = $(this).closest('tr').find('input[type="checkbox"]').val();
+                if (quantities[itemId]) {
+                    $(this).val(quantities[itemId]);
                 }
             });
         }
