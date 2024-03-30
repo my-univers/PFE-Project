@@ -110,7 +110,7 @@
                         <p>
                             {{ $product->descr }}
                         </p>
-                        <p class="text-black">{{ $product->prix }} DH</p>
+                        <p class="text-black">{{ $product->prix }}DH</p>
 
                         {{-- <div class="mb-5">
                             <div class="input-group mb-3" style="max-width: 220px;">
@@ -327,11 +327,11 @@
             </div>
         </div>
 
-        <div class="site-section bg-secondary bg-image" style="background-image: url('../images/bg_2.jpg');">
+        <div class="site-section bg-secondary bg-image" style="background-image: url('images/bg_2.jpg');">
             <div class="container">
               <div class="row align-items-stretch">
                 <div class="col-lg-6 mb-5 mb-lg-0">
-                  <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('../images/bg_1.jpg');">
+                  <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_1.jpg');">
                       <div class="banner-1-inner align-self-center">
                           <h2>Service Clientele exceptionnel</h2>
                           <p>Notre équipe est disponible 24h/7j pour répondre à toutes vos questions et
@@ -341,7 +341,7 @@
                   </a>
                 </div>
                 <div class="col-lg-6 mb-5 mb-lg-0">
-                  <a href="/docteurs" class="banner-1 h-100 d-flex" style="background-image: url('../images/bg_2.jpg');">
+                  <a href="/docteurs" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_2.jpg');">
                       <div class="banner-1-inner ml-auto  align-self-center">
                           <h2>Commandez rapidement</h2>
                           <p>En cas d'urgence médicale, vous pouvez appeler directement un docteur et passer votre

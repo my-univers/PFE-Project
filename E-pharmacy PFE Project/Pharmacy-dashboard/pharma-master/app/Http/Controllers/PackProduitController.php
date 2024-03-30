@@ -60,8 +60,7 @@ class PackProduitController extends Controller
     public function showDetails($id) {
         $pack= Pack::find($id);
         $produits = $pack->produits()->paginate(5, ['*'], 'produits');
-
-        // Get all products where qte_en_stock >= 1
+        // get all products where qte_en_stock >= 1
         $allProducts = Produit::where('qte_en_stock','>=',1)->paginate(5, ['*'], 'allProducts_page');
 
         $total = 0;
@@ -124,32 +123,8 @@ class PackProduitController extends Controller
         $produit = Produit::findOrFail($produit_id);
         $quantite = $request->input('quantite');
 
-        // Vérifier si le produit existe déjà dans le pack
-        $existingProduct = $pack->produits()->where('produits_id', $produit_id)->first();
-
-        if ($existingProduct) {
-            // Mettre à jour la quantité du produit existant
-            $existingProduct->pivot->update(['qte_produit' => $existingProduct->pivot->qte_produit + $quantite]);
-        } else {
-            // Attacher le produit avec la quantité au pack
-            $pack->produits()->attach($produit, ['qte_produit' => $quantite]);
-        }
-
-        return redirect()->back();
-    }
-
-    public function minusProduct($produit_id, $pack_id) {
-        $pack = Pack::findOrFail($pack_id);
-        $produit = Produit::findOrFail($produit_id);
-
-        // Vérifier si le produit existe dans le pack
-        $existingProduct = $pack->produits()->where('produits_id', $produit_id)->first();
-
-        if ($existingProduct) {
-            // Diminuer la quantité du produit dans le pack
-            $currentQuantity = $existingProduct->pivot->qte_produit;
-            $existingProduct->pivot->update(['qte_produit' => $currentQuantity - 1]);
-        }
+        // Attacher le produit avec la quantité au pack
+        $pack->produits()->attach($produit, ['qte_produit' => $quantite]);
 
         return redirect()->back();
     }

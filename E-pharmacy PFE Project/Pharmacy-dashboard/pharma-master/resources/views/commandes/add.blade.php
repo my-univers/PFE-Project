@@ -306,7 +306,7 @@
                 </button>
                 <br><br>
                 @if ($clients->count() > 0)
-                    <table class="is-striped" id="clients-table">
+                    <table class="is-striped">
                         <thead>
                         <tr>
                             <th style="width: 20%"></th>
@@ -329,7 +329,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="table-pagination" id="clients-pagination">
+                    <div class="table-pagination">
                         <div class="flex items-center justify-between">
                             <div class="buttons">
                                 @if ($clients->onFirstPage())
@@ -364,7 +364,7 @@
                 </button>
                 <br><br>
                 @if ($produits->count() > 0)
-                    <table class="is-striped" id="produits-table">
+                    <table class="is-striped">
                         <thead>
                         <tr>
                             <th style="width: 100px"></th>
@@ -395,7 +395,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="table-pagination" id="produits-pagination">
+                    <div class="table-pagination">
                         <div class="flex items-center justify-between">
                             <div class="buttons">
                                 @if ($produits->onFirstPage())
@@ -430,7 +430,7 @@
                 </button>
                 <br><br>
                 @if ($packs->count() > 0)
-                    <table class="is-striped" id="packs-table">
+                    <table class="is-striped">
                         <thead>
                         <tr>
                             <th style="width: 100px"></th>
@@ -469,7 +469,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="table-pagination" id="packs-pagination">
+                    <div class="table-pagination">
                         <div class="flex items-center justify-between">
                             <div class="buttons">
                                 @if ($packs->onFirstPage())
@@ -531,96 +531,8 @@
     </footer>
   </div>
 </div> --}}
+
 </div>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // Objet pour stocker les éléments sélectionnés
-        var selectedItems = {};
-
-        // Gérer la sélection des éléments
-        $(document).on('change', 'input[type="checkbox"]', function() {
-            var itemId = $(this).val();
-            var isChecked = $(this).is(':checked');
-            if (isChecked) {
-                selectedItems[itemId] = true;
-            } else {
-                delete selectedItems[itemId];
-            }
-        });
-
-        // Pagination pour les clients
-        $(document).on('click', '#clients-pagination .button', function(e) {
-            e.preventDefault();
-            var url = $(this).attr('href');
-            var targetTable = $('#clients-table');
-            var targetPagination = $('#clients-pagination');
-
-            // Requête AJAX pour obtenir le nouveau contenu paginé pour les clients
-            $.get(url, function(data) {
-                var newTable = $(data).find('#clients-table').html();
-                var newPagination = $(data).find('#clients-pagination').html();
-                $(targetTable).html(newTable);
-                $(targetPagination).html(newPagination);
-
-                // Rétablir les sélections après le chargement du contenu paginé
-                restoreSelections(targetTable);
-            });
-        });
-
-        // Pagination pour les produits
-        $(document).on('click', '#produits-pagination .button', function(e) {
-            e.preventDefault();
-            var url = $(this).attr('href');
-            var targetTable = $('#produits-table');
-            var targetPagination = $('#produits-pagination');
-
-            // Requête AJAX pour obtenir le nouveau contenu paginé pour les produits
-            $.get(url, function(data) {
-                var newTable = $(data).find('#produits-table').html();
-                var newPagination = $(data).find('#produits-pagination').html();
-                $(targetTable).html(newTable);
-                $(targetPagination).html(newPagination);
-
-                // Rétablir les sélections après le chargement du contenu paginé
-                restoreSelections(targetTable);
-            });
-        });
-
-        // Pagination pour les packs
-        $(document).on('click', '#packs-pagination .button', function(e) {
-            e.preventDefault();
-            var url = $(this).attr('href');
-            var targetTable = $('#packs-table');
-            var targetPagination = $('#packs-pagination');
-
-            // Requête AJAX pour obtenir le nouveau contenu paginé pour les packs
-            $.get(url, function(data) {
-                var newTable = $(data).find('#packs-table').html();
-                var newPagination = $(data).find('#packs-pagination').html();
-                $(targetTable).html(newTable);
-                $(targetPagination).html(newPagination);
-
-                // Rétablir les sélections après le chargement du contenu paginé
-                restoreSelections(targetTable);
-            });
-        });
-
-        // Fonction pour rétablir les sélections après le chargement du contenu paginé
-        function restoreSelections(table) {
-            $(table).find('input[type="checkbox"]').each(function() {
-                var itemId = $(this).val();
-                if (selectedItems[itemId]) {
-                    $(this).prop('checked', true);
-                }
-            });
-        }
-    });
-</script>
-
-
-
 
 @endsection
 
