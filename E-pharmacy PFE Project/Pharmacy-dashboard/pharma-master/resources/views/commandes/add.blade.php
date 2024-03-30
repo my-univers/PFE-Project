@@ -667,4 +667,3 @@
 @endsection
 
 
-<!--------------Hnaya ghadi ntester pagination JQuery------------------->
