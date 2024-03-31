@@ -331,7 +331,7 @@
                 </button>
                 <br><br>
                 @if ($produits->count() > 0)
-                    <table class="is-striped">
+                    <table class="is-striped" id="produits-table">
                         <thead>
                             <tr>
                                 <th></th>
@@ -357,17 +357,29 @@
                                             @endif
                                         @endforeach
                                     </td>
-                                    <td>
-                                        <a class="button small red"
-                                            href="/packs_produits/removeProduct/{{ $pack->id }}/{{ $produit->id }}">
-                                            <span class="icon"><i class="mdi mdi-close"></i></span>
-                                        </a>
+                                    <td class="actions-cell">
+                                        <div class="buttons right nowrap">
+                                            @foreach ($pack->produits as $pack_produit)
+                                                @if ($pack_produit->id === $produit->id)
+                                                    @if ($pack_produit->pivot->qte_produit > 1)
+                                                        <a class="button small blue"
+                                                            href="/packs_produits/minusProduct/{{ $pack->id }}/{{ $produit->id }}">
+                                                            <span class="icon"><i class="mdi mdi-minus"></i></span>
+                                                        </a>
+                                                    @endif
+                                                @endif
+                                            @endforeach
+                                            <a class="button small red"
+                                                href="/packs_produits/removeProduct/{{ $pack->id }}/{{ $produit->id }}">
+                                                <span class="icon"><i class="mdi mdi-close"></i></span>
+                                            </a>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="table-pagination">
+                    <div class="table-pagination" id="produits-pagination">
                         <div class="flex items-center justify-between">
                             <div class="buttons">
                                 @if ($produits->onFirstPage())
@@ -410,7 +422,7 @@
                 </button>
                 <br><br>
                 @if ($allProducts->count() > 0)
-                    <table class="is-striped">
+                    <table class="is-striped" id="all-products-table">
                         <thead>
                             <tr>
                                 <th></th>
@@ -423,31 +435,29 @@
                         </thead>
                         <tbody>
                             @foreach ($allProducts as $produit)
-                                @if (!$produits->contains($produit))
-                                    <form method="post"
-                                        action="/packs_produits/addToPack/{{ $produit->id }}/{{ $pack->id }}">
-                                        @csrf
-                                        <tr>
-                                            <td></td>
-                                            <td>{{ $produit->nom }}</td>
-                                            <td>{{ $produit->qte_en_stock }}</td>
-                                            <td>{{ $produit->prix }} DH</td>
-                                            <td>
-                                                <input class="input is-small" type="number" name="quantite"
-                                                    value="1" min="1">
-                                            </td>
-                                            <td>
-                                                <button type="submit" class="button small blue">
-                                                    <span class="icon"><i class="mdi mdi-plus"></i></span>
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    </form>
-                                @endif
+                                <form method="post"
+                                    action="/packs_produits/addToPack/{{ $produit->id }}/{{ $pack->id }}">
+                                    @csrf
+                                    <tr>
+                                        <td></td>
+                                        <td>{{ $produit->nom }}</td>
+                                        <td>{{ $produit->qte_en_stock }}</td>
+                                        <td>{{ $produit->prix }} DH</td>
+                                        <td>
+                                            <input class="input is-small" type="number" name="quantite"
+                                                value="1" min="1">
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="button small blue">
+                                                <span class="icon"><i class="mdi mdi-plus"></i></span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </form>
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="table-pagination">
+                    <div class="table-pagination" id="all-products-pagination">
                         <div class="flex items-center justify-between">
                             <div class="buttons">
                                 @if ($allProducts->onFirstPage())
@@ -517,5 +527,42 @@
         fbq('init', '658339141622648');
         fbq('track', 'PageView');
     </script>
+
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Pagination pour les produits
+        $(document).on('click', '#produits-pagination .button', function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            var targetTable = $('#produits-table');
+            var targetPagination = $('#produits-pagination');
+
+            // Requête AJAX pour obtenir le nouveau contenu paginé pour les produits
+            $.get(url, function(data) {
+                var newTable = $(data).find('#produits-table').html();
+                var newPagination = $(data).find('#produits-pagination').html();
+                $(targetTable).html(newTable);
+                $(targetPagination).html(newPagination);
+            });
+        });
+
+        // Pagination pour les produits disponibles pour le pack
+        $(document).on('click', '#all-products-pagination .button', function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            var targetTable = $('#all-products-table');
+            var targetPagination = $('#all-products-pagination');
+
+            // Requête AJAX pour obtenir le nouveau contenu paginé pour les produits disponibles pour le pack
+            $.get(url, function(data) {
+                var newTable = $(data).find('#all-products-table').html();
+                var newPagination = $(data).find('#all-products-pagination').html();
+                $(targetTable).html(newTable);
+                $(targetPagination).html(newPagination);
+            });
+        });
+    });
+</script> --}}
 
 @endsection

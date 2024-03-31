@@ -45,7 +45,7 @@
               <span class="menu-item-label">Catégories</span>
             </a>
           </li>
-     
+
       <li>
         <a href="/commandes">
           <span class="icon"><i class="mdi mdi-cart"></i></span>
@@ -226,9 +226,9 @@
             <span class="icon"><i class="mdi mdi-cart"></i></span>
             Commandes
         </p>
-        <a href="#" class="card-header-icon">
+        {{-- <a href="#" class="card-header-icon">
             <span class="icon"><i class="mdi mdi-reload"></i></span>
-        </a>
+        </a> --}}
         </header>
         <div class="card-content">
             @if(count($commandes) > 0)

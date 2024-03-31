@@ -306,7 +306,7 @@
                 </button>
                 <br><br>
                 @if ($clients->count() > 0)
-                    <table class="is-striped">
+                    <table class="is-striped" id="clients-table">
                         <thead>
                         <tr>
                             <th style="width: 20%"></th>
@@ -329,7 +329,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="table-pagination">
+                    <div class="table-pagination" id="clients-pagination">
                         <div class="flex items-center justify-between">
                             <div class="buttons">
                                 @if ($clients->onFirstPage())
@@ -364,7 +364,7 @@
                 </button>
                 <br><br>
                 @if ($produits->count() > 0)
-                    <table class="is-striped">
+                    <table class="is-striped" id="produits-table">
                         <thead>
                         <tr>
                             <th style="width: 100px"></th>
@@ -395,7 +395,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="table-pagination">
+                    <div class="table-pagination" id="produits-pagination">
                         <div class="flex items-center justify-between">
                             <div class="buttons">
                                 @if ($produits->onFirstPage())
@@ -430,7 +430,7 @@
                 </button>
                 <br><br>
                 @if ($packs->count() > 0)
-                    <table class="is-striped">
+                    <table class="is-striped" id="packs-table">
                         <thead>
                         <tr>
                             <th style="width: 100px"></th>
@@ -469,7 +469,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <div class="table-pagination">
+                    <div class="table-pagination" id="packs-pagination">
                         <div class="flex items-center justify-between">
                             <div class="buttons">
                                 @if ($packs->onFirstPage())
@@ -498,9 +498,11 @@
                 @endif
             </div>
             <hr>
+            <!-- Champs cachés pour stocker les éléments séléctionnés -->
+            <input type="hidden" name="selected_items[]" id="elements-selectionnes">
             <div class="field grouped">
                 <div class="control">
-                    <button type="submit" class="button green" onclick="ajouterChampQuantite()">
+                    <button type="submit" id="submit-form" class="button green" onclick="ajouterChampQuantite()">
                         Ajouter
                     </button>
                 </div>
@@ -510,29 +512,158 @@
                     </button>
                 </div>
             </div>
+
         </form>
-        </script>
       </div>
     </div>
 </section>
-
-{{-- <div id="sample-modal-2" class="modal">
-  <div class="modal-background --jb-modal-close"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Sample modal</p>
-    </header>
-    <section class="modal-card-body">
-      <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-      <p>This is sample modal</p>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button --jb-modal-close">Cancel</button>
-      <button class="button blue --jb-modal-close">Confirm</button>
-    </footer>
-  </div>
-</div> --}}
-
 </div>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        // Objet pour stocker les éléments sélectionnés
+        var selectedItems = {};
+        var quantities = {};
+
+        // Gérer la sélection des éléments
+        $(document).on('change', 'input[type="checkbox"]', function() {
+            var itemId = $(this).val();
+            var isChecked = $(this).is(':checked');
+            if (isChecked) {
+                $(this).closest('tr').addClass('selected'); // Ajouter une classe pour marquer la sélection visuellement
+                // Ajouter l'identifiant unique au champ caché du formulaire
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: 'selected_items[]',
+                    value: itemId
+                }).appendTo('form');
+                selectedItems[itemId] = true;
+            } else {
+                $(this).closest('tr').removeClass('selected'); // Retirer la classe de sélection
+                // Supprimer l'entrée du champ caché associée à cet élément
+                $('input[name="selected_items[]"][value="' + itemId + '"]').remove();
+                delete selectedItems[itemId];
+            }
+        });
+        // $(document).on('change', 'input[type="checkbox"]', function() {
+        //     var itemId = $(this).val();
+        //     var isChecked = $(this).is(':checked');
+        //     if (isChecked) {
+        //         $(this).closest('tr').addClass('selected'); // Ajouter une classe pour marquer la sélection visuellement
+        //         selectedItems[itemId] = true;
+        //     } else {
+        //         $(this).closest('tr').removeClass('selected'); // Retirer la classe de sélection
+        //         delete selectedItems[itemId];
+        //     }
+        // });
+
+        // Gérer les quantités saisies
+        $(document).on('input', 'input[type="number"]', function() {
+            var itemId = $(this).closest('tr').find('input[type="checkbox"]').val();
+            var quantity = $(this).val();
+            quantities[itemId] = quantity;
+        });
+
+        // Pagination pour les clients
+        $(document).on('click', '#clients-pagination .button', function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            var targetTable = $('#clients-table');
+            var targetPagination = $('#clients-pagination');
+
+            // Requête AJAX pour obtenir le nouveau contenu paginé pour les clients
+            $.get(url, function(data) {
+                var newTable = $(data).find('#clients-table').html();
+                var newPagination = $(data).find('#clients-pagination').html();
+                $(targetTable).html(newTable);
+                $(targetPagination).html(newPagination);
+
+                // Rétablir les sélections après le chargement du contenu paginé
+                restoreSelections(targetTable);
+                restoreQuantities(targetTable);
+            });
+        });
+
+        // Pagination pour les produits
+        $(document).on('click', '#produits-pagination .button', function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            var targetTable = $('#produits-table');
+            var targetPagination = $('#produits-pagination');
+
+            // Requête AJAX pour obtenir le nouveau contenu paginé pour les produits
+            $.get(url, function(data) {
+                var newTable = $(data).find('#produits-table').html();
+                var newPagination = $(data).find('#produits-pagination').html();
+                $(targetTable).html(newTable);
+                $(targetPagination).html(newPagination);
+
+                // Rétablir les sélections après le chargement du contenu paginé
+                restoreSelections(targetTable);
+                restoreQuantities(targetTable);
+            });
+        });
+
+        // Pagination pour les packs
+        $(document).on('click', '#packs-pagination .button', function(e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            var targetTable = $('#packs-table');
+            var targetPagination = $('#packs-pagination');
+
+            // Requête AJAX pour obtenir le nouveau contenu paginé pour les packs
+            $.get(url, function(data) {
+                var newTable = $(data).find('#packs-table').html();
+                var newPagination = $(data).find('#packs-pagination').html();
+                $(targetTable).html(newTable);
+                $(targetPagination).html(newPagination);
+
+                // Rétablir les sélections après le chargement du contenu paginé
+                restoreSelections(targetTable);
+                restoreQuantities(targetTable);
+            });
+        });
+
+        // Fonction pour rétablir les sélections après le chargement du contenu paginé
+        function restoreSelections(table) {
+            $(table).find('input[type="checkbox"]').each(function() {
+                var itemId = $(this).val();
+                if (selectedItems[itemId]) {
+                    $(this).prop('checked', true);
+                }
+            });
+        }
+
+        // Fonction pour rétablir les quantités saisies après le chargement du contenu paginé
+        function restoreQuantities(table) {
+            $(table).find('input[type="number"]').each(function() {
+                var itemId = $(this).closest('tr').find('input[type="checkbox"]').val();
+                if (quantities[itemId]) {
+                    $(this).val(quantities[itemId]);
+                }
+            });
+        }
+
+        // Soumission du formulaire
+        $('#submit-form').click(function() {
+            // Réinitialiser le champ caché des éléments sélectionnés
+            $('input[name="selected_items[]"]').remove();
+            // Ajouter les éléments sélectionnés au champ caché
+            for (var itemId in selectedItems) {
+                $('<input>').attr({
+                    type: 'hidden',
+                    name: 'selected_items[]',
+                    value: itemId
+                }).appendTo('form');
+            }
+            // Soumettre le formulaire normalement
+            $('form').submit();
+        });
+    });
+</script>
+
+
 @endsection
+
+

@@ -94,6 +94,7 @@
 
         @include('sweetalert::alert')
 
+<<<<<<< HEAD
         <div class="bg-light py-3">
             <div class="container">
                 <div class="row">
@@ -123,6 +124,12 @@
                                     <input type="text" class="form-control" id="c_companyname" required
                                         name="nom" placeholder="Nom complet">
                                 </div>
+=======
+                        <div class="form-group row mt-5">
+                            <div class="col-md-6">
+                                <label for="c_email_address" class="text-black">Adresse e-mail <span class="text-danger">*</span></label>
+                                <input type="email" class="form-control" id="c_email_address" required name="c_email_address" placeholder="user@example.com">
+>>>>>>> ba578d9502cb88d0be689137198dd96d2792b992
                             </div>
                             <div class="form-group row mt-5">
                                 <div class="col-md-12">
@@ -267,7 +274,13 @@
                 </div>
 
 
+<<<<<<< HEAD
                     
+=======
+                                {{-- <div class="border mb-3">
+                                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsebank" role="button"
+                                            aria-expanded="false" aria-controls="collapsebank">Virement bancaire direct</a></h3>
+>>>>>>> ba578d9502cb88d0be689137198dd96d2792b992
 
 
 
@@ -306,11 +319,72 @@
                                         commande par téléphone.
                                     </p>
                                 </div>
+<<<<<<< HEAD
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
+=======
+
+                                <div class="border mb-5">
+                                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsepaypal" role="button"
+                                            aria-expanded="false" aria-controls="collapsepaypal">Paypal</a></h3>
+
+                                    <div class="collapse" id="collapsepaypal">
+                                        <div class="py-2 px-4">
+                                            <p class="mb-0">Effectuez votre paiement via Paypal. Veuillez utiliser votre numéro de commande comme
+                                                référence de paiement. Votre commande ne sera pas expédiée tant que les fonds n'auront pas été crédités
+                                                sur notre compte.</p>
+                                        </div>
+                                    </div>
+                                </div> --}}
+
+                                <div class="mb-5 text-center">
+                                    <!-- Paiement à la livraison -->
+                                        <h4 class="font-size-sm text-uppercase mb-3">Paiement à la livraison</h4>
+                                </div>
+
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-primary btn-block">Passer  {{-- onclick="window.location='/thankyou'" --}}
+                                        la commande</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- </form> -->
+        </div>
+    </div>
+
+    <div class="site-section bg-secondary bg-image" style="background-image: url('images/bg_2.jpg');">
+        <div class="container">
+          <div class="row align-items-stretch">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+              <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_1.jpg');">
+                  <div class="banner-1-inner align-self-center">
+                      <h2>Service Clientele exceptionnel</h2>
+                      <p>Notre équipe est disponible 24h/7j pour répondre à toutes vos questions et
+                          préoccupations médicales.
+                      </p>
+                  </div>
+              </a>
+            </div>
+            <div class="col-lg-6 mb-5 mb-lg-0">
+              <a href="/docteurs" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_2.jpg');">
+                  <div class="banner-1-inner ml-auto  align-self-center">
+                      <h2>Commandez rapidement</h2>
+                      <p>En cas d'urgence médicale, vous pouvez appeler directement un docteur et passer votre
+                          commande par téléphone.
+                      </p>
+                  </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+>>>>>>> ba578d9502cb88d0be689137198dd96d2792b992
 
 
             <!--********* FOOTER *********-->

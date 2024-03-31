@@ -24,9 +24,9 @@ class ProduitController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        // Obtention du nom du produit sélectionné
+        // Obtention du nom du produit sélectionné et conversion en minuscules
         $product = Produit::find($request->product_id);
-        $selectedProductName = $product->nom;
+        $selectedProductName =  strtolower($product->nom);
 
         // Vérification si le fichier est un PDF ou une image
         $fileExtension = $request->file('image')->guessExtension();
@@ -34,12 +34,21 @@ class ProduitController extends Controller
         if ($fileExtension == 'pdf') {
             // Lecture du texte du PDF
             $pdfText = (new Parser())->parseFile($request->file('image')->path())->getText();
+            $pdfText = strtolower($pdfText); // Conversion en minuscules
         } else {
             // Utilisation de l'OCR pour extraire le texte de l'image
             $pdfText = (new TesseractOCR($request->file('image')->path()))
+<<<<<<< HEAD
             // ->executable('C:\Program Files\Tesseract-OCR')
             ->run();
     }
+=======
+                // ->executable('C:\Program Files\Tesseract-OCR\tesseract')
+                ->run();
+            $pdfText = strtolower($pdfText); // Conversion en minuscules
+        }
+
+>>>>>>> ba578d9502cb88d0be689137198dd96d2792b992
         // Recherche du nom du produit dans le texte du PDF
         if (strpos($pdfText, $selectedProductName) !== false) {
             // Le nom du produit correspond, continuer avec le traitement de l'ordonnance

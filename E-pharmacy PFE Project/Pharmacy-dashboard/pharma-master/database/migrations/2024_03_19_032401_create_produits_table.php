@@ -21,8 +21,8 @@ return new class extends Migration
             $table->integer('qte_en_stock')->nullable(false);
             $table->boolean('ordonnance');
             $table->string('image_path', 2500);
-            $table->string('ingredients');
-            $table->string('poids');
+            $table->string('ingredients',3500);
+            $table->string('poids',150);
             $table->foreignId('categorie_id')->constrained('categories')->onDelete('cascade');;
             $table->timestamps();
         });

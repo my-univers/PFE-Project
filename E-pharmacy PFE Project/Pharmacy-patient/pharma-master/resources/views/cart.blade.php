@@ -173,9 +173,11 @@
         <div class="row">
           <div class="col-md-6">
             <div class="row mb-5">
-              {{-- <div class="col-md-6 mb-3 mb-md-0">
-                <button class="btn btn-primary btn-md btn-block">Modifier Panier</button>
-              </div> --}}
+              @if ($total > 0)
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <a href="/cart/cancelCart" class="btn btn-primary btn-md btn-block">Annuler l'achat</a>
+                </div>
+              @endif
               <div class="col-md-6">
                 <a href="/shop/produits" class="btn btn-outline-primary btn-md btn-block">Continuer les achats</a>
               </div>
@@ -256,7 +258,7 @@
             </a>
           </div>
           <div class="col-lg-6 mb-5 mb-lg-0">
-            <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_2.jpg');">
+            <a href="/docteurs" class="banner-1 h-100 d-flex" style="background-image: url('images/bg_2.jpg');">
                 <div class="banner-1-inner ml-auto  align-self-center">
                     <h2>Commandez rapidement</h2>
                     <p>En cas d'urgence médicale, vous pouvez appeler directement un docteur et passer votre

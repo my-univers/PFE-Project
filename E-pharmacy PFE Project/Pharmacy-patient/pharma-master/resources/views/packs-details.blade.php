@@ -110,7 +110,7 @@
                         <p>
                             {{ $pack->descr }}
                         </p>
-                        <p class="text-black">{{ $pack->prix }}DH</p>
+                        <p class="text-black">{{ $pack->prix }} DH</p>
 
                         <form action="{{ route('add.to.cart') }}" method="POST">
                             @csrf
@@ -208,32 +208,30 @@
 
         <div class="site-section bg-secondary bg-image" style="background-image: url('../images/bg_2.jpg');">
             <div class="container">
-                <div class="row align-items-stretch">
-                    <div class="col-lg-6 mb-5 mb-lg-0">
-                        <a href="#" class="banner-1 h-100 d-flex"
-                            style="background-image: url('../images/bg_1.jpg');">
-                            <div class="banner-1-inner align-self-center">
-                                <h2>Pharma Products</h2>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem
-                                    odio voluptatem.
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-6 mb-5 mb-lg-0">
-                        <a href="#" class="banner-1 h-100 d-flex"
-                            style="background-image: url('../images/bg_2.jpg');">
-                            <div class="banner-1-inner ml-auto  align-self-center">
-                                <h2>Rated by Experts</h2>
-                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem
-                                    odio voluptatem.
-                                </p>
-                            </div>
-                        </a>
-                    </div>
+              <div class="row align-items-stretch">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                  <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('../images/bg_1.jpg');">
+                      <div class="banner-1-inner align-self-center">
+                          <h2>Service Clientele exceptionnel</h2>
+                          <p>Notre équipe est disponible 24h/7j pour répondre à toutes vos questions et
+                              préoccupations médicales.
+                          </p>
+                      </div>
+                  </a>
                 </div>
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                  <a href="/docteurs" class="banner-1 h-100 d-flex" style="background-image: url('../images/bg_2.jpg');">
+                      <div class="banner-1-inner ml-auto  align-self-center">
+                          <h2>Commandez rapidement</h2>
+                          <p>En cas d'urgence médicale, vous pouvez appeler directement un docteur et passer votre
+                              commande par téléphone.
+                          </p>
+                      </div>
+                  </a>
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
 
 
         <!--********* FOOTER *********-->
