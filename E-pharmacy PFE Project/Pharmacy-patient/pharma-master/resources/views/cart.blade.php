@@ -173,9 +173,11 @@
         <div class="row">
           <div class="col-md-6">
             <div class="row mb-5">
-              {{-- <div class="col-md-6 mb-3 mb-md-0">
-                <button class="btn btn-primary btn-md btn-block">Modifier Panier</button>
-              </div> --}}
+              @if ($total > 0)
+                <div class="col-md-6 mb-3 mb-md-0">
+                    <a href="/cart/cancelCart" class="btn btn-primary btn-md btn-block">Annuler l'achat</a>
+                </div>
+              @endif
               <div class="col-md-6">
                 <a href="/shop/produits" class="btn btn-outline-primary btn-md btn-block">Continuer les achats</a>
               </div>
