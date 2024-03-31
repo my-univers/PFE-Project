@@ -11,6 +11,8 @@ use App\Models\Client;
 use App\Models\Commande;
 use App\Models\PackCommande;
 use App\Models\ProduitCommande;
+use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Session as FacadesSession;
 
 class CartController extends Controller
 {
@@ -136,6 +138,7 @@ class CartController extends Controller
 
         // Initialiser le total
         $total = 0;
+        $FraixTotal=0;
 
         // Calculer le total des articles dans le panier
         foreach ($cart as $cartItem) {
@@ -143,13 +146,15 @@ class CartController extends Controller
             if ($cartItem['type'] === 'product') {
                 // Si c'est un produit, multiplier le prix par la quantité
                 $total += $cartItem['item']->prix * $cartItem['quantity'];
+                $FraixTotal = $total + 20;
             } elseif ($cartItem['type'] === 'pack') {
                 // Si c'est un pack, multiplier le prix par la quantité
                 $total += $cartItem['item']->prix * $cartItem['quantity'];
+                $FraixTotal = $total + 20;
             }
         }
 
-        return view('checkout', compact('cart', 'total'));
+        return view('checkout', compact('cart', 'total', 'FraixTotal'));
     }
 
     public function passerCommande(Request $request)

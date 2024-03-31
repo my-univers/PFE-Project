@@ -261,11 +261,11 @@
                                         href="#pills-home" role="tab" aria-controls="pills-home"
                                         aria-selected="true">Informations</a>
                                 </li>
-                                {{-- <li class="nav-item">
+                                <li class="nav-item">
                                     <a class="nav-link" id="pills-profile-tab" data-toggle="pill"
                                         href="#pills-profile" role="tab" aria-controls="pills-profile"
                                         aria-selected="false">Specifications</a>
-                                </li> --}}
+                                </li>
 
                             </ul>
                             <div class="tab-content" id="pills-tabContent">
@@ -291,32 +291,24 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{-- <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                                <div class="tab-pane fade" id="pills-profile" role="tabpanel"
                                     aria-labelledby="pills-profile-tab">
 
                                     <table class="table custom-table">
 
                                         <tbody>
                                             <tr>
-                                                <td>HPIS CODE</td>
-                                                <td class="bg-light">999_200_40_0</td>
+                                                <td>Ingrédients</td>
+                                                <td class="bg-light">{{$product->ingredients}}</td>
                                             </tr>
                                             <tr>
-                                                <td>HEALTHCARE PROVIDERS ONLY</td>
-                                                <td class="bg-light">No</td>
-                                            </tr>
-                                            <tr>
-                                                <td>LATEX FREE</td>
-                                                <td class="bg-light">Yes, No</td>
-                                            </tr>
-                                            <tr>
-                                                <td>MEDICATION ROUTE</td>
-                                                <td class="bg-light">Topical</td>
+                                                <td>Poids</td>
+                                                <td class="bg-light">{{$product->poids}} mg</td>
                                             </tr>
                                         </tbody>
                                     </table>
 
-                                </div> --}}
+                                </div>
 
                             </div>
                         </div>

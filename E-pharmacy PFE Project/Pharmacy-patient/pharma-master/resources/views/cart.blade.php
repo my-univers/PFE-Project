@@ -230,7 +230,7 @@
                 @if ($total != 0)
                     <div class="row">
                         <div class="col-md-12">
-                        <a class="btn btn-primary btn-lg btn-block" href="/checkout">Passer Au Paiemenet</a>
+                        <a class="btn btn-primary btn-lg btn-block" href="/checkout">Confirmer la commande</a>
                         </div>
                     </div>
                 @endif

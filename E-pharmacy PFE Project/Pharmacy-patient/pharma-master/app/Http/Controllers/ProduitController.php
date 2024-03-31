@@ -29,14 +29,15 @@ class ProduitController extends Controller
         $selectedProductName = $product->nom;
 
         // Vérification si le fichier est un PDF ou une image
-        $fileExtension = $request->file('image')->extension();
+        $fileExtension = $request->file('image')->guessExtension();
+
         if ($fileExtension == 'pdf') {
             // Lecture du texte du PDF
             $pdfText = (new Parser())->parseFile($request->file('image')->path())->getText();
         } else {
             // Utilisation de l'OCR pour extraire le texte de l'image
             $pdfText = (new TesseractOCR($request->file('image')->path()))
-            // ->executable('C:\Program Files\Tesseract-OCR\tesseract')
+            // ->executable('C:\Program Files\Tesseract-OCR')
             ->run();
     }
         // Recherche du nom du produit dans le texte du PDF
