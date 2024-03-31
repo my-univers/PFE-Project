@@ -296,6 +296,7 @@
           <span class="icon"><i class="mdi mdi-pill"></i></span>
           Produits
         </p>
+
         <form action="/produits/list" method="get" class="card-header-icon" id="filterForm">
             <span>
                 <label class="label">Filtrer par Catégorie </label>
@@ -322,8 +323,8 @@
                 document.getElementById("filterForm").submit();
             }
         </script>
-
       </header>
+      
       <div class="card-content">
         @if ($produits)
         <table>
@@ -333,7 +334,7 @@
                 <th>#</th>
                 <th style="">Nom</th>
                 <th style="width: 300px">Description</th>
-                <th>Catégotie</th>
+                <th>Catégorie</th>
                 <th>Prix</th>
                 <th>Quantité en stock</th>
                 <th></th>
