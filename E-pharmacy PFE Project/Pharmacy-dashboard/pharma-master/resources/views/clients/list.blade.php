@@ -344,7 +344,7 @@
                     <td>{{ $c->id }}</td>
                     <td>{{ $c->nom }}</td>
                     <td>{{ $c->email }}</td>
-                    <td>{{ $c->adresse }}</td>
+                    <td style="max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $c->adresse }}</td>
                     <td>{{ $c->telephone }}</td>
                     <td class="actions-cell">
                     <div class="buttons right nowrap">

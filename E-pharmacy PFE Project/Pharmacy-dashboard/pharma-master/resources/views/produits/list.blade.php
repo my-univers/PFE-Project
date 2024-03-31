@@ -331,10 +331,10 @@
             <tr>
                 <th></th>
                 <th>#</th>
-                <th style="">Nom</th>
+                <th style="width: 170px">Nom</th>
                 <th style="width: 300px">Description</th>
                 <th>Catégotie</th>
-                <th>Prix</th>
+                <th  style="width: 100px">Prix</th>
                 <th>Quantité en stock</th>
                 <th></th>
             </tr>
@@ -345,7 +345,7 @@
                     <td></td>
                     <td>{{ $p->id }}</td>
                     <td>{{ $p->nom }}</td>
-                    <td>{{ $p->descr }}</td>
+                    <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $p->descr }}</td>
                     <td>{{ $p->categorie->nom }}</td>
                     <td>{{ $p->prix }} DH</td>
                     <td @if($p->qte_en_stock <= 1) style="color: red"  @endif>{{ $p->qte_en_stock }}</td>

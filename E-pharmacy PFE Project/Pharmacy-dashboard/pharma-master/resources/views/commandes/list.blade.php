@@ -368,7 +368,7 @@
                     <td>{{ $c->id }}</td>
                     <td>{{ $c->client->nom }}</td>
                     <td>{{ $c->date_commande }}</td>
-                    <td>{{ $c->client->adresse }}</td>
+                    <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $c->client->adresse }}</td>
                     <td
                         @if ($c->statut == "En attente")
                             style="color:orange;"
