@@ -278,6 +278,8 @@
   </div>
 </section>
 
+@include('sweetalert::alert')
+
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
@@ -344,7 +346,7 @@
                     <td>{{ $c->id }}</td>
                     <td>{{ $c->nom }}</td>
                     <td>{{ $c->email }}</td>
-                    <td>{{ $c->adresse }}</td>
+                    <td style="max-width: 240px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $c->adresse }}</td>
                     <td>{{ $c->telephone }}</td>
                     <td class="actions-cell">
                     <div class="buttons right nowrap">

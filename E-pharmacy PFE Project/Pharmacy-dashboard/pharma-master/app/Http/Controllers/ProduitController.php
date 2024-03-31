@@ -6,6 +6,7 @@ use App\Models\Categorie;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class ProduitController extends Controller
 {
@@ -58,6 +59,8 @@ class ProduitController extends Controller
         }
 
         $produit->save();
+
+        FacadesAlert::success('Produit ajouté avec succés');
 
         return redirect('/produits/list');
     }
@@ -112,6 +115,8 @@ class ProduitController extends Controller
 
         $produit->save();
 
+        FacadesAlert::success('Produit mis à jour avec succés');
+
         return redirect('/produits/list');
     }
 
@@ -135,6 +140,8 @@ class ProduitController extends Controller
 
         // Supprimer le produit
         $produit->delete();
+
+        FacadesAlert::success('Produit supprimé avec succés');
 
         return redirect('/produits/list');
     }

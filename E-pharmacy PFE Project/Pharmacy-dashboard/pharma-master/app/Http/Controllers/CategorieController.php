@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class CategorieController extends Controller
 {
@@ -25,6 +26,8 @@ class CategorieController extends Controller
 
         $c->save();
 
+        FacadesAlert::success('Catégorie ajoutée avec succés');
+
         return redirect('/categories/list');
     }
 
@@ -39,12 +42,16 @@ class CategorieController extends Controller
         $c->nom = $request->nom;
         $c->save();
 
+        FacadesAlert::success('Catégorie mise à jour avec succés');
+
         return redirect('/categories/list');
     }
 
     public function deleteCategorie($id) {
         $c = Categorie::find($id);
         $c->delete();
+
+        FacadesAlert::success('Catégorie supprimée avec succés');
 
         return redirect('/categories/list');
     }
