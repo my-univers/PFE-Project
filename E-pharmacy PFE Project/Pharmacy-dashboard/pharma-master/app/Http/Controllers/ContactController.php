@@ -35,6 +35,9 @@ class ContactController extends Controller
     {
         $c = Contact::find($id);
         $c->delete();
+
+        FacadesAlert::success('Message supprimé avec succés');
+
         return redirect('/messages');
     }
 

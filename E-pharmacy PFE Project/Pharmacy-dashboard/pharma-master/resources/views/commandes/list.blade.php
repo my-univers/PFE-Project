@@ -281,6 +281,8 @@
   </div>
 </section>
 
+@include('sweetalert::alert')
+
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
@@ -368,7 +370,7 @@
                     <td>{{ $c->id }}</td>
                     <td>{{ $c->client->nom }}</td>
                     <td>{{ $c->date_commande }}</td>
-                    <td>{{ $c->client->adresse }}</td>
+                    <td style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $c->client->adresse }}</td>
                     <td
                         @if ($c->statut == "En attente")
                             style="color:orange;"

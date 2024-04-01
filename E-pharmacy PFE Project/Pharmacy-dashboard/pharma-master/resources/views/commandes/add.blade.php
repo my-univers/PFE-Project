@@ -278,6 +278,8 @@
   </div>
 </section>
 
+@include('sweetalert::alert')
+
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
@@ -539,24 +541,15 @@
                     value: itemId
                 }).appendTo('form');
                 selectedItems[itemId] = true;
+                // sessionStorage.setItem(itemId, quantity);
             } else {
                 $(this).closest('tr').removeClass('selected'); // Retirer la classe de sélection
                 // Supprimer l'entrée du champ caché associée à cet élément
                 $('input[name="selected_items[]"][value="' + itemId + '"]').remove();
                 delete selectedItems[itemId];
+                // sessionStorage.removeItem(itemId, quantity);
             }
         });
-        // $(document).on('change', 'input[type="checkbox"]', function() {
-        //     var itemId = $(this).val();
-        //     var isChecked = $(this).is(':checked');
-        //     if (isChecked) {
-        //         $(this).closest('tr').addClass('selected'); // Ajouter une classe pour marquer la sélection visuellement
-        //         selectedItems[itemId] = true;
-        //     } else {
-        //         $(this).closest('tr').removeClass('selected'); // Retirer la classe de sélection
-        //         delete selectedItems[itemId];
-        //     }
-        // });
 
         // Gérer les quantités saisies
         $(document).on('input', 'input[type="number"]', function() {

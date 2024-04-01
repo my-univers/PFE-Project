@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Medecin;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class MedecinController extends Controller
 {
@@ -33,6 +34,9 @@ class MedecinController extends Controller
         $med->specialite = $specialite;
 
         $med->save();
+
+        FacadesAlert::success('Médecin ajouté avec succés');
+
         return redirect('/medecins/list');
     }
 
@@ -52,12 +56,17 @@ class MedecinController extends Controller
         $m->specialite = $request->specialite;
 
         $m->save();
+
+        FacadesAlert::success('Médecin mis à jour avec succés');
+
         return redirect('/medecins/list');
     }
 
     public function deleteMedecin($id) {
         $m = Medecin::find($id);
         $m->delete();
+
+        FacadesAlert::success('Médecin supprimé avec succés');
 
         return redirect('/medecins/list');
     }

@@ -7,6 +7,7 @@ use App\Models\Commande;
 use App\Models\Pack;
 use App\Models\Produit;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class CommandeController extends Controller
 {
@@ -39,6 +40,8 @@ class CommandeController extends Controller
         $commande = Commande::find($id);
         $commande->statut = "Validée";
         $commande->save();
+
+        FacadesAlert::success('La commande a été validée avec succés');
 
         return redirect('/commandes');
     }
@@ -124,6 +127,8 @@ class CommandeController extends Controller
         $commande->total = $total_commande;
         $commande->save();
 
+        FacadesAlert::success('Commande ajoutée avec succés');
+
         return redirect('/commandes')->with('success', 'Commande ajoutée avec succès');
     }
 
@@ -132,6 +137,8 @@ class CommandeController extends Controller
         $commande = Commande::find($id);
         $commande->statut = "Annulée";
         $commande->save();
+
+        FacadesAlert::success('La commande a été annulée');
 
         return redirect('/commandes');
     }

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use App\Notifications\SendVerificationCodeNotification;
 use Illuminate\Notifications\Notification;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 use function Ramsey\Uuid\v1;
 
@@ -114,7 +115,9 @@ class AuthenticatedAdminController extends Controller
 
         $admin->save();
 
-        return redirect()->back()->with('success', 'Profil mis à jour avec succès.');
+        FacadesAlert::success('Profil mis à jour avec succés');
+
+        return back()->with('success', 'Profil mis à jour avec succès.');
     }
 
     public function updatePassword(Request $request)
@@ -148,7 +151,9 @@ class AuthenticatedAdminController extends Controller
         $admin->mot_de_passe = bcrypt($request->nv_mdp);
         $admin->save();
 
-        return redirect()->back()->with('success', 'Mot de passe mis à jour avec succès.');
+        FacadesAlert::success('Mot de passe mis à jour avec succés');
+
+        return back()->with('success', 'Mot de passe mis à jour avec succès.');
     }
 
     /***********Forgot password***********/
@@ -250,6 +255,8 @@ class AuthenticatedAdminController extends Controller
         // Mettre à jour le mot de passe si la validation réussit
         $admin->mot_de_passe = bcrypt($request->mot_de_passe);
         $admin->save();
+
+        FacadesAlert::success('Mot de passe réinitialisé avec succès. Veuillez vous connecter.');
 
         return redirect('/loginForm')->with('success', 'Mot de passe réinitialisé avec succès. Veuillez vous connecter.');
     }

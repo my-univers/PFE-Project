@@ -239,6 +239,7 @@
                         <th>#</th>
                         <th>Client</th>
                         <th>Date de la Commande</th>
+                        <th>Adresse</th>
                         <th>Statut</th>
                         <th></th>
                     </tr>
@@ -250,6 +251,7 @@
                         <td>{{ $commande->id }}</td>
                         <td>{{ $commande->client->nom }}</td>
                         <td>{{ $commande->date_commande }}</td>
+                        <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $commande->client->adresse }}</td>
                         <td @if($commande->statut == "En attente") style="color: orange" @elseif($commande->statut == "Validée") style="color: green" @elseif($commande->statut == "Annulée") style="color: red" @endif>{{ $commande->statut }}</td>
                         <td class="actions-cell">
                             <div class="buttons right nowrap">

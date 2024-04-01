@@ -152,7 +152,7 @@
 
 
             <div class="site-section-heading pt-3 mb-4">
-              <h2 class="text-black">Nous sommes une entreprise de confiance</h2>
+              <h2 class="text-black">Nous sommes une pharmacie de confiance</h2>
             </div>
             <p>
               En tant qu'entreprise de confiance, nous nous engageons à fournir des produits pharmaceutiques de haute qualité et des services exceptionnels à nos clients.
@@ -174,8 +174,8 @@
               <span class="icon-truck text-primary"></span>
             </div>
             <div class="text">
-              <h2>Livraison gratuite</h2>
-              <p>Profitez de la livraison gratuite sur toutes vos commandes et sans frais supplémentaires.</p>
+              <h2>Frais de livraison bon marché</h2>
+              <p>Profitez d'une livraison à seulement 20 DH sur toutes vos commandes et sans frais supplémentaires.</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">

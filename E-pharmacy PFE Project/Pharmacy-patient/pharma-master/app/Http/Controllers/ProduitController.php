@@ -38,17 +38,11 @@ class ProduitController extends Controller
         } else {
             // Utilisation de l'OCR pour extraire le texte de l'image
             $pdfText = (new TesseractOCR($request->file('image')->path()))
-<<<<<<< HEAD
-            // ->executable('C:\Program Files\Tesseract-OCR')
-            ->run();
-    }
-=======
                 // ->executable('C:\Program Files\Tesseract-OCR\tesseract')
                 ->run();
             $pdfText = strtolower($pdfText); // Conversion en minuscules
         }
 
->>>>>>> ba578d9502cb88d0be689137198dd96d2792b992
         // Recherche du nom du produit dans le texte du PDF
         if (strpos($pdfText, $selectedProductName) !== false) {
             // Le nom du produit correspond, continuer avec le traitement de l'ordonnance

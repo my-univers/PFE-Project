@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class ClientController extends Controller
 {
@@ -34,6 +35,8 @@ class ClientController extends Controller
 
         $client->save();
 
+        FacadesAlert::success('Client ajouté avec succés');
+
         return redirect('/clients/list');
     }
 
@@ -55,6 +58,8 @@ class ClientController extends Controller
 
         $c->save();
 
+        FacadesAlert::success('Client mis à jour avec succés');
+
         return redirect('/clients/list');
     }
 
@@ -63,6 +68,8 @@ class ClientController extends Controller
 
         $c = Client::find($id);
         $c->delete();
+
+        FacadesAlert::success('Client supprimé avec succés');
 
         return redirect('/clients/list');
     }

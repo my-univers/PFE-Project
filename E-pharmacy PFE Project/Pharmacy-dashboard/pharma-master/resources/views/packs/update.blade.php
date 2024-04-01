@@ -278,14 +278,16 @@
     </div>
 </section>
 
+@include('sweetalert::alert')
+
 <section class="is-hero-bar">
     <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
       <h1 class="title">
         Modifier Pack
       </h1>
-      {{-- <a class="button blue" href='/packs'>
+      <a class="button blue" href='/packs'>
         Retour
-      </a> --}}
+    </a>
     </div>
 </section>
 

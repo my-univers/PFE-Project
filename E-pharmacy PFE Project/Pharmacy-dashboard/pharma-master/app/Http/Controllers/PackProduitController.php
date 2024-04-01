@@ -7,6 +7,7 @@ use App\Models\PackProduit;
 use App\Models\PremiersSecours;
 use App\Models\Produit;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class PackProduitController extends Controller
 {
@@ -52,7 +53,14 @@ class PackProduitController extends Controller
         $pack->prix = $totalPack;
         $pack->save();
 
+<<<<<<< HEAD
         return view('/packs_produits/details', ['totalPack' => $totalPack]);
+=======
+        FacadesAlert::success('Pack de produits ajouté avec succés');
+
+        // Rediriger avec un message de succès
+        return redirect('/packs_produits');
+>>>>>>> 1e041a26ac1b64bc928dc5490c97855527f87a2a
     }
 
     public function showDetails($id) {
@@ -114,6 +122,8 @@ class PackProduitController extends Controller
 
         $c->save();
 
+        FacadesAlert::success('Pack mis à jour avec succés');
+
         return redirect('/packs_produits');
     }
 
@@ -133,20 +143,26 @@ class PackProduitController extends Controller
             $pack->produits()->attach($produit, ['qte_produit' => $quantite]);
         }
 
-        return redirect()->back();
+        return back();
     }
 
-    public function minusProduct($produit_id, $pack_id) {
+    public function minusProduct($pack_id, $produit_id) {
+        // Recherche du pack et du produit
         $pack = Pack::findOrFail($pack_id);
         $produit = Produit::findOrFail($produit_id);
 
         // Vérifier si le produit existe dans le pack
-        $existingProduct = $pack->produits()->where('produits_id', $produit_id)->first();
+        $existingProduct = $pack->produits()->where('produits.id', $produit_id)->first();
 
         if ($existingProduct) {
-            // Diminuer la quantité du produit dans le pack
+            // Récupérer la quantité actuelle du produit dans le pack
             $currentQuantity = $existingProduct->pivot->qte_produit;
-            $existingProduct->pivot->update(['qte_produit' => $currentQuantity - 1]);
+
+            // Vérifier si la quantité est supérieure à 1 avant de la diminuer
+            if ($currentQuantity > 1) {
+                // Diminuer la quantité du produit dans le pack
+                $existingProduct->pivot->update(['qte_produit' => $currentQuantity - 1]);
+            }
         }
 
         return redirect()->back();
@@ -169,6 +185,8 @@ class PackProduitController extends Controller
         if ($pack->image_path != 'img/default-pack.jpg') {
             unlink(public_path($pack->image_path));
         }
+
+        FacadesAlert::success('Pack supprimé avec succés');
 
         return redirect('/packs_produits');
     }

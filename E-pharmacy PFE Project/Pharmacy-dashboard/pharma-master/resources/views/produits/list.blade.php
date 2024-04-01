@@ -277,6 +277,8 @@
   </div>
 </section>
 
+@include('sweetalert::alert')
+
 <section class="is-hero-bar">
   <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
     <h1 class="title">
@@ -332,10 +334,15 @@
             <tr>
                 <th></th>
                 <th>#</th>
-                <th style="">Nom</th>
+                <th style="width: 170px">Nom</th>
                 <th style="width: 300px">Description</th>
+<<<<<<< HEAD
                 <th>Catégorie</th>
                 <th>Prix</th>
+=======
+                <th>Catégotie</th>
+                <th  style="width: 100px">Prix</th>
+>>>>>>> 1e041a26ac1b64bc928dc5490c97855527f87a2a
                 <th>Quantité en stock</th>
                 <th></th>
             </tr>
@@ -346,7 +353,7 @@
                     <td></td>
                     <td>{{ $p->id }}</td>
                     <td>{{ $p->nom }}</td>
-                    <td>{{ $p->descr }}</td>
+                    <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $p->descr }}</td>
                     <td>{{ $p->categorie->nom }}</td>
                     <td>{{ $p->prix }} DH</td>
                     <td @if($p->qte_en_stock <= 1) style="color: red"  @endif>{{ $p->qte_en_stock }}</td>

@@ -9,6 +9,7 @@ use App\Models\PremiersSecours;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class PackController extends Controller
 {
@@ -54,6 +55,9 @@ class PackController extends Controller
         }
 
         $pack->save();
+
+        FacadesAlert::success('Pack ajouté avec succés');
+
         return redirect('/packs');
     }
 
@@ -104,6 +108,8 @@ class PackController extends Controller
 
         $pack->save();
 
+        FacadesAlert::success('Pack mis à jour avec succés');
+
         return redirect('/packs');
     }
 
@@ -127,6 +133,8 @@ class PackController extends Controller
 
         // Supprimer le pack
         $pack->delete();
+
+        FacadesAlert::success('Pack supprimé avec succés');
 
         return redirect('/packs');
     }

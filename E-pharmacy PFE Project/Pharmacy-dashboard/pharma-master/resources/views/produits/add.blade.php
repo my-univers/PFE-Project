@@ -90,6 +90,8 @@
     </div>
   </section>
 
+  @include('sweetalert::alert')
+
   <section class="is-hero-bar">
     <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
       <h1 class="title">
@@ -154,7 +156,7 @@
                     <textarea class="textarea" id="description" name="descr" placeholder="Description"></textarea>
                   </div>
                 </div>
-                
+
                 <div class="field">
                   <label class="label">Catégorie</label>
                   <div class="control">

@@ -11,8 +11,7 @@ use App\Models\Client;
 use App\Models\Commande;
 use App\Models\PackCommande;
 use App\Models\ProduitCommande;
-use Illuminate\Contracts\Session\Session;
-use Illuminate\Support\Facades\Session as FacadesSession;
+use Illuminate\Support\Facades\Session;
 
 class CartController extends Controller
 {
@@ -82,7 +81,6 @@ class CartController extends Controller
                 // Si c'est un produit, multiplier le prix par la quantité
                 $total += $cartItem['item']->prix * $cartItem['quantity'];
                 $FraixTotal = $total + 20;
-
             } elseif ($cartItem['type'] === 'pack') {
                 // Si c'est un pack, multiplier le prix par la quantité
                 $total += $cartItem['item']->prix * $cartItem['quantity'];
@@ -229,4 +227,14 @@ class CartController extends Controller
         return redirect()->route('thankyou');
     }
 
+    public function cancelCart()
+    {
+        // Vider le panier en supprimant la session cart
+        Session::forget('cart');
+
+        FacadesAlert::success('Votre commande a été annulée.');
+
+        // Rediriger l'utilisateur vers la page du panier avec un message de succès
+        return redirect()->route('cart')->with('success', 'L\'achat a été annulé et le panier a été vidé.');
+    }
 }

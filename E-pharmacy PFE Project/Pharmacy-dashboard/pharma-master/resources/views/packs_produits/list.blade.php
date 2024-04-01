@@ -278,6 +278,8 @@
         </div>
     </section>
 
+    @include('sweetalert::alert')
+
     <section class="is-hero-bar">
         <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
             <h1 class="title">
@@ -340,8 +342,8 @@
                             <tr>
                                 <td></td>
                                 <td>{{ $p->packs->id }}</td>
-                                <td>{{ $p->packs->nom }}</td>
-                                <td>{{ $p->packs->description }}</td>
+                                <td style="max-width: 320px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $p->packs->nom }}</td>
+                                <td style="max-width: 340px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $p->packs->description }}</td>
                                 <td>{{ $p->packs->prix }} DH</td>
                                 <td @if($p->packs->qte_en_stock <= 1) style="color: red" @endif>{{ $p->packs->qte_en_stock }}</td>
                                 <td class="actions-cell">
