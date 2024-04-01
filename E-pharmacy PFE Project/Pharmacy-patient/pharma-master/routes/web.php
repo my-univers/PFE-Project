@@ -2,12 +2,12 @@
 
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategorieController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DocteurController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\shopController;
+use App\Http\Controllers\StripeController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -31,21 +31,10 @@ Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
 
-// Route::get('/cart', function () {
-//     return view('cart');
-// })->name('cart');
-
-// Route::get('/shop-single', function () {
-//     return view('shop-single');
-// })->name('shop-single');
-
 Route::get('/thankyou', function () {
     return view('thankyou');
 })->name('thankyou');
 
-// Route::get('/checkout', function () {
-//     return view('checkout');
-// })->name('checkout');
 
 /*--------------------------------INDEX---------------------------------------*/
 
@@ -101,6 +90,10 @@ Route::get('/contact', [IndexController::class, 'contactPage']);
 
 Route::get('/docteurs', [DocteurController::class, 'showMedsList']);
 
+// Route::get('/docteurs/search', [DocteurController::class, 'searchMedecin']);
+
+// Route::match(['get', 'post'], '/docteurs/search', [DocteurController::class, 'searchMedecin']);
+
 
 /*-----------------------Contact------------------------------*/
 
@@ -110,3 +103,4 @@ Route::post('/addMessage', [MessageController::class, 'addMessage']);
 /*------------------------Produit--------------------------*/
 
 Route::post('/upload-order', [ProduitController::class, 'uploadOrder'])->name('upload.order');
+

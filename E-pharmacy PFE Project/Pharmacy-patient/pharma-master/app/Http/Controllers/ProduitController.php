@@ -29,7 +29,8 @@ class ProduitController extends Controller
         $selectedProductName =  strtolower($product->nom);
 
         // Vérification si le fichier est un PDF ou une image
-        $fileExtension = $request->file('image')->extension();
+        $fileExtension = $request->file('image')->guessExtension();
+
         if ($fileExtension == 'pdf') {
             // Lecture du texte du PDF
             $pdfText = (new Parser())->parseFile($request->file('image')->path())->getText();

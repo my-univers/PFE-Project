@@ -123,6 +123,33 @@
                     <span class="icon left"><i class="mdi mdi-tag"></i></span>
                   </div>
                 </div>
+                
+                <div class="field">
+                  <div class="control">
+                    <textarea class="textarea" id="ingredients" name="ingredients" placeholder="Ingrédients"></textarea>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control icons-left">
+                    <input class="input" type="text" id="poids" name="poids" placeholder="Poids">
+                    <span class="icon left"><i class="mdi mdi-weight-gram"></i></span>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control icons-left">
+                    <input class="input" type="number" id="prix" name="prix" placeholder="Prix" step="0.01">
+                    <span class="icon left"><i class="mdi mdi-cash"></i></span>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control icons-left">
+                    <input class="input" type="number" id="qte_en_stock" name="qte_en_stock" placeholder="Quantité en stock">
+                    <span class="icon left"><i class="mdi mdi-store"></i></span>
+                  </div>
+                </div>
 
                 <div class="field">
                   <div class="control">
@@ -131,29 +158,18 @@
                 </div>
 
                 <div class="field">
-                    <label class="label">Catégorie</label>
-                    <div class="control">
-                      <div class="select">
-                        <select name="categorie">
-                            @foreach ($categories as $c)
-                            <option value="{{ $c->id }}">{{ $c->nom }}</option>
-                            @endforeach
-                        </select>
-                      </div>
+                  <label class="label">Catégorie</label>
+                  <div class="control">
+                    <div class="select">
+                      <select name="categorie">
+                          @foreach ($categories as $c)
+                          <option value="{{ $c->id }}">{{ $c->nom }}</option>
+                          @endforeach
+                      </select>
                     </div>
                   </div>
-                <div class="field">
-                  <div class="control icons-left">
-                    <input class="input" type="number" id="prix" name="prix" placeholder="Prix" step="0.01">
-                    <span class="icon left"><i class="mdi mdi-cash"></i></span>
-                  </div>
                 </div>
-                <div class="field">
-                  <div class="control icons-left">
-                    <input class="input" type="number" id="qte_en_stock" name="qte_en_stock" placeholder="Quantité en stock">
-                    <span class="icon left"><i class="mdi mdi-store"></i></span>
-                  </div>
-                </div>
+
                 <div class="field">
                     <label class="label">Ordonnance</label>
                     <div class="field-body">

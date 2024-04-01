@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Categorie;
 use App\Models\Client;
 use App\Models\Commande;
+use App\Models\Contact;
 use App\Models\Medecin;
 use App\Models\Produit;
 use Illuminate\Http\Request;
@@ -25,6 +26,7 @@ class DashboardController extends Controller
 
         $produits_epuises_count = Produit::whereIn('qte_en_stock', [0, 1])->count();
         $produits_epuises = Produit::where('qte_en_stock', 0)->get();
+        $notifications = Contact::where('is_read', false)->count();
 
         return view('index', [
             'clients' => $clients,
@@ -37,7 +39,8 @@ class DashboardController extends Controller
             'category_count' => $category_count,
             'produits_epuises' => $produits_epuises,
             'commandes' => $commandes,
-            'commandes_paginate' => $commandes_paginate
+            'commandes_paginate' => $commandes_paginate,
+            'notifications' => $notifications
         ]);
     }
 }

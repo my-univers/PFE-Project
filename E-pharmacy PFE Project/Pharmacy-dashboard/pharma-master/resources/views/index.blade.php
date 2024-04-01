@@ -1,6 +1,7 @@
 @extends('master')
-
+  
 @section('aside')
+
 <aside class="aside is-placed-left is-expanded">
     <div class="aside-tools">
       <div>
@@ -19,75 +20,18 @@
       </ul>
       <p class="menu-label">Gestion</p>
       <ul class="menu-list">
-        {{-- <li class="active">
-        <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-account"></i></span>
-          <span class="menu-item-label">Clients</span>
-          <span class="icon"><i class="mdi mdi-plus"></i></span>
-        </a>
-        <ul>
-          <li>
-            <a href="/clients/list">
-              <span>Liste</span>
-            </a>
-          </li>
-          <li>
-            <a href="/clients/addForm">
-              <span>Ajout</span>
-            </a>
-          </li>
-        </ul>
-      </li> --}}
       <li>
         <a href="/clients/list">
           <span class="icon"><i class="mdi mdi-account"></i></span>
           <span class="menu-item-label">Clients</span>
         </a>
       </li>
-      {{-- <li>
-        <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-doctor"></i></span>
-          <span class="menu-item-label">Médecins</span>
-          <span class="icon"><i class="mdi mdi-plus"></i></span>
-        </a>
-        <ul>
-          <li>
-            <a href="/medecins/list">
-              <span>Liste</span>
-            </a>
-          </li>
-          <li>
-            <a href="/medecins/addForm">
-              <span>Ajout</span>
-            </a>
-          </li>
-        </ul>
-      </li> --}}
       <li>
         <a href="/medecins/list">
           <span class="icon"><i class="mdi mdi-doctor"></i></span>
           <span class="menu-item-label">Médecins</span>
         </a>
       </li>
-      {{-- <li>
-        <a class="dropdown">
-          <span class="icon"><i class="mdi mdi-pill"></i></span>
-          <span class="menu-item-label">Produits</span>
-          <span class="icon"><i class="mdi mdi-plus"></i></span>
-        </a>
-        <ul>
-          <li>
-            <a href="/produits/list">
-              <span>Liste</span>
-            </a>
-          </li>
-          <li>
-            <a href="/produits/addForm">
-              <span>Ajout</span>
-            </a>
-          </li>
-        </ul>
-      </li> --}}
       <li>
         <a href="/produits/list">
           <span class="icon"><i class="mdi mdi-pill"></i></span>
@@ -172,10 +116,11 @@
                 {{ $clients_count }}
               </h1>
             </div>
-            <span class="icon widget-icon text-green-500"><i class="mdi mdi-account-multiple mdi-48px"></i></span>
+            <a href="/clients/list"><span class="icon widget-icon text-green-500"><i class="mdi mdi-account-multiple mdi-48px"></i></span></a>
           </div>
         </div>
       </div>
+
       <div class="card">
         <div class="card-content">
           <div class="flex items-center justify-between">
@@ -187,7 +132,7 @@
                 {{ $commandes_count }}
               </h1>
             </div>
-            <span class="icon widget-icon text-blue-500"><i class="mdi mdi-cart-outline mdi-48px"></i></span>
+            <a href="/medecins/list"><span class="icon widget-icon text-blue-500"><i class="mdi mdi-cart-outline mdi-48px"></i></span></a>
           </div>
         </div>
       </div>
@@ -203,7 +148,7 @@
                 {{ $medecins_count }}
               </h1>
             </div>
-            <span class="icon widget-icon text-red-500"><i class="mdi mdi-doctor mdi-48px"></i></span>
+            <a href="/medecins/list"><span class="icon widget-icon text-red-500"><i class="mdi mdi-doctor mdi-48px"></i></span></a>
           </div>
         </div>
       </div>
@@ -222,7 +167,7 @@
                 {{ $produits_count }}
               </h1>
             </div>
-            <span class="icon widget-icon text-blue-500"><i class="mdi mdi-pill mdi-48px"></i></span>
+            <a href="/produits/list"><span class="icon widget-icon text-blue-500"><i class="mdi mdi-pill mdi-48px"></i></span></a>
           </div>
         </div>
       </div>
@@ -237,7 +182,7 @@
                 {{ $produits_epuises_count }}
               </h1>
             </div>
-            <span class="icon widget-icon text-red-500"><i class="mdi mdi-alert-box-outline mdi-48px"></i></span>
+            <a href="/produits_epuises"><span class="icon widget-icon text-red-500"><i class="mdi mdi-alert-outline mdi-48px"></i></span></a>
           </div>
         </div>
       </div>
@@ -253,80 +198,30 @@
                 {{ $category_count }}
               </h1>
             </div>
-            <span class="icon widget-icon text-green-500"><i class="mdi mdi-format-list-bulleted-type mdi-48px"></i></span>
+            <a href="/categories/list"> <span class="icon widget-icon text-green-500"><i class="mdi mdi-format-list-bulleted-type mdi-48px"></i></span></a>
           </div>
         </div>
       </div>
     </div>
 
-
+ <div class="card">
+        <div class="card-content">
+          <div class="flex items-center justify-between">
+            <div class="widget-label">
+              <h3>
+                Nouveaux Messages
+              </h3>
+              <h1>
+                {{ $notifications }}
+              </h1>
+            </div>
+          <a href="/messages"> <span class="icon widget-icon text-blue-500"><i class="mdi mdi-bell mdi-48px"></i></span></a>
+          </div>
+        </div>
+      </div>
+<br>
     <div class="card has-table">
         <header class="card-header">
-            @if(!$produits_epuises->isEmpty())
-            <p class="card-header-title">
-                <span class="icon"><i class="mdi mdi-pill"></i></span>
-                Produits Épuisés
-            </p>
-            <a href="#" class="card-header-icon">
-                <span class="icon"><i class="mdi mdi-reload"></i></span>
-            </a>
-        </header>
-        <div class="card-content">
-            @if(count($produits_epuises) > 0)
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>#</th>
-                        <th>Nom</th>
-                        <th>Catégorie</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($produits_epuises as $produit)
-                    <tr>
-                        <td></td>
-                        <td>{{ $produit->id }}</td>
-                        <td>{{ $produit->nom }}</td>
-                        <td>{{ $produit->categorie->nom }}</td>
-                        <td class="actions-cell">
-                            <div class="buttons right nowrap">
-                                <a class="button small green --jb-modal" href="/produits/updateForm/{{$produit->id}}">
-                                    <span class="icon"><i class="mdi mdi-eye"></i></span>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            <div class="table-pagination">
-                <div class="flex items-center justify-between">
-                    <div class="buttons">
-                        @if ($produits_epuises->onFirstPage())
-                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-left"></span></button>
-                        @else
-                        <a href="{{ $produits_epuises->previousPageUrl() }}" class="button"><span class="mdi mdi-chevron-left"></span></a>
-                        @endif
-                        @for ($i = 1; $i <= $produits_epuises->lastPage(); $i++)
-                        <button type="button" class="button @if ($produits_epuises->currentPage() == $i) active @endif">{{ $i }}</button>
-                        @endfor
-                        @if ($produits_epuises->hasMorePages())
-                        <a href="{{ $produits_epuises->nextPageUrl() }}" class="button"><span class="mdi mdi-chevron-right"></span></a>
-                        @else
-                        <button type="button" class="button disabled"><span class="mdi mdi-chevron-right"></span></button>
-                        @endif
-                    </div>
-                </div>
-            </div>
-            @else
-            <table>
-                <tr><td></td><td>Aucun produit épuisé pour le moment.</td></tr>
-            </table>
-            @endif
-        </div>
-        @else
         <p class="card-header-title">
             <span class="icon"><i class="mdi mdi-cart"></i></span>
             Commandes
@@ -337,7 +232,7 @@
         </header>
         <div class="card-content">
             @if(count($commandes) > 0)
-            <table>
+            <table class="table table-sm">
                 <thead>
                     <tr>
                         <th></th>
@@ -395,7 +290,6 @@
         @endif
         </div>
     </div>
-    @endif
     </div>
 
   </section>

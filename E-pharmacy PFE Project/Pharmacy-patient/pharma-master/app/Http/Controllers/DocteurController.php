@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\DB;
 
 class DocteurController extends Controller
 {
-    public function showMedsList() {
+    public function showMedsList()
+    {
         $medecins = DB::table('medecins')->paginate(10);
         return view('docteurs', ['medecins' => $medecins]);
     }

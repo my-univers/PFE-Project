@@ -95,7 +95,7 @@
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 mb-0">
+          <div class="col-md-12 mb-0">=
             <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span>
             <a href="javascript:history.back()" >Panier</a>
             <span class="mx-2 mb-0">/</span>
@@ -186,50 +186,10 @@
                                     </tbody>
                                 </table>
 
-                                {{-- <div class="border mb-3">
-                                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsebank" role="button"
-                                            aria-expanded="false" aria-controls="collapsebank">Virement bancaire direct</a></h3>
-
-                                    <div class="collapse" id="collapsebank">
-                                        <div class="py-2 px-4">
-                                            <p class="mb-0">Effectuez votre paiement directement sur notre compte bancaire. Veuillez utiliser votre
-                                                numéro de commande comme référence de paiement. Votre commande ne sera pas expédiée tant que les fonds n'auront pas
-                                                été crédités sur notre compte.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="border mb-3">
-                                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsecheque" role="button"
-                                            aria-expanded="false" aria-controls="collapsecheque">Paiement par chèque</a></h3>
-
-                                    <div class="collapse" id="collapsecheque">
-                                        <div class="py-2 px-4">
-                                            <p class="mb-0">Effectuez votre paiement par chèque. Veuillez utiliser votre numéro de commande comme
-                                                référence de paiement. Votre commande ne sera pas expédiée tant que les fonds n'auront pas été crédités
-                                                sur notre compte.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="border mb-5">
-                                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsepaypal" role="button"
-                                            aria-expanded="false" aria-controls="collapsepaypal">Paypal</a></h3>
-
-                                    <div class="collapse" id="collapsepaypal">
-                                        <div class="py-2 px-4">
-                                            <p class="mb-0">Effectuez votre paiement via Paypal. Veuillez utiliser votre numéro de commande comme
-                                                référence de paiement. Votre commande ne sera pas expédiée tant que les fonds n'auront pas été crédités
-                                                sur notre compte.</p>
-                                        </div>
-                                    </div>
-                                </div> --}}
-
                                 <div class="mb-5 text-center">
                                     <!-- Paiement à la livraison -->
                                         <h4 class="font-size-sm text-uppercase mb-3">Paiement à la livraison</h4>
                                 </div>
-
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-block">Passer  {{-- onclick="window.location='/thankyou'" --}}
                                         la commande</button>
@@ -271,7 +231,7 @@
       </div>
 
 
-      <!--********* FOOTER *********-->
+      <!--*** FOOTER ***-->
       <footer class="site-footer">
         <div class="container">
             <div class="row">
@@ -283,9 +243,6 @@
                             Pharma est votre pharmacie en ligne de confiance,
                             dédiée à fournir des produits pharmaceutiques de haute qualité et des services
                             exceptionnels.
-                            Notre mission est de rendre l'accès aux médicaments plus facile et plus pratique pour
-                            vous,
-                            nos précieux clients.
                         </p>
                     </div>
 
@@ -293,12 +250,13 @@
                 <div class="col-lg-3 mx-auto mb-5 mb-lg-0">
                     <h3 class="footer-heading mb-4">Liens Rapides</h3>
                     <ul class="list-unstyled">
-                        <li><a href="#">Supplements</a></li>
-                        <li><a href="#">Vitamins</a></li>
-                        <li><a href="#">Diet &amp; Nutrition</a></li>
-                        <li><a href="#">Tea &amp; Coffee</a></li>
+                        <li><a href="/products">Médicaments</a></li>
+                        <li><a href="/products">Compléments Alimentaires</a></li>
+                        <li><a href="/products">Premiers Secours</a></li>
+                        <li><a href="/packs">Packs Premiers Secours</a></li>
                     </ul>
                 </div>
+  
 
                 <div class="col-md-6 col-lg-3">
                     <div class="block-5 mb-5">
@@ -306,7 +264,7 @@
                         <ul class="list-unstyled">
                             <li class="address">203 Rue annonyme, Ville de Rabat, Maroc</li>
                             <li class="phone"><a href="tel://212123456789">+212 123 456 789</a></li>
-                            <li class="email">pharma@info.com</li>
+                            <li class="email">pharma1one1@info.com</li>
                         </ul>
                     </div>
                 </div>
@@ -325,7 +283,7 @@
             </div>
         </div>
     </footer>
-    <!--****** END FOOTER *******-->
+    <!--** END FOOTER ***-->
   </div>
 
   <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>

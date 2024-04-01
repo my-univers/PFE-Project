@@ -10,7 +10,8 @@ use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
 class ProduitController extends Controller
 {
-    public function showList(Request $request) {
+    public function showList(Request $request)
+    {
         // Récupérer l'ID de la catégorie à filtrer depuis la requête
         $categorieId = $request->input('categorie');
 
@@ -27,13 +28,15 @@ class ProduitController extends Controller
         return view('produits.list', ['produits' => $produits, 'categories' => $categories, 'categorieId' => $categorieId]);
     }
 
-    public function addProduitForm() {
+    public function addProduitForm()
+    {
         $categories = Categorie::all();
 
         return view('produits.add', ['categories' => $categories]);
     }
 
-    public function addProduit(Request $request) {
+    public function addProduit(Request $request)
+    {
         $produit = new Produit();
         $produit->nom = $request->nom;
         $produit->descr = $request->descr;
@@ -41,6 +44,8 @@ class ProduitController extends Controller
         $produit->prix = $request->prix;
         $produit->qte_en_stock = $request->qte_en_stock;
         $produit->ordonnance = $request->ordonnance;
+        $produit->ingredients = $request->ingredients;
+        $produit->poids = $request->poids;
 
         // Traitement de l'image si elle est présente
         if ($request->hasFile('image')) {
@@ -65,14 +70,16 @@ class ProduitController extends Controller
         return redirect('/produits/list');
     }
 
-    public function updateProduitForm($id) {
+    public function updateProduitForm($id)
+    {
         $produit = Produit::find($id);
         $categories = Categorie::all();
 
         return view('produits.update', ['produit' => $produit, 'categories' => $categories]);
     }
 
-    public function updateProduit(Request $request, $id) {
+    public function updateProduit(Request $request, $id)
+    {
         $produit = Produit::findOrFail($id);
         $produit->nom = $request->nom;
         $produit->descr = $request->descr;
@@ -120,7 +127,8 @@ class ProduitController extends Controller
         return redirect('/produits/list');
     }
 
-    public function deleteProduit($id) {
+    public function deleteProduit($id)
+    {
         $produit = Produit::findOrFail($id);
 
         // Supprimer l'image associée si elle n'est pas l'image par défaut
@@ -146,4 +154,10 @@ class ProduitController extends Controller
         return redirect('/produits/list');
     }
 
+
+    public function SoldProducts()
+    {
+        $produits_epuises = Produit::where('qte_en_stock', 0)->paginate(10);
+        return view('produits.produits_epuises', ['produits_epuises' => $produits_epuises]);
+    }
 }

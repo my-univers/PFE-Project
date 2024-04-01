@@ -22,12 +22,10 @@ class PackProduitController extends Controller
     }
 
     public function addPackProduits(Request $request) {
-        // Récupérer les données du formulaire
         $packId = $request->input('pack_id');
         $produitIds = $request->input('produits_id');
         $quantites = $request->input('quantite');
 
-        // Insérer les entrées dans la table packs_produits
         foreach ($produitIds as $produitId) {
             $quantite = $quantites[$produitId];
 
@@ -36,15 +34,16 @@ class PackProduitController extends Controller
                 'produits_id' => $produitId,
                 'qte_produit' => $quantite
             ]);
-
         }
 
         $pack = Pack::find($packId);
-
         $total = 0;
-        foreach ($produitIds as $produitId) {
+
+        foreach ($produitIds as $key => $produitId) {
+            $quantite = $quantites[$key];
+
             $produit = Produit::find($produitId);
-            $total += $produit->prix;
+            $total += $produit->prix * $quantite;
         }
 
         $reduction = $total * 0.05;
@@ -54,10 +53,14 @@ class PackProduitController extends Controller
         $pack->prix = $totalPack;
         $pack->save();
 
+<<<<<<< HEAD
+        return view('/packs_produits/details', ['totalPack' => $totalPack]);
+=======
         FacadesAlert::success('Pack de produits ajouté avec succés');
 
         // Rediriger avec un message de succès
         return redirect('/packs_produits');
+>>>>>>> 1e041a26ac1b64bc928dc5490c97855527f87a2a
     }
 
     public function showDetails($id) {

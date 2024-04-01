@@ -166,6 +166,7 @@ Route::post('/produits/update/{id}', [ProduitController::class, 'updateProduit']
 
 Route::get('/produits/delete/{id}', [ProduitController::class,'deleteProduit']);
 
+Route::get('/produits_epuises', [ProduitController::class,'SoldProducts']);
 
 /******************Categories*****************/
 
