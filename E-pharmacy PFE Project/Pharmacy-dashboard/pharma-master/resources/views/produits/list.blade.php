@@ -336,13 +336,8 @@
                 <th>#</th>
                 <th style="width: 170px">Nom</th>
                 <th style="width: 300px">Description</th>
-<<<<<<< HEAD
                 <th>Catégorie</th>
-                <th>Prix</th>
-=======
-                <th>Catégotie</th>
                 <th  style="width: 100px">Prix</th>
->>>>>>> 1e041a26ac1b64bc928dc5490c97855527f87a2a
                 <th>Quantité en stock</th>
                 <th></th>
             </tr>

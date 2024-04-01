@@ -309,11 +309,40 @@
                     <span class="icon left"><i class="mdi mdi-tag"></i></span>
                   </div>
                 </div>
+
+                <div class="field">
+                  <div class="control">
+                    <textarea class="textarea" id="ingredients" name="ingredients" placeholder="Ingrédients">{{ $produit->ingredients }}</textarea>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control icons-left">
+                    <input class="input" type="text" id="poids" name="poids" placeholder="Poids" value="{{ $produit->poids }}">
+                    <span class="icon left"><i class="mdi mdi-weight-gram"></i></span>
+                  </div>
+                </div>
+
                 <div class="field">
                   <div class="control">
                     <textarea class="textarea" id="description" name="descr" placeholder="Description">{{ $produit->descr }}</textarea>
                   </div>
                 </div>
+
+                <div class="field">
+                  <div class="control icons-left">
+                    <input class="input" type="number" id="prix" name="prix" placeholder="Prix" step="0.01" value="{{ $produit->prix }}">
+                    <span class="icon left"><i class="mdi mdi-cash"></i></span>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="control icons-left">
+                    <input class="input" type="number" id="qte_en_stock" name="qte_en_stock" placeholder="Quantité en stock" value="{{ $produit->qte_en_stock }}">
+                    <span class="icon left"><i class="mdi mdi-store"></i></span>
+                  </div>
+                </div>
+
                 <div class="field">
                     <label class="label">Catégorie</label>
                     <div class="control">
@@ -326,18 +355,8 @@
                       </div>
                     </div>
                   </div>
-                <div class="field">
-                  <div class="control icons-left">
-                    <input class="input" type="number" id="prix" name="prix" placeholder="Prix" step="0.01" value="{{ $produit->prix }}">
-                    <span class="icon left"><i class="mdi mdi-cash"></i></span>
-                  </div>
-                </div>
-                <div class="field">
-                  <div class="control icons-left">
-                    <input class="input" type="number" id="qte_en_stock" name="qte_en_stock" placeholder="Quantité en stock" value="{{ $produit->qte_en_stock }}">
-                    <span class="icon left"><i class="mdi mdi-store"></i></span>
-                  </div>
-                </div>
+               
+                
                 <div class="field">
                     <label class="label">Ordonnance</label>
                     <div class="field-body">
