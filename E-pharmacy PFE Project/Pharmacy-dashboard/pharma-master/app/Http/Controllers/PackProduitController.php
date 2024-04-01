@@ -74,7 +74,7 @@ class PackProduitController extends Controller
         $totalPack = $total - $reduction;
         $totalPack = number_format($totalPack, 2);
 
-        return view('/packs_produits.details', ['pack' => $pack, 'produits' => $produits, 'allProducts' => $allProducts, 'total' => $totalPack]);
+        return view('/packs_produits.details', ['pack' => $pack, 'produits' => $produits, 'allProducts' => $allProducts, 'totalPack' => $totalPack]);
     }
 
 

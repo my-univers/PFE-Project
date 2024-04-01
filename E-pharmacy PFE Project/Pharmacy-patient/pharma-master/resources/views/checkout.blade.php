@@ -95,9 +95,9 @@
     <div class="bg-light py-3">
       <div class="container">
         <div class="row">
-          <div class="col-md-12 mb-0">=
+          <div class="col-md-12 mb-0">
             <a href="/">Accueil</a> <span class="mx-2 mb-0">/</span>
-            <a href="javascript:history.back()" >Panier</a>
+            <a href="/cart" >Panier</a>
             <span class="mx-2 mb-0">/</span>
             <strong class="text-black">Caisse</strong>
           </div>
@@ -256,7 +256,7 @@
                         <li><a href="/packs">Packs Premiers Secours</a></li>
                     </ul>
                 </div>
-  
+
 
                 <div class="col-md-6 col-lg-3">
                     <div class="block-5 mb-5">

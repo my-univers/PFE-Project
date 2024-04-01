@@ -217,8 +217,8 @@
 
                                 @if ($total != 0)
                                     <div class="row">
-                                        <div class="col-md-12">
-                                            <a class="btn btn-primary btn-lg btn-block" href="/checkout">Confirmer la
+                                        <div class="col-md-12" style="width: fit-content">
+                                            <a class="btn btn-primary btn-lg btn-block" style="width: fit-content" href="/checkout">Confirmer la
                                                 commande</a>
                                         </div>
                                     </div>
@@ -286,7 +286,7 @@
                           <li><a href="/packs">Packs Premiers Secours</a></li>
                       </ul>
                   </div>
-    
+
                     <div class="col-md-6 col-lg-3">
                         <div class="block-5 mb-5">
                             <h3 class="footer-heading mb-4">Coordonnées</h3>

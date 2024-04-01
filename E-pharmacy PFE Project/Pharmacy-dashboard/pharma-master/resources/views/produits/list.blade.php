@@ -326,7 +326,7 @@
             }
         </script>
       </header>
-      
+
       <div class="card-content">
         @if ($produits)
         <table>
@@ -336,13 +336,8 @@
                 <th>#</th>
                 <th style="width: 170px">Nom</th>
                 <th style="width: 300px">Description</th>
-<<<<<<< HEAD
                 <th>Catégorie</th>
                 <th>Prix</th>
-=======
-                <th>Catégotie</th>
-                <th  style="width: 100px">Prix</th>
->>>>>>> 1e041a26ac1b64bc928dc5490c97855527f87a2a
                 <th>Quantité en stock</th>
                 <th></th>
             </tr>
@@ -355,7 +350,7 @@
                     <td>{{ $p->nom }}</td>
                     <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $p->descr }}</td>
                     <td>{{ $p->categorie->nom }}</td>
-                    <td>{{ $p->prix }} DH</td>
+                    <td style="width: 100px">{{ $p->prix }} DH</td>
                     <td @if($p->qte_en_stock <= 1) style="color: red"  @endif>{{ $p->qte_en_stock }}</td>
                     <td class="actions-cell">
                     <div class="buttons right nowrap">
