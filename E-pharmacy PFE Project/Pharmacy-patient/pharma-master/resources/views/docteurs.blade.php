@@ -165,96 +165,6 @@
                     </form>
                 </div>
 
-                {{-- <div class="row">
-          <div class="col-md-6">
-            <div class="row mb-5">
-              <div class="col-md-6 mb-3 mb-md-0">
-                <button class="btn btn-primary btn-md btn-block">Modifier Panier</button>
-              </div>
-              <div class="col-md-6">
-                <button class="btn btn-outline-primary btn-md btn-block">Continuer les achats</button>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-12">
-                <label class="text-black h4" for="coupon">Coupon</label>
-                <p>Entrez votre code coupon si vous en avez un.</p>
-              </div>
-              <div class="col-md-8 mb-3 mb-md-0">
-                <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
-              </div>
-              <div class="col-md-4">
-                <button class="btn btn-primary btn-md px-4">Appliquer le coupon</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-6 pl-5">
-            <div class="row justify-content-end">
-              <div class="col-md-7">
-                <div class="row">
-                  <div class="col-md-12 text-right border-bottom mb-5">
-                    <h3 class="text-black h4 text-uppercase">Total du Panier </h3>
-                  </div>
-                </div>
-                <div class="row mb-3">
-                  <div class="col-md-6">
-                    <span class="text-black">Sous-total</span>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
-                  </div>
-                </div>
-                <div class="row mb-5">
-                  <div class="col-md-6">
-                    <span class="text-black">Total</span>
-                  </div>
-                  <div class="col-md-6 text-right">
-                    <strong class="text-black">$230.00</strong>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-12">
-                    <button class="btn btn-primary btn-lg btn-block" onclick="window.location='/checkout' ">Passer Au Paiemenet</button>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div> --}}
-            </div>
-        </div>
-
-        {{-- <div class="site-section bg-secondary bg-image" style="background-image: url('images/bg_2.jpg');">
-            <div class="container">
-                <div class="row align-items-stretch">
-                    <div class="col-lg-6 mb-5 mb-lg-0">
-                        <a href="#" class="banner-1 h-100 d-flex"
-                            style="background-image: url('images/bg_1.jpg');">
-                            <div class="banner-1-inner align-self-center">
-                                <h2>Service Clientele exceptionnel</h2>
-                                <p>Notre équipe est disponible 24h/7j pour répondre à toutes vos questions et
-                                    préoccupations médicales.
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-lg-6 mb-5 mb-lg-0">
-                        <a href="#" class="banner-1 h-100 d-flex"
-                            style="background-image: url('images/bg_2.jpg');">
-                            <div class="banner-1-inner ml-auto  align-self-center">
-                                <h2>Commandez rapidement</h2>
-                                <p>En cas d'urgence médicale, vous pouvez appeler directement un docteur et passer votre
-                                    commande par téléphone.
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div> --}}
-
 
         <!--********* FOOTER *********-->
         <footer class="site-footer">
@@ -268,9 +178,6 @@
                                 Pharma est votre pharmacie en ligne de confiance,
                                 dédiée à fournir des produits pharmaceutiques de haute qualité et des services
                                 exceptionnels.
-                                Notre mission est de rendre l'accès aux médicaments plus facile et plus pratique pour
-                                vous,
-                                nos précieux clients.
                             </p>
                         </div>
 
@@ -278,12 +185,13 @@
                     <div class="col-lg-3 mx-auto mb-5 mb-lg-0">
                         <h3 class="footer-heading mb-4">Liens Rapides</h3>
                         <ul class="list-unstyled">
-                            <li><a href="#">Supplements</a></li>
-                            <li><a href="#">Vitamins</a></li>
-                            <li><a href="#">Diet &amp; Nutrition</a></li>
-                            <li><a href="#">Tea &amp; Coffee</a></li>
+                            <li><a href="/products">Médicaments</a></li>
+                            <li><a href="/products">Compléments Alimentaires</a></li>
+                            <li><a href="/products">Premiers Secours</a></li>
+                            <li><a href="/packs">Packs Premiers Secours</a></li>
                         </ul>
                     </div>
+      
 
                     <div class="col-md-6 col-lg-3">
                         <div class="block-5 mb-5">
@@ -291,7 +199,7 @@
                             <ul class="list-unstyled">
                                 <li class="address">203 Rue annonyme, Ville de Rabat, Maroc</li>
                                 <li class="phone"><a href="tel://212123456789">+212 123 456 789</a></li>
-                                <li class="email">pharma@info.com</li>
+                                <li class="email">pharma1one1@info.com</li>
                             </ul>
                         </div>
                     </div>

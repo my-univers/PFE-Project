@@ -93,8 +93,10 @@
           <div class="col-lg-7 mx-auto align-self-center">
             <div class=" text-center">
               <h1>A propos </h1>
-              <p>Chez Pharma, notre priorité est votre santé.
-                Avec nous, vous trouverez un partenaire de confiance pour votre bien-être.</p>ˀ
+              <p style="color: black">Chez Pharma, notre priorité est votre santé. <br>
+                {{-- Avec nous, vous trouverez un partenaire de confiance pour votre bien-être. --}}
+                Notre mission est de rendre l'accès aux médicaments plus facile et plus pratique pour vous, nos précieux clients.
+              </p>
             </div>
           </div>
         </div>
@@ -225,9 +227,6 @@
                           Pharma est votre pharmacie en ligne de confiance,
                           dédiée à fournir des produits pharmaceutiques de haute qualité et des services
                           exceptionnels.
-                          Notre mission est de rendre l'accès aux médicaments plus facile et plus pratique pour
-                          vous,
-                          nos précieux clients.
                       </p>
                   </div>
 
@@ -235,10 +234,10 @@
               <div class="col-lg-3 mx-auto mb-5 mb-lg-0">
                   <h3 class="footer-heading mb-4">Liens Rapides</h3>
                   <ul class="list-unstyled">
-                      <li><a href="#">Supplements</a></li>
-                      <li><a href="#">Vitamins</a></li>
-                      <li><a href="#">Diet &amp; Nutrition</a></li>
-                      <li><a href="#">Tea &amp; Coffee</a></li>
+                      <li><a href="/products">Médicaments</a></li>
+                      <li><a href="/products">Compléments Alimentaires</a></li>
+                      <li><a href="/products">Premiers Secours</a></li>
+                      <li><a href="/packs">Packs Premiers Secours</a></li>
                   </ul>
               </div>
 
@@ -248,7 +247,7 @@
                       <ul class="list-unstyled">
                           <li class="address">203 Rue annonyme, Ville de Rabat, Maroc</li>
                           <li class="phone"><a href="tel://212123456789">+212 123 456 789</a></li>
-                          <li class="email">pharma@info.com</li>
+                          <li class="email">pharma1one1@info.com</li>
                       </ul>
                   </div>
               </div>
