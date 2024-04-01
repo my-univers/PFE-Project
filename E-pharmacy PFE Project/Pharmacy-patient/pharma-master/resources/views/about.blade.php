@@ -93,7 +93,7 @@
           <div class="col-lg-7 mx-auto align-self-center">
             <div class=" text-center">
               <h1>A propos </h1>
-              <p style="color: black">Chez Pharma, notre priorité est votre santé. <br>
+              <p>Chez Pharma, notre priorité est votre santé. <br>
                 {{-- Avec nous, vous trouverez un partenaire de confiance pour votre bien-être. --}}
                 Notre mission est de rendre l'accès aux médicaments plus facile et plus pratique pour vous, nos précieux clients.
               </p>
@@ -175,7 +175,7 @@
             </div>
             <div class="text">
               <h2>Frais de livraison bon marché</h2>
-              <p>Profitez d'une livraison à seulement 20 DH sur toutes vos commandes et sans frais supplémentaires.</p>
+              <p>Profitez d'une livraison rapide (moins de 24h) à seulement 20 DH sur toutes vos commandes et sans frais supplémentaires.</p>
             </div>
           </div>
           <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">

@@ -235,6 +235,6 @@ class CartController extends Controller
         FacadesAlert::success('Votre commande a été annulée.');
 
         // Rediriger l'utilisateur vers la page du panier avec un message de succès
-        return redirect()->route('cart')->with('success', 'L\'achat a été annulé et le panier a été vidé.');
+        return redirect('/cart')->with('success', 'L\'achat a été annulé et le panier a été vidé.');
     }
 }

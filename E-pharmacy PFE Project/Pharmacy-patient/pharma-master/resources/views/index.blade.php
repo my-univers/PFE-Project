@@ -109,8 +109,8 @@
                             <a class="h-100">
                                 <h5>Frais de Livraison <br> Bon marché </h5>
                                 <p>
-                                    Livraison à seulement 20 DH pour toutes les commandes
-                                    <strong>pour une durée limitée</strong>
+                                    Livraison rapide à seulement 20 DH pour toutes les commandes
+                                    <strong>moins de 24h</strong>
                                 </p>
                             </a>
                         </div>
@@ -325,7 +325,7 @@
                             <li><a href="/packs">Packs Premiers Secours</a></li>
                         </ul>
                     </div>
-      
+
 
                     <div class="col-md-6 col-lg-3">
                         <div class="block-5 mb-5">

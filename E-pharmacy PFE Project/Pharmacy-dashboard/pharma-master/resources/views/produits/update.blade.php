@@ -286,6 +286,9 @@
       <h1 class="title">
           Modifier Produits
       </h1>
+      <a class="button blue" href='/produits/list'>
+        Retour
+    </a>
     </div>
   </section>
 

@@ -284,9 +284,9 @@
     <h1 class="title">
         Modifier Médecin
     </h1>
-    {{-- <a class="button blue" href='/medecins/list'>
+    <a class="button blue" href='/medecins/list'>
         Retour
-    </a> --}}
+    </a>
   </div>
 </section>
 
