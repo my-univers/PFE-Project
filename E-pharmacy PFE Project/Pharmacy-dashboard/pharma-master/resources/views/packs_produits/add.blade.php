@@ -455,6 +455,7 @@
                         </div>
 
                         <hr>
+                        <input type="hidden" name="selected_items[]" id="elements-selectionnes">
                         <div class="field grouped">
                             <div class="control">
                                 <button type="submit" class="button green">
@@ -478,59 +479,41 @@
     </div>
     </div>
 
-
-    {{-- <div id="sample-modal" class="modal">
-        <div class="modal-background --jb-modal-close"></div>
-        <div class="modal-card">
-            <header class="modal-card-head">
-                <p class="modal-card-title">Sample modal</p>
-            </header>
-            <section class="modal-card-body">
-                <p>Lorem ipsum dolor sit amet <b>adipiscing elit</b></p>
-                <p>This is sample modal</p>
-            </section>
-            <footer class="modal-card-foot">
-                <button class="button --jb-modal-close">Cancel</button>
-                <button class="button red --jb-modal-close">Confirm</button>
-            </footer>
-        </div>
-    </div>
-    </div> --}}
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
             // Objet pour stocker les éléments sélectionnés
             var selectedItems = {};
+            var quantities = {};
 
             // Gérer la sélection des éléments
             $(document).on('change', 'input[type="checkbox"]', function() {
                 var itemId = $(this).val();
                 var isChecked = $(this).is(':checked');
                 if (isChecked) {
+                    $(this).closest('tr').addClass('selected'); // Ajouter une classe pour marquer la sélection visuellement
+                    // Ajouter l'identifiant unique au champ caché du formulaire
+                    $('<input>').attr({
+                        type: 'hidden',
+                        name: 'selected_items[]',
+                        value: itemId
+                    }).appendTo('form');
                     selectedItems[itemId] = true;
+                    // sessionStorage.setItem(itemId, quantity);
                 } else {
+                    $(this).closest('tr').removeClass('selected'); // Retirer la classe de sélection
+                    // Supprimer l'entrée du champ caché associée à cet élément
+                    $('input[name="selected_items[]"][value="' + itemId + '"]').remove();
                     delete selectedItems[itemId];
+                    // sessionStorage.removeItem(itemId, quantity);
                 }
             });
 
-            // Pagination pour les produits
-            $(document).on('click', '#produits-pagination .button', function(e) {
-                e.preventDefault();
-                var url = $(this).attr('href');
-                var targetTable = $('#produits-table');
-                var targetPagination = $('#produits-pagination');
-
-                // Requête AJAX pour obtenir le nouveau contenu paginé pour les produits
-                $.get(url, function(data) {
-                    var newTable = $(data).find('#produits-table').html();
-                    var newPagination = $(data).find('#produits-pagination').html();
-                    $(targetTable).html(newTable);
-                    $(targetPagination).html(newPagination);
-
-                    // Rétablir les sélections après le chargement du contenu paginé
-                    restoreSelections(targetTable);
-                });
+            // Gérer les quantités saisies
+            $(document).on('input', 'input[type="number"]', function() {
+                var itemId = $(this).closest('tr').find('input[type="checkbox"]').val();
+                var quantity = $(this).val();
+                quantities[itemId] = quantity;
             });
 
             // Pagination pour les packs
@@ -552,6 +535,26 @@
                 });
             });
 
+            // Pagination pour les produits
+            $(document).on('click', '#produits-pagination .button', function(e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                var targetTable = $('#produits-table');
+                var targetPagination = $('#produits-pagination');
+
+                // Requête AJAX pour obtenir le nouveau contenu paginé pour les produits
+                $.get(url, function(data) {
+                    var newTable = $(data).find('#produits-table').html();
+                    var newPagination = $(data).find('#produits-pagination').html();
+                    $(targetTable).html(newTable);
+                    $(targetPagination).html(newPagination);
+
+                    // Rétablir les sélections après le chargement du contenu paginé
+                    restoreSelections(targetTable);
+                    restoreQuantities(targetTable);
+                });
+            });
+
             // Fonction pour rétablir les sélections après le chargement du contenu paginé
             function restoreSelections(table) {
                 $(table).find('input[type="checkbox"]').each(function() {
@@ -561,6 +564,32 @@
                     }
                 });
             }
+
+            // Fonction pour rétablir les quantités saisies après le chargement du contenu paginé
+            function restoreQuantities(table) {
+                $(table).find('input[type="number"]').each(function() {
+                    var itemId = $(this).closest('tr').find('input[type="checkbox"]').val();
+                    if (quantities[itemId]) {
+                        $(this).val(quantities[itemId]);
+                    }
+                });
+            }
+
+            // Soumission du formulaire
+            $('#submit-form').click(function() {
+                // Réinitialiser le champ caché des éléments sélectionnés
+                $('input[name="selected_items[]"]').remove();
+                // Ajouter les éléments sélectionnés au champ caché
+                for (var itemId in selectedItems) {
+                    $('<input>').attr({
+                        type: 'hidden',
+                        name: 'selected_items[]',
+                        value: itemId
+                    }).appendTo('form');
+                }
+                // Soumettre le formulaire normalement
+                $('form').submit();
+            });
         });
     </script>
 

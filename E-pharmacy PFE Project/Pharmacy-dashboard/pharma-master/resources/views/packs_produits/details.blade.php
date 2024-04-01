@@ -242,30 +242,30 @@
           </li>
         </ul>
       </li> --}}
-      <li class="active">
-        <a href="/packs_produits">
-          <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
-          <span class="menu-item-label">Packs Produits</span>
-        </a>
-      </li>
-      <li>
-        <a href="/messages">
-          <span class="icon"><i class="mdi mdi-message"></i></span>
-          <span class="menu-item-label">Messages</span>
-        </a>
-      </li>
-    </ul>
-    <p class="menu-label">A Propos</p>
-    <ul class="menu-list">
-      <li>
-        <a href="#" class="has-icon">
-          <span class="icon"><i class="mdi mdi-github-circle"></i></span>
-          <span class="menu-item-label">GitHub</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-</aside>
+                <li class="active">
+                    <a href="/packs_produits">
+                        <span class="icon"><i class="mdi mdi-package-variant-closed"></i></span>
+                        <span class="menu-item-label">Packs Produits</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/messages">
+                        <span class="icon"><i class="mdi mdi-message"></i></span>
+                        <span class="menu-item-label">Messages</span>
+                    </a>
+                </li>
+            </ul>
+            <p class="menu-label">A Propos</p>
+            <ul class="menu-list">
+                <li>
+                    <a href="#" class="has-icon">
+                        <span class="icon"><i class="mdi mdi-github-circle"></i></span>
+                        <span class="menu-item-label">GitHub</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </aside>
 @endsection
 
 @section('content')
@@ -277,8 +277,6 @@
             </ul>
         </div>
     </section>
-
-    @include('sweetalert::alert')
 
     <section class="is-hero-bar">
         <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
@@ -361,6 +359,10 @@
                                     </td>
                                     <td class="actions-cell">
                                         <div class="buttons right nowrap">
+                                            <a class="button small green"
+                                                href="/packs_produits/addOne/{{ $pack->id }}/{{ $produit->id }}">
+                                                <span class="icon"><i class="mdi mdi-plus"></i></span>
+                                            </a>
                                             @foreach ($pack->produits as $pack_produit)
                                                 @if ($pack_produit->id === $produit->id)
                                                     @if ($pack_produit->pivot->qte_produit > 1)
@@ -388,17 +390,17 @@
                                     <button type="button" class="button disabled"><span
                                             class="mdi mdi-chevron-left"></span></button>
                                 @else
-                                    <a href="{{ $produits->previousPageUrl() }}" class="button"><span
+                                    <a href="{{ $produits->previousPageUrl() }}" class="button pagination-button"><span
                                             class="mdi mdi-chevron-left"></span></a>
                                 @endif
 
                                 @foreach ($produits->getUrlRange(1, $produits->lastPage()) as $page => $url)
                                     <button type="button"
-                                        class="button {{ $produits->currentPage() === $page ? 'active' : '' }}">{{ $page }}</button>
+                                        class="button pagination-button {{ $produits->currentPage() === $page ? 'active' : '' }}">{{ $page }}</button>
                                 @endforeach
 
                                 @if ($produits->hasMorePages())
-                                    <a href="{{ $produits->nextPageUrl() }}" class="button"><span
+                                    <a href="{{ $produits->nextPageUrl() }}" class="button pagination-button"><span
                                             class="mdi mdi-chevron-right"></span></a>
                                 @else
                                     <button type="button" class="button disabled"><span
@@ -424,30 +426,30 @@
                 </button>
                 <br><br>
                 @if ($allProducts->count() > 0)
-                    <table class="is-striped" id="all-products-table">
-                        <thead>
-                            <tr>
-                                <th></th>
-                                <th>Nom du Produit</th>
-                                <th>Quantité en Stock</th>
-                                <th>Prix</th>
-                                <th style="width: 130px">Quantité dans le Pack</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($allProducts as $produit)
-                                <form method="post"
-                                    action="/packs_produits/addToPack/{{ $produit->id }}/{{ $pack->id }}">
-                                    @csrf
+                    <form method="post" action="/packs_produits/addToPack/{{ $pack->id }}">
+                        @csrf
+                        <table class="is-striped" id="all-products-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Nom du Produit</th>
+                                    <th>Quantité en Stock</th>
+                                    <th>Prix</th>
+                                    <th style="width: 130px">Quantité dans le Pack</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($allProducts as $produit)
                                     <tr>
                                         <td></td>
                                         <td>{{ $produit->nom }}</td>
                                         <td>{{ $produit->qte_en_stock }}</td>
                                         <td>{{ $produit->prix }} DH</td>
                                         <td>
-                                            <input class="input is-small" type="number" name="quantite"
-                                                value="1" min="1">
+                                            <input class="input is-small" type="number" name="quantite" value="1"
+                                                min="1">
+                                            <input type="hidden" name="produit_id" value="{{ $produit->id }}">
                                         </td>
                                         <td>
                                             <button type="submit" class="button small blue">
@@ -455,10 +457,10 @@
                                             </button>
                                         </td>
                                     </tr>
-                                </form>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </form>
                     <div class="table-pagination" id="all-products-pagination">
                         <div class="flex items-center justify-between">
                             <div class="buttons">
@@ -466,17 +468,17 @@
                                     <button type="button" class="button disabled"><span
                                             class="mdi mdi-chevron-left"></span></button>
                                 @else
-                                    <a href="{{ $allProducts->previousPageUrl() }}" class="button"><span
-                                            class="mdi mdi-chevron-left"></span></a>
+                                    <a href="{{ $allProducts->previousPageUrl() }}"
+                                        class="button pagination-button"><span class="mdi mdi-chevron-left"></span></a>
                                 @endif
 
                                 @foreach ($allProducts->getUrlRange(1, $allProducts->lastPage()) as $page => $url)
                                     <button type="button"
-                                        class="button {{ $allProducts->currentPage() === $page ? 'active' : '' }}">{{ $page }}</button>
+                                        class="button pagination-button {{ $allProducts->currentPage() === $page ? 'active' : '' }}">{{ $page }}</button>
                                 @endforeach
 
                                 @if ($allProducts->hasMorePages())
-                                    <a href="{{ $allProducts->nextPageUrl() }}" class="button"><span
+                                    <a href="{{ $allProducts->nextPageUrl() }}" class="button pagination-button"><span
                                             class="mdi mdi-chevron-right"></span></a>
                                 @else
                                     <button type="button" class="button disabled"><span
@@ -530,41 +532,43 @@
         fbq('track', 'PageView');
     </script>
 
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        // Pagination pour les produits
-        $(document).on('click', '#produits-pagination .button', function(e) {
-            e.preventDefault();
-            var url = $(this).attr('href');
-            var targetTable = $('#produits-table');
-            var targetPagination = $('#produits-pagination');
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-            // Requête AJAX pour obtenir le nouveau contenu paginé pour les produits
-            $.get(url, function(data) {
-                var newTable = $(data).find('#produits-table').html();
-                var newPagination = $(data).find('#produits-pagination').html();
-                $(targetTable).html(newTable);
-                $(targetPagination).html(newPagination);
+    <script>
+        $(document).ready(function() {
+            // Pagination pour le premier tableau
+            $(document).on('click', '#produits-pagination .pagination-button', function(e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                var targetTable = $('#produits-table');
+                var targetPagination = $('#produits-pagination');
+
+                // Requête AJAX pour obtenir le nouveau contenu paginé
+                $.get(url, function(data) {
+                    var newTable = $(data).find('#produits-table').html();
+                    var newPagination = $(data).find('#produits-pagination').html();
+                    $(targetTable).html(newTable);
+                    $(targetPagination).html(newPagination);
+                });
+            });
+
+            // Pagination pour le deuxième tableau
+            $(document).on('click', '#all-products-pagination .pagination-button', function(e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                var targetTable = $('#all-products-table');
+                var targetPagination = $('#all-products-pagination');
+
+                // Requête AJAX pour obtenir le nouveau contenu paginé
+                $.get(url, function(data) {
+                    var newTable = $(data).find('#all-products-table').html();
+                    var newPagination = $(data).find('#all-products-pagination').html();
+                    $(targetTable).html(newTable);
+                    $(targetPagination).html(newPagination);
+                });
             });
         });
+    </script>
 
-        // Pagination pour les produits disponibles pour le pack
-        $(document).on('click', '#all-products-pagination .button', function(e) {
-            e.preventDefault();
-            var url = $(this).attr('href');
-            var targetTable = $('#all-products-table');
-            var targetPagination = $('#all-products-pagination');
-
-            // Requête AJAX pour obtenir le nouveau contenu paginé pour les produits disponibles pour le pack
-            $.get(url, function(data) {
-                var newTable = $(data).find('#all-products-table').html();
-                var newPagination = $(data).find('#all-products-pagination').html();
-                $(targetTable).html(newTable);
-                $(targetPagination).html(newPagination);
-            });
-        });
-    });
-</script> --}}
 
 @endsection

@@ -43,7 +43,7 @@ class CommandeController extends Controller
 
         FacadesAlert::success('La commande a été validée avec succés');
 
-        return redirect('/commandes');
+        return back();
     }
 
     public function addCommandeForm()
@@ -140,7 +140,7 @@ class CommandeController extends Controller
 
         FacadesAlert::success('La commande a été annulée');
 
-        return redirect('/commandes');
+        return back();
     }
 
     public function filterCommandes(Request $request)

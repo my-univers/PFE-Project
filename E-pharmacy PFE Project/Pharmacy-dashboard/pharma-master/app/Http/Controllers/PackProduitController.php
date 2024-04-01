@@ -124,10 +124,13 @@ class PackProduitController extends Controller
         return redirect('/packs_produits');
     }
 
-    public function addToPack($produit_id, $pack_id, Request $request) {
+    public function addToPack($pack_id, Request $request) {
         $pack = Pack::findOrFail($pack_id);
-        $produit = Produit::findOrFail($produit_id);
+        $produit_id = $request->input('produit_id'); // Lire l'ID du produit depuis le formulaire
         $quantite = $request->input('quantite');
+
+        // Récupérer le produit en fonction de son ID
+        $produit = Produit::findOrFail($produit_id);
 
         // Vérifier si le produit existe déjà dans le pack
         $existingProduct = $pack->produits()->where('produits_id', $produit_id)->first();
@@ -162,7 +165,21 @@ class PackProduitController extends Controller
             }
         }
 
-        return redirect()->back();
+        return back();
+    }
+
+    public function addOneToPack($pack_id, $produit_id) {
+        $pack = Pack::findOrFail($pack_id);
+        $produit = Produit::findOrFail($produit_id);
+
+        // Vérifier si le produit existe déjà dans le pack
+        $existingProduct = $pack->produits()->where('produits_id', $produit_id)->first();
+
+        // Mettre à jour la quantité du produit existant en ajoutant un
+        $existingProduct->pivot->update(['qte_produit' => $existingProduct->pivot->qte_produit + 1]);
+
+
+        return back();
     }
 
     public function removeProduct($pack_id, $produit_id) {
@@ -171,7 +188,7 @@ class PackProduitController extends Controller
 
         $pack->produits()->detach($produit_id);
 
-        return redirect()->back();
+        return back();
     }
 
 
