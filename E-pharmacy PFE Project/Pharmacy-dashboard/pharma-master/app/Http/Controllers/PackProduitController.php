@@ -53,14 +53,10 @@ class PackProduitController extends Controller
         $pack->prix = $totalPack;
         $pack->save();
 
-<<<<<<< HEAD
-        return view('/packs_produits/details', ['totalPack' => $totalPack]);
-=======
         FacadesAlert::success('Pack de produits ajouté avec succés');
 
         // Rediriger avec un message de succès
         return redirect('/packs_produits');
->>>>>>> 1e041a26ac1b64bc928dc5490c97855527f87a2a
     }
 
     public function showDetails($id) {

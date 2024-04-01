@@ -93,7 +93,7 @@
           <div class="col-lg-7 mx-auto align-self-center">
             <div class=" text-center">
               <h1>A propos </h1>
-              <p style="color: black">Chez Pharma, notre priorité est votre santé. <br>
+              <p>Chez Pharma, notre priorité est votre santé. <br>
                 {{-- Avec nous, vous trouverez un partenaire de confiance pour votre bien-être. --}}
                 Notre mission est de rendre l'accès aux médicaments plus facile et plus pratique pour vous, nos précieux clients.
               </p>
