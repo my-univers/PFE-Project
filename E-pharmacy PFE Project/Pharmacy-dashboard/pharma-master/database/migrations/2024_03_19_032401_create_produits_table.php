@@ -22,7 +22,7 @@ return new class extends Migration
             $table->boolean('ordonnance');
             $table->string('image_path', 2500);
             $table->string('ingredients',3500);
-            $table->string('poids',150);
+            $table->string('poids', 150)->default(0);
             $table->foreignId('categorie_id')->constrained('categories')->onDelete('cascade');;
             $table->timestamps();
         });

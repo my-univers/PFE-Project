@@ -420,14 +420,6 @@
                                 </footer>
                                 </div>
                             </div>
-                            {{-- <script>
-                                function confirmerAnnulation(commandeId) {
-                                    if (confirm("Êtes-vous sûr de vouloir annuler cette commande ?")) {
-                                        // Si l'utilisateur confirme, rediriger vers l'URL d'annulation de la commande
-                                        window.location.href = '/commandes/cancel/' + commandeId;
-                                    }
-                                }
-                            </script> --}}
                         </div>
                     </td>
                     <td></td>

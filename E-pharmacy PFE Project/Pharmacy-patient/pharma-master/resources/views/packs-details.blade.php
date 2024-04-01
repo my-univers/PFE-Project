@@ -160,10 +160,10 @@
                                         </thead>
                                         <tbody>
                                             <tr>
-                                                <td>{{ $pack->description }}</td>
-                                                <td>
+                                                <td style="width: 50%">{{ $pack->description }}</td>
+                                                <td style="width: 50%">
                                                     @foreach ($pack->produits as $p)
-                                                    - <a href="/product-details/{{ $p->id }}">{{ $p->nom }}</a><br>
+                                                    - &nbsp; <a href="/product-details/{{ $p->id }}" style="color: black">{{ $p->nom }}</a> &nbsp; x &nbsp; {{ $p->pivot->qte_produit }}<br>
                                                     @endforeach
                                                 </td>
                                             </tr>
@@ -259,7 +259,7 @@
                             <li><a href="/packs">Packs Premiers Secours</a></li>
                         </ul>
                     </div>
-      
+
 
                     <div class="col-md-6 col-lg-3">
                         <div class="block-5 mb-5">
