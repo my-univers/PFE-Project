@@ -118,9 +118,9 @@
                             <div class="control">
                                 <div class="select">
                                     <select name="messagesFilter" onchange="this.form.submit()">
-                                        <option value="'Tous'">Tous</option>
-                                        <option value="Lus">Lus</option>
-                                        <option value="Non Lus">Non Lus</option>
+                                        <option value="Tous" @if($filter == 'Tous') selected @endif>Tous</option>
+                                        <option value="Lus" @if($filter == 'Lus') selected @endif>Lus</option>
+                                        <option value="Non Lus" @if($filter == 'Non Lus') selected @endif>Non Lus</option>
                                     </select>
                                 </div>
                             </div>
