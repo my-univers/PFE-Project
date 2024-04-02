@@ -284,9 +284,9 @@
     <h1 class="title">
         Modifier Client
     </h1>
-    {{-- <a class="button blue" href='/clients/list'>
+    <a class="button blue" href='/clients/list'>
         Retour
-      </a> --}}
+      </a>
   </div>
 </section>
 

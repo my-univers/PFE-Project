@@ -140,7 +140,14 @@
                                     <br>
                                     <div class="field">
                                         <div class="control">
-                                            <textarea class="textarea" name="body" placeholder="Message" id="message"></textarea>
+                                            <textarea class="textarea" readonly id="message">{{ $message->message }}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="field">
+                                        <div class="control">
+                                            <textarea class="textarea" name="body" placeholder="Réponse" id="message"></textarea>
                                         </div>
                                     </div>
 
