@@ -8,10 +8,9 @@
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="../css/main.css?v=1628755089081">
+  <link rel="icon" type="image/x-icon" href="/img/pharmaOne-logo-bg.png">
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
   <link rel="mask-icon" href="safari-pinned-tab.svg" color="#00b4b6"/>
 
   <meta name="description" content="Admin One - free Tailwind dashboard">
