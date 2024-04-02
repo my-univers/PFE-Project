@@ -119,14 +119,14 @@
 
                 <div class="field">
                   <div class="control icons-left">
-                    <input class="input" type="text" id="nom" name="nom" placeholder="Nom">
+                    <input class="input" type="text" id="nom" name="nom" required placeholder="Nom">
                     <span class="icon left"><i class="mdi mdi-tag"></i></span>
                   </div>
                 </div>
-                
+
                 <div class="field">
                   <div class="control">
-                    <textarea class="textarea" id="ingredients" name="ingredients" placeholder="Ingrédients"></textarea>
+                    <textarea class="textarea" id="ingredients" name="ingredients"  placeholder="Ingrédients"></textarea>
                   </div>
                 </div>
 
@@ -139,21 +139,21 @@
 
                 <div class="field">
                   <div class="control icons-left">
-                    <input class="input" type="number" id="prix" name="prix" placeholder="Prix" step="0.01">
+                    <input class="input" type="number" id="prix" name="prix" required placeholder="Prix" step="0.01">
                     <span class="icon left"><i class="mdi mdi-cash"></i></span>
                   </div>
                 </div>
 
                 <div class="field">
                   <div class="control icons-left">
-                    <input class="input" type="number" id="qte_en_stock" name="qte_en_stock" placeholder="Quantité en stock">
+                    <input class="input" type="number" id="qte_en_stock" name="qte_en_stock" required placeholder="Quantité en stock">
                     <span class="icon left"><i class="mdi mdi-store"></i></span>
                   </div>
                 </div>
 
                 <div class="field">
                   <div class="control">
-                    <textarea class="textarea" id="description" name="descr" placeholder="Description"></textarea>
+                    <textarea class="textarea" id="description" name="descr" required placeholder="Description"></textarea>
                   </div>
                 </div>
 
@@ -161,7 +161,7 @@
                   <label class="label">Catégorie</label>
                   <div class="control">
                     <div class="select">
-                      <select name="categorie">
+                      <select name="categorie" required>
                           @foreach ($categories as $c)
                           <option value="{{ $c->id }}">{{ $c->nom }}</option>
                           @endforeach
@@ -176,14 +176,14 @@
                       <div class="field grouped multiline">
                         <div class="control">
                           <label class="radio">
-                            <input type="radio" name="ordonnance" value="1">
+                            <input type="radio" required name="ordonnance" value="1">
                             <span class="check"></span>
                             <span class="control-label">Nécessaire</span>
                           </label>
                         </div>
                         <div class="control">
                           <label class="radio">
-                            <input type="radio" name="ordonnance" value="0">
+                            <input type="radio" required name="ordonnance" value="0">
                             <span class="check"></span>
                             <span class="control-label">Facultative</span>
                           </label>

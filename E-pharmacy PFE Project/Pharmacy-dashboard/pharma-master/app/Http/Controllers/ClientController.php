@@ -10,7 +10,7 @@ class ClientController extends Controller
 {
     public function showClientsList()
     {
-        $clients = Client::paginate(10);
+        $clients = Client::latest()->paginate(10);
         return view("clients.list", ['clients' => $clients]);
     }
 

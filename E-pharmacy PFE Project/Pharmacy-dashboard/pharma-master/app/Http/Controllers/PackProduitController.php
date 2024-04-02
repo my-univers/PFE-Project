@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Pack;
 use App\Models\PackProduit;
-use App\Models\PremiersSecours;
 use App\Models\Produit;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
@@ -14,14 +13,25 @@ class PackProduitController extends Controller
     public function showList()
     {
         $list_packs = PackProduit::with(['packs', 'produits'])
-        ->select('pack_id')
-        ->groupBy('pack_id')
-        ->paginate(10);
+            ->select('pack_id', 'created_at')
+            ->groupBy('pack_id', 'created_at')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
 
         return view('/packs_produits.list', ['list_packs' => $list_packs]);
     }
 
-    public function addPackProduits(Request $request) {
+    public function addPackProduits(Request $request)
+    {
+        // Vérifier si aucun produit ni aucun pack n'est sélectionné
+        if (!$request->has('produits_id')) {
+            FacadesAlert::warning('Veuillez sélectionner au moins un produit !')->flash();
+            return back()->withInput();
+        } elseif(!$request->has('packs_id')) {
+            FacadesAlert::warning("Veuillez sélectionnez le pack à remplir !")->flash();
+            return back()->withInput();
+        }
+
         $packId = $request->input('pack_id');
         $produitIds = $request->input('produits_id');
         $quantites = $request->input('quantite');
@@ -59,12 +69,13 @@ class PackProduitController extends Controller
         return redirect('/packs_produits');
     }
 
-    public function showDetails($id) {
-        $pack= Pack::find($id);
+    public function showDetails($id)
+    {
+        $pack = Pack::find($id);
         $produits = $pack->produits()->paginate(5, ['*'], 'produits');
 
         // Get all products where qte_en_stock >= 1
-        $allProducts = Produit::where('qte_en_stock','>=',1)->paginate(5, ['*'], 'allProducts_page');
+        $allProducts = Produit::where('qte_en_stock', '>=', 1)->latest()->paginate(5, ['*'], 'allProducts_page');
 
         $total = 0;
         foreach ($produits as $produit) {
@@ -85,16 +96,18 @@ class PackProduitController extends Controller
             $query->select('pack_id')->from('packs_produits');
         })->paginate(5, ['*'], 'packs_page');
         $produits = Produit::paginate(5, ['*'], 'produits_page');
-        return view("packs_produits.add", ['packs'=> $packs, 'produits' => $produits]);
+        return view("packs_produits.add", ['packs' => $packs, 'produits' => $produits]);
     }
 
 
-    public function updateForm($id){
+    public function updateForm($id)
+    {
         $p = Pack::find($id);
         return view("packs_produits.update", ['pack' => $p]);
     }
 
-    public function updatePackProduit(Request $request, $id) {
+    public function updatePackProduit(Request $request, $id)
+    {
         $c = Pack::find($id);
 
         $c->nom = $request->nom;
@@ -106,12 +119,28 @@ class PackProduitController extends Controller
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
+
+            // Stocker la nouvelle image dans le répertoire du projet admin
+            $adminImagePath = public_path('img/' . $imageName);
             $image->move(public_path('img'), $imageName);
 
-            // //  Suppression de l'ancienne image si elle existe
-            // if ($c->image_path) {
-            //     unlink(public_path($c->image_path));
-            // }
+            // Stocker la nouvelle image dans le répertoire du projet client
+            $clientImagePath = base_path('../../Pharmacy-patient/pharma-master/public/img/' . $imageName);
+            copy($adminImagePath, $clientImagePath);
+
+            // Suppression de l'ancienne image si elle existe et n'est pas 'default-pack.jpg' chez le dashbord admin
+            if ($c->image_path && $c->image_path !== 'img/default-pack.jpg') {
+                unlink(public_path($c->image_path));
+            }
+
+            // Suppression de l'ancienne image si elle existe et n'est pas 'default-pack.jpg' chez l'interface client
+            if ($c->image_path && $c->image_path !== 'img/default-pack.jpg') {
+                // Supprimer l'ancienne image du projet client
+                $clientOldImagePath = base_path('../../Pharmacy-patient/pharma-master/public/' . $c->image_path);
+                if (file_exists($clientOldImagePath)) {
+                    unlink($clientOldImagePath);
+                }
+            }
 
             $c->image_path = 'img/' . $imageName;
         }
@@ -123,9 +152,10 @@ class PackProduitController extends Controller
         return redirect('/packs_produits');
     }
 
-    public function addToPack($pack_id, Request $request) {
+    public function addToPack($pack_id, Request $request)
+    {
         $pack = Pack::findOrFail($pack_id);
-        $produit_id = $request->input('produit_id'); // Lire l'ID du produit depuis le formulaire
+        $produit_id = $request->input('produit_id');
         $quantite = $request->input('quantite');
 
         // Récupérer le produit en fonction de son ID
@@ -137,15 +167,22 @@ class PackProduitController extends Controller
         if ($existingProduct) {
             // Mettre à jour la quantité du produit existant
             $existingProduct->pivot->update(['qte_produit' => $existingProduct->pivot->qte_produit + $quantite]);
+            FacadesAlert::success('Produit ajouté au pack');
+
+            return back();
         } else {
             // Attacher le produit avec la quantité au pack
             $pack->produits()->attach($produit, ['qte_produit' => $quantite]);
+            FacadesAlert::success('Produit ajouté au pack');
+
+            return back();
         }
 
         return back();
     }
 
-    public function minusProduct($pack_id, $produit_id) {
+    public function minusProduct($pack_id, $produit_id)
+    {
         // Recherche du pack et du produit
         $pack = Pack::findOrFail($pack_id);
         $produit = Produit::findOrFail($produit_id);
@@ -167,7 +204,8 @@ class PackProduitController extends Controller
         return back();
     }
 
-    public function addOneToPack($pack_id, $produit_id) {
+    public function addOneToPack($pack_id, $produit_id)
+    {
         $pack = Pack::findOrFail($pack_id);
         $produit = Produit::findOrFail($produit_id);
 
@@ -181,7 +219,8 @@ class PackProduitController extends Controller
         return back();
     }
 
-    public function removeProduct($pack_id, $produit_id) {
+    public function removeProduct($pack_id, $produit_id)
+    {
 
         $pack = Pack::find($pack_id);
 
@@ -191,12 +230,24 @@ class PackProduitController extends Controller
     }
 
 
-    public function deletePackProduit($id) {
+    public function deletePackProduit($id)
+    {
         $pack = Pack::find($id);
         $pack->delete();
 
+        // Supprimer l'image associée si elle n'est pas l'image par défaut
         if ($pack->image_path != 'img/default-pack.jpg') {
-            unlink(public_path($pack->image_path));
+            // Supprimer l'image du projet admin
+            $adminImagePath = public_path($pack->image_path);
+            if (file_exists($adminImagePath)) {
+                unlink($adminImagePath);
+            }
+
+            // Supprimer l'image du projet client
+            $clientImagePath = base_path('../../Pharmacy-patient/pharma-master/public/' . $pack->image_path);
+            if (file_exists($clientImagePath)) {
+                unlink($clientImagePath);
+            }
         }
 
         FacadesAlert::success('Pack supprimé avec succés');
@@ -215,16 +266,13 @@ class PackProduitController extends Controller
         if ($search_input) {
             $query->whereHas('packs', function ($query) use ($search_input) {
                 $query->where('nom', 'like', '%' . $search_input . '%')
-                      ->orWhere('qte_en_stock', 'like', '%' . $search_input . '%')
-                      ->orWhere('prix', 'like', '%' . $search_input . '%');
+                    ->orWhere('qte_en_stock', 'like', '%' . $search_input . '%')
+                    ->orWhere('prix', 'like', '%' . $search_input . '%');
             });
         }
 
-        // Exécuter la requête
         $list_packs = $query->paginate(10);
 
-        // Passer les résultats à la vue
         return view('packs_produits.list', ['list_packs' => $list_packs]);
     }
-
 }

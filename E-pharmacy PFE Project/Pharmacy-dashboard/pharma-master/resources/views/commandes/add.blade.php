@@ -320,9 +320,9 @@
                             @foreach ($clients as $c)
                             <tr>
                                 <td class="checkbox-cell">
-                                    <label class="checkbox">
-                                    <input type="checkbox" name="client_id" value="{{ $c->id }}">
-                                    <span class="check"></span>
+                                    <label class="radio">
+                                        <input type="radio" name="client_id" value="{{ $c->id }}">
+                                        <span class="check"></span>
                                     </label>
                                 </td>
                                 <td>{{ $c->nom }}</td>

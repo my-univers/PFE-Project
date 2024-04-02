@@ -26,7 +26,7 @@ class ContactController extends Controller
             $messages = Contact::query();
         }
 
-        $messages = $messages->paginate(10);
+        $messages = $messages->latest()->paginate(10);
 
         return view('contacts.messages', ['messages' => $messages, 'filter' => $filter]);
     }

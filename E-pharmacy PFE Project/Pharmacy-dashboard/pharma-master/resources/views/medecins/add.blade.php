@@ -306,13 +306,13 @@
             <div class="field-body">
               <div class="field">
                 <div class="control icons-left">
-                  <input class="input" type="text" id="nom" name="nom" placeholder="Nom">
+                  <input class="input" type="text" id="nom" name="nom" required placeholder="Nom">
                   <span class="icon left"><i class="mdi mdi-account"></i></span>
                 </div>
               </div>
               <div class="field">
                 <div class="control icons-left icons-right">
-                  <input class="input" type="email" id="email" name="email" placeholder="E-mail">
+                  <input class="input" type="email" id="email" name="email" required placeholder="E-mail">
                   <span class="icon left"><i class="mdi mdi-mail"></i></span>
                   <span class="icon right"><i class="mdi mdi-check"></i></span>
                 </div>
@@ -327,7 +327,7 @@
                     <input class="input" value="+212" size="3" readonly>
                   </div>
                   <div class="control expanded">
-                    <input class="input" type="tel" id="telephone" name="telephone" placeholder="Téléphone">
+                    <input class="input" type="tel" id="telephone" required name="telephone" placeholder="Téléphone">
                   </div>
                 </div>
                 <p class="help">Entrez le premier zero</p>
@@ -338,7 +338,7 @@
             <label class="label">Spécialité</label>
             <div class="control">
               <div class="select">
-                <select name="specialite">
+                <select name="specialite" required>
                     <option value="Cardiologie">Cardiologie</option>
                     <option value="Dermatologie">Dermatologie</option>
                     <option value="Endocrinologie">Endocrinologie</option>
@@ -386,7 +386,7 @@
             <label class="label">Ville</label>
             <div class="control">
               <div class="select">
-                <select name="ville">
+                <select name="ville" required>
                     <option value="Agadir">Agadir</option>
                     <option value="Al Hoceïma">Al Hoceïma</option>
                     <option value="Béni Mellal">Béni Mellal</option>

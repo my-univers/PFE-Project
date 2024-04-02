@@ -324,8 +324,8 @@
                                         @foreach ($packs as $p)
                                             <tr>
                                                 <td class="checkbox-cell">
-                                                    <label class="checkbox">
-                                                        <input type="checkbox" name="pack_id" value="{{ $p->id }}">
+                                                    <label class="radio">
+                                                        <input type="radio" name="pack_id" value="{{ $p->id }}">
                                                         <span class="check"></span>
                                                     </label>
                                                 </td>

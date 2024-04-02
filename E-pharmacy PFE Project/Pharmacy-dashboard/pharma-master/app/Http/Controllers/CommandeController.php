@@ -13,7 +13,7 @@ class CommandeController extends Controller
 {
     public function showList(Request $request)
     {
-        $commandes = Commande::paginate(10);
+        $commandes = Commande::latest()->paginate(10);
         return view('commandes.list', ['commandes' => $commandes]);
     }
 
@@ -52,10 +52,10 @@ class CommandeController extends Controller
         $clients = Client::paginate(5, ['*'], 'clients_page');
 
         // Récupérer les produits avec une quantité en stock supérieure ou égale à 1 et une page de pagination distincte
-        $produits = Produit::where('qte_en_stock', '>=', 1)->paginate(5, ['*'], 'produits_page');
+        $produits = Produit::latest()->where('qte_en_stock', '>=', 1)->paginate(5, ['*'], 'produits_page');
 
         // Récupérer les packs de produits
-        $packs = Pack::paginate(5, ['*'], 'packs_page');
+        $packs = Pack::latest()->paginate(5, ['*'], 'packs_page');
 
         // Retourner la vue avec les clients et les produits
         return view('commandes.add', ['clients' => $clients, 'produits' => $produits, 'packs' => $packs]);
@@ -63,6 +63,18 @@ class CommandeController extends Controller
 
     public function addCommande(Request $request)
     {
+        // Vérifier si aucun client n'a été sélectionné
+        if (!$request->has('client_id')) {
+            FacadesAlert::warning('Veuillez sélectionner le client concerné !')->flash();
+            return back()->withInput();
+        }
+
+        // Vérifier si aucun produit ni aucun pack n'est sélectionné
+        if (!$request->has('produits_id') && !$request->has('packs_id')) {
+            FacadesAlert::warning('Veuillez sélectionner au moins un produit ou un pack !')->flash();
+            return back()->withInput();
+        }
+
         // Récupérer l'ID du client sélectionné
         $client_id = $request->input('client_id');
 

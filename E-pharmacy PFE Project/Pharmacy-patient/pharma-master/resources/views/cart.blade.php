@@ -151,7 +151,7 @@
                                                         </div>
                                                     </center>
                                                 </td>
-                                                <td class="product-price">{{ $item['item']->prix }} DH</td>
+                                                <td class="product-price">{{ $item['item']->prix * $item['quantity'] }} DH</td>
                                                 <td class="product-delete">
                                                     <a href="{{ route('remove.item', ['type' => $item['type'], 'itemId' => $item['item']->id]) }}"
                                                         class="btn btn-primary height-auto btn-sm">X</a>

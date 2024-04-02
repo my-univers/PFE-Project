@@ -10,7 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 class CategorieController extends Controller
 {
     public function showList() {
-        $categories = DB::table('categories')->paginate(10);
+        $categories = Categorie::latest()->paginate(10);
 
         return view('categories.list', ['categories' => $categories]);
     }

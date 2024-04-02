@@ -359,10 +359,16 @@
                                     </td>
                                     <td class="actions-cell">
                                         <div class="buttons right nowrap">
-                                            <a class="button small green"
+                                            {{-- <a class="button small green"
                                                 href="/packs_produits/addOne/{{ $pack->id }}/{{ $produit->id }}">
                                                 <span class="icon"><i class="mdi mdi-plus"></i></span>
-                                            </a>
+                                            </a> --}}
+                                            @if ($produit->qte_en_stock > 1)
+                                                <a class="button small green"
+                                                    href="/packs_produits/addOne/{{ $pack->id }}/{{ $produit->id }}">
+                                                    <span class="icon"><i class="mdi mdi-plus"></i></span>
+                                                </a>
+                                            @endif
                                             @foreach ($pack->produits as $pack_produit)
                                                 @if ($pack_produit->id === $produit->id)
                                                     @if ($pack_produit->pivot->qte_produit > 1)
@@ -426,7 +432,7 @@
                 </button>
                 <br><br>
                 @if ($allProducts->count() > 0)
-                    <form method="post" action="/packs_produits/addToPack/{{ $pack->id }}">
+                    <form method="POST" action="/packs_produits/addToPack/{{ $pack->id }}">
                         @csrf
                         <table class="is-striped" id="all-products-table">
                             <thead>
