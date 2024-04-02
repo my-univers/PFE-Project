@@ -284,9 +284,9 @@
     <h1 class="title">
         Modifier Catégorie
     </h1>
-    {{-- <a class="button blue" href='/categories/list'>
+    <a class="button blue" href='/categories/list'>
         Retour
-      </a> --}}
+      </a>
   </div>
 </section>
 

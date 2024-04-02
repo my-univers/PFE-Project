@@ -15,8 +15,8 @@ class DashboardController extends Controller
     public function index(Request $request) {
         $clients = Client::all();
         $produits = Produit::all();
-        $commandes = Commande::paginate(10);
-        $commandes_paginate = Commande::paginate(10);
+        $commandes = Commande::where('statut', "En attente")->latest()->paginate(10);
+        $commandes_paginate = Commande::where('statut', "En attente")->latest()->paginate(10);
 
         $clients_count = Client::count();
         $commandes_count = Commande::count();
