@@ -65,13 +65,13 @@ class CommandeController extends Controller
     {
         // Vérifier si aucun client n'a été sélectionné
         if (!$request->has('client_id')) {
-            FacadesAlert::warning('Veuillez sélectionner le client concerné !')->flash();
+            FacadesAlert::warning("Veuillez sélectionner le client \n\n concerné !")->flash();
             return back()->withInput();
         }
 
         // Vérifier si aucun produit ni aucun pack n'est sélectionné
         if (!$request->has('produits_id') && !$request->has('packs_id')) {
-            FacadesAlert::warning('Veuillez sélectionner au moins un produit ou un pack !')->flash();
+            FacadesAlert::warning("Veuillez sélectionner au moins \n\n un produit ou un pack !")->flash();
             return back()->withInput();
         }
 
@@ -84,7 +84,6 @@ class CommandeController extends Controller
         $commande->date_commande = now(); // Ou utilisez la date fournie par le formulaire
         $commande->total = 0; // Le total sera calculé plus tard
         $commande->statut = "En attente"; // Vous pouvez définir un statut par défaut
-        $commande->save();
 
         // Récupérer les produits sélectionnés avec leurs quantités
         $produits = $request->input('produits_id');
@@ -97,17 +96,22 @@ class CommandeController extends Controller
                 $quantite = $quantites[$produit_id];
                 $produit = Produit::find($produit_id);
 
-                // Ajouter le prix du produit multiplié par la quantité à calculer
-                $total_commande += $produit->prix * $quantite;
+                // Vérifier si la quantité en stock est suffisante
+                if ($produit->qte_en_stock >= $quantite) {
+                    // Ajouter le prix du produit multiplié par la quantité à calculer
+                    $total_commande += $produit->prix * $quantite;
 
-                // Décrémenter la quantité en stock du produit
-                if ($produit->qte_en_stock >= 0) {
+                    // Décrémenter la quantité en stock du produit
                     $produit->qte_en_stock -= $quantite;
-                }
-                $produit->save();
+                    $produit->save();
 
-                // Ajouter le produit à la commande avec la quantité via la table pivot produits_commandes
-                $commande->produits()->attach($produit_id, ['quantite' => $quantite]);
+                    // Ajouter le produit à la commande avec la quantité via la table pivot produits_commandes
+                    $commande->produits()->attach($produit_id, ['quantite' => $quantite]);
+                } else {
+                    // Si la quantité en stock n'est pas suffisante, afficher un message d'erreur
+                    FacadesAlert::error("La quantité de " . $produit->nom . "\n\n est insuffisante !");
+                    return back()->withInput();
+                }
             }
         }
 
@@ -121,17 +125,22 @@ class CommandeController extends Controller
                 $quantite_pack = $quantites_packs[$pack_id];
                 $pack = Pack::find($pack_id);
 
-                // Ajouter le prix du pack multiplié par la quantité à calculer
-                $total_commande += $pack->prix * $quantite_pack;
+                // Vérifier si la quantité en stock est suffisante
+                if ($pack->qte_en_stock >= $quantite_pack) {
+                    // Ajouter le prix du pack multiplié par la quantité à calculer
+                    $total_commande += $pack->prix * $quantite_pack;
 
-                // Décrémenter la quantité en stock du pack
-                if ($pack->qte_en_stock >= 0) {
+                    // Décrémenter la quantité en stock du pack
                     $pack->qte_en_stock -= $quantite_pack;
-                }
-                $pack->save();
+                    $pack->save();
 
-                // Ajouter le pack à la commande avec la quantité via la table pivot packs_commandes
-                $commande->packs()->attach($pack_id, ['quantite' => $quantite_pack]);
+                    // Ajouter le pack à la commande avec la quantité via la table pivot packs_commandes
+                    $commande->packs()->attach($pack_id, ['quantite' => $quantite_pack]);
+                } else {
+                    // Si la quantité en stock n'est pas suffisante, afficher un message d'erreur
+                    FacadesAlert::error("La quantité de " . $pack->nom . "\n\n est insuffisante !");
+                    return back()->withInput();
+                }
             }
         }
 
@@ -139,11 +148,10 @@ class CommandeController extends Controller
         $commande->total = $total_commande;
         $commande->save();
 
-        FacadesAlert::success('Commande ajoutée avec succés');
+        FacadesAlert::success("Commande ajoutée avec \n\n succès");
 
         return redirect('/commandes')->with('success', 'Commande ajoutée avec succès');
     }
-
     public function annulerCommande($id)
     {
         $commande = Commande::find($id);

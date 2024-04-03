@@ -26,10 +26,10 @@ class PackProduitController extends Controller
     {
         // Vérifier si aucun produit ni aucun pack n'est sélectionné
         if (!$request->has('produits_id')) {
-            FacadesAlert::warning('Veuillez sélectionner au moins un produit !')->flash();
+            FacadesAlert::warning('Veuillez sélectionner au moins \n\n un produit !')->flash();
             return back()->withInput();
         } elseif (!$request->has('pack_id')) {
-            FacadesAlert::warning("Veuillez sélectionner le pack à remplir !")->flash();
+            FacadesAlert::warning("Veuillez sélectionner le pack \n\n à remplir !")->flash();
             return back()->withInput();
         }
 
@@ -57,7 +57,7 @@ class PackProduitController extends Controller
                 ]);
             } else {
                 // Si la quantité en stock n'est pas suffisante, afficher un message d'erreur
-                FacadesAlert::error("La quantité de " . $produit->nom . " est insuffisante !");
+                FacadesAlert::error("La quantité de " . $produit->nom . " \n\n est insuffisante !");
                 return back()->withInput();
             }
         }
@@ -79,7 +79,7 @@ class PackProduitController extends Controller
         $pack->save();
 
         // Afficher un message de succès
-        FacadesAlert::success('Pack de produits ajouté avec succès');
+        FacadesAlert::success("Pack de produits ajouté \n\n avec succès");
 
         // Rediriger avec un message de succès
         return redirect('/packs_produits');
@@ -206,7 +206,7 @@ class PackProduitController extends Controller
             }
         } else {
             // Si la quantité en stock n'est pas suffisante, afficher un message d'erreur
-            FacadesAlert::error("La quantité de " . $produit->nom . " est insuffisante !");
+            FacadesAlert::error("La quantité de " . $produit->nom . " \n\n est insuffisante !");
         }
 
         return back()->with('success', 'Produit ajouté avec succès au pack.');
