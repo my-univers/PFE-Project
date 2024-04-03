@@ -129,6 +129,9 @@
                 <div class="row mt-5">
                     @foreach ($products as $product)
                         <div class="col-sm-6 col-lg-4 text-center item mb-4">
+                            @if ($product->qte_en_stock < 1)
+                            <span class="tag">Épuisé !</span>
+                            @endif
                             <a href="/product-details/{{$product->id}}"> <img class="product-image"
                                     src="{{ asset($product->image_path) }}" alt="Image"></a>
                             <br><br>

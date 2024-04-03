@@ -113,29 +113,70 @@
                         </p>
                         <p class="text-black">{{ $pack->prix }} DH</p>
 
-                        <form action="{{ route('add.to.cart') }}" method="POST">
-                            @csrf
+                        @if ($pack->qte_en_stock > 0)
+                            <form action="{{ route('add.to.cart') }}" method="POST">
+                                @csrf
+                                <div class="mb-5">
+                                    <div class="input-group mb-3" style="max-width: 220px;">
+                                        <div class="input-group-prepend">
+                                            <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                        </div>
+                                        <input type="text" readonly style="background-color: white" class="form-control text-center" name="quantity" value="1" placeholder=""
+                                        aria-label="Example text with button addon" aria-describedby="button-addon1"
+                                        data-stock="{{ $pack->qte_en_stock }}">
+                                        <div class="input-group-append">
+                                            <button onclick="toggleIncrementButton()" class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <input type="hidden" name="type" value="pack">
+                                <input type="hidden" name="item_id" value="{{ $pack->id }}">
+                                <button type="submit"
+                                    class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
+                                    style="width: 247.438px">Ajouter au Panier</button>
+                            </form>
+                            <script>
+                                function toggleIncrementButton() {
+                                    // Récupérer la quantité saisie par l'utilisateur
+                                    var quantity = parseInt(document.getElementsByName("quantity")[0].value);
+                                    // Récupérer le stock disponible depuis l'attribut data-stock
+                                    var stockDisponible = parseInt(document.getElementsByName("quantity")[0].getAttribute("data-stock"));
+
+                                    // Sélectionner le bouton d'incrémentation
+                                    var incrementButton = document.querySelector('.js-btn-plus');
+
+                                    // Vérifier si la quantité dépasse le stock disponible
+                                    if (quantity + 1 >= stockDisponible) {
+                                        // Désactiver le bouton d'incrémentation
+                                        incrementButton.disabled = true;
+                                    } else {
+                                        // Activer le bouton d'incrémentation
+                                        incrementButton.disabled = false;
+                                    }
+                                }
+                            </script>
+                        @else
                             <div class="mb-5">
                                 <div class="input-group mb-3" style="max-width: 220px;">
                                     <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                        <button class="btn btn-outline-primary js-btn-minus" type="button" disabled>&minus;</button>
                                     </div>
-                                    <input type="text" class="form-control text-center" name="quantity" value="1" placeholder=""
+                                    <input type="text" class="form-control text-center" name="quantity" value="0" placeholder=""
                                         aria-label="Example text with button addon" aria-describedby="button-addon1">
                                     <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                        <button class="btn btn-outline-primary js-btn-plus" type="button" disabled>&plus;</button>
                                     </div>
                                 </div>
+                                <h4>Épuisé !</h4>
                             </div>
 
                             <input type="hidden" name="type" value="pack">
                             <input type="hidden" name="item_id" value="{{ $pack->id }}">
-                            <p id="addToCartBtn">
-                                <br>
-                                <button type="submit" class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
+                            <button type="submit"
+                                class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
                                 style="width: 247.438px">Ajouter au Panier</button>
-                            </p>
-                        </form>
+                        @endif
 
                         <div class="mt-5">
                             <ul class="nav nav-pills mb-3 custom-pill" id="pills-tab" role="tablist">

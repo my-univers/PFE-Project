@@ -211,12 +211,23 @@ class CartController extends Controller
                 $produitCommande->produit_id = $item['item']->id;
                 $produitCommande->quantite = $item['quantity'];
                 $produitCommande->save();
+
+                // Décrémenter la quantité en stock du produit
+                $produit = Produit::find($item['item']->id);
+                $produit->qte_en_stock -= $item['quantity'];
+                $produit->save();
             } elseif ($item['type'] === 'pack') {
                 $packCommande = new PackCommande();
                 $packCommande->commande_id = $commande->id;
                 $packCommande->pack_id = $item['item']->id;
                 $packCommande->quantite = $item['quantity'];
                 $packCommande->save();
+
+                // Décrémenter la quantité en stock du pack (s'il y a lieu)
+                // À adapter en fonction de votre modèle de données
+                $pack = Pack::find($item['item']->id);
+                $pack->qte_en_stock -= $item['quantity'];
+                $pack->save();
             }
         }
 
