@@ -11,7 +11,7 @@ class shopController extends Controller
 {
     public function showMagasinProduits()
     {
-        $products = Produit::where('qte_en_stock', '>=', '1')->paginate(9);
+        $products = Produit::paginate(9);
         $categories = Categorie::all();
 
         return view('magasin.produits', ['products' => $products, 'categories' => $categories]);
@@ -19,7 +19,7 @@ class shopController extends Controller
 
     public function showMagasinPacks()
     {
-        $packs = Pack::where('qte_en_stock', '>=', '1')->has('produits')->paginate(9);
+        $packs = Pack::has('produits')->paginate(9);
         $categories = Categorie::all();
 
         return view('magasin.packs', ['packs' => $packs, 'categories' => $categories]);

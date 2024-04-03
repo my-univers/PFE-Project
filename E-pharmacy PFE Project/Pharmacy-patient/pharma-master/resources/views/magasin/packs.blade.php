@@ -128,10 +128,13 @@
                 <div class="row mt-5">
                     @foreach ($packs as $pack)
                         <div class="col-sm-6 col-lg-4 text-center item mb-4">
+                            @if ($pack->qte_en_stock < 1)
+                            <span class="tag">Épuisé !</span>
+                            @endif
                             <a href="/pack-details/{{$pack->id}}"> <img class="pack-image"
                                     src="{{ asset($pack->image_path) }}" alt="Image"></a>
                             <br><br>
-                            <h3 class="text-dark"><a
+                            <h3 class="text-dark" style="width: 350px"><a
                                     href="/pack-details/{{$pack->id}}">{{ $pack->nom }}</a></h3>
                             <p class="price">{{ $pack->prix }} DH</p>
                         </div>
