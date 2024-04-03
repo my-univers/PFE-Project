@@ -27,7 +27,7 @@ class PackProduitController extends Controller
         if (!$request->has('produits_id')) {
             FacadesAlert::warning('Veuillez sélectionner au moins un produit !')->flash();
             return back()->withInput();
-        } elseif(!$request->has('packs_id')) {
+        } elseif(!$request->has('pack_id')) {
             FacadesAlert::warning("Veuillez sélectionnez le pack à remplir !")->flash();
             return back()->withInput();
         }
@@ -44,13 +44,26 @@ class PackProduitController extends Controller
                 'produits_id' => $produitId,
                 'qte_produit' => $quantite
             ]);
+
+            $produit = Produit::find($produitId);
+
+            // Vérifier si la quantité en stock est suffisante
+            if ($produit->qte_en_stock >= $quantite) {
+                // Diminuer la quantité en stock
+                $nouvelleQuantite = $produit->qte_en_stock - $quantite;
+                $produit->qte_en_stock = $nouvelleQuantite;
+                $produit->save();
+            } else {
+                // Si la quantité en stock n'est pas suffisante, afficher un message d'erreur
+                FacadesAlert::error("La quantité de " . $produit->nom . " est insuffisante !");
+            }
         }
 
         $pack = Pack::find($packId);
         $total = 0;
 
-        foreach ($produitIds as $key => $produitId) {
-            $quantite = $quantites[$key];
+        foreach ($produitIds as $produitId) {
+            $quantite = $quantites[$produitId];
 
             $produit = Produit::find($produitId);
             $total += $produit->prix * $quantite;
@@ -95,7 +108,7 @@ class PackProduitController extends Controller
         $packs = Pack::whereNotIn('id', function ($query) {
             $query->select('pack_id')->from('packs_produits');
         })->paginate(5, ['*'], 'packs_page');
-        $produits = Produit::paginate(5, ['*'], 'produits_page');
+        $produits = Produit::where('qte_en_stock', '>=', '1')->paginate(5, ['*'], 'produits_page');
         return view("packs_produits.add", ['packs' => $packs, 'produits' => $produits]);
     }
 
@@ -155,28 +168,25 @@ class PackProduitController extends Controller
     public function addToPack($pack_id, Request $request)
     {
         $pack = Pack::findOrFail($pack_id);
-        $produit_id = $request->input('produit_id');
-        $quantite = $request->input('quantite');
 
-        // Récupérer le produit en fonction de son ID
-        $produit = Produit::findOrFail($produit_id);
+        // Boucle sur chaque produit et sa quantité
+        foreach ($request->input('quantite') as $produit_id => $quantite) {
+            // Récupérer le produit en fonction de son ID
+            $produit = Produit::findOrFail($produit_id);
 
-        // Vérifier si le produit existe déjà dans le pack
-        $existingProduct = $pack->produits()->where('produits_id', $produit_id)->first();
+            // Vérifier si le produit existe déjà dans le pack
+            $existingProduct = $pack->produits()->where('produits_id', $produit_id)->first();
 
-        if ($existingProduct) {
-            // Mettre à jour la quantité du produit existant
-            $existingProduct->pivot->update(['qte_produit' => $existingProduct->pivot->qte_produit + $quantite]);
-            FacadesAlert::success('Produit ajouté au pack');
-
-            return back();
-        } else {
-            // Attacher le produit avec la quantité au pack
-            $pack->produits()->attach($produit, ['qte_produit' => $quantite]);
-            FacadesAlert::success('Produit ajouté au pack');
-
-            return back();
+            if ($existingProduct) {
+                // Mettre à jour la quantité du produit existant
+                $existingProduct->pivot->update(['qte_produit' => $existingProduct->pivot->qte_produit + $quantite]);
+            } else {
+                // Attacher le produit avec la quantité au pack
+                $pack->produits()->attach($produit, ['qte_produit' => $quantite]);
+            }
         }
+
+        FacadesAlert::success('Produits ajoutés au pack avec succès');
 
         return back();
     }
@@ -198,6 +208,10 @@ class PackProduitController extends Controller
             if ($currentQuantity > 1) {
                 // Diminuer la quantité du produit dans le pack
                 $existingProduct->pivot->update(['qte_produit' => $currentQuantity - 1]);
+
+                // Augmenter la quantité du produit dans le stock
+                $produit->qte_en_stock += 1;
+                $produit->save();
             }
         }
 
@@ -215,6 +229,9 @@ class PackProduitController extends Controller
         // Mettre à jour la quantité du produit existant en ajoutant un
         $existingProduct->pivot->update(['qte_produit' => $existingProduct->pivot->qte_produit + 1]);
 
+        // Diminuer la quantité du produit dans le stock
+        $produit->qte_en_stock -= 1;
+        $produit->save();
 
         return back();
     }

@@ -432,8 +432,8 @@
                 </button>
                 <br><br>
                 @if ($allProducts->count() > 0)
-                    <form method="POST" action="/packs_produits/addToPack/{{ $pack->id }}">
-                        @csrf
+                    {{-- <form method="post" action="/packs_produits/addToPack/{{ $pack->id }}">
+                        @csrf --}}
                         <table class="is-striped" id="all-products-table">
                             <thead>
                                 <tr>
@@ -447,26 +447,29 @@
                             </thead>
                             <tbody>
                                 @foreach ($allProducts as $produit)
-                                    <tr>
-                                        <td></td>
-                                        <td>{{ $produit->nom }}</td>
-                                        <td>{{ $produit->qte_en_stock }}</td>
-                                        <td>{{ $produit->prix }} DH</td>
-                                        <td>
-                                            <input class="input is-small" type="number" name="quantite" value="1"
-                                                min="1">
+                                <tr>
+                                    <td></td>
+                                    <td>{{ $produit->nom }}</td>
+                                    <td>{{ $produit->qte_en_stock }}</td>
+                                    <td>{{ $produit->prix }} DH</td>
+                                    <td>
+                                        <form method="post" action="/packs_produits/addToPack/{{ $pack->id }}">
+                                            @csrf
+                                            <!-- Ajouter l'ID du produit comme partie du nom du champ quantite -->
                                             <input type="hidden" name="produit_id" value="{{ $produit->id }}">
-                                        </td>
-                                        <td>
-                                            <button type="submit" class="button small blue">
-                                                <span class="icon"><i class="mdi mdi-plus"></i></span>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                            <input class="input is-small" type="number" name="quantite[{{ $produit->id }}]" value="1" min="1">
+                                    </td>
+                                    <td>
+                                        <button type="submit" class="button small blue">
+                                            <span class="icon"><i class="mdi mdi-plus"></i></span>
+                                        </button>
+                                    </td>
+                                    </form>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                    </form>
+                    {{-- </form> --}}
                     <div class="table-pagination" id="all-products-pagination">
                         <div class="flex items-center justify-between">
                             <div class="buttons">
