@@ -104,8 +104,8 @@
 
         <div class="site-section">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
+                <div class="row justify-content-between">
+                    <div class="col-lg-5">
                         <h3 class="mb-3 h6 text-uppercase text-black d-block">Filtrer par Référence</h3>
                         <form method="GET" action="{{ route('categorie.filter', $categorie->id) }}">
                             @csrf
@@ -119,60 +119,83 @@
                             </div>
                         </form>
                     </div>
+
+                    <div class="col-lg-6 d-flex justify-content-end">
+                        <!-- Rechercher un pack -->
+                        <form action="/searchCategorie/{{ $categorie->id }}" method="post" class="align-self-end">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input type="text" name="searchTerm" placeholder="Recherche..." class="form-control border-0 p-4 rounded-pill">
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="btn-group " role="group">
+                                        <button type="submit" class="btn btn-primary py-2 mr-2 rounded-left rounded-right">Rechercher</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
                 <!--new code -->
-                <div class="row mt-5">
-                    @foreach ($produits as $produit)
-                        <div class="col-sm-6 col-lg-4 text-center item mb-4">
-                            <a href="/product-details/{{$produit->id}}"> <img class="produit-image"
-                                    src="{{ asset($produit->image_path) }}" alt="Image"></a>
-                            <br><br>
-                            <h3 class="text-dark"><a
-                                    href="/product-details/{{$produit->id}}">{{ $produit->nom }}</a>
-                            </h3>
-                            <p class="price">{{ $produit->prix }} DH</p>
-                        </div>
-                        <style>
-                            .produit-image {
-                                height: 200px;
-                                width: calc(100 / 3);
-                            }
-                        </style>
-                    @endforeach
-                </div>
+                @if ($produits->count() > 0)
+                    <div class="row mt-5">
+                        @foreach ($produits as $produit)
+                            <div class="col-sm-6 col-lg-4 text-center item mb-4">
+                                <a href="/product-details/{{$produit->id}}"> <img class="produit-image"
+                                        src="{{ asset($produit->image_path) }}" alt="Image"></a>
+                                <br><br>
+                                <h3 class="text-dark"><a
+                                        href="/product-details/{{$produit->id}}">{{ $produit->nom }}</a>
+                                </h3>
+                                <p class="price">{{ $produit->prix }} DH</p>
+                            </div>
+                            <style>
+                                .produit-image {
+                                    height: 200px;
+                                    width: calc(100 / 3);
+                                }
+                            </style>
+                        @endforeach
+                    </div>
 
-                <!-- new code-->
-                <div class="row mt-5">
-                    <div class="col-md-12 text-center">
-                        <div class="site-block-27">
-                            <ul>
-                                <!-- Bouton précédent -->
-                                @if ($produits->onFirstPage())
-                                    <li class="disabled"><span>&lt;</span></li>
-                                @else
-                                    <li><a href="{{ $produits->previousPageUrl() }}">&lt;</a></li>
-                                @endif
-
-                                <!-- Affichage des pages -->
-                                @foreach ($produits->getUrlRange(1, $produits->lastPage()) as $page => $url)
-                                    @if ($produits->currentPage() === $page)
-                                        <li class="active"><span>{{ $page }}</span></li>
+                    <!-- new code-->
+                    <div class="row mt-5">
+                        <div class="col-md-12 text-center">
+                            <div class="site-block-27">
+                                <ul>
+                                    <!-- Bouton précédent -->
+                                    @if ($produits->onFirstPage())
+                                        <li class="disabled"><span>&lt;</span></li>
                                     @else
-                                        <li><a href="{{ $url }}">{{ $page }}</a></li>
+                                        <li><a href="{{ $produits->previousPageUrl() }}">&lt;</a></li>
                                     @endif
-                                @endforeach
 
-                                <!-- Bouton suivant -->
-                                @if ($produits->hasMorePages())
-                                    <li><a href="{{ $produits->nextPageUrl() }}">&gt;</a></li>
-                                @else
-                                    <li class="disabled"><span>&gt;</span></li>
-                                @endif
-                            </ul>
+                                    <!-- Affichage des pages -->
+                                    @foreach ($produits->getUrlRange(1, $produits->lastPage()) as $page => $url)
+                                        @if ($produits->currentPage() === $page)
+                                            <li class="active"><span>{{ $page }}</span></li>
+                                        @else
+                                            <li><a href="{{ $url }}">{{ $page }}</a></li>
+                                        @endif
+                                    @endforeach
+
+                                    <!-- Bouton suivant -->
+                                    @if ($produits->hasMorePages())
+                                        <li><a href="{{ $produits->nextPageUrl() }}">&gt;</a></li>
+                                    @else
+                                        <li class="disabled"><span>&gt;</span></li>
+                                    @endif
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @else
+                    <div class="row mt-5">
+                        <h3>Aucun produit disponible.</h3>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
