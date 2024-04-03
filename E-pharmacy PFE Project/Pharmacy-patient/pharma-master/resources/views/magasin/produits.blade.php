@@ -164,7 +164,40 @@
                             </style>
                         @endforeach
                     </div>
+                @if ($products->count() > 0)
+                    <div class="row mt-5">
+                        @foreach ($products as $product)
+                            <div class="col-sm-6 col-lg-4 text-center item mb-4">
+                                @if ($product->qte_en_stock < 1)
+                                <span class="tag">Épuisé !</span>
+                                @endif
+                                <a href="/product-details/{{$product->id}}"> <img class="product-image"
+                                        src="{{ asset($product->image_path) }}" alt="Image"></a>
+                                <br><br>
+                                <h3 class="text-dark"><a
+                                        href="/product-details/{{$product->id}}">{{ $product->nom }}</a></h3>
+                                <p class="price">{{ $product->prix }} DH</p>
+                            </div>
+                            <style>
+                                .product-image {
+                                    height: 200px;
+                                    width: calc(100 / 3);
+                                }
+                            </style>
+                        @endforeach
+                    </div>
 
+                    <!-- new code-->
+                    <div class="row mt-5">
+                        <div class="col-md-12 text-center">
+                            <div class="site-block-27">
+                                <ul>
+                                    <!-- Bouton précédent -->
+                                    @if ($products->onFirstPage())
+                                        <li class="disabled"><span>&lt;</span></li>
+                                    @else
+                                        <li><a href="{{ $products->previousPageUrl() }}">&lt;</a></li>
+                                    @endif
                     <!-- new code-->
                     <div class="row mt-5">
                         <div class="col-md-12 text-center">
@@ -185,7 +218,30 @@
                                             <li><a href="{{ $url }}">{{ $page }}</a></li>
                                         @endif
                                     @endforeach
+                                    <!-- Affichage des pages -->
+                                    @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
+                                        @if ($products->currentPage() === $page)
+                                            <li class="active"><span>{{ $page }}</span></li>
+                                        @else
+                                            <li><a href="{{ $url }}">{{ $page }}</a></li>
+                                        @endif
+                                    @endforeach
 
+                                    <!-- Bouton suivant -->
+                                    @if ($products->hasMorePages())
+                                        <li><a href="{{ $products->nextPageUrl() }}">&gt;</a></li>
+                                    @else
+                                        <li class="disabled"><span>&gt;</span></li>
+                                    @endif
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    <div class="row mt-5">
+                        <h3>Aucun produit disponible.</h3>
+                    </div>
+                @endif
                                     <!-- Bouton suivant -->
                                     @if ($products->hasMorePages())
                                         <li><a href="{{ $products->nextPageUrl() }}">&gt;</a></li>

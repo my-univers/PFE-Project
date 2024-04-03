@@ -308,10 +308,9 @@
             <thead>
                 <tr>
                     <th></th>
-                    <th style="width: 25%">Date de Commande</th>
-                    <th style="width: 25%">Statut de la Commande</th>
-                    <th style="width: 25%">Total de la Commande</th>
-                    <th style="width: 25%">Frais de Livraison</th>
+                    <th>Date de Commande</th>
+                    <th>Statut de la Commande</th>
+                    <th>Total de la Commande</th>
                 </tr>
             </thead>
             <tbody>
@@ -319,8 +318,7 @@
                     <td></td>
                     <td>{{ $commande->date_commande }}</td>
                     <td> {{ $commande->statut }}</td>
-                    <td>{{ $commande->total }} DH &nbsp; <span style="color: orange">- 20</span></td>
-                    <td>20 DH</td>
+                    <td>{{ $commande->total }} DH</td>
                 </tr>
             </tbody>
         </table>
