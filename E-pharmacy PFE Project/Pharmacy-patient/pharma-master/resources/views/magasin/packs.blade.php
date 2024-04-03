@@ -108,8 +108,8 @@
 
         <div class="site-section">
             <div class="container">
-                <div class="row">
-                    <div class="col-lg-6">
+                <div class="row justify-content-between">
+                    <div class="col-lg-5">
                         <h3 class="mb-3 h6 text-uppercase text-black d-block">Filtrer par Référence</h3>
                         <button type="button" class="btn btn-secondary btn-md dropdown-toggle px-4"
                             id="dropdownMenuReference" data-toggle="dropdown">Référence</button>
@@ -122,62 +122,85 @@
                             <a class="dropdown-item" href="/packs?sort=price_desc">Prix, décroissant</a>
                         </div>
                     </div>
+
+                    <div class="col-lg-6 d-flex justify-content-end">
+                        <!-- Rechercher un pack -->
+                        <form action="/shop/searchPack" method="post" class="align-self-end">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input type="text" name="searchTerm" placeholder="Recherche..." class="form-control border-0 p-4 rounded-pill">
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="btn-group " role="group">
+                                        <button type="submit" class="btn btn-primary py-2 mr-2 rounded-left rounded-right">Rechercher</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
                 <!--new code -->
-                <div class="row mt-5">
-                    @foreach ($packs as $pack)
-                        <div class="col-sm-6 col-lg-4 text-center item mb-4">
-                            @if ($pack->qte_en_stock < 1)
-                            <span class="tag">Épuisé !</span>
-                            @endif
-                            <a href="/pack-details/{{$pack->id}}"> <img class="pack-image"
-                                    src="{{ asset($pack->image_path) }}" alt="Image"></a>
-                            <br><br>
-                            <h3 class="text-dark" style="width: 350px"><a
-                                    href="/pack-details/{{$pack->id}}">{{ $pack->nom }}</a></h3>
-                            <p class="price">{{ $pack->prix }} DH</p>
-                        </div>
-                        <style>
-                            .pack-image {
-                                height: 200px;
-                                width: calc(100 / 3);
-                            }
-                        </style>
-                    @endforeach
-                </div>
-
-                <!-- new code-->
-                <div class="row mt-5">
-                    <div class="col-md-12 text-center">
-                        <div class="site-block-27">
-                            <ul>
-                                <!-- Bouton précédent -->
-                                @if ($packs->onFirstPage())
-                                    <li class="disabled"><span>&lt;</span></li>
-                                @else
-                                    <li><a href="{{ $packs->previousPageUrl() }}">&lt;</a></li>
+                @if ($packs->count() > 0)
+                    <div class="row mt-5">
+                        @foreach ($packs as $pack)
+                            <div class="col-sm-6 col-lg-4 text-center item mb-4">
+                                @if ($pack->qte_en_stock < 1)
+                                <span class="tag">Épuisé !</span>
                                 @endif
+                                <a href="/pack-details/{{$pack->id}}"> <img class="pack-image"
+                                        src="{{ asset($pack->image_path) }}" alt="Image"></a>
+                                <br><br>
+                                <h3 class="text-dark" style="width: 350px"><a
+                                        href="/pack-details/{{$pack->id}}">{{ $pack->nom }}</a></h3>
+                                <p class="price">{{ $pack->prix }} DH</p>
+                            </div>
+                            <style>
+                                .pack-image {
+                                    height: 200px;
+                                    width: calc(100 / 3);
+                                }
+                            </style>
+                        @endforeach
+                    </div>
 
-                                <!-- Affichage des pages -->
-                                @foreach ($packs->getUrlRange(1, $packs->lastPage()) as $page => $url)
-                                    @if ($packs->currentPage() === $page)
-                                        <li class="active"><span>{{ $page }}</span></li>
+                    <!-- new code-->
+                    <div class="row mt-5">
+                        <div class="col-md-12 text-center">
+                            <div class="site-block-27">
+                                <ul>
+                                    <!-- Bouton précédent -->
+                                    @if ($packs->onFirstPage())
+                                        <li class="disabled"><span>&lt;</span></li>
                                     @else
-                                        <li><a href="{{ $url }}">{{ $page }}</a></li>
+                                        <li><a href="{{ $packs->previousPageUrl() }}">&lt;</a></li>
                                     @endif
-                                @endforeach
 
-                                <!-- Bouton suivant -->
-                                @if ($packs->hasMorePages())
-                                    <li><a href="{{ $packs->nextPageUrl() }}">&gt;</a></li>
-                                @else
-                                    <li class="disabled"><span>&gt;</span></li>
-                                @endif
-                            </ul>
+                                    <!-- Affichage des pages -->
+                                    @foreach ($packs->getUrlRange(1, $packs->lastPage()) as $page => $url)
+                                        @if ($packs->currentPage() === $page)
+                                            <li class="active"><span>{{ $page }}</span></li>
+                                        @else
+                                            <li><a href="{{ $url }}">{{ $page }}</a></li>
+                                        @endif
+                                    @endforeach
+
+                                    <!-- Bouton suivant -->
+                                    @if ($packs->hasMorePages())
+                                        <li><a href="{{ $packs->nextPageUrl() }}">&gt;</a></li>
+                                    @else
+                                        <li class="disabled"><span>&gt;</span></li>
+                                    @endif
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @else
+                    <div class="row mt-5">
+                        <h3>Aucun pack disponible.</h3>
+                    </div>
+                @endif
             </div>
         </div>
 
