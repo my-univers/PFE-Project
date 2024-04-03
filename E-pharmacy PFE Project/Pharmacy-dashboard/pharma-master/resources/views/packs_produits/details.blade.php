@@ -278,6 +278,8 @@
         </div>
     </section>
 
+    @include('sweetalert::alert')
+
     <section class="is-hero-bar">
         <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
             <h1 class="title">
@@ -439,10 +441,9 @@
                                 <tr>
                                     <th></th>
                                     <th>Nom du Produit</th>
-                                    <th>Quantité en Stock</th>
+                                    <th if>Quantité en Stock</th>
                                     <th>Prix</th>
-                                    <th style="width: 130px">Quantité dans le Pack</th>
-                                    <th></th>
+                                    <th style="width: 200px">Quantité dans le Pack</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -450,21 +451,21 @@
                                 <tr>
                                     <td></td>
                                     <td>{{ $produit->nom }}</td>
-                                    <td>{{ $produit->qte_en_stock }}</td>
+                                    <td @if($produit->qte_en_stock <= 1) style="color: red;" @endif>{{ $produit->qte_en_stock }}</td>
                                     <td>{{ $produit->prix }} DH</td>
-                                    <td>
-                                        <form method="post" action="/packs_produits/addToPack/{{ $pack->id }}">
+                                    <td style="display: flex; justify-content: center; align-items: center;">
+                                        <form method="post" action="/packs_produits/addToPack/{{ $pack->id }}" style="display: flex; align-items: center;">
                                             @csrf
                                             <!-- Ajouter l'ID du produit comme partie du nom du champ quantite -->
                                             <input type="hidden" name="produit_id" value="{{ $produit->id }}">
-                                            <input class="input is-small" type="number" name="quantite[{{ $produit->id }}]" value="1" min="1">
+                                            <input class="input is-small" type="number" name="quantite" value="1" min="1" style="width: 80px"
+                                            @if ($produit->qte_en_stock == 1) disabled @endif>
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                            <a href="#" class="button small blue" onclick="event.preventDefault(); this.closest('form').submit();">
+                                                <span class="icon"><i class="mdi mdi-plus"></i></span>
+                                            </a>
+                                        </form>
                                     </td>
-                                    <td>
-                                        <button type="submit" class="button small blue">
-                                            <span class="icon"><i class="mdi mdi-plus"></i></span>
-                                        </button>
-                                    </td>
-                                    </form>
                                 </tr>
                                 @endforeach
                             </tbody>

@@ -140,6 +140,7 @@
                                     <br>
                                     <div class="field">
                                         <div class="control">
+                                            <label for="" class="label">Message</label>
                                             <textarea class="textarea" readonly id="message">{{ $message->message }}</textarea>
                                         </div>
                                     </div>
