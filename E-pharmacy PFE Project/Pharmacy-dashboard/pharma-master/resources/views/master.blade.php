@@ -8,7 +8,7 @@
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="../../css/main.css?v=1628755089081">
-    <link href="../../css/app.css" rel="stylesheet">
+    <link href="../css/app.css" rel="stylesheet">
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
   <link rel="icon" type="image/x-icon" href="/img/pharmaOne-logo-bg.png">

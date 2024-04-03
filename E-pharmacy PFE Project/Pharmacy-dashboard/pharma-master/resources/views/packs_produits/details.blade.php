@@ -309,10 +309,9 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th style="width: 33.3%">Nom</th>
-                            <th style="width: 33.3%">Quantité en Stock</th>
-                            <th style="width: 33.3%">Prix</th>
-                            <th></th>
+                            <th style="">Nom</th>
+                            <th style="">Quantité en Stock</th>
+                            <th style="">Prix</th>
                         </tr>
                     </thead>
                     <tbody>
