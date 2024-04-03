@@ -259,7 +259,7 @@
     <p class="menu-label">A Propos</p>
     <ul class="menu-list">
       <li>
-        <a href="#" class="has-icon">
+        <a href="https://github.com/my-univers/PFE-Project" class="has-icon">
           <span class="icon"><i class="mdi mdi-github-circle"></i></span>
           <span class="menu-item-label">GitHub</span>
         </a>
@@ -358,8 +358,8 @@
                       </div>
                     </div>
                   </div>
-               
-                
+
+
                 <div class="field">
                     <label class="label">Ordonnance</label>
                     <div class="field-body">
