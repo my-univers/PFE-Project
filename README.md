@@ -41,5 +41,22 @@ php artisan key:generate
 7. Exécuter les migrations pour créer les tables de base de données :
 php artisan migrate
 
-8. Lancer le serveur de développement :
-php artisan serve
+8. Assurez-vous que Tesseract est installé sur votre système, puis executez :
+composer require thiagoalessio/tesseract_ocr  
+
+9. Installer de la bibliothèque PDF Parser :
+composer require smalot/pdfparser
+
+10. Installer les notifications Laravel Rasheed :
+composer require realrashid/sweet-alert     
+
+11. Lancer le serveur de développement :
+- Interface Admin
+cd Pharmacy-dashboard
+cd pharma-master
+php artisan serve --port=800
+
+- Interface Patient
+cd Pharmacy-patient
+cd pharma-master
+php artisan serve --port=8080
