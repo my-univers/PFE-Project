@@ -31,26 +31,27 @@ composer install
 
 3. Créer une base de données MySQL pour l'application
 
-4. Copier le fichier .env.example et le renommer en .env
+4. Copier le fichier .env.example et le renommer en .env :
+cp .env.example .env
 
-5. Configurer les informations de base de données dans le fichier .env
+6. Configurer les informations de base de données dans le fichier .env
 
-6. Générer une clé d'application Laravel :
+7. Générer une clé d'application Laravel :
 php artisan key:generate
 
-7. Exécuter les migrations pour créer les tables de base de données :
+8. Exécuter les migrations pour créer les tables de base de données :
 php artisan migrate
 
-8. Assurez-vous que Tesseract est installé sur votre système, puis executez :
+9. Assurez-vous que Tesseract est installé sur votre système, puis executez :
 composer require thiagoalessio/tesseract_ocr  
 
-9. Installer de la bibliothèque PDF Parser :
+10. Installer de la bibliothèque PDF Parser :
 composer require smalot/pdfparser
 
-10. Installer les notifications Laravel Rasheed :
+11. Installer les notifications Laravel Rasheed :
 composer require realrashid/sweet-alert     
 
-11. Lancer le serveur de développement :
+12. Lancer le serveur de développement :
 - Interface Admin
 cd Pharmacy-dashboard
 cd pharma-master
