@@ -52,12 +52,12 @@ composer require smalot/pdfparser
 composer require realrashid/sweet-alert     
 
 12. Lancer le serveur de développement :
-- Interface Admin
-cd Pharmacy-dashboard
-cd pharma-master
-php artisan serve --port=800
+Interface Admin
+- cd Pharmacy-dashboard
+- cd pharma-master
+- php artisan serve --port=800
 
-- Interface Patient
-cd Pharmacy-patient
-cd pharma-master
-php artisan serve --port=8080
+Interface Patient
+- cd Pharmacy-patient
+- cd pharma-master
+- php artisan serve --port=8080
