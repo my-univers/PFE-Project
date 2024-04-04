@@ -78,10 +78,8 @@ class PackProduitController extends Controller
         $pack->prix = $totalPack;
         $pack->save();
 
-        // Afficher un message de succès
         FacadesAlert::success("Pack de produits ajouté \n\n avec succès");
 
-        // Rediriger avec un message de succès
         return redirect('/packs_produits');
     }
 
@@ -90,7 +88,6 @@ class PackProduitController extends Controller
         $pack = Pack::find($id);
         $produits = $pack->produits()->paginate(7, ['*'], 'produits');
 
-        // Get all products where qte_en_stock >= 1
         $allProducts = Produit::where('qte_en_stock', '>=', 1)->latest()->paginate(7, ['*'], 'allProducts_page');
 
         $total = 0;

@@ -52,10 +52,8 @@ class CategorieController extends Controller
 
     public function searchCategorie(Request $request, $id)
     {
-        // Récupérer le terme de recherche depuis la requête
         $searchTerm = $request->input('searchTerm');
 
-        // Effectuer la recherche des produits en fonction du terme de recherche
         $produits = Produit::where('nom', 'like', '%' . $searchTerm . '%')
                         ->orWhere('descr', 'like', '%' . $searchTerm . '%')
                         ->where('categorie_id', '=', $id)

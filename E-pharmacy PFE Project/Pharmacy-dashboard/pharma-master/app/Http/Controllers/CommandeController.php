@@ -48,16 +48,12 @@ class CommandeController extends Controller
 
     public function addCommandeForm()
     {
-        // Récupérer les clients paginés avec un nom de page distinct
         $clients = Client::paginate(5, ['*'], 'clients_page');
 
-        // Récupérer les produits avec une quantité en stock supérieure ou égale à 1 et une page de pagination distincte
         $produits = Produit::latest()->where('qte_en_stock', '>=', 1)->paginate(7, ['*'], 'produits_page');
 
-        // Récupérer les packs de produits
         $packs = Pack::latest()->paginate(7, ['*'], 'packs_page');
 
-        // Retourner la vue avec les clients et les produits
         return view('commandes.add', ['clients' => $clients, 'produits' => $produits, 'packs' => $packs]);
     }
 
@@ -83,7 +79,7 @@ class CommandeController extends Controller
         $commande->client_id = $client_id;
         $commande->date_commande = now(); // Ou utilisez la date fournie par le formulaire
         $commande->total = 0; // Le total sera calculé plus tard
-        $commande->statut = "En attente"; // Vous pouvez définir un statut par défaut
+        $commande->statut = "En attente";
 
         // Récupérer les produits sélectionnés avec leurs quantités
         $produits = $request->input('produits_id');
@@ -183,10 +179,8 @@ class CommandeController extends Controller
             $query->where('statut', $statut);
         }
 
-        // Exécuter la requête
         $commandes = $query->paginate(10);
 
-        // Passer les résultats à la vue
         return view('commandes.list', ['commandes' => $commandes]);
     }
 }
