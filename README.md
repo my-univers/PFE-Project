@@ -52,6 +52,7 @@ composer require smalot/pdfparser
 composer require realrashid/sweet-alert     
 
 12. Lancer le serveur de développement :
+
 Interface Admin
 - cd Pharmacy-dashboard
 - cd pharma-master
