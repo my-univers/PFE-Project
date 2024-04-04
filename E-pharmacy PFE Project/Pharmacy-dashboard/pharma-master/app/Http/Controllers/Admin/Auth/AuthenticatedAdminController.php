@@ -39,7 +39,6 @@ class AuthenticatedAdminController extends Controller
             // Connexion réussie
             Auth::guard('admin')->login($admin);
 
-            // Redirection vers le profil de l'administrateur
             return redirect('/dashboard');
         }
 
@@ -183,7 +182,6 @@ class AuthenticatedAdminController extends Controller
         $admin->verification_code = $verificationCode;
         $admin->save();
 
-        // Rediriger vers le formulaire de vérification du code avec l'e-mail en tant que paramètre de requête
         return redirect()->route('verify.code.form', ['email' => $request->email]);
     }
 
@@ -226,7 +224,7 @@ class AuthenticatedAdminController extends Controller
         $email = $request->query('email');
 
         if (!$email) {
-            // Gérer le cas où l'e-mail n'est pas disponible dans la requête
+            // Au cas où l'e-mail n'est pas disponible dans la requête
             return redirect()->route('verification.form')->with('error', 'Veuillez vérifier votre e-mail d\'abord.');
         }
         return view('auth.reset-password', compact('email'));

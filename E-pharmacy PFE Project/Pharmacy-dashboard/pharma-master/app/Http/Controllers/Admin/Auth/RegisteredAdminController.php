@@ -21,7 +21,7 @@ class RegisteredAdminController extends Controller
             'email' => 'required|string|email|max:150|unique:admins,email',
         ]);
 
-        // Création d'un nouvel administrateur
+        // Création d'un nouvel admin
         $admin = new Admin([
             'username' => $request->username,
             'email' => $request->email,
@@ -29,7 +29,6 @@ class RegisteredAdminController extends Controller
             'photo' => 'img/default-avatar.png',
         ]);
 
-        // Gestion de l'image
         if ($request->hasFile('image')) {
             $image = $request->file('image');
             $imageName = time() . '_' . $image->getClientOriginalName();
@@ -39,7 +38,6 @@ class RegisteredAdminController extends Controller
 
         $admin->save();
 
-        // Redirection après l'inscription
         return redirect('/loginForm');
     }
 }
