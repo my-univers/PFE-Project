@@ -110,8 +110,6 @@
             <div class="container">
                 <div class="row justify-content-between">
                     <div class="col-lg-5">
-                <div class="row justify-content-between">
-                    <div class="col-lg-5">
                         <h3 class="mb-3 h6 text-uppercase text-black d-block">Filtrer par Référence</h3>
                         <button type="button" class="btn btn-secondary btn-md dropdown-toggle px-4"
                             id="dropdownMenuReference" data-toggle="dropdown">Référence</button>

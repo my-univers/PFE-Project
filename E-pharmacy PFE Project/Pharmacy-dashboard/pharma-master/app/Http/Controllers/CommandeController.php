@@ -21,8 +21,8 @@ class CommandeController extends Controller
     {
         $commande = Commande::find($id);
         $client = $commande->client;
-        $produits = $commande->produits()->withPivot('quantite')->paginate(5);
-        $packs = $commande->packs()->withPivot('quantite')->paginate(5);
+        $produits = $commande->produits()->withPivot('quantite')->paginate(7);
+        $packs = $commande->packs()->withPivot('quantite')->paginate(7);
 
         return view(
             'commandes.details',
@@ -52,10 +52,10 @@ class CommandeController extends Controller
         $clients = Client::paginate(5, ['*'], 'clients_page');
 
         // Récupérer les produits avec une quantité en stock supérieure ou égale à 1 et une page de pagination distincte
-        $produits = Produit::latest()->where('qte_en_stock', '>=', 1)->paginate(5, ['*'], 'produits_page');
+        $produits = Produit::latest()->where('qte_en_stock', '>=', 1)->paginate(7, ['*'], 'produits_page');
 
         // Récupérer les packs de produits
-        $packs = Pack::latest()->paginate(5, ['*'], 'packs_page');
+        $packs = Pack::latest()->paginate(7, ['*'], 'packs_page');
 
         // Retourner la vue avec les clients et les produits
         return view('commandes.add', ['clients' => $clients, 'produits' => $produits, 'packs' => $packs]);

@@ -6,6 +6,7 @@ use App\Models\Pack;
 use App\Models\PackProduit;
 use App\Models\Produit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Facade;
 use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 
@@ -13,11 +14,10 @@ class PackProduitController extends Controller
 {
     public function showList()
     {
-        $list_packs = PackProduit::with(['packs', 'produits'])
-            ->select('pack_id', 'created_at')
-            ->groupBy('pack_id', 'created_at')
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        $list_packs = PackProduit::with('produits')
+        ->select('pack_id')
+        ->groupBy('pack_id')
+        ->paginate(10);
 
         return view('/packs_produits.list', ['list_packs' => $list_packs]);
     }
@@ -88,10 +88,10 @@ class PackProduitController extends Controller
     public function showDetails($id)
     {
         $pack = Pack::find($id);
-        $produits = $pack->produits()->paginate(5, ['*'], 'produits');
+        $produits = $pack->produits()->paginate(7, ['*'], 'produits');
 
         // Get all products where qte_en_stock >= 1
-        $allProducts = Produit::where('qte_en_stock', '>=', 1)->latest()->paginate(5, ['*'], 'allProducts_page');
+        $allProducts = Produit::where('qte_en_stock', '>=', 1)->latest()->paginate(7, ['*'], 'allProducts_page');
 
         $total = 0;
         foreach ($produits as $produit) {
@@ -110,8 +110,8 @@ class PackProduitController extends Controller
         // Sélectionner les packs qui n'ont pas de produits associés
         $packs = Pack::whereNotIn('id', function ($query) {
             $query->select('pack_id')->from('packs_produits');
-        })->paginate(5, ['*'], 'packs_page');
-        $produits = Produit::where('qte_en_stock', '>=', '1')->paginate(5, ['*'], 'produits_page');
+        })->paginate(7, ['*'], 'packs_page');
+        $produits = Produit::where('qte_en_stock', '>=', '1')->paginate(7, ['*'], 'produits_page');
         return view("packs_produits.add", ['packs' => $packs, 'produits' => $produits]);
     }
 
