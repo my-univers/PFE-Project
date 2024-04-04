@@ -56,7 +56,7 @@ composer require realrashid/sweet-alert
 Interface Admin
 - cd Pharmacy-dashboard
 - cd pharma-master
-- php artisan serve --port=800
+- php artisan serve --port=8000
 
 Interface Patient
 - cd Pharmacy-patient
