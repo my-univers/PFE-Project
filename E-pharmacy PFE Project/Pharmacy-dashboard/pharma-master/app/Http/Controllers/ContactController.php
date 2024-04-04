@@ -22,11 +22,13 @@ class ContactController extends Controller
             $messages->where('is_read', true);
         } elseif ($filter == 'Non Lus') {
             $messages->where('is_read', false);
+        } else {
+            $messages = Contact::query();
         }
 
-        $messages = $messages->paginate(10);
+        $messages = $messages->latest()->paginate(10);
 
-        return view('contacts.messages', ['messages' => $messages]);
+        return view('contacts.messages', ['messages' => $messages, 'filter' => $filter]);
     }
 
 

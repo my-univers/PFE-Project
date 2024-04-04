@@ -259,7 +259,7 @@
     <p class="menu-label">A Propos</p>
     <ul class="menu-list">
       <li>
-        <a href="#" class="has-icon">
+        <a href="https://github.com/my-univers/PFE-Project" class="has-icon">
           <span class="icon"><i class="mdi mdi-github-circle"></i></span>
           <span class="menu-item-label">GitHub</span>
         </a>
@@ -284,9 +284,9 @@
     <h1 class="title">
         Modifier Client
     </h1>
-    {{-- <a class="button blue" href='/clients/list'>
+    <a class="button blue" href='/clients/list'>
         Retour
-      </a> --}}
+      </a>
   </div>
 </section>
 

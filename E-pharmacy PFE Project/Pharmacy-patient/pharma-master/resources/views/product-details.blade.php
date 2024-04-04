@@ -5,6 +5,7 @@
     <title>Pharma &mdash; Pharmacie en ligne</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/x-icon" href="/img/pharmaOne-logo-bg.png">
 
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
     <link rel="stylesheet" href="../fonts/icomoon/style.css">
@@ -95,7 +96,7 @@
             </div>
         </div>
 
-    @include('sweetalert::alert')
+        @include('sweetalert::alert')
 
         <div class="site-section">
             <div class="container">
@@ -125,70 +126,131 @@
                             </div>
                         </div> --}}
 
-                        @if ($product->ordonnance)
-                            @if (!$orderValidated)
-                                <form method="POST" action="{{ route('upload.order') }}" enctype="multipart/form-data"
-                                    id="orderForm">
-                                    @csrf
-                                    <div class="mb-5">
-                                        {{-- <div class="input-group mb-3" style="max-width: 220px;">
-                                                <div class="input-group-prepend">
-                                                    <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                        @if ($product->qte_en_stock > 0)
+                            @if ($product->ordonnance)
+                                @if (!$orderValidated)
+                                    <form method="POST" action="{{ route('upload.order') }}"
+                                        enctype="multipart/form-data" id="orderForm">
+                                        @csrf
+                                        <div class="mb-5">
+                                            {{-- <div class="input-group mb-3" style="max-width: 220px;">
+                                                    <div class="input-group-prepend">
+                                                        <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
+                                                    </div>
+                                                    <input type="text" class="form-control text-center" name="quantite" value="1" placeholder=""
+                                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                                    <div class="input-group-append">
+                                                        <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                                    </div>
                                                 </div>
-                                                <input type="text" class="form-control text-center" name="quantite" value="1" placeholder=""
-                                                    aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                            </div> --}}
+                                            <p>
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                                <input type="file" id="image" name="image"
+                                                    style="display: none" onchange="submitOrderForm()">
+                                                <a style="color: black"
+                                                    onclick="document.getElementById('image').click()"
+                                                    class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Télécharger
+                                                    Ordonnance</a>
+                                                <style>
+                                                    .buy-now:hover {
+                                                        background-color: white;
+                                                        color: #51EAEA !important;
+                                                        transition: all 350ms ease-in-out !important;
+                                                    }
+                                                </style>
+                                            <div id="image-preview" style="margin-top: 10px;">
+                                                <img id="preview" src="" alt="Aperçu de l'image"
+                                                    style="max-width: 100px; max-height: 100px; display: none;">
+                                                <span id="image-name"></span>
+                                            </div>
+                                            </p>
+                                    </form>
+                                    <script>
+                                        function displayImageName() {
+                                            var input = document.getElementById('image');
+                                            var fileName = input.files[0].name;
+                                            var preview = document.getElementById('preview');
+                                            var imageName = document.getElementById('image-name');
+                                            preview.src = URL.createObjectURL(input.files[0]);
+                                            preview.style.display = "block";
+                                            imageName.innerText = fileName;
+
+                                            // // il uploada l'ordonnance, afficher l bouton "Ajouter au Panier"
+                                            // var addToCartBtn = document.getElementById('addToCartBtn');
+                                            // if (fileName !== "") {
+                                            //     addToCartBtn.style.display = "block";
+                                            // } else {
+                                            //     addToCartBtn.style.display = "none";
+                                            // }
+                                        }
+
+                                        // la methode qui soumet le fichier telecharé pour le valider
+                                        function submitOrderForm() {
+                                            document.getElementById('orderForm').submit();
+                                        }
+                                    </script>
+                                @elseif ($orderValidated)
+                                    <p id="addToCartBtn"> {{-- style="display: none;" --}}
+                                    <form method="POST" action="{{ route('add.to.cart') }}">
+                                        @csrf
+                                        <div class="mb-5">
+                                            <div class="input-group mb-3" style="max-width: 220px;">
+                                                <div class="input-group-prepend">
+                                                    <button class="btn btn-outline-primary js-btn-minus"
+                                                        type="button">&minus;</button>
+                                                </div>
+                                                <input type="text" readonly style="background-color: white" class="form-control text-center" name="quantity" value="1" placeholder=""
+                                                    aria-label="Example text with button addon" aria-describedby="button-addon1"
+                                                    data-stock="{{ $product->qte_en_stock }}">
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
+                                                    <button class="btn btn-outline-primary js-btn-plus"
+                                                        type="button" onclick="toggleIncrementButton()">&plus;</button>
                                                 </div>
                                             </div>
-                                        </div> --}}
-                                        <p>
-                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                            <input type="file" id="image" name="image" style="display: none"
-                                                onchange="submitOrderForm()">
-                                            <a style="color: black" onclick="document.getElementById('image').click()"
-                                                class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Télécharger
-                                                Ordonnance</a>
-                                            <style>
-                                                .buy-now:hover {
-                                                    background-color: white;
-                                                    color: #51EAEA !important;
-                                                    transition: all 350ms ease-in-out !important;
-                                                }
-                                            </style>
-                                        <div id="image-preview" style="margin-top: 10px;">
-                                            <img id="preview" src="" alt="Aperçu de l'image"
-                                                style="max-width: 100px; max-height: 100px; display: none;">
-                                            <span id="image-name"></span>
                                         </div>
-                                        </p>
-                                </form>
-                                <script>
-                                    function displayImageName() {
-                                        var input = document.getElementById('image');
-                                        var fileName = input.files[0].name;
-                                        var preview = document.getElementById('preview');
-                                        var imageName = document.getElementById('image-name');
-                                        preview.src = URL.createObjectURL(input.files[0]);
-                                        preview.style.display = "block";
-                                        imageName.innerText = fileName;
+                                        <input type="hidden" name="type" value="product">
+                                        <input type="hidden" name="item_id" value="{{ $product->id }}">
+                                        <button type="submit"
+                                            class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
+                                            style="width: 247.438px">Ajouter au Panier</button>
+                                    </form>
+                                    <script>
+                                        function toggleIncrementButton() {
+                                            // Récupérer la quantité saisie par l'utilisateur
+                                            var quantity = parseInt(document.getElementsByName("quantity")[0].value);
+                                            // Récupérer le stock disponible depuis l'attribut data-stock
+                                            var stockDisponible = parseInt(document.getElementsByName("quantity")[0].getAttribute("data-stock"));
 
-                                        // // il uploada l'ordonnance, afficher l bouton "Ajouter au Panier"
-                                        // var addToCartBtn = document.getElementById('addToCartBtn');
-                                        // if (fileName !== "") {
-                                        //     addToCartBtn.style.display = "block";
-                                        // } else {
-                                        //     addToCartBtn.style.display = "none";
-                                        // }
-                                    }
+                                            // Sélectionner le bouton d'incrémentation
+                                            var incrementButton = document.querySelector('.js-btn-plus');
 
-                                    // la methode qui soumet le fichier telecharé pour le valider
-                                    function submitOrderForm() {
-                                        document.getElementById('orderForm').submit();
-                                    }
-                                </script>
-                            @elseif ($orderValidated)
-                                <p id="addToCartBtn"> {{-- style="display: none;" --}}
+                                            // Vérifier si la quantité dépasse le stock disponible
+                                            if (quantity + 1 >= stockDisponible) {
+                                                // Désactiver le bouton d'incrémentation
+                                                incrementButton.disabled = true;
+                                            } else {
+                                                // Activer le bouton d'incrémentation
+                                                incrementButton.disabled = false;
+                                            }
+                                        }
+                                    </script>
+                                    </p>
+                                @endif
+
+                                <!-- messages -->
+                                @if (session()->has('success'))
+                                    <div class="alert alert-success">
+                                        {{ session()->get('success') }}
+                                    </div>
+                                @endif
+
+                                @if (session()->has('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session()->get('error') }}
+                                    </div>
+                                @endif
+                            @else
                                 <form method="POST" action="{{ route('add.to.cart') }}">
                                     @csrf
                                     <div class="mb-5">
@@ -197,61 +259,62 @@
                                                 <button class="btn btn-outline-primary js-btn-minus"
                                                     type="button">&minus;</button>
                                             </div>
-                                            <input type="text" class="form-control text-center" name="quantity"
-                                                value="1" placeholder=""
-                                                aria-label="Example text with button addon"
-                                                aria-describedby="button-addon1">
+                                            <input type="text" readonly style="background-color: white" class="form-control text-center" name="quantity" value="1" placeholder=""
+                                                aria-label="Example text with button addon" aria-describedby="button-addon1"
+                                                data-stock="{{ $product->qte_en_stock }}">
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-primary js-btn-plus"
-                                                    type="button">&plus;</button>
+                                                    type="button" onclick="toggleIncrementButton()">&plus;</button>
                                             </div>
                                         </div>
                                     </div>
                                     <input type="hidden" name="type" value="product">
                                     <input type="hidden" name="item_id" value="{{ $product->id }}">
                                     <button type="submit"
-                                        class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
-                                        style="width: 247.438px">Ajouter au Panier</button>
+                                        class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Ajouter au
+                                        Panier</button>
                                 </form>
-                                </p>
-                            @endif
+                                <script>
+                                    function toggleIncrementButton() {
+                                        // Récupérer la quantité saisie par l'utilisateur
+                                        var quantity = parseInt(document.getElementsByName("quantity")[0].value);
+                                        // Récupérer le stock disponible depuis l'attribut data-stock
+                                        var stockDisponible = parseInt(document.getElementsByName("quantity")[0].getAttribute("data-stock"));
 
-                            <!-- messages -->
-                            @if (session()->has('success'))
-                                <div class="alert alert-success">
-                                    {{ session()->get('success') }}
-                                </div>
-                            @endif
+                                        // Sélectionner le bouton d'incrémentation
+                                        var incrementButton = document.querySelector('.js-btn-plus');
 
-                            @if (session()->has('error'))
-                                <div class="alert alert-danger">
-                                    {{ session()->get('error') }}
-                                </div>
+                                        // Vérifier si la quantité dépasse le stock disponible
+                                        if (quantity + 1 >= stockDisponible) {
+                                            // Désactiver le bouton d'incrémentation
+                                            incrementButton.disabled = true;
+                                        } else {
+                                            // Activer le bouton d'incrémentation
+                                            incrementButton.disabled = false;
+                                        }
+                                    }
+                                </script>
                             @endif
                         @else
-                            <form method="POST" action="{{ route('add.to.cart') }}">
-                                @csrf
-                                <div class="mb-5">
-                                    <div class="input-group mb-3" style="max-width: 220px;">
-                                        <div class="input-group-prepend">
-                                            <button class="btn btn-outline-primary js-btn-minus"
-                                                type="button">&minus;</button>
-                                        </div>
-                                        <input type="text" class="form-control text-center" name="quantity"
-                                            value="1" placeholder="" aria-label="Example text with button addon"
-                                            aria-describedby="button-addon1">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-primary js-btn-plus"
-                                                type="button">&plus;</button>
-                                        </div>
+                            <div class="mb-5">
+                                <div class="input-group mb-3" style="max-width: 220px;">
+                                    <div class="input-group-prepend">
+                                        <button class="btn btn-outline-primary js-btn-minus" disabled
+                                            type="button">&minus;</button>
+                                    </div>
+                                    <input type="text" readonly style="background-color: white" class="form-control text-center" name="quantity"
+                                        value="0" placeholder="" aria-label="Example text with button addon"
+                                        aria-describedby="button-addon1">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-primary js-btn-plus" disabled
+                                            type="button">&plus;</button>
                                     </div>
                                 </div>
-                                <input type="hidden" name="type" value="product">
-                                <input type="hidden" name="item_id" value="{{ $product->id }}">
-                                <button type="submit"
-                                    class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary">Ajouter au
-                                    Panier</button>
-                            </form>
+                                <h4>Épuisé !</h4>
+                            </div>
+                            <button type="submit" disabled
+                                class="buy-now btn btn-sm height-auto px-4 py-3 btn-primary"
+                                style="width: 247.438px">Ajouter au Panier</button>
                         @endif
 
                         <div class="mt-5">
@@ -299,11 +362,11 @@
                                         <tbody>
                                             <tr>
                                                 <td>Ingrédients</td>
-                                                <td class="bg-light">{{$product->ingredients}}</td>
+                                                <td class="bg-light">{{ $product->ingredients }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Poids</td>
-                                                <td class="bg-light">{{$product->poids}} mg</td>
+                                                <td class="bg-light">{{ $product->poids }} mg</td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -321,30 +384,32 @@
 
         <div class="site-section bg-secondary bg-image" style="background-image: url('../images/bg_2.jpg');">
             <div class="container">
-              <div class="row align-items-stretch">
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                  <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('../images/bg_1.jpg');">
-                      <div class="banner-1-inner align-self-center">
-                          <h2>Service Clientele exceptionnel</h2>
-                          <p>Notre équipe est disponible 24h/7j pour répondre à toutes vos questions et
-                              préoccupations médicales.
-                          </p>
-                      </div>
-                  </a>
+                <div class="row align-items-stretch">
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <a href="#" class="banner-1 h-100 d-flex"
+                            style="background-image: url('../images/bg_1.jpg');">
+                            <div class="banner-1-inner align-self-center">
+                                <h2>Service Clientele exceptionnel</h2>
+                                <p>Notre équipe est disponible 24h/7j pour répondre à toutes vos questions et
+                                    préoccupations médicales.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-6 mb-5 mb-lg-0">
+                        <a href="/docteurs" class="banner-1 h-100 d-flex"
+                            style="background-image: url('../images/bg_2.jpg');">
+                            <div class="banner-1-inner ml-auto  align-self-center">
+                                <h2>Commandez rapidement</h2>
+                                <p>En cas d'urgence médicale, vous pouvez appeler directement un docteur et passer votre
+                                    commande par téléphone.
+                                </p>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                  <a href="/docteurs" class="banner-1 h-100 d-flex" style="background-image: url('../images/bg_2.jpg');">
-                      <div class="banner-1-inner ml-auto  align-self-center">
-                          <h2>Commandez rapidement</h2>
-                          <p>En cas d'urgence médicale, vous pouvez appeler directement un docteur et passer votre
-                              commande par téléphone.
-                          </p>
-                      </div>
-                  </a>
-                </div>
-              </div>
             </div>
-          </div>
+        </div>
 
 
         <!--********* FOOTER *********-->
@@ -372,7 +437,7 @@
                             <li><a href="/packs">Packs Premiers Secours</a></li>
                         </ul>
                     </div>
-      
+
 
                     <div class="col-md-6 col-lg-3">
                         <div class="block-5 mb-5">

@@ -109,4 +109,34 @@ class shopController extends Controller
         return view('packs-details', ['categories' => $categories, 'pack' => $pack]);
     }
 
+    public function searchProduct(Request $request)
+    {
+        // Récupérer le terme de recherche depuis la requête
+        $searchTerm = $request->input('searchTerm');
+
+        // Effectuer la recherche des produits en fonction du terme de recherche
+        $products = Produit::where('nom', 'like', '%' . $searchTerm . '%')
+                        ->orWhere('descr', 'like', '%' . $searchTerm . '%')
+                        ->paginate(10);
+
+        $categories = Categorie::all();
+
+        return view('magasin.produits', compact('products', 'categories'));
+    }
+
+    public function searchPack(Request $request)
+    {
+        // Récupérer le terme de recherche depuis la requête
+        $searchTerm = $request->input('searchTerm');
+
+        // Effectuer la recherche des produits en fonction du terme de recherche
+        $packs = Pack::has('produits')->where('nom', 'like', '%' . $searchTerm . '%')
+                        ->orWhere('description', 'like', '%' . $searchTerm . '%')
+                        ->paginate(10);
+
+        $categories = Categorie::all();
+
+        return view('magasin.packs', compact('packs', 'categories'));
+    }
+
 }

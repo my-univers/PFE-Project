@@ -15,8 +15,8 @@ class DashboardController extends Controller
     public function index(Request $request) {
         $clients = Client::all();
         $produits = Produit::all();
-        $commandes = Commande::all();
-        $commandes_paginate = Commande::paginate(10);
+        $commandes = Commande::where('statut', "En attente")->latest()->paginate(10);
+        $commandes_paginate = Commande::where('statut', "En attente")->paginate(10);
 
         $clients_count = Client::count();
         $commandes_count = Commande::count();
@@ -25,7 +25,7 @@ class DashboardController extends Controller
         $category_count = Categorie::count();
 
         $produits_epuises_count = Produit::whereIn('qte_en_stock', [0, 1])->count();
-        $produits_epuises = Produit::where('qte_en_stock', 0)->get();
+        $produits_epuises = Produit::where('qte_en_stock', 0)->latest()->paginate(10);
         $notifications = Contact::where('is_read', false)->count();
 
         return view('index', [

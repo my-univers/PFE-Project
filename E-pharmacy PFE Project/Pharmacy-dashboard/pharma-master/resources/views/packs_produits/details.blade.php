@@ -258,7 +258,7 @@
             <p class="menu-label">A Propos</p>
             <ul class="menu-list">
                 <li>
-                    <a href="#" class="has-icon">
+                    <a href="https://github.com/my-univers/PFE-Project" class="has-icon">
                         <span class="icon"><i class="mdi mdi-github-circle"></i></span>
                         <span class="menu-item-label">GitHub</span>
                     </a>
@@ -277,6 +277,8 @@
             </ul>
         </div>
     </section>
+
+    @include('sweetalert::alert')
 
     <section class="is-hero-bar">
         <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
@@ -307,10 +309,9 @@
                     <thead>
                         <tr>
                             <th></th>
-                            <th style="width: 33.3%">Nom</th>
-                            <th style="width: 33.3%">Quantité en Stock</th>
-                            <th style="width: 33.3%">Prix</th>
-                            <th></th>
+                            <th style="">Nom</th>
+                            <th style="">Quantité en Stock</th>
+                            <th style="">Prix</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -359,10 +360,16 @@
                                     </td>
                                     <td class="actions-cell">
                                         <div class="buttons right nowrap">
-                                            <a class="button small green"
+                                            {{-- <a class="button small green"
                                                 href="/packs_produits/addOne/{{ $pack->id }}/{{ $produit->id }}">
                                                 <span class="icon"><i class="mdi mdi-plus"></i></span>
-                                            </a>
+                                            </a> --}}
+                                            @if ($produit->qte_en_stock > 1)
+                                                <a class="button small green"
+                                                    href="/packs_produits/addOne/{{ $pack->id }}/{{ $produit->id }}">
+                                                    <span class="icon"><i class="mdi mdi-plus"></i></span>
+                                                </a>
+                                            @endif
                                             @foreach ($pack->produits as $pack_produit)
                                                 @if ($pack_produit->id === $produit->id)
                                                     @if ($pack_produit->pivot->qte_produit > 1)
@@ -426,41 +433,43 @@
                 </button>
                 <br><br>
                 @if ($allProducts->count() > 0)
-                    <form method="post" action="/packs_produits/addToPack/{{ $pack->id }}">
-                        @csrf
+                    {{-- <form method="post" action="/packs_produits/addToPack/{{ $pack->id }}">
+                        @csrf --}}
                         <table class="is-striped" id="all-products-table">
                             <thead>
                                 <tr>
                                     <th></th>
                                     <th>Nom du Produit</th>
-                                    <th>Quantité en Stock</th>
+                                    <th if>Quantité en Stock</th>
                                     <th>Prix</th>
-                                    <th style="width: 130px">Quantité dans le Pack</th>
-                                    <th></th>
+                                    <th style="width: 200px">Quantité dans le Pack</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($allProducts as $produit)
-                                    <tr>
-                                        <td></td>
-                                        <td>{{ $produit->nom }}</td>
-                                        <td>{{ $produit->qte_en_stock }}</td>
-                                        <td>{{ $produit->prix }} DH</td>
-                                        <td>
-                                            <input class="input is-small" type="number" name="quantite" value="1"
-                                                min="1">
+                                <tr>
+                                    <td></td>
+                                    <td>{{ $produit->nom }}</td>
+                                    <td @if($produit->qte_en_stock <= 1) style="color: red;" @endif>{{ $produit->qte_en_stock }}</td>
+                                    <td>{{ $produit->prix }} DH</td>
+                                    <td style="display: flex; justify-content: center; align-items: center;">
+                                        <form method="post" action="/packs_produits/addToPack/{{ $pack->id }}" style="display: flex; align-items: center;">
+                                            @csrf
+                                            <!-- Ajouter l'ID du produit comme partie du nom du champ quantite -->
                                             <input type="hidden" name="produit_id" value="{{ $produit->id }}">
-                                        </td>
-                                        <td>
-                                            <button type="submit" class="button small blue">
+                                            <input class="input is-small" type="number" name="quantite" value="1" min="1" style="width: 80px"
+                                            @if ($produit->qte_en_stock == 1) disabled @endif>
+                                            &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+                                            <a href="#" class="button small blue" onclick="event.preventDefault(); this.closest('form').submit();">
                                                 <span class="icon"><i class="mdi mdi-plus"></i></span>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                            </a>
+                                        </form>
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                    </form>
+                    {{-- </form> --}}
                     <div class="table-pagination" id="all-products-pagination">
                         <div class="flex items-center justify-between">
                             <div class="buttons">

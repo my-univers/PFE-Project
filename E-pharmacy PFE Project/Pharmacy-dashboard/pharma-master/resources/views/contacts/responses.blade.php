@@ -70,7 +70,7 @@
             <p class="menu-label">A Propos</p>
             <ul class="menu-list">
                 <li>
-                    <a href="#" class="has-icon">
+                    <a href="https://github.com/my-univers/PFE-Project" class="has-icon">
                         <span class="icon"><i class="mdi mdi-github-circle"></i></span>
                         <span class="menu-item-label">GitHub</span>
                     </a>
@@ -140,7 +140,15 @@
                                     <br>
                                     <div class="field">
                                         <div class="control">
-                                            <textarea class="textarea" name="body" placeholder="Message" id="message"></textarea>
+                                            <label for="" class="label">Message</label>
+                                            <textarea class="textarea" readonly id="message">{{ $message->message }}</textarea>
+                                        </div>
+                                    </div>
+
+                                    <br>
+                                    <div class="field">
+                                        <div class="control">
+                                            <textarea class="textarea" name="body" placeholder="Réponse" id="message"></textarea>
                                         </div>
                                     </div>
 

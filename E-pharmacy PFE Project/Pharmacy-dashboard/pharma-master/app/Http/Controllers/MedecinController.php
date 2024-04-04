@@ -10,7 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert as FacadesAlert;
 class MedecinController extends Controller
 {
     public function showMedsList() {
-        $medecins = DB::table('medecins')->paginate(10);
+        $medecins = Medecin::latest()->paginate(10);
         return view('medecins.list', ['medecins' => $medecins]);
     }
 

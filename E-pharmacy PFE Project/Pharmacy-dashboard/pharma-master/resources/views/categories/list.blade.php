@@ -258,7 +258,7 @@
     <p class="menu-label">A Propos</p>
     <ul class="menu-list">
       <li>
-        <a href="#" class="has-icon">
+        <a href="https://github.com/my-univers/PFE-Project" class="has-icon">
           <span class="icon"><i class="mdi mdi-github-circle"></i></span>
           <span class="menu-item-label">GitHub</span>
         </a>
@@ -275,10 +275,7 @@
       <li>Admin</li>
       <li>Catégories </li>
     </ul>
-    <a href="/categories/addForm" class="button blue">
-        <span class="icon"><i class="mdi mdi-plus"></i></span>
-        <span>Ajouter</span>
-    </a>
+
   </div>
 </section>
 
@@ -289,6 +286,10 @@
     <h1 class="title">
         Liste des Catégories
     </h1>
+    <a href="/categories/addForm" class="button blue">
+        <span class="icon"><i class="mdi mdi-plus"></i></span>
+        <span>Ajouter</span>
+    </a>
   </div>
 </section>
 

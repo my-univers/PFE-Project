@@ -1,5 +1,5 @@
 @extends('master')
-  
+
 @section('aside')
 
 <aside class="aside is-placed-left is-expanded">
@@ -74,7 +74,7 @@
       <p class="menu-label">A Propos</p>
       <ul class="menu-list">
         <li>
-          <a href="#" class="has-icon">
+          <a href="https://github.com/my-univers/PFE-Project" class="has-icon">
             <span class="icon"><i class="mdi mdi-github-circle"></i></span>
             <span class="menu-item-label">GitHub</span>
           </a>
@@ -224,7 +224,7 @@
         <header class="card-header">
         <p class="card-header-title">
             <span class="icon"><i class="mdi mdi-cart"></i></span>
-            Commandes
+            Dernières Commandes
         </p>
         {{-- <a href="#" class="card-header-icon">
             <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -232,7 +232,7 @@
         </header>
         <div class="card-content">
             @if(count($commandes) > 0)
-            <table class="table table-sm">
+            <table class="table table-sm" id="commandes-table">
                 <thead>
                     <tr>
                         <th></th>
@@ -264,7 +264,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="table-pagination">
+            <div class="table-pagination" id="commandes-pagination">
                 <div class="flex items-center justify-between">
                     <div class="buttons">
                         @if ($commandes_paginate->onFirstPage())
@@ -346,4 +346,22 @@
 </div> --}}
 
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).on('click', '#commandes-pagination .button', function(e) {
+                e.preventDefault();
+                var url = $(this).attr('href');
+                var targetTable = $('#commandes-table');
+                var targetPagination = $('#commandes-pagination');
+
+                // Requête AJAX pour obtenir le nouveau contenu paginé
+                $.get(url, function(data) {
+                    var newTable = $(data).find('#commandes-table').html();
+                    var newPagination = $(data).find('#commandes-pagination').html();
+                    $(targetTable).html(newTable);
+                    $(targetPagination).html(newPagination);
+                });
+            });
+</script>
 @endsection

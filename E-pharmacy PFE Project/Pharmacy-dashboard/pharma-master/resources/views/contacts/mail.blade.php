@@ -14,7 +14,7 @@
     <p style="margin-bottom: 20px;"> {{ $data['body'] }}</p>
 
     <p><i>Merci,</i></p>
-    <p style="color: aqua; font-weight: bold;" >Pharma <span> One</span></p>
+    <p style="color: rgb(12, 235, 235); font-weight: bold;" >Pharma <span> One</span></p>
 
 </body>
 

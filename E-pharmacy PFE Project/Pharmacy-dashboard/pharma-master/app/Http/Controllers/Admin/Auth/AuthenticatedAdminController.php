@@ -115,7 +115,7 @@ class AuthenticatedAdminController extends Controller
 
         $admin->save();
 
-        FacadesAlert::success('Profil mis à jour avec succés');
+        FacadesAlert::success("Profil mis à jour \n\n avec succés");
 
         return back()->with('success', 'Profil mis à jour avec succès.');
     }
@@ -151,9 +151,9 @@ class AuthenticatedAdminController extends Controller
         $admin->mot_de_passe = bcrypt($request->nv_mdp);
         $admin->save();
 
-        FacadesAlert::success('Mot de passe mis à jour avec succés');
+        FacadesAlert::success("Mot de passe mis à jour avec succés");
 
-        return back()->with('success', 'Mot de passe mis à jour avec succès.');
+        return back()->with('success', 'Mot de passe mis à jour \n\n avec succès.');
     }
 
     /***********Forgot password***********/
@@ -249,6 +249,8 @@ class AuthenticatedAdminController extends Controller
         }
 
         if ($request->mot_de_passe !== $request->mot_de_passe_confirmation) {
+            FacadesAlert::error("Le nouveau mot de passe et \n\n sa confirmation ne correspondent \n\n pas.");
+
             return back()->withErrors(['mot_de_passe_confirmation' => 'Le nouveau mot de passe et sa confirmation ne correspondent pas.']);
         }
 
@@ -256,7 +258,7 @@ class AuthenticatedAdminController extends Controller
         $admin->mot_de_passe = bcrypt($request->mot_de_passe);
         $admin->save();
 
-        FacadesAlert::success('Mot de passe réinitialisé avec succès. Veuillez vous connecter.');
+        FacadesAlert::success("Mot de passe réinitialisé \n\n avec succès. \n\n Veuillez vous connecter.");
 
         return redirect('/loginForm')->with('success', 'Mot de passe réinitialisé avec succès. Veuillez vous connecter.');
     }

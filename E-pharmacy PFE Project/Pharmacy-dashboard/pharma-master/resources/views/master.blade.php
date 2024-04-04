@@ -8,6 +8,7 @@
 
   <!-- Tailwind is included -->
   <link rel="stylesheet" href="../../css/main.css?v=1628755089081">
+    <link href="../css/app.css" rel="stylesheet">
 
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
   <link rel="icon" type="image/x-icon" href="/img/pharmaOne-logo-bg.png">
@@ -58,6 +59,10 @@
   </div>
   <div class="navbar-menu" id="navbar-menu">
     <div class="navbar-end">
+        {{-- <a href="https://192.168.1.8:8080" target="blank" class="navbar-item has-divider">
+        <span class="icon"><i class="mdi mdi-monitor"></i></span>
+        <span><strong>PHARMA</strong></span>
+      </a> --}}
       <div class="navbar-item dropdown has-divider has-user-avatar">
         @auth('admin')
         <a class="navbar-link">

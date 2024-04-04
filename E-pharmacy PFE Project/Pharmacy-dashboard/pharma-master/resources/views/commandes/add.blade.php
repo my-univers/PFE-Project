@@ -258,7 +258,7 @@
     <p class="menu-label">A Propos</p>
     <ul class="menu-list">
       <li>
-        <a href="#" class="has-icon">
+        <a href="https://github.com/my-univers/PFE-Project" class="has-icon">
           <span class="icon"><i class="mdi mdi-github-circle"></i></span>
           <span class="menu-item-label">GitHub</span>
         </a>
@@ -320,9 +320,9 @@
                             @foreach ($clients as $c)
                             <tr>
                                 <td class="checkbox-cell">
-                                    <label class="checkbox">
-                                    <input type="checkbox" name="client_id" value="{{ $c->id }}">
-                                    <span class="check"></span>
+                                    <label class="radio">
+                                        <input type="radio" name="client_id" value="{{ $c->id }}">
+                                        <span class="check"></span>
                                     </label>
                                 </td>
                                 <td>{{ $c->nom }}</td>
@@ -390,7 +390,8 @@
                                 <td>{{ $produit->prix }} DH</td>
                                 <td @if($produit->qte_en_stock <= 1) style="color: red"  @endif>{{ $produit->qte_en_stock }}</td>
                                 <td>
-                                    <input class="input is-small" type="number" name="quantite[{{ $produit->id }}]" value="1" min="1">
+                                    <input class="input is-small" type="number" name="quantite[{{ $produit->id }}]" value="1" min="1"
+                                    @if ($produit->qte_en_stock == 1) disabled @endif>
                                 </td>
                                 <td></td>
                             </tr>
@@ -456,7 +457,8 @@
                                 <td>{{ $pack->prix }} DH</td>
                                 <td @if($pack->qte_en_stock <= 1) style="color: red"  @endif>{{ $pack->qte_en_stock }}</td>
                                 <td>
-                                    <input class="input is-small" type="number" name="quantite[{{ $pack->id }}]" value="1" min="1">
+                                    <input class="input is-small" type="number" name="quantite[{{ $pack->id }}]" value="1" min="1"
+                                    @if ($produit->qte_en_stock == 1) disabled @endif>
                                 </td>
                                 <td class="actions-cell">
                                     <div class="buttons right nowrap">

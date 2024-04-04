@@ -69,14 +69,20 @@ Route::post('/passer-commande', [CartController::class, 'passerCommande'])->name
 Route::post('/update-quantity', [CartController::class, 'updateQuantity'])->name('update.quantity');
 /* !!!!!!!! */
 
-Route::get('/cart/cancelCart', [CartController::class, 'cancelCart'])->name('cancel.cart');
-/*-------------------------------
+Route::get('/shop/cancelCart', [CartController::class, 'cancelCart'])->name('cancel.cart');
+
+Route::post('/shop/searchProduct', [shopController::class, 'searchProduct']);
+
+Route::post('/shop/searchPack', [shopController::class, 'searchPack']);
+
 
 /*--------------------------------------Categories-----------------------------------------*/
 
 Route::get('/categorie/{id}', [CategorieController::class, 'showProducts'])->name('categorie.products');
 
 Route::get('/categorieFiltered/{id}', [CategorieController::class, 'filterProducts'])->name('categorie.filter');
+
+Route::post('/searchCategorie/{id}', [CategorieController::class, 'searchCategorie']);
 
 
 /*--------------------------------------About-----------------------------------------*/

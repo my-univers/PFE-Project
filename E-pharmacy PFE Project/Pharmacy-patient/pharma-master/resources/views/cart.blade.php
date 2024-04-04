@@ -5,6 +5,7 @@
     <title>Pharma &mdash; Pharmacie en ligne</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/x-icon" href="/img/pharmaOne-logo-bg.png">
 
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,700|Crimson+Text:400,400i" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('fonts/icomoon/style.css') }}">
@@ -150,7 +151,7 @@
                                                         </div>
                                                     </center>
                                                 </td>
-                                                <td class="product-price">{{ $item['item']->prix }} DH</td>
+                                                <td class="product-price">{{ $item['item']->prix * $item['quantity'] }} DH</td>
                                                 <td class="product-delete">
                                                     <a href="{{ route('remove.item', ['type' => $item['type'], 'itemId' => $item['item']->id]) }}"
                                                         class="btn btn-primary height-auto btn-sm">X</a>
