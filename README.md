@@ -4,14 +4,20 @@
 Ce projet est développé dans le cadre de notre Projet de Fin d'Études (PFE) en deuxième année de génie informatique. L'objectif est de créer une application E-pharmacy permettant aux utilisateurs de commander des médicaments et des produits de santé en ligne.
 
 ## Fonctionnalités principales
-- Interface client conviviale pour parcourir et commander des produits
-- Gestion des commandes et des transactions
-- Catalogue des produits avec détails et images
-- Possibilité de recherche et de filtrage des produits
-- Livraison rapide
+Interface Administrateur
+- Gestion des clients
+- Gestion des stocks de produits
+- Gestion des commandes
+- Gestion des médecins partenaires.
 
-## Technologies utilisées
-- Laravel : Framework PHP pour le développement backend
+Interface Patient
+- Recherche et navigation des gammes de produits et packs de produits
+- Commande des produits sans authentification
+- Téléchargements des ordonnances sous format pdf ou image pour les produits qui nécessitent une approbation médicale
+- La possibilité de contacter un médecin depuis la liste des médecins partenaires en cas de besoin
+
+## Technologies utilisés
+- Laravel : Framework PHP pour le développement backend, avec des fonctionnalités intégrés (bibliothèques) comme l'authentification Laravel, Laravel Mail, Tessaract OCR (Reconnaissance Optique de Charctères)...
 - MySQL : Système de gestion de base de données relationnelle
 - HTML/CSS/JavaScript : Langages de développement frontend
 - Bootstrap : Framework CSS pour la conception d'interfaces utilisateur réactives
