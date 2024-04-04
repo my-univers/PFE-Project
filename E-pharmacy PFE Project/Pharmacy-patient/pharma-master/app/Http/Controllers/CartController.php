@@ -224,7 +224,6 @@ class CartController extends Controller
                 $packCommande->save();
 
                 // Décrémenter la quantité en stock du pack (s'il y a lieu)
-                // À adapter en fonction de votre modèle de données
                 $pack = Pack::find($item['item']->id);
                 $pack->qte_en_stock -= $item['quantity'];
                 $pack->save();

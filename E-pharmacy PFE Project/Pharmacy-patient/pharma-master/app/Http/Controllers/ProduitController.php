@@ -40,7 +40,7 @@ class ProduitController extends Controller
             $pdfText = (new TesseractOCR($request->file('image')->path()))
                 // ->executable('C:\Program Files\Tesseract-OCR\tesseract')
                 ->run();
-            $pdfText = strtolower($pdfText); // Conversion en minuscules
+            $pdfText = strtolower($pdfText); // Conversion en minuscules pour évitee les conflits
         }
 
         // Recherche du nom du produit dans le texte du PDF
@@ -57,18 +57,4 @@ class ProduitController extends Controller
         }
     }
 
-    // Fonction pour convertir le contenu du fichier PDF en texte brut
-    // private function pdfToText($content)
-    // {
-    //     // Créer une instance du parseur PDF
-    //     $parser = new Parser();
-
-    //     // Traiter le contenu PDF
-    //     $pdf = $parser->parseContent($content);
-
-    //     // Extraire le texte brut du PDF
-    //     $text = $pdf->getText();
-
-    //     return $text;
-    // }
 }

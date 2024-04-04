@@ -126,10 +126,8 @@ class shopController extends Controller
 
     public function searchPack(Request $request)
     {
-        // Récupérer le terme de recherche depuis la requête
         $searchTerm = $request->input('searchTerm');
 
-        // Effectuer la recherche des produits en fonction du terme de recherche
         $packs = Pack::has('produits')->where('nom', 'like', '%' . $searchTerm . '%')
                         ->orWhere('description', 'like', '%' . $searchTerm . '%')
                         ->paginate(10);

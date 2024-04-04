@@ -87,7 +87,6 @@ class MedecinController extends Controller
         // Exécuter la requête
         $medecins = $query->paginate(10);
 
-        // Passer les résultats à la vue
         return view('medecins.list', ['medecins' => $medecins]);
     }
 

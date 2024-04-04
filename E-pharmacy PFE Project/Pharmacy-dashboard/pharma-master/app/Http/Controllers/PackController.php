@@ -15,10 +15,8 @@ class PackController extends Controller
 {
     public function showList()
     {
-        // Récupérer la liste paginée des packs
         $packs_list = Pack::where('qte_en_stock', '>=', 1)->latest()->paginate(10);
 
-        // Retourner la vue avec la liste des packs mise à jour
         return view("packs.list", ['list' => $packs_list]);
     }
 
@@ -131,7 +129,6 @@ class PackController extends Controller
             }
         }
 
-        // Supprimer le pack
         $pack->delete();
 
         FacadesAlert::success('Pack supprimé avec succés');

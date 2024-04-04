@@ -69,7 +69,6 @@ class CategorieController extends Controller
         // Exécuter la requête
         $categories = $query->paginate(10);
 
-        // Passer les résultats à la vue
         return view('categories.list', ['categories' => $categories]);
     }
 

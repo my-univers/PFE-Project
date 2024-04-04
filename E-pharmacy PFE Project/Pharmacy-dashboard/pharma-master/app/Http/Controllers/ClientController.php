@@ -89,7 +89,6 @@ class ClientController extends Controller
         // Exécuter la requête
         $clients = $query->paginate(10);
 
-        // Passer les résultats à la vue
         return view('clients.list', ['clients' => $clients]);
     }
 
