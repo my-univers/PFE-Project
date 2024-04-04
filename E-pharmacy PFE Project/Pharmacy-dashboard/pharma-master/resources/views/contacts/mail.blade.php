@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <p>Bonjour, <span style="font-weight: bold;">{{$data['prenom']}}, </span></p>
+    <p>Bonjour <span style="font-weight: bold;">{{$data['prenom']}}, </span></p>
 
     <p style="margin-bottom: 20px;"> {{ $data['body'] }}</p>
 
